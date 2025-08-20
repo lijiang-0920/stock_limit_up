@@ -1,0 +1,13 @@
+name: Test Schedule
+
+on:
+  schedule:
+    - cron: 'MM HH * * *'  # 设置为几分钟后的时间
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple test
+        run: echo "This is a test run at $(date)"
