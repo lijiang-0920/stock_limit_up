@@ -86,7 +86,7 @@ def get_beijing_time():
     获取北京时间（系统时间+8小时）
     """
     # 获取系统时间并加上8小时偏移
-    return datetime.now() + timedelta(hours=8)
+    return datetime.now() 
 
 def fetch_limit_up_data():
     """
