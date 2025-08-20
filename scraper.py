@@ -184,7 +184,124 @@ def save_data(data):
     # 生成HTML
     generate_html(dates)
     
+    # 生成JSON查看页面
+    generate_json_viewer()
+    
     print(f"数据已保存: {current_date}, 共{data['count']}只涨停股")
+
+def generate_json_viewer():
+    """
+    生成JSON查看页面
+    """
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>财联社涨停池 JSON 数据查看器</title>
+        <style>
+            body { font-family: "Microsoft YaHei", Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+            .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            h1 { color: #333; text-align: center; margin-top: 0; }
+            .info { text-align: center; color: #666; margin-bottom: 20px; }
+            .date-select { width: 100%; padding: 10px; margin-bottom: 20px; font-size: 16px; }
+            pre { background-color: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; white-space: pre-wrap; }
+            code { font-family: Consolas, Monaco, 'Andale Mono', monospace; }
+            .back-link { display: block; margin-bottom: 20px; text-decoration: none; color: #4CAF50; }
+            .back-link:hover { text-decoration: underline; }
+            .copy-btn { background-color: #4CAF50; color: white; border: none; padding: 8px 15px; cursor: pointer; float: right; margin-bottom: 10px; }
+            .copy-btn:hover { background-color: #45a049; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <a href="index.html" class="back-link">← 返回数据表格视图</a>
+            <h1>财联社涨停池 JSON 数据查看器</h1>
+            <p class="info">查看原始 JSON 数据</p>
+            
+            <select id="dateSelect" class="date-select" onchange="loadJsonData()">
+                <option value="">-- 选择日期 --</option>
+            </select>
+            
+            <button id="copyBtn" class="copy-btn" onclick="copyToClipboard()">复制 JSON</button>
+            
+            <pre><code id="jsonContent">请选择一个日期查看数据...</code></pre>
+        </div>
+        
+        <script>
+            // 加载可用日期
+            async function loadDates() {
+                try {
+                    const response = await fetch('data/index.json');
+                    const dates = await response.json();
+                    
+                    const select = document.getElementById('dateSelect');
+                    dates.forEach(date => {
+                        const option = document.createElement('option');
+                        option.value = date;
+                        option.textContent = date;
+                        select.appendChild(option);
+                    });
+                    
+                    // 如果有日期，默认加载第一个
+                    if (dates.length > 0) {
+                        select.value = dates[0];
+                        loadJsonData();
+                    }
+                } catch (error) {
+                    console.error('加载日期失败:', error);
+                    document.getElementById('jsonContent').textContent = '加载日期数据失败，请稍后再试。';
+                }
+            }
+            
+            // 加载选定日期的JSON数据
+            async function loadJsonData() {
+                const date = document.getElementById('dateSelect').value;
+                if (!date) {
+                    document.getElementById('jsonContent').textContent = '请选择一个日期查看数据...';
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`data/${date}.json`);
+                    const data = await response.json();
+                    
+                    // 格式化JSON并显示
+                    document.getElementById('jsonContent').textContent = JSON.stringify(data, null, 2);
+                } catch (error) {
+                    console.error('加载JSON数据失败:', error);
+                    document.getElementById('jsonContent').textContent = `加载 ${date} 的数据失败，请稍后再试。`;
+                }
+            }
+            
+            // 复制JSON到剪贴板
+            function copyToClipboard() {
+                const jsonContent = document.getElementById('jsonContent').textContent;
+                
+                navigator.clipboard.writeText(jsonContent)
+                    .then(() => {
+                        const btn = document.getElementById('copyBtn');
+                        btn.textContent = '已复制!';
+                        setTimeout(() => {
+                            btn.textContent = '复制 JSON';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('复制失败:', err);
+                        alert('复制失败，请手动选择并复制。');
+                    });
+            }
+            
+            // 页面加载时执行
+            document.addEventListener('DOMContentLoaded', loadDates);
+        </script>
+    </body>
+    </html>
+    """
+    
+    with open('json_viewer.html', 'w', encoding='utf-8') as f:
+        f.write(html_content)
 
 def generate_html(dates):
     """
@@ -217,6 +334,11 @@ def generate_html(dates):
             .search-box input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 4px; }
             .stock-count { margin: 10px 0; font-weight: bold; color: #333; }
             .update-time { color: #666; font-style: italic; margin-bottom: 15px; }
+            .json-link { display: inline-block; margin-top: 10px; text-decoration: none; color: #4CAF50; }
+            .json-link:hover { text-decoration: underline; }
+            .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+            .view-json-btn { background-color: #4CAF50; color: white; border: none; padding: 8px 15px; cursor: pointer; }
+            .view-json-btn:hover { background-color: #45a049; }
             @media (max-width: 768px) {
                 .container { padding: 10px; }
                 th, td { padding: 8px 4px; font-size: 14px; }
@@ -229,8 +351,11 @@ def generate_html(dates):
             <h1>财联社涨停池数据</h1>
             <p class="info">每日15:30自动更新，点击日期查看对应数据</p>
             
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜索股票代码或名称..." onkeyup="searchStocks()">
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索股票代码或名称..." onkeyup="searchStocks()">
+                </div>
+                <a href="json_viewer.html" class="view-json-btn">查看原始JSON数据</a>
             </div>
             
             <div class="date-tabs" id="dateTabs">
@@ -253,6 +378,7 @@ def generate_html(dates):
             html_content += f'<div id="{date}" class="tab-content{active}">\n'
             html_content += f'<div class="update-time">更新时间: {data["update_time"]}</div>\n'
             html_content += f'<div class="stock-count">涨停股数量: {data["count"]}</div>\n'
+            html_content += f'<a href="data/{date}.json" target="_blank" class="json-link">查看此日期的JSON数据</a>\n'
             html_content += '<table>\n'
             html_content += '<tr><th>股票代码</th><th>股票名称</th><th>最新价格</th><th>涨幅</th><th>涨停时间</th><th>涨停原因</th><th>所属板块</th></tr>\n'
             
@@ -371,3 +497,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
