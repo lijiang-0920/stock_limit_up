@@ -2,7 +2,7 @@ name: Scrape Limit-up Stocks
 
 on:
   schedule:
-    - cron: '39 11 * * *'  # 每天15:30 (UTC+8) 运行，对应UTC时间7:30
+    - cron: '45 11 * * *'  # 北京时间 19:37，对应 UTC 时间 11:37
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
     
     - name: Run scraper
       run: |
-        python -m scraper
+        python scraper.py
     
     - name: Configure Git
       run: |
@@ -39,4 +39,3 @@ jobs:
       run: |
         git add -A
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update limit-up stocks data: $(date +'%Y-%m-%d')" && git push)
-
