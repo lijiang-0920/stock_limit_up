@@ -8,6 +8,8 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 添加写入权限
     
     steps:
     - uses: actions/checkout@v2
@@ -22,10 +24,11 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests
+        pip install requests urllib3 chardet
     
     - name: Run scraper
-      run: python scraper.py
+      run: |
+        python -m scraper
     
     - name: Configure Git
       run: |
@@ -36,3 +39,4 @@ jobs:
       run: |
         git add -A
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update limit-up stocks data: $(date +'%Y-%m-%d')" && git push)
+
