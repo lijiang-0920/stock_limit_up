@@ -2,7 +2,7 @@ name: Scrape Limit-up Stocks
 
 on:
   schedule:
-    - cron: '30 15 * * *'  # UTC 14:00 (北京时间 22:00)
+    - cron: '30 2 * * *'  # UTC 14:00 (北京时间 22:00)
   workflow_dispatch:
   push:
     branches: [ main ]
