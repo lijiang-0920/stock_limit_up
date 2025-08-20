@@ -2,7 +2,7 @@ name: Scrape Limit-up Stocks
 
 on:
   schedule:
-    - cron: '30 7 * * *'  # 每天15:30 (UTC+8) 运行，对应UTC时间7:30
+    - cron: '39 11 * * *'  # 每天15:30 (UTC+8) 运行，对应UTC时间7:30
   workflow_dispatch:  # 允许手动触发
 
 jobs:
