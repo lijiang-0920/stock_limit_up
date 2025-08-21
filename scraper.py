@@ -6,17 +6,12 @@ import os
 from datetime import datetime, timedelta
 
 def generate_sign(params_dict):
-    """
-    生成财联社API请求的签名
-    """
-    # 对字典的键进行排序，并生成排序后的查询字符串
+ 
     sorted_data = sorted(params_dict.items(), key=lambda item: item[0])  # 按key排序
     query_string = urllib.parse.urlencode(sorted_data)  # 转换为URL编码的字符串
     
-    # 使用SHA1加密
     sha1_hash = hashlib.sha1(query_string.encode('utf-8')).hexdigest()
     
-    # 对SHA1加密的结果再进行MD5加密
     sign = hashlib.md5(sha1_hash.encode('utf-8')).hexdigest()
     
     return sign
