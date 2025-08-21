@@ -3,7 +3,7 @@
    on:
      schedule:
        # UTC时间07:40 = 北京时间15:40，每个工作日
-       - cron: '00 6 * * 1-5'
+       - cron: '00 7 * * 1-5'
      workflow_dispatch:   # 允许手动触发
 
    jobs:
@@ -25,7 +25,7 @@
              pip install -r requirements.txt
 
          - name: 运行爬虫脚本
-           run: python spider.py
+           run: python scraper.py
 
          # 可选：提交并推送新数据
          - name: 配置Git信息
