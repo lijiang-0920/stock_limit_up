@@ -1,44 +1,37 @@
-   name: 财联社涨停池自动爬取
+name: 自动更新涨停池数据
 
-   on:
-     schedule:
-       # UTC时间07:40 = 北京时间15:40，每个工作日
-       - cron: '00 7 * * 1-5'
-     workflow_dispatch:   # 允许手动触发
+on:
+  schedule:
+    - cron: '00 7 * * 1-5'
+  workflow_dispatch:
 
-   jobs:
-     run-spider:
-       runs-on: ubuntu-latest
+permissions:
+  contents: write
 
-       steps:
-         - name: 检出仓库
-           uses: actions/checkout@v3
+jobs:
+  run-spider:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: 设置Python环境
-           uses: actions/setup-python@v4
-           with:
-             python-version: '3.10'
+      - name: 设置 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-         - name: 安装依赖
-           run: |
-             python -m pip install --upgrade pip
-             pip install -r requirements.txt
+      - name: 安装依赖
+        run: pip install -r requirements.txt
 
-         - name: 运行爬虫脚本
-           run: python scraper.py
+      - name: 运行爬虫脚本
+        run: python scraper.py
 
-         # 可选：提交并推送新数据
-         - name: 配置Git信息
-           run: |
-             git config --global user.name 'github-actions[bot]'
-             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: 配置 Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-         - name: 提交数据更改
-           run: |
-             git add data/ index.html json_viewer.html
-             git commit -m "自动更新涨停池数据: $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
-             git push
-           env:
-             # 需要设置一个token，见下文说明
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-   
+      - name: 提交更改
+        run: |
+          git add data/ index.html json_viewer.html
+          git commit -m "自动更新涨停池数据: $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
