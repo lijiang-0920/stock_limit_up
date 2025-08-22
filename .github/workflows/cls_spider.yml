@@ -1,37 +1,197 @@
-name: 自动更新涨停池数据
+name: 自动更新数据和文章
 
 on:
   schedule:
+    # 上午7:00 - 获取韭研公社盘前纪要
     - cron: '00 7 * * 1-5'
+    # 上午8:20 - 获取韭研公社盘前解读  
+    - cron: '20 8 * * 1-5'
+    # 下午15:35 - 获取财联社涨停池数据
+    - cron: '35 15 * * 1-5'
+    # 晚上23:35 - 获取韭研公社优秀阿呆文章
+    - cron: '35 23 * * 1-5'
   workflow_dispatch:
+    inputs:
+      task_type:
+        description: '选择执行的任务'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+        - 'all'
+        - 'limitup'
+        - 'jiuyan'
+        - 'generate'
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  run-spider:
+  run-tasks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: 设置 Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: 安装依赖
-        run: pip install -r requirements.txt
+      - name: 安装系统依赖
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu-core
 
-      - name: 运行爬虫脚本
-        run: python scraper.py
+      - name: 安装 Python 依赖
+        run: |
+          pip install --upgrade pip
+          pip install requests beautifulsoup4 python-docx pillow lxml
+
+      - name: 确定执行任务
+        id: determine-task
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "task=${{ github.event.inputs.task_type }}" >> $GITHUB_OUTPUT
+          else
+            # 根据时间确定任务类型
+            hour=$(date -u +%H)
+            if [ "$hour" = "07" ]; then
+              echo "task=jiuyan_morning" >> $GITHUB_OUTPUT
+            elif [ "$hour" = "08" ]; then
+              echo "task=jiuyan_morning2" >> $GITHUB_OUTPUT
+            elif [ "$hour" = "15" ]; then
+              echo "task=limitup" >> $GITHUB_OUTPUT
+            elif [ "$hour" = "23" ]; then
+              echo "task=jiuyan_evening" >> $GITHUB_OUTPUT
+            else
+              echo "task=all" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: 执行上午7点任务 (盘前纪要)
+        if: steps.determine-task.outputs.task == 'jiuyan_morning'
+        run: |
+          echo "执行盘前纪要爬取..."
+          python script.py jiuyan 盘前纪要
+          python script.py generate
+
+      - name: 执行上午8点任务 (盘前解读)
+        if: steps.determine-task.outputs.task == 'jiuyan_morning2'
+        run: |
+          echo "执行盘前解读爬取..."
+          python script.py jiuyan 盘前解读
+          python script.py generate
+
+      - name: 执行下午任务 (涨停池数据)
+        if: steps.determine-task.outputs.task == 'limitup'
+        run: |
+          echo "执行涨停池数据获取..."
+          python script.py limitup
+          python script.py generate
+
+      - name: 执行晚上任务 (优秀阿呆)
+        if: steps.determine-task.outputs.task == 'jiuyan_evening'
+        run: |
+          echo "执行优秀阿呆文章爬取..."
+          python script.py jiuyan 优秀阿呆
+          python script.py generate
+
+      - name: 执行所有任务
+        if: steps.determine-task.outputs.task == 'all'
+        run: |
+          echo "执行所有任务..."
+          python script.py all
+
+      - name: 只生成网页
+        if: steps.determine-task.outputs.task == 'generate'
+        run: |
+          echo "只生成网页文件..."
+          python script.py generate
+
+      - name: 检查文件变化
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "发现文件变化"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "没有文件变化"
+          fi
 
       - name: 配置 Git
+        if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: 提交更改
+        if: steps.check-changes.outputs.has_changes == 'true'
         run: |
-          git add data/ index.html json_viewer.html
-          git commit -m "自动更新涨停池数据: $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          # 添加所有相关文件
+          git add data/ articles/ assets/ *.html
+          
+          # 生成提交信息
+          task_name="${{ steps.determine-task.outputs.task }}"
+          case $task_name in
+            "jiuyan_morning")
+              commit_msg="自动更新: 盘前纪要文章"
+              ;;
+            "jiuyan_morning2")
+              commit_msg="自动更新: 盘前解读文章"
+              ;;
+            "limitup")
+              commit_msg="自动更新: 涨停池数据"
+              ;;
+            "jiuyan_evening")
+              commit_msg="自动更新: 优秀阿呆文章"
+              ;;
+            "all")
+              commit_msg="自动更新: 所有数据和文章"
+              ;;
+            "generate")
+              commit_msg="更新: 重新生成网页文件"
+              ;;
+            *)
+              commit_msg="自动更新数据"
+              ;;
+          esac
+          
+          git commit -m "$commit_msg ($(date '+%Y-%m-%d %H:%M:%S'))" || echo "No changes to commit"
           git push
+
+      - name: 输出执行结果
+        run: |
+          echo "任务类型: ${{ steps.determine-task.outputs.task }}"
+          echo "是否有变化: ${{ steps.check-changes.outputs.has_changes }}"
+          echo "执行时间: $(date '+%Y-%m-%d %H:%M:%S')"
+
+  # 部署到 GitHub Pages (可选)
+  deploy-pages:
+    needs: run-tasks
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
