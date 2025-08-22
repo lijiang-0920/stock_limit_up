@@ -2970,7 +2970,11 @@ function showStats() {
     print("- assets/js/limitup.js") 
     print("- assets/js/jiuyan.js")
  
-
+# 在网页生成函数部分添加这个函数
+def generate_assets():
+    """生成所有静态资源文件"""
+    generate_css()
+    generate_js_files()
 
 def generate_all_pages():
     """生成所有网页"""
@@ -3052,3 +3056,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
