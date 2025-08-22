@@ -1,106 +1,41 @@
-
-    <!DOCTYPE html>
-    <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>财联社涨停池 JSON 数据查看器</title>
-        <style>
-            body { font-family: "Microsoft YaHei", Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
-            .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-            h1 { color: #333; text-align: center; margin-top: 0; }
-            .info { text-align: center; color: #666; margin-bottom: 20px; }
-            .date-select { width: 100%; padding: 10px; margin-bottom: 20px; font-size: 16px; }
-            pre { background-color: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; white-space: pre-wrap; }
-            code { font-family: Consolas, Monaco, 'Andale Mono', monospace; }
-            .back-link { display: block; margin-bottom: 20px; text-decoration: none; color: #4CAF50; }
-            .back-link:hover { text-decoration: underline; }
-            .copy-btn { background-color: #4CAF50; color: white; border: none; padding: 8px 15px; cursor: pointer; float: right; margin-bottom: 10px; }
-            .copy-btn:hover { background-color: #45a049; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <a href="index.html" class="back-link">← 返回数据表格视图</a>
-            <h1>财联社涨停池 JSON 数据查看器</h1>
-            <p class="info">查看原始 JSON 数据</p>
-            
-            <select id="dateSelect" class="date-select" onchange="loadJsonData()">
-                <option value="">-- 选择日期 --</option>
-            </select>
-            
-            <button id="copyBtn" class="copy-btn" onclick="copyToClipboard()">复制 JSON</button>
-            
-            <pre><code id="jsonContent">请选择一个日期查看数据...</code></pre>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📄 JSON数据查看器</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>📄 JSON数据查看器</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="json-controls">
+                <select id="dataTypeSelect" class="filter-select">
+                    <option value="limitup">涨停池数据</option>
+                    <option value="articles">文章数据</option>
+                </select>
+                <select id="dateSelect" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <button id="copyJsonBtn" class="action-btn">📋 复制JSON</button>
+            </div>
         </div>
         
-        <script>
-            // 加载可用日期
-            async function loadDates() {
-                try {
-                    const response = await fetch('data/index.json');
-                    const dates = await response.json();
-                    
-                    const select = document.getElementById('dateSelect');
-                    dates.forEach(date => {
-                        const option = document.createElement('option');
-                        option.value = date;
-                        option.textContent = date;
-                        select.appendChild(option);
-                    });
-                    
-                    // 如果有日期，默认加载第一个
-                    if (dates.length > 0) {
-                        select.value = dates[0];
-                        loadJsonData();
-                    }
-                } catch (error) {
-                    console.error('加载日期失败:', error);
-                    document.getElementById('jsonContent').textContent = '加载日期数据失败，请稍后再试。';
-                }
-            }
-            
-            // 加载选定日期的JSON数据
-            async function loadJsonData() {
-                const date = document.getElementById('dateSelect').value;
-                if (!date) {
-                    document.getElementById('jsonContent').textContent = '请选择一个日期查看数据...';
-                    return;
-                }
-                
-                try {
-                    const response = await fetch(`data/${date}.json`);
-                    const data = await response.json();
-                    
-                    // 格式化JSON并显示
-                    document.getElementById('jsonContent').textContent = JSON.stringify(data, null, 2);
-                } catch (error) {
-                    console.error('加载JSON数据失败:', error);
-                    document.getElementById('jsonContent').textContent = `加载 ${date} 的数据失败，请稍后再试。`;
-                }
-            }
-            
-            // 复制JSON到剪贴板
-            function copyToClipboard() {
-                const jsonContent = document.getElementById('jsonContent').textContent;
-                
-                navigator.clipboard.writeText(jsonContent)
-                    .then(() => {
-                        const btn = document.getElementById('copyBtn');
-                        btn.textContent = '已复制!';
-                        setTimeout(() => {
-                            btn.textContent = '复制 JSON';
-                        }, 2000);
-                    })
-                    .catch(err => {
-                        console.error('复制失败:', err);
-                        alert('复制失败，请手动选择并复制。');
-                    });
-            }
-            
-            // 页面加载时执行
-            document.addEventListener('DOMContentLoaded', loadDates);
-        </script>
-    </body>
-    </html>
+        <div class="json-container">
+            <pre><code id="jsonContent">请选择数据类型和日期...</code></pre>
+        </div>
+    </div>
     
+    <script src="assets/js/common.js"></script>
+    <script>
+        loadJsonViewer();
+    </script>
+</body>
+</html>

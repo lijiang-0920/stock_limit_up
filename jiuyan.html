@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 韭研公社研报文章</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>📰 韭研公社研报文章</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="filter-section">
+                <select id="authorFilter" class="filter-select">
+                    <option value="">全部作者</option>
+                    <option value="盘前纪要">盘前纪要</option>
+                    <option value="盘前解读">盘前解读</option>
+                    <option value="优秀阿呆">优秀阿呆</option>
+                </select>
+                <select id="dateFilter" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <button id="refreshBtn" class="action-btn">🔄 刷新</button>
+            </div>
+        </div>
+        
+        <div class="articles-container" id="articlesContainer">
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+    
+    <!-- 文章详情模态框 -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeArticleModal()">&times;</span>
+                <h2 id="modalTitle">文章标题</h2>
+                <div class="modal-actions">
+                    <button onclick="copyArticleContent('full')" class="action-btn">📋 复制全文</button>
+                    <button onclick="copyArticleContent('text')" class="action-btn">📄 纯文本</button>
+                    <button onclick="downloadArticle()" class="action-btn">💾 下载</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="article-meta" id="articleMeta"></div>
+                <div class="article-content" id="articleContent"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 图片查看器 -->
+    <div id="imageViewer" class="image-viewer">
+        <div class="viewer-content">
+            <span class="viewer-close" onclick="closeImageViewer()">&times;</span>
+            <img id="viewerImage" src="" alt="">
+            <div class="viewer-controls">
+                <button onclick="prevImage()" class="viewer-btn">← 上一张</button>
+                <button onclick="downloadCurrentImage()" class="viewer-btn">💾 下载</button>
+                <button onclick="nextImage()" class="viewer-btn">下一张 →</button>
+            </div>
+            <div class="viewer-info" id="viewerInfo">图片 1 / 1</div>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/jiuyan.js"></script>
+</body>
+</html>

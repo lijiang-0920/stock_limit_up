@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💹 财联社涨停池数据</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>💹 财联社涨停池数据</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="search-section">
+                <input type="text" id="searchInput" placeholder="搜索股票代码或名称..." class="search-input">
+            </div>
+            <div class="date-section">
+                <select id="dateSelect" class="date-select">
+                    <option value="">选择日期...</option>
+                </select>
+                <button id="copyDataBtn" class="action-btn">📋 复制数据</button>
+                <button id="viewJsonBtn" class="action-btn">📄 查看JSON</button>
+            </div>
+        </div>
+        
+        <div class="data-info" id="dataInfo" style="display: none;">
+            <div class="info-item">
+                <span class="info-label">更新时间:</span>
+                <span id="updateTime">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">涨停股数:</span>
+                <span id="stockCount">--</span>
+            </div>
+        </div>
+        
+        <div class="stocks-container" id="stocksContainer">
+            <div class="loading">请选择日期查看数据...</div>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/limitup.js"></script>
+</body>
+</html>
