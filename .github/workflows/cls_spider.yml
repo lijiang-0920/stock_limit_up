@@ -39,6 +39,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: 检查文件结构
+        run: |
+          echo "当前目录内容:"
+          ls -la
+          echo "Python文件:"
+          find . -name "*.py" -type f
+
       - name: 安装系统依赖
         run: |
           sudo apt-get update
@@ -48,6 +55,20 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install requests beautifulsoup4 python-docx pillow lxml
+
+      - name: 确定脚本文件名
+        id: script-name
+        run: |
+          if [ -f "script.py" ]; then
+            echo "script_file=script.py" >> $GITHUB_OUTPUT
+          elif [ -f "scraper.py" ]; then
+            echo "script_file=scraper.py" >> $GITHUB_OUTPUT
+          elif [ -f "main.py" ]; then
+            echo "script_file=main.py" >> $GITHUB_OUTPUT
+          else
+            echo "找不到Python脚本文件"
+            exit 1
+          fi
 
       - name: 确定执行任务
         id: determine-task
@@ -74,48 +95,49 @@ jobs:
         if: steps.determine-task.outputs.task == 'jiuyan_morning'
         run: |
           echo "执行盘前纪要爬取..."
-          python script.py jiuyan 盘前纪要
-          python script.py generate
+          python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
+          python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 执行上午8点任务 (盘前解读)
         if: steps.determine-task.outputs.task == 'jiuyan_morning2'
         run: |
           echo "执行盘前解读爬取..."
-          python script.py jiuyan 盘前解读
-          python script.py generate
+          python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
+          python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 执行下午任务 (涨停池数据)
         if: steps.determine-task.outputs.task == 'limitup'
         run: |
           echo "执行涨停池数据获取..."
-          python script.py limitup
-          python script.py generate
+          python ${{ steps.script-name.outputs.script_file }} limitup
+          python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 执行晚上任务 (优秀阿呆)
         if: steps.determine-task.outputs.task == 'jiuyan_evening'
         run: |
           echo "执行优秀阿呆文章爬取..."
-          python script.py jiuyan 优秀阿呆
-          python script.py generate
+          python ${{ steps.script-name.outputs.script_file }} jiuyan 优秀阿呆
+          python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 执行所有任务
         if: steps.determine-task.outputs.task == 'all'
         run: |
           echo "执行所有任务..."
-          python script.py all
+          python ${{ steps.script-name.outputs.script_file }} all
 
       - name: 只生成网页
         if: steps.determine-task.outputs.task == 'generate'
         run: |
           echo "只生成网页文件..."
-          python script.py generate
+          python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 检查文件变化
         id: check-changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "发现文件变化"
+            echo "发现文件变化:"
+            git status --porcelain
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "没有文件变化"
@@ -164,6 +186,7 @@ jobs:
 
       - name: 输出执行结果
         run: |
+          echo "脚本文件: ${{ steps.script-name.outputs.script_file }}"
           echo "任务类型: ${{ steps.determine-task.outputs.task }}"
           echo "是否有变化: ${{ steps.check-changes.outputs.has_changes }}"
           echo "执行时间: $(date '+%Y-%m-%d %H:%M:%S')"
@@ -172,7 +195,7 @@ jobs:
   deploy-pages:
     needs: run-tasks
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && needs.run-tasks.outputs.has_changes == 'true'
     
     environment:
       name: github-pages
