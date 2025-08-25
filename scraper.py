@@ -1797,7 +1797,11 @@ function showToast(message, type = 'success') {
     
     setTimeout(() => {
         toast.style.animation = 'slideOut 0.3s ease-out forwards';
-        setTimeout(() => document.body.removeChild(toast), 300);
+        setTimeout(() => {
+            if (document.body.contains(toast)) {
+                document.body.removeChild(toast);
+            }
+        }, 300);
     }, 3000);
 }
 
@@ -2249,10 +2253,10 @@ function copyLimitUpData() {
     }
     
     const textData = currentLimitUpData.stocks.map(stock => 
-        `${stock.code}\t${stock.name}\t${stock.price}\t${stock.change_percent}\t${stock.limit_up_time}\t${stock.reason}\t${stock.plates}`
-    ).join('\n');
+        `${stock.code}\\t${stock.name}\\t${stock.price}\\t${stock.change_percent}\\t${stock.limit_up_time}\\t${stock.reason}\\t${stock.plates}`
+    ).join('\\n');
     
-    const header = '股票代码\t股票名称\t最新价格\t涨幅\t涨停时间\t涨停原因\t所属板块\n';
+    const header = '股票代码\\t股票名称\\t最新价格\\t涨幅\\t涨停时间\\t涨停原因\\t所属板块\\n';
     const fullText = header + textData;
     
     copyToClipboard(fullText);
@@ -2282,10 +2286,10 @@ function exportToExcel() {
     }
     
     const csvContent = "data:text/csv;charset=utf-8," 
-        + "股票代码,股票名称,最新价格,涨幅,涨停时间,涨停原因,所属板块\n"
+        + "股票代码,股票名称,最新价格,涨幅,涨停时间,涨停原因,所属板块\\n"
         + currentLimitUpData.stocks.map(stock => 
             `${stock.code},${stock.name},${stock.price},${stock.change_percent},${stock.limit_up_time},"${stock.reason}","${stock.plates}"`
-        ).join('\n');
+        ).join('\\n');
     
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
@@ -2301,9 +2305,8 @@ function exportToExcel() {
     with open('assets/js/limitup.js', 'w', encoding='utf-8') as f:
         f.write(limitup_js)
     
-# jiuyan.js
-# jiuyan.js - 在你的 generate_js_files() 函数中替换这部分
-jiuyan_js = '''// assets/js/jiuyan.js - 韭研公社文章页面功能
+    # jiuyan.js
+    jiuyan_js = '''// assets/js/jiuyan.js - 韭研公社文章页面功能
 
 let currentArticlesData = {};
 let currentArticle = null;
@@ -2469,8 +2472,9 @@ function renderArticles(articles) {
 function getArticlePreview(content, maxLength = 200) {
     if (!content) return '暂无预览';
     
-    // 移除图片占位符 - 修正了正则表达式
-    const textOnly = content.replace(/\\[图片:[^\\]]+\\]/g, '');
+    // 移除图片占位符 - 使用正确的正则表达式
+    const imgRegex = new RegExp('\\\\[图片:[^\\\\]]+\\\\]', 'g');
+    const textOnly = content.replace(imgRegex, '');
     
     if (textOnly.length <= maxLength) {
         return textOnly;
@@ -2548,14 +2552,15 @@ function processArticleContent(article) {
     }
     
     // 处理段落
-    content = content.split('\\n').map(paragraph => {
-        if (paragraph.trim()) {
-            return `<p>${paragraph}</p>`;
+    const lines = content.split('\\n');
+    const processedLines = lines.map(line => {
+        if (line.trim()) {
+            return `<p>${line}</p>`;
         }
         return '';
-    }).join('');
+    });
     
-    return content;
+    return processedLines.join('');
 }
 
 // 设置图片查看器
@@ -2656,8 +2661,9 @@ function copyArticleContent(type) {
             content += currentArticle.content;
             break;
         case 'text':
-            // 纯文本（移除图片占位符） - 修正了正则表达式
-            content = currentArticle.content.replace(/\\[图片:[^\\]]+\\]/g, '');
+            // 纯文本（移除图片占位符）
+            const imgRegex = new RegExp('\\\\[图片:[^\\\\]]+\\\\]', 'g');
+            content = currentArticle.content.replace(imgRegex, '');
             break;
         case 'html':
             // HTML格式
@@ -2692,14 +2698,16 @@ function convertToMarkdown(article) {
     }
     
     // 处理段落
-    articleContent = articleContent.split('\\n').map(paragraph => {
-        if (paragraph.trim()) {
-            return paragraph;
+    const lines = articleContent.split('\\n');
+    const processedLines = lines.map(line => {
+        if (line.trim()) {
+            return line;
         }
         return '';
-    }).join('\\n\\n');
+    });
+    const finalContent = processedLines.join('\\n\\n');
     
-    content += articleContent;
+    content += finalContent;
     return content;
 }
 
@@ -2707,7 +2715,8 @@ function convertToMarkdown(article) {
 function copyArticleText(date, author) {
     const article = findArticle(date, author);
     if (article) {
-        const content = article.content.replace(/\\[图片:[^\\]]+\\]/g, '');
+        const imgRegex = new RegExp('\\\\[图片:[^\\\\]]+\\\\]', 'g');
+        const content = article.content.replace(imgRegex, '');
         copyToClipboard(content);
     } else {
         showToast('文章未找到', 'error');
@@ -2795,7 +2804,8 @@ function batchDownloadArticles() {
         batchContent += `作者: ${article.author}\\n`;
         batchContent += `时间: ${article.date} ${article.publish_time}\\n`;
         batchContent += `${'='.repeat(50)}\\n\\n`;
-        batchContent += article.content.replace(/\\[图片:[^\\]]+\\]/g, '[图片]');
+        const imgRegex = new RegExp('\\\\[图片:[^\\\\]]+\\\\]', 'g');
+        batchContent += article.content.replace(imgRegex, '[图片]');
         batchContent += '\\n\\n';
     });
     
@@ -2974,7 +2984,6 @@ function showStats() {
         }
     });
 }'''
-
     
     with open('assets/js/jiuyan.js', 'w', encoding='utf-8') as f:
         f.write(jiuyan_js)
@@ -3069,6 +3078,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
