@@ -3,66 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📊 数据中心导航</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>股市数据中心</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header class="main-header">
-            <h1>📊 数据中心导航</h1>
-            <p class="subtitle">Data Center Navigation</p>
-        </header>
+        <h1>股市数据中心</h1>
         
-        <div class="navigation-cards">
-            <div class="nav-card" onclick="location.href='limitup.html'">
-                <div class="card-icon">💹</div>
-                <h3>财联社涨停池</h3>
-                <p>查看每日涨停数据</p>
-                <div class="card-status" id="limitupStatus">最新更新: 加载中...</div>
-                <div class="card-button">进入查看</div>
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('limitup')">涨停池数据</button>
+            <button class="tab-button" onclick="showTab('jiuyan')">韭研公社文章</button>
+        </div>
+        
+        <div id="limitup-content" class="tab-content active">
+            <h2>涨停池数据</h2>
+            <div class="date-list">
+    <button class="date-button" onclick="loadLimitUpData('2025-08-25')">2025-08-25</button>
+<button class="date-button" onclick="loadLimitUpData('2025-08-22')">2025-08-22</button>
+<button class="date-button" onclick="loadLimitUpData('2025-08-21')">2025-08-21</button>
+<button class="date-button" onclick="loadLimitUpData('2025-08-20')">2025-08-20</button>
+<button class="date-button" onclick="loadLimitUpData('2025-08-19')">2025-08-19</button>
+
             </div>
+            <div id="limitup-data"></div>
+        </div>
+        
+        <div id="jiuyan-content" class="tab-content">
+            <h2>韭研公社文章</h2>
+    <div class="jiuyan-users">
+                <div class="user-section">
+                    <h3>盘前纪要 (共0篇)</h3>
+                    <div class="article-list">
             
-            <div class="nav-card" onclick="location.href='jiuyan.html'">
-                <div class="card-icon">📰</div>
-                <h3>韭研公社文章</h3>
-                <p>查看研报文章</p>
-                <div class="card-status" id="articlesStatus">最新更新: 加载中...</div>
-                <div class="card-button">进入查看</div>
-            </div>
-        </div>
-        
-        <div class="stats-panel">
-            <h3>📈 快速统计</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">今日涨停</span>
-                    <span class="stat-value" id="todayLimitUp">--</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周文章</span>
-                    <span class="stat-value" id="weeklyArticles">--</span>
+            
+                <div class="user-section">
+                    <h3>盘前解读 (共0篇)</h3>
+                    <div class="article-list">
+            
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">数据状态</span>
-                    <span class="stat-value" id="dataStatus">正常</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="quick-links">
-            <h3>🔗 快速链接</h3>
-            <div class="links-grid">
-                <a href="json_viewer.html" class="quick-link">JSON数据查看器</a>
-                <a href="#" class="quick-link" onclick="showAbout()">关于项目</a>
-                <a href="https://github.com" class="quick-link" target="_blank">GitHub仓库</a>
             </div>
         </div>
     </div>
     
-    <script src="assets/js/common.js"></script>
-    <script>
-        // 加载统计数据
-        loadMainPageStats();
-    </script>
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="article-content"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
+    
