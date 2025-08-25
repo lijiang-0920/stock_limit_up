@@ -215,12 +215,26 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
         headers_with_referer['Referer'] = article_url
 
         img_counter = 1
+        processed_images = set()  # 用于跟踪已处理的图片URL，避免重复
+        
         for img in soup.find_all('img'):
             src = img.get('src')
             if not src:
                 continue
             if not src.startswith('http'):
                 src = urljoin(article_url, src)
+            
+            # 跳过已经处理过的图片
+            if src in processed_images:
+                # 如果图片已经处理过，直接替换为已有的占位符
+                existing_placeholder = None
+                for img_data in images_data:
+                    if img_data.get('original_src') == src:
+                        existing_placeholder = img_data['placeholder']
+                        break
+                if existing_placeholder:
+                    img.replace_with(existing_placeholder)
+                continue
             
             try:
                 r = requests.get(src, headers=headers_with_referer, timeout=10)
@@ -253,10 +267,13 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
                     "filename": fname,
                     "src": f"articles/{user_info['save_dir_prefix']}/{date_str}/images/{fname}",
                     "alt": f"图片{img_counter}",
-                    "caption": ""
+                    "caption": "",
+                    "original_src": src  # 记录原始URL用于去重
                 })
                 
+                # 替换当前img标签为占位符
                 img.replace_with(placeholder)
+                processed_images.add(src)
                 img_counter += 1
                 
             except Exception as e:
@@ -279,6 +296,39 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
                 lines.append(text)
         content_text = '\n\n'.join(lines)
 
+    # 去除重复的图片占位符
+    def remove_duplicate_image_placeholders(text):
+        import re
+        pattern = r'\[图片:([^\]]+)\]'
+        seen_images = set()
+        
+        def replace_func(match):
+            img_name = match.group(1)
+            if img_name in seen_images:
+                return ''  # 移除重复的占位符
+            else:
+                seen_images.add(img_name)
+                return match.group(0)  # 保留第一次出现的占位符
+        
+        # 先移除重复的占位符
+        deduplicated = re.sub(pattern, replace_func, text)
+        
+        # 清理多余的空行
+        lines = deduplicated.split('\n')
+        cleaned_lines = []
+        prev_empty = False
+        
+        for line in lines:
+            is_empty = not line.strip()
+            if is_empty and prev_empty:
+                continue  # 跳过连续的空行
+            cleaned_lines.append(line)
+            prev_empty = is_empty
+        
+        return '\n'.join(cleaned_lines)
+
+    content_text = remove_duplicate_image_placeholders(content_text)
+
     # 保存文本文件
     txt_path = os.path.join(save_dir, f"{base_fname}.txt")
     with open(txt_path, 'w', encoding='utf-8-sig') as f:
@@ -292,27 +342,46 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
             from docx.shared import Inches
             
             doc = Document()
+            
+            # 处理内容，将图片占位符替换为实际图片
+            content_for_docx = content_text
             img_placeholder_pattern = r'(\[图片:[^\]]+\])'
             
-            for para in content_text.split('\n'):
-                if not para.strip():
+            # 按段落和图片占位符分割内容
+            parts = re.split(img_placeholder_pattern, content_for_docx)
+            
+            for part in parts:
+                part = part.strip()
+                if not part:
                     continue
-                    
-                parts = re.split(img_placeholder_pattern, para)
-                for part in parts:
-                    if not part.strip():
-                        continue
-                    
-                    img_match = re.fullmatch(r'\[图片:(.*?)\]', part.strip())
-                    if img_match:
-                        img_filename = img_match.group(1)
-                        img_path = os.path.join(img_folder, img_filename)
-                        if os.path.exists(img_path):
-                            try:
-                                doc.add_picture(img_path, width=Inches(4.5))
-                            except:
-                                doc.add_paragraph('[图片插入失败]')
+                
+                # 检查是否是图片占位符
+                img_match = re.fullmatch(r'\[图片:(.*?)\]', part)
+                if img_match:
+                    img_filename = img_match.group(1)
+                    img_path = os.path.join(img_folder, img_filename)
+                    if os.path.exists(img_path):
+                        try:
+                            # 检查图片尺寸，避免过大
+                            from PIL import Image
+                            with Image.open(img_path) as pil_img:
+                                width, height = pil_img.size
+                                # 限制最大宽度为6英寸
+                                max_width = Inches(6)
+                                if width > height:
+                                    doc.add_picture(img_path, width=max_width)
+                                else:
+                                    # 对于高图，限制高度
+                                    max_height = Inches(8)
+                                    doc.add_picture(img_path, height=max_height)
+                        except Exception as img_error:
+                            print(f"插入图片到Word文档失败 {img_filename}: {img_error}")
+                            doc.add_paragraph(f'[图片插入失败: {img_filename}]')
                     else:
+                        doc.add_paragraph(f'[图片文件不存在: {img_filename}]')
+                else:
+                    # 普通文本段落
+                    if part:
                         doc.add_paragraph(part)
             
             docx_path = os.path.join(save_dir, f"{base_fname}.docx")
@@ -322,6 +391,11 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
             print("警告：未安装python-docx，跳过Word文档生成")
         except Exception as e:
             print(f"生成Word文档失败: {e}")
+
+    # 清理images_data，移除用于去重的辅助字段
+    for img_data in images_data:
+        if 'original_src' in img_data:
+            del img_data['original_src']
 
     return {
         "content": content_text,
@@ -333,6 +407,7 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
         "word_count": len(content_text.replace('\n', '').replace(' ', '')),
         "image_count": len(images_data)
     }
+
 
 def crawl_jiuyan_article(user_key, date_str=None, try_second_time=True):
     if user_key not in JIUYAN_USERS:
@@ -3078,6 +3153,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
