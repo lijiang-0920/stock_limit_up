@@ -2,14 +2,18 @@ name: 自动更新数据和文章
 
 on:
   schedule:
-    # 上午7:00 - 获取韭研公社盘前纪要
-    - cron: '00 7 * * 1-5'
-    # 上午8:20 - 获取韭研公社盘前解读  
-    - cron: '20 8 * * 1-5'
-    # 下午15:35 - 获取财联社涨停池数据
-    - cron: '35 15 * * 1-5'
-    # 晚上23:35 - 获取韭研公社优秀阿呆文章
-    - cron: '35 23 * * 1-5'
+    # 上午7:00 (北京时间) - 获取韭研公社盘前纪要
+    - cron: '00 23 * * 0-4'  # UTC 23:00 = 北京时间 07:00
+    # 上午8:00 (北京时间) - 盘前纪要重试
+    - cron: '00 0 * * 1-5'   # UTC 00:00 = 北京时间 08:00
+    # 上午8:17 (北京时间) - 获取韭研公社盘前解读
+    - cron: '17 0 * * 1-5'   # UTC 00:17 = 北京时间 08:17
+    # 上午8:27 (北京时间) - 盘前解读重试
+    - cron: '27 0 * * 1-5'   # UTC 00:27 = 北京时间 08:27
+    # 下午15:30 (北京时间) - 获取财联社涨停池数据
+    - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
+    # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
+    - cron: '30 15 * * 1-5'  # UTC 15:30 = 北京时间 23:30
   workflow_dispatch:
     inputs:
       task_type:
@@ -76,46 +80,72 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "task=${{ github.event.inputs.task_type }}" >> $GITHUB_OUTPUT
           else
-            # 根据时间确定任务类型
+            # 根据UTC时间确定任务类型
             hour=$(date -u +%H)
-            if [ "$hour" = "07" ]; then
-              echo "task=jiuyan_morning" >> $GITHUB_OUTPUT
-            elif [ "$hour" = "08" ]; then
-              echo "task=jiuyan_morning2" >> $GITHUB_OUTPUT
-            elif [ "$hour" = "15" ]; then
+            minute=$(date -u +%M)
+            
+            # 北京时间7:00 (UTC 23:00前一天)
+            if [ "$hour" = "23" ] && [ "$minute" -ge "00" ] && [ "$minute" -lt "10" ]; then
+              echo "task=jiuyan_morning_7" >> $GITHUB_OUTPUT
+            # 北京时间8:00 (UTC 00:00) - 盘前纪要重试
+            elif [ "$hour" = "00" ] && [ "$minute" -ge "00" ] && [ "$minute" -lt "10" ]; then
+              echo "task=jiuyan_morning_8_retry" >> $GITHUB_OUTPUT
+            # 北京时间8:17 (UTC 00:17) - 盘前解读
+            elif [ "$hour" = "00" ] && [ "$minute" -ge "17" ] && [ "$minute" -lt "25" ]; then
+              echo "task=jiuyan_morning_817" >> $GITHUB_OUTPUT
+            # 北京时间8:27 (UTC 00:27) - 盘前解读重试
+            elif [ "$hour" = "00" ] && [ "$minute" -ge "27" ] && [ "$minute" -lt "35" ]; then
+              echo "task=jiuyan_morning_827_retry" >> $GITHUB_OUTPUT
+            # 北京时间15:30 (UTC 07:30) - 涨停池数据
+            elif [ "$hour" = "07" ] && [ "$minute" -ge "30" ] && [ "$minute" -lt "40" ]; then
               echo "task=limitup" >> $GITHUB_OUTPUT
-            elif [ "$hour" = "23" ]; then
+            # 北京时间23:30 (UTC 15:30) - 优秀阿呆
+            elif [ "$hour" = "15" ] && [ "$minute" -ge "30" ] && [ "$minute" -lt "40" ]; then
               echo "task=jiuyan_evening" >> $GITHUB_OUTPUT
             else
               echo "task=all" >> $GITHUB_OUTPUT
             fi
           fi
 
-      - name: 执行上午7点任务 (盘前纪要)
-        if: steps.determine-task.outputs.task == 'jiuyan_morning'
+      - name: 执行北京时间7:00任务 (盘前纪要)
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_7'
         run: |
-          echo "执行盘前纪要爬取..."
+          echo "执行盘前纪要爬取 (北京时间7:00)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行上午8点任务 (盘前解读)
-        if: steps.determine-task.outputs.task == 'jiuyan_morning2'
+      - name: 执行北京时间8:00任务 (盘前纪要重试)
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_8_retry'
         run: |
-          echo "执行盘前解读爬取..."
+          echo "执行盘前纪要重试 (北京时间8:00)..."
+          python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
+          python ${{ steps.script-name.outputs.script_file }} generate
+
+      - name: 执行北京时间8:17任务 (盘前解读)
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_817'
+        run: |
+          echo "执行盘前解读爬取 (北京时间8:17)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行下午任务 (涨停池数据)
+      - name: 执行北京时间8:27任务 (盘前解读重试)
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_827_retry'
+        run: |
+          echo "执行盘前解读重试 (北京时间8:27)..."
+          python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
+          python ${{ steps.script-name.outputs.script_file }} generate
+
+      - name: 执行北京时间15:30任务 (涨停池数据)
         if: steps.determine-task.outputs.task == 'limitup'
         run: |
-          echo "执行涨停池数据获取..."
+          echo "执行涨停池数据获取 (北京时间15:30)..."
           python ${{ steps.script-name.outputs.script_file }} limitup
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行晚上任务 (优秀阿呆)
+      - name: 执行北京时间23:30任务 (优秀阿呆)
         if: steps.determine-task.outputs.task == 'jiuyan_evening'
         run: |
-          echo "执行优秀阿呆文章爬取..."
+          echo "执行优秀阿呆文章爬取 (北京时间23:30)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 优秀阿呆
           python ${{ steps.script-name.outputs.script_file }} generate
 
@@ -158,17 +188,23 @@ jobs:
           # 生成提交信息
           task_name="${{ steps.determine-task.outputs.task }}"
           case $task_name in
-            "jiuyan_morning")
-              commit_msg="自动更新: 盘前纪要文章"
+            "jiuyan_morning_7")
+              commit_msg="自动更新: 盘前纪要文章 (北京时间7:00)"
               ;;
-            "jiuyan_morning2")
-              commit_msg="自动更新: 盘前解读文章"
+            "jiuyan_morning_8_retry")
+              commit_msg="自动更新: 盘前纪要文章重试 (北京时间8:00)"
+              ;;
+            "jiuyan_morning_817")
+              commit_msg="自动更新: 盘前解读文章 (北京时间8:17)"
+              ;;
+            "jiuyan_morning_827_retry")
+              commit_msg="自动更新: 盘前解读文章重试 (北京时间8:27)"
               ;;
             "limitup")
-              commit_msg="自动更新: 涨停池数据"
+              commit_msg="自动更新: 涨停池数据 (北京时间15:30)"
               ;;
             "jiuyan_evening")
-              commit_msg="自动更新: 优秀阿呆文章"
+              commit_msg="自动更新: 优秀阿呆文章 (北京时间23:30)"
               ;;
             "all")
               commit_msg="自动更新: 所有数据和文章"
@@ -181,7 +217,7 @@ jobs:
               ;;
           esac
           
-          git commit -m "$commit_msg ($(date '+%Y-%m-%d %H:%M:%S'))" || echo "No changes to commit"
+          git commit -m "$commit_msg ($(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S'))" || echo "No changes to commit"
           git push
 
       - name: 输出执行结果
@@ -189,7 +225,8 @@ jobs:
           echo "脚本文件: ${{ steps.script-name.outputs.script_file }}"
           echo "任务类型: ${{ steps.determine-task.outputs.task }}"
           echo "是否有变化: ${{ steps.check-changes.outputs.has_changes }}"
-          echo "执行时间: $(date '+%Y-%m-%d %H:%M:%S')"
+          echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+          echo "UTC时间: $(date '+%Y-%m-%d %H:%M:%S')"
 
   # 部署到 GitHub Pages (可选)
   deploy-pages:
