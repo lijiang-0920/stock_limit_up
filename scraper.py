@@ -2980,9 +2980,12 @@ def generate_all_pages():
     generate_limitup_page()
     generate_jiuyan_page()
     generate_json_viewer()
-    generate_assets()
+    generate_css()        # 修改这行
+    generate_js_files()   # 添加这行
     
     print("网页文件生成完成！")
+
+    
 
 # ========== 主函数和统一接口 ==========
 
@@ -3052,3 +3055,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
