@@ -1727,28 +1727,6 @@ def generate_js_files():
     # common.js
     common_js = '''// assets/js/common.js - 通用功能
 
-// 全局变量
-let currentImageIndex = 0;
-let currentImages = [];
-
-// 通用工具函数
-function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('zh-CN');
-}
-
-function formatTime(timeStr) {
-    return timeStr || '--';
-}
-
-function showLoading(container) {
-    container.innerHTML = '<div class="loading">加载中...</div>';
-}
-
-function showError(container, message) {
-    container.innerHTML = `<div class="loading">错误: ${message}</div>`;
-}
-
 // 复制到剪贴板
 async function copyToClipboard(text) {
     try {
@@ -1757,7 +1735,6 @@ async function copyToClipboard(text) {
         return true;
     } catch (err) {
         console.error('复制失败:', err);
-        // 降级方案
         const textArea = document.createElement('textarea');
         textArea.value = text;
         document.body.appendChild(textArea);
@@ -1790,246 +1767,15 @@ function showToast(message, type = 'success') {
         border-radius: 6px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         z-index: 10000;
-        animation: slideIn 0.3s ease-out;
     `;
     
     document.body.appendChild(toast);
     
     setTimeout(() => {
-        toast.style.animation = 'slideOut 0.3s ease-out forwards';
-        setTimeout(() => document.body.removeChild(toast), 300);
+        if (document.body.contains(toast)) {
+            document.body.removeChild(toast);
+        }
     }, 3000);
-}
-
-// 添加CSS动画
-if (!document.querySelector('#toast-styles')) {
-    const style = document.createElement('style');
-    style.id = 'toast-styles';
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// 加载主页统计数据
-async function loadMainPageStats() {
-    try {
-        // 加载涨停池数据状态
-        const response = await fetch('data/index.json');
-        if (response.ok) {
-            const dates = await response.json();
-            if (dates.length > 0) {
-                const latestDate = dates[0];
-                const limitupStatusEl = document.getElementById('limitupStatus');
-                if (limitupStatusEl) {
-                    limitupStatusEl.textContent = `最新更新: ${latestDate}`;
-                }
-                
-                // 加载最新数据获取股票数量
-                const dataResponse = await fetch(`data/${latestDate}.json`);
-                if (dataResponse.ok) {
-                    const data = await dataResponse.json();
-                    const todayLimitUpEl = document.getElementById('todayLimitUp');
-                    if (todayLimitUpEl) {
-                        todayLimitUpEl.textContent = `${data.count}只`;
-                    }
-                }
-            }
-        }
-        
-        // 加载文章数据状态
-        const articlesResponse = await fetch('articles/index.json');
-        if (articlesResponse.ok) {
-            const articlesData = await articlesResponse.json();
-            const dates = Object.keys(articlesData).sort().reverse();
-            if (dates.length > 0) {
-                const latestDate = dates[0];
-                const articlesStatusEl = document.getElementById('articlesStatus');
-                if (articlesStatusEl) {
-                    articlesStatusEl.textContent = `最新更新: ${latestDate}`;
-                }
-                
-                // 计算本周文章数量
-                const weekAgo = new Date();
-                weekAgo.setDate(weekAgo.getDate() - 7);
-                const weekAgoStr = weekAgo.toISOString().split('T')[0];
-                
-                let weeklyCount = 0;
-                dates.forEach(date => {
-                    if (date >= weekAgoStr && articlesData[date].articles) {
-                        weeklyCount += articlesData[date].articles.length;
-                    }
-                });
-                const weeklyArticlesEl = document.getElementById('weeklyArticles');
-                if (weeklyArticlesEl) {
-                    weeklyArticlesEl.textContent = `${weeklyCount}篇`;
-                }
-            }
-        }
-        
-    } catch (error) {
-        console.error('加载统计数据失败:', error);
-        const limitupStatusEl = document.getElementById('limitupStatus');
-        const articlesStatusEl = document.getElementById('articlesStatus');
-        const dataStatusEl = document.getElementById('dataStatus');
-        
-        if (limitupStatusEl) limitupStatusEl.textContent = '最新更新: 加载失败';
-        if (articlesStatusEl) articlesStatusEl.textContent = '最新更新: 加载失败';
-        if (dataStatusEl) dataStatusEl.textContent = '异常';
-    }
-}
-
-// 显示关于信息
-function showAbout() {
-    const aboutContent = `
-        <div style="text-align: center; padding: 20px;">
-            <h2>📊 数据中心</h2>
-            <p style="margin: 20px 0; color: #666;">
-                这是一个股票数据和研报文章的收集展示平台<br>
-                自动收集财联社涨停池数据和韭研公社研报文章
-            </p>
-            <p style="color: #999; font-size: 0.9rem;">
-                数据仅供参考，投资有风险，入市需谨慎
-            </p>
-        </div>
-    `;
-    
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.style.display = 'block';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 400px;">
-            <div class="modal-header">
-                <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
-            </div>
-            <div class="modal-body">
-                ${aboutContent}
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    // 点击外部关闭
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    });
-}
-
-// JSON查看器功能
-async function loadJsonViewer() {
-    const dataTypeSelect = document.getElementById('dataTypeSelect');
-    const dateSelect = document.getElementById('dateSelect');
-    const jsonContent = document.getElementById('jsonContent');
-    const copyJsonBtn = document.getElementById('copyJsonBtn');
-    
-    if (!dataTypeSelect || !dateSelect || !jsonContent || !copyJsonBtn) {
-        console.error('JSON查看器元素未找到');
-        return;
-    }
-    
-    // 加载日期选项
-    async function loadDates() {
-        const dataType = dataTypeSelect.value;
-        dateSelect.innerHTML = '<option value="">选择日期</option>';
-        
-        try {
-            let dates = [];
-            if (dataType === 'limitup') {
-                const response = await fetch('data/index.json');
-                if (response.ok) {
-                    dates = await response.json();
-                }
-            } else if (dataType === 'articles') {
-                const response = await fetch('articles/index.json');
-                if (response.ok) {
-                    const articlesData = await response.json();
-                    dates = Object.keys(articlesData).sort().reverse();
-                }
-            }
-            
-            dates.forEach(date => {
-                const option = document.createElement('option');
-                option.value = date;
-                option.textContent = date;
-                dateSelect.appendChild(option);
-            });
-            
-            if (dates.length > 0) {
-                dateSelect.value = dates[0];
-                loadJsonData();
-            }
-        } catch (error) {
-            jsonContent.textContent = '加载日期失败';
-        }
-    }
-    
-    // 加载JSON数据
-    async function loadJsonData() {
-        const dataType = dataTypeSelect.value;
-        const date = dateSelect.value;
-        
-        if (!date) {
-            jsonContent.textContent = '请选择日期';
-            return;
-        }
-        
-        try {
-            let response;
-            if (dataType === 'limitup') {
-                response = await fetch(`data/${date}.json`);
-            } else if (dataType === 'articles') {
-                response = await fetch('articles/index.json');
-            }
-            
-            if (response && response.ok) {
-                let data = await response.json();
-                if (dataType === 'articles') {
-                    data = data[date] || {};
-                }
-                jsonContent.textContent = JSON.stringify(data, null, 2);
-            } else {
-                jsonContent.textContent = '加载数据失败';
-            }
-        } catch (error) {
-            jsonContent.textContent = `加载失败: ${error.message}`;
-        }
-    }
-    
-    // 复制JSON
-    copyJsonBtn.addEventListener('click', () => {
-        copyToClipboard(jsonContent.textContent);
-    });
-    
-    // 事件监听
-    dataTypeSelect.addEventListener('change', loadDates);
-    dateSelect.addEventListener('change', loadJsonData);
-    
-    // 初始加载
-    loadDates();
-}
-
-// 格式化数字
-function formatNumber(num) {
-    if (num >= 10000) {
-        return (num / 10000).toFixed(1) + '万';
-    }
-    return num.toString();
-}
-
-// 获取URL参数
-function getUrlParameter(name) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(name);
 }
 
 // 防抖函数
@@ -2045,18 +1791,14 @@ function debounce(func, wait) {
     };
 }
 
-// 节流函数
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
+// 显示加载状态
+function showLoading(container) {
+    container.innerHTML = '<div class="loading">加载中...</div>';
+}
+
+// 显示错误
+function showError(container, message) {
+    container.innerHTML = `<div class="loading">错误: ${message}</div>`;
 }'''
     
     with open('assets/js/common.js', 'w', encoding='utf-8') as f:
@@ -2068,6 +1810,7 @@ function throttle(func, limit) {
 let currentLimitUpData = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('涨停池页面初始化...');
     initLimitUpPage();
 });
 
@@ -2079,12 +1822,14 @@ async function initLimitUpPage() {
 // 加载日期选项
 async function loadDateOptions() {
     try {
+        console.log('正在加载日期选项...');
         const response = await fetch('data/index.json');
         if (!response.ok) throw new Error('无法加载日期数据');
         
         const dates = await response.json();
-        const dateSelect = document.getElementById('dateSelect');
+        console.log('日期数据:', dates);
         
+        const dateSelect = document.getElementById('dateSelect');
         if (!dateSelect) {
             console.error('dateSelect元素未找到');
             return;
@@ -2116,8 +1861,6 @@ async function loadDateOptions() {
 function setupEventListeners() {
     const dateSelect = document.getElementById('dateSelect');
     const searchInput = document.getElementById('searchInput');
-    const copyDataBtn = document.getElementById('copyDataBtn');
-    const viewJsonBtn = document.getElementById('viewJsonBtn');
     
     if (dateSelect) {
         dateSelect.addEventListener('change', (e) => {
@@ -2129,14 +1872,6 @@ function setupEventListeners() {
     
     if (searchInput) {
         searchInput.addEventListener('input', debounce(filterStocks, 300));
-    }
-    
-    if (copyDataBtn) {
-        copyDataBtn.addEventListener('click', copyLimitUpData);
-    }
-    
-    if (viewJsonBtn) {
-        viewJsonBtn.addEventListener('click', viewJsonData);
     }
 }
 
@@ -2156,10 +1891,12 @@ async function loadLimitUpData(date) {
     }
     
     try {
+        console.log('正在加载涨停池数据:', date);
         const response = await fetch(`data/${date}.json`);
         if (!response.ok) throw new Error('数据加载失败');
         
         currentLimitUpData = await response.json();
+        console.log('涨停池数据:', currentLimitUpData);
         
         // 更新数据信息
         const updateTimeEl = document.getElementById('updateTime');
@@ -2239,63 +1976,6 @@ function filterStocks() {
             card.style.display = 'none';
         }
     });
-}
-
-// 复制涨停池数据
-function copyLimitUpData() {
-    if (!currentLimitUpData) {
-        showToast('暂无数据可复制', 'error');
-        return;
-    }
-    
-    const textData = currentLimitUpData.stocks.map(stock => 
-        `${stock.code}\t${stock.name}\t${stock.price}\t${stock.change_percent}\t${stock.limit_up_time}\t${stock.reason}\t${stock.plates}`
-    ).join('\n');
-    
-    const header = '股票代码\t股票名称\t最新价格\t涨幅\t涨停时间\t涨停原因\t所属板块\n';
-    const fullText = header + textData;
-    
-    copyToClipboard(fullText);
-}
-
-// 查看JSON数据
-function viewJsonData() {
-    const dateSelect = document.getElementById('dateSelect');
-    if (!dateSelect) {
-        showToast('页面元素异常', 'error');
-        return;
-    }
-    
-    const date = dateSelect.value;
-    if (date) {
-        window.open(`json_viewer.html?type=limitup&date=${date}`, '_blank');
-    } else {
-        showToast('请先选择日期', 'error');
-    }
-}
-
-// 导出Excel格式数据
-function exportToExcel() {
-    if (!currentLimitUpData) {
-        showToast('暂无数据可导出', 'error');
-        return;
-    }
-    
-    const csvContent = "data:text/csv;charset=utf-8," 
-        + "股票代码,股票名称,最新价格,涨幅,涨停时间,涨停原因,所属板块\n"
-        + currentLimitUpData.stocks.map(stock => 
-            `${stock.code},${stock.name},${stock.price},${stock.change_percent},${stock.limit_up_time},"${stock.reason}","${stock.plates}"`
-        ).join('\n');
-    
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `涨停池数据_${currentLimitUpData.date}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    showToast('数据导出成功！');
 }'''
     
     with open('assets/js/limitup.js', 'w', encoding='utf-8') as f:
@@ -2305,9 +1985,9 @@ function exportToExcel() {
     jiuyan_js = '''// assets/js/jiuyan.js - 韭研公社文章页面功能
 
 let currentArticlesData = {};
-let currentArticle = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('韭研公社页面初始化...');
     initJiuyanPage();
 });
 
@@ -2319,10 +1999,12 @@ async function initJiuyanPage() {
 // 加载文章数据
 async function loadArticlesData() {
     try {
+        console.log('正在加载文章数据...');
         const response = await fetch('articles/index.json');
         if (!response.ok) throw new Error('无法加载文章数据');
         
         currentArticlesData = await response.json();
+        console.log('文章数据:', currentArticlesData);
         
         // 填充日期选项
         const dates = Object.keys(currentArticlesData).sort().reverse();
@@ -2445,18 +2127,6 @@ function renderArticles(articles) {
             <div class="article-stats">
                 <span>📊 ${article.word_count || 0}字</span>
                 <span>📷 ${article.image_count || 0}张图片</span>
-                <span>💾 ${article.files && article.files.docx ? '可下载' : '仅文本'}</span>
-            </div>
-            <div class="article-actions">
-                <button class="article-btn primary" onclick="viewArticle('${article.date}', '${article.author}')">
-                    📖 查看全文
-                </button>
-                <button class="article-btn" onclick="copyArticleText('${article.date}', '${article.author}')">
-                    📋 复制内容
-                </button>
-                <button class="article-btn" onclick="downloadArticleFile('${article.date}', '${article.author}')">
-                    💾 下载文件
-                </button>
             </div>
         </div>
     `).join('');
@@ -2469,509 +2139,13 @@ function getArticlePreview(content, maxLength = 200) {
     if (!content) return '暂无预览';
     
     // 移除图片占位符
-    const textOnly = content.replace(/\[图片:[^\]]+\]/g, '');
+    const textOnly = content.replace(/\\[图片:[^\\]]+\\]/g, '');
     
     if (textOnly.length <= maxLength) {
         return textOnly;
     }
     
     return textOnly.substring(0, maxLength) + '...';
-}
-
-// 查看文章详情
-function viewArticle(date, author) {
-    const article = findArticle(date, author);
-    if (!article) {
-        showToast('文章未找到', 'error');
-        return;
-    }
-    
-    currentArticle = article;
-    
-    // 填充模态框内容
-    const modalTitle = document.getElementById('modalTitle');
-    const articleMeta = document.getElementById('articleMeta');
-    const articleContent = document.getElementById('articleContent');
-    const modal = document.getElementById('articleModal');
-    
-    if (!modalTitle || !articleMeta || !articleContent || !modal) {
-        console.error('模态框元素未找到');
-        return;
-    }
-    
-    modalTitle.textContent = article.title;
-    articleMeta.innerHTML = `
-        <div style="display: flex; gap: 20px; margin-bottom: 20px; font-size: 0.9rem; color: #666;">
-            <span>📅 ${article.date} ${article.publish_time}</span>
-            <span>👤 ${article.author}</span>
-            <span>📊 ${article.word_count}字</span>
-            <span>📷 ${article.image_count}图</span>
-        </div>
-    `;
-    
-    // 处理文章内容（包含图片）
-    const processedContent = processArticleContent(article);
-    articleContent.innerHTML = processedContent;
-    
-    // 显示模态框
-    modal.style.display = 'block';
-    
-    // 设置图片点击事件
-    setupImageViewer(article.images || []);
-}
-
-// 处理文章内容
-function processArticleContent(article) {
-    let content = article.content;
-    
-    // 替换图片占位符为实际图片
-    if (article.images && article.images.length > 0) {
-        article.images.forEach((image, index) => {
-            const placeholder = image.placeholder;
-            const imgHtml = `
-                <div style="text-align: center; margin: 20px 0;">
-                    <img src="${image.src}" 
-                         alt="${image.alt}" 
-                         class="article-image" 
-                         data-index="${index}"
-                         style="max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div style="display: none; padding: 20px; background: #f5f5f5; border-radius: 8px; color: #666;">
-                        图片加载失败: ${image.filename}
-                    </div>
-                    ${image.caption ? `<div class="image-caption">${image.caption}</div>` : ''}
-                </div>
-            `;
-            content = content.replace(placeholder, imgHtml);
-        });
-    }
-    
-    // 处理段落
-    content = content.split('\n').map(paragraph => {
-        if (paragraph.trim()) {
-            return `<p>${paragraph}</p>`;
-        }
-        return '';
-    }).join('');
-    
-    return content;
-}
-
-// 设置图片查看器
-function setupImageViewer(images) {
-    currentImages = images;
-    
-    // 移除之前的事件监听器
-    document.querySelectorAll('.article-image').forEach(img => {
-        img.removeEventListener('click', handleImageClick);
-        img.addEventListener('click', handleImageClick);
-    });
-}
-
-function handleImageClick(e) {
-    const index = parseInt(e.target.dataset.index);
-    openImageViewer(index);
-}
-
-// 打开图片查看器
-function openImageViewer(index) {
-    if (!currentImages || currentImages.length === 0) return;
-    
-    currentImageIndex = index;
-    const image = currentImages[index];
-    
-    const viewerImage = document.getElementById('viewerImage');
-    const viewerInfo = document.getElementById('viewerInfo');
-    const imageViewer = document.getElementById('imageViewer');
-    
-    if (!viewerImage || !viewerInfo || !imageViewer) {
-        console.error('图片查看器元素未找到');
-        return;
-    }
-    
-    viewerImage.src = image.src;
-    viewerInfo.textContent = `图片 ${index + 1} / ${currentImages.length}`;
-    imageViewer.style.display = 'block';
-}
-
-// 关闭图片查看器
-function closeImageViewer() {
-    const imageViewer = document.getElementById('imageViewer');
-    if (imageViewer) {
-        imageViewer.style.display = 'none';
-    }
-}
-
-// 上一张图片
-function prevImage() {
-    if (currentImageIndex > 0) {
-        openImageViewer(currentImageIndex - 1);
-    }
-}
-
-// 下一张图片
-function nextImage() {
-    if (currentImageIndex < currentImages.length - 1) {
-        openImageViewer(currentImageIndex + 1);
-    }
-}
-
-// 下载当前图片
-function downloadCurrentImage() {
-    if (currentImages && currentImages[currentImageIndex]) {
-        const image = currentImages[currentImageIndex];
-        const link = document.createElement('a');
-        link.href = image.src;
-        link.download = image.filename || `image_${currentImageIndex + 1}.jpg`;
-        link.click();
-        showToast('图片下载中...');
-    }
-}
-
-// 关闭文章模态框
-function closeArticleModal() {
-    const modal = document.getElementById('articleModal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
-    currentArticle = null;
-}
-
-// 复制文章内容
-function copyArticleContent(type) {
-    if (!currentArticle) {
-        showToast('未选择文章', 'error');
-        return;
-    }
-    
-    let content = '';
-    
-    switch (type) {
-        case 'full':
-            // 包含格式的完整内容
-            content = `${currentArticle.title}\n\n`;
-            content += `作者: ${currentArticle.author}\n`;
-            content += `时间: ${currentArticle.date} ${currentArticle.publish_time}\n\n`;
-            content += currentArticle.content;
-            break;
-        case 'text':
-            // 纯文本（移除图片占位符）
-            content = currentArticle.content.replace(/\[图片:[^\]]+\]/g, '');
-            break;
-        case 'html':
-            // HTML格式
-            content = processArticleContent(currentArticle);
-            break;
-        case 'markdown':
-            // Markdown格式
-            content = convertToMarkdown(currentArticle);
-            break;
-        default:
-            content = currentArticle.content;
-    }
-    
-    copyToClipboard(content);
-}
-
-// 转换为Markdown格式
-function convertToMarkdown(article) {
-    let content = `# ${article.title}\n\n`;
-    content += `**作者**: ${article.author}  \n`;
-    content += `**时间**: ${article.date} ${article.publish_time}\n\n`;
-    
-    let articleContent = article.content;
-    
-    // 替换图片占位符为Markdown图片语法
-    if (article.images && article.images.length > 0) {
-        article.images.forEach((image, index) => {
-            const placeholder = image.placeholder;
-            const markdownImg = `![${image.alt}](${image.src})`;
-            articleContent = articleContent.replace(placeholder, markdownImg);
-        });
-    }
-    
-    // 处理段落
-    articleContent = articleContent.split('\n').map(paragraph => {
-        if (paragraph.trim()) {
-            return paragraph;
-        }
-        return '';
-    }).join('\n\n');
-    
-    content += articleContent;
-    return content;
-}
-
-// 复制文章文本（从列表调用）
-function copyArticleText(date, author) {
-    const article = findArticle(date, author);
-    if (article) {
-        const content = article.content.replace(/\[图片:[^\]]+\]/g, '');
-        copyToClipboard(content);
-    } else {
-        showToast('文章未找到', 'error');
-    }
-}
-
-// 下载文章文件
-function downloadArticle() {
-    if (!currentArticle) {
-        showToast('未选择文章', 'error');
-        return;
-    }
-    
-    if (!currentArticle.files || !currentArticle.files.txt) {
-        showToast('文件不可用', 'error');
-        return;
-    }
-    
-    const link = document.createElement('a');
-    link.href = currentArticle.files.txt;
-    link.download = `${currentArticle.title}.txt`;
-    link.click();
-    showToast('文件下载中...');
-}
-
-// 下载文章文件（从列表调用）
-function downloadArticleFile(date, author) {
-    const article = findArticle(date, author);
-    if (article && article.files && article.files.txt) {
-        const link = document.createElement('a');
-        link.href = article.files.txt;
-        link.download = `${article.title}.txt`;
-        link.click();
-        showToast('文件下载中...');
-    } else {
-        showToast('文件不可用', 'error');
-    }
-}
-
-// 查找文章
-function findArticle(date, author) {
-    if (currentArticlesData[date] && currentArticlesData[date].articles) {
-        return currentArticlesData[date].articles.find(article => article.author === author);
-    }
-    return null;
-}
-
-// 批量下载文章
-function batchDownloadArticles() {
-    const authorFilter = document.getElementById('authorFilter');
-    const dateFilter = document.getElementById('dateFilter');
-    
-    if (!authorFilter || !dateFilter) return;
-    
-    const authorValue = authorFilter.value;
-    const dateValue = dateFilter.value;
-    
-    let articles = [];
-    
-    // 根据筛选条件获取文章
-    if (dateValue && currentArticlesData[dateValue]) {
-        articles = currentArticlesData[dateValue].articles || [];
-    } else {
-        Object.values(currentArticlesData).forEach(dayData => {
-            if (dayData.articles) {
-                articles = articles.concat(dayData.articles);
-            }
-        });
-    }
-    
-    if (authorValue) {
-        articles = articles.filter(article => article.author === authorValue);
-    }
-    
-    if (articles.length === 0) {
-        showToast('没有可下载的文章', 'error');
-        return;
-    }
-    
-    // 创建批量下载内容
-    let batchContent = '';
-    articles.forEach((article, index) => {
-        batchContent += `\n${'='.repeat(50)}\n`;
-        batchContent += `文章 ${index + 1}: ${article.title}\n`;
-        batchContent += `作者: ${article.author}\n`;
-        batchContent += `时间: ${article.date} ${article.publish_time}\n`;
-        batchContent += `${'='.repeat(50)}\n\n`;
-        batchContent += article.content.replace(/\[图片:[^\]]+\]/g, '[图片]');
-        batchContent += '\n\n';
-    });
-    
-    // 创建下载链接
-    const blob = new Blob([batchContent], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `批量文章_${new Date().toISOString().split('T')[0]}.txt`;
-    link.click();
-    URL.revokeObjectURL(url);
-    
-    showToast(`已下载 ${articles.length} 篇文章`);
-}
-
-// 搜索文章
-function searchArticles(keyword) {
-    if (!keyword.trim()) {
-        filterAndRenderArticles();
-        return;
-    }
-    
-    let allArticles = [];
-    Object.values(currentArticlesData).forEach(dayData => {
-        if (dayData.articles) {
-            allArticles = allArticles.concat(dayData.articles);
-        }
-    });
-    
-    const filteredArticles = allArticles.filter(article => {
-        return article.title.toLowerCase().includes(keyword.toLowerCase()) ||
-               article.content.toLowerCase().includes(keyword.toLowerCase()) ||
-               article.author.toLowerCase().includes(keyword.toLowerCase());
-    });
-    
-    renderArticles(filteredArticles);
-    showToast(`找到 ${filteredArticles.length} 篇相关文章`);
-}
-
-// 模态框外部点击关闭
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('articleModal');
-    const imageViewer = document.getElementById('imageViewer');
-    
-    if (modal && e.target === modal) {
-        closeArticleModal();
-    }
-    
-    if (imageViewer && e.target === imageViewer) {
-        closeImageViewer();
-    }
-});
-
-// 键盘事件
-document.addEventListener('keydown', (e) => {
-    const imageViewer = document.getElementById('imageViewer');
-    const modal = document.getElementById('articleModal');
-    
-    if (imageViewer && imageViewer.style.display === 'block') {
-        switch (e.key) {
-            case 'Escape':
-                closeImageViewer();
-                break;
-            case 'ArrowLeft':
-                prevImage();
-                break;
-            case 'ArrowRight':
-                nextImage();
-                break;
-            case ' ':
-                e.preventDefault();
-                nextImage();
-                break;
-        }
-    }
-    
-    if (modal && modal.style.display === 'block' && e.key === 'Escape') {
-        closeArticleModal();
-    }
-});
-
-// 添加搜索功能到页面
-function addSearchFeature() {
-    const controlsPanel = document.querySelector('.controls-panel .filter-section');
-    if (controlsPanel) {
-        const searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.placeholder = '搜索文章标题或内容...';
-        searchInput.className = 'search-input';
-        searchInput.style.flex = '1';
-        searchInput.style.minWidth = '200px';
-        
-        searchInput.addEventListener('input', debounce((e) => {
-            searchArticles(e.target.value);
-        }, 500));
-        
-        controlsPanel.appendChild(searchInput);
-    }
-}
-
-// 初始化时添加搜索功能
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(addSearchFeature, 100);
-});
-
-// 文章统计功能
-function getArticleStats() {
-    let totalArticles = 0;
-    let totalWords = 0;
-    let totalImages = 0;
-    const authorStats = {};
-    
-    Object.values(currentArticlesData).forEach(dayData => {
-        if (dayData.articles) {
-            dayData.articles.forEach(article => {
-                totalArticles++;
-                totalWords += article.word_count || 0;
-                totalImages += article.image_count || 0;
-                
-                if (!authorStats[article.author]) {
-                    authorStats[article.author] = 0;
-                }
-                authorStats[article.author]++;
-            });
-        }
-    });
-    
-    return {
-        totalArticles,
-        totalWords,
-        totalImages,
-        authorStats
-    };
-}
-
-// 显示统计信息
-function showStats() {
-    const stats = getArticleStats();
-    const statsContent = `
-        <div style="padding: 20px;">
-            <h3>📊 文章统计</h3>
-            <div style="margin: 20px 0;">
-                <p><strong>总文章数:</strong> ${stats.totalArticles} 篇</p>
-                <p><strong>总字数:</strong> ${formatNumber(stats.totalWords)} 字</p>
-                <p><strong>总图片数:</strong> ${stats.totalImages} 张</p>
-            </div>
-            <h4>📝 作者统计:</h4>
-            <div style="margin: 10px 0;">
-                ${Object.entries(stats.authorStats).map(([author, count]) => 
-                    `<p><strong>${author}:</strong> ${count} 篇</p>`
-                ).join('')}
-            </div>
-        </div>
-    `;
-    
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.style.display = 'block';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 400px;">
-            <div class="modal-header">
-                <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
-                <h2>统计信息</h2>
-            </div>
-            <div class="modal-body">
-                ${statsContent}
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    });
 }'''
     
     with open('assets/js/jiuyan.js', 'w', encoding='utf-8') as f:
@@ -2981,7 +2155,7 @@ function showStats() {
     print("- assets/js/common.js")
     print("- assets/js/limitup.js") 
     print("- assets/js/jiuyan.js")
- 
+
 
 
 def generate_all_pages():
@@ -3067,5 +2241,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
