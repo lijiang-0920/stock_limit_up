@@ -561,14 +561,22 @@ def update_jiuyan_index():
     print("韭研公社文章索引已更新")
 
 # ========== HTML生成相关函数 ==========
-
 def generate_html():
-    """生成展示页面"""
+    """生成展示页面 - GitHub Pages兼容版"""
     # 读取涨停池数据索引
     limit_up_dates = []
+    limit_up_data_embedded = {}
+    
     if os.path.exists('data/index.json'):
         with open('data/index.json', 'r', encoding='utf-8') as f:
             limit_up_dates = json.load(f)
+        
+        # 读取所有涨停池数据文件并嵌入
+        for date in limit_up_dates[:10]:  # 最近10天的数据
+            date_file = f'data/{date}.json'
+            if os.path.exists(date_file):
+                with open(date_file, 'r', encoding='utf-8') as f:
+                    limit_up_data_embedded[date] = json.load(f)
     
     # 读取韭研公社文章索引
     jiuyan_data = {}
@@ -578,7 +586,7 @@ def generate_html():
             jiuyan_data = json.load(f)
     
     # 生成HTML
-    html_content = '''<!DOCTYPE html>
+    html_content = f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -602,11 +610,12 @@ def generate_html():
     
     # 添加涨停池日期列表
     for date in limit_up_dates[:30]:  # 最近30天
-        html_content += f'<button class="date-button" onclick="loadLimitUpData(\'{date}\')">{date}</button>\n'
+        html_content += f'                <button class="date-button" onclick="loadLimitUpData(\'{date}\')">{date}</button>\n'
     
-    html_content += '''
+    html_content += '''            </div>
+            <div id="limitup-data">
+                <p>请选择日期查看数据...</p>
             </div>
-            <div id="limitup-data"></div>
         </div>
         
         <div id="jiuyan-content" class="tab-content">
@@ -614,31 +623,34 @@ def generate_html():
     '''
     
     # 添加韭研公社内容
-    if jiuyan_data:
+    if jiuyan_data and jiuyan_data.get('users'):
         html_content += '<div class="jiuyan-users">'
         for user_key, user_data in jiuyan_data.get('users', {}).items():
             html_content += f'''
                 <div class="user-section">
                     <h3>{user_data['user_name']} (共{user_data['article_count']}篇)</h3>
-                    <div class="article-list">
             '''
             
-            for article in user_data.get('articles', [])[:10]:
-                html_content += f'''
-                    <div class="article-item" onclick="showArticle('{article['files']['txt']}')">
-                        <div class="article-title">{article['title']}</div>
-                        <div class="article-meta">
-                            {article['date']} | {article['stats']['word_count']}字 | {article['stats']['image_count']}图
+            if user_data.get('articles'):
+                html_content += '<div class="article-list">'
+                for article in user_data.get('articles', [])[:10]:
+                    html_content += f'''
+                        <div class="article-item" onclick="showArticle('{article['files']['txt']}')">
+                            <div class="article-title">{article['title']}</div>
+                            <div class="article-meta">
+                                {article['date']} | {article['stats']['word_count']}字 | {article['stats']['image_count']}图
+                            </div>
+                            <div class="article-preview">{article['content_preview']}</div>
                         </div>
-                        <div class="article-preview">{article['content_preview']}</div>
-                    </div>
-                '''
+                    '''
+                html_content += '</div>'
+            else:
+                html_content += '<p>暂无文章数据</p>'
             
-            html_content += '''
-                    </div>
-                </div>
-            '''
+            html_content += '</div>'
         html_content += '</div>'
+    else:
+        html_content += '<p>暂无韭研公社数据</p>'
     
     html_content += '''
         </div>
@@ -651,6 +663,11 @@ def generate_html():
         </div>
     </div>
     
+    <script>
+        // 将数据嵌入到页面中
+        window.limitUpData = ''' + json.dumps(limit_up_data_embedded, ensure_ascii=False) + ''';
+        window.jiuyanData = ''' + json.dumps(jiuyan_data, ensure_ascii=False) + ''';
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
@@ -659,7 +676,9 @@ def generate_html():
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
     
-    print("HTML页面已生成")
+    print("HTML页面已生成（GitHub Pages兼容版）")
+
+
 
 def generate_css():
     """生成CSS样式"""
@@ -870,7 +889,7 @@ h1 {
     print("CSS样式已生成")
 
 def generate_js():
-    """生成JavaScript"""
+    """生成JavaScript - GitHub Pages兼容版"""
     js_content = '''
 function showTab(tabName) {
     // 切换标签按钮状态
@@ -885,63 +904,72 @@ function showTab(tabName) {
 }
 
 function loadLimitUpData(date) {
-    fetch(`data/${date}.json`)
-        .then(response => response.json())
-        .then(data => {
+    const loadingDiv = document.getElementById('limitup-data');
+    loadingDiv.innerHTML = '<p>正在加载数据...</p>';
+    
+    try {
+        // 从嵌入的数据中获取
+        const data = window.limitUpData[date];
+        if (data) {
             displayLimitUpData(data);
-        })
-        .catch(error => {
-            document.getElementById('limitup-data').innerHTML = '<p>加载数据失败</p>';
-        });
+        } else {
+            loadingDiv.innerHTML = `<p>未找到 ${date} 的数据</p>`;
+        }
+    } catch (error) {
+        console.error('加载数据失败:', error);
+        loadingDiv.innerHTML = `<p>加载数据失败: ${error.message}</p>`;
+    }
 }
 
 function displayLimitUpData(data) {
     let html = `
         <h3>${data.date} 涨停池数据</h3>
         <p>更新时间: ${data.update_time} | 涨停数量: ${data.count}</p>
-        <table class="stock-table">
-            <thead>
-                <tr>
-                    <th>代码</th>
-                    <th>名称</th>
-                    <th>涨幅</th>
-                    <th>价格</th>
-                    <th>涨停时间</th>
-                    <th>涨停原因</th>
-                    <th>所属板块</th>
-                </tr>
-            </thead>
-            <tbody>
     `;
     
-    data.stocks.forEach(stock => {
+    if (data.stocks && data.stocks.length > 0) {
         html += `
-            <tr>
-                <td>${stock.code}</td>
-                <td>${stock.name}</td>
-                <td class="change-positive">${stock.change_percent}</td>
-                <td>${stock.price}</td>
-                <td>${stock.limit_up_time}</td>
-                <td>${stock.reason || '-'}</td>
-                <td>${stock.plates || '-'}</td>
-            </tr>
+            <table class="stock-table">
+                <thead>
+                    <tr>
+                        <th>代码</th>
+                        <th>名称</th>
+                        <th>涨幅</th>
+                        <th>价格</th>
+                        <th>涨停时间</th>
+                        <th>涨停原因</th>
+                        <th>所属板块</th>
+                    </tr>
+                </thead>
+                <tbody>
         `;
-    });
+        
+        data.stocks.forEach(stock => {
+            html += `
+                <tr>
+                    <td>${stock.code}</td>
+                    <td>${stock.name}</td>
+                    <td class="change-positive">${stock.change_percent}</td>
+                    <td>${stock.price}</td>
+                    <td>${stock.limit_up_time}</td>
+                    <td>${stock.reason || '-'}</td>
+                    <td>${stock.plates || '-'}</td>
+                </tr>
+            `;
+        });
+        
+        html += '</tbody></table>';
+    } else {
+        html += '<p>当日无涨停数据</p>';
+    }
     
-    html += '</tbody></table>';
     document.getElementById('limitup-data').innerHTML = html;
 }
 
 function showArticle(filePath) {
-    fetch(filePath)
-        .then(response => response.text())
-        .then(text => {
-            document.getElementById('article-content').innerHTML = '<pre>' + text + '</pre>';
-            document.getElementById('article-modal').style.display = 'block';
-        })
-        .catch(error => {
-            alert('加载文章失败');
-        });
+    // 由于GitHub Pages限制，这里需要特殊处理
+    // 可以考虑将文章内容也嵌入到页面中，或者提供下载链接
+    alert('文章查看功能在GitHub Pages上受限，请直接访问文件：' + filePath);
 }
 
 function closeModal() {
@@ -950,22 +978,28 @@ function closeModal() {
 
 // 页面加载时自动加载最新数据
 window.onload = function() {
-    // 尝试加载最新的涨停池数据
-    fetch('data/index.json')
-        .then(response => response.json())
-        .then(dates => {
-            if (dates.length > 0) {
-                loadLimitUpData(dates[0]);
-            }
-        })
-        .catch(error => console.error('加载索引失败'));
+    console.log('页面加载完成，开始加载数据...');
+    
+    try {
+        // 从嵌入的数据中获取最新日期
+        const dates = Object.keys(window.limitUpData || {}).sort().reverse();
+        if (dates.length > 0) {
+            loadLimitUpData(dates[0]);
+        } else {
+            document.getElementById('limitup-data').innerHTML = '<p>暂无涨停池数据</p>';
+        }
+    } catch (error) {
+        console.error('初始化失败:', error);
+        document.getElementById('limitup-data').innerHTML = '<p>数据加载失败</p>';
+    }
 };
     '''
     
     with open('script.js', 'w', encoding='utf-8') as f:
         f.write(js_content)
     
-    print("JavaScript已生成")
+    print("JavaScript已生成（GitHub Pages兼容版）")
+
 
 # ========== 主程序 ==========
 
@@ -1042,3 +1076,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
