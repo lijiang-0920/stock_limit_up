@@ -412,7 +412,18 @@ def save_articles_index(articles_data, date_str):
     index_file = 'articles/index.json'
     if os.path.exists(index_file):
         with open(index_file, 'r', encoding='utf-8') as f:
-            index_data = json.load(f)
+            try:
+                index_data = json.load(f)
+                # 如果是旧格式，转换为新格式
+                if 'users' in index_data or 'recent_articles' in index_data:
+                    # 提取日期数据
+                    new_index_data = {}
+                    for key, value in index_data.items():
+                        if key.startswith('20') and isinstance(value, dict) and 'articles' in value:
+                            new_index_data[key] = value
+                    index_data = new_index_data
+            except:
+                index_data = {}
     else:
         index_data = {}
     
@@ -428,6 +439,7 @@ def save_articles_index(articles_data, date_str):
         json.dump(index_data, f, ensure_ascii=False, indent=2)
     
     print(f"文章索引已更新: {date_str}")
+
 
 def crawl_all_jiuyan_articles(date_str=None):
     print("开始爬取韭研公社文章...")
@@ -3055,4 +3067,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
