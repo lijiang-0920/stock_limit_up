@@ -64,7 +64,8 @@ def format_plate_names(plates):
     return '|'.join([plate['secu_name'] for plate in plates])
 
 def get_beijing_time():
-    return datetime.now() 
+    """获取北京时间 (UTC+8)"""
+    return datetime.utcnow() + timedelta(hours=8)
 
 def fetch_limit_up_data():
     url = "https://x-quote.cls.cn/quote/index/up_down_analysis"
@@ -156,11 +157,6 @@ JIUYAN_USERS = {
 JIUYAN_HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
 }
-
-def get_beijing_time():
-    """获取北京时间"""
-    beijing_tz = pytz.timezone('Asia/Shanghai')
-    return datetime.now(beijing_tz)
 
 def get_target_article_url(user_url, date_str):
     """从用户主页获取指定日期的文章链接"""
@@ -3194,6 +3190,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
