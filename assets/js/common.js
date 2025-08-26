@@ -160,6 +160,28 @@ async function loadMainPageStats() {
         if (limitupStatusEl) limitupStatusEl.textContent = '最新更新: 加载失败';
         if (articlesStatusEl) articlesStatusEl.textContent = '最新更新: 加载失败';
         if (dataStatusEl) dataStatusEl.textContent = '异常';
+        // 加载异动解析数据状态
+        try {
+            const analysisResponse = await fetch('analysis/index.json');
+            if (analysisResponse.ok) {
+                const analysisData = await analysisResponse.json();
+                const dates = Object.keys(analysisData).sort().reverse();
+                if (dates.length > 0) {
+                    const latestDate = dates[0];
+                    const analysisStatusEl = document.getElementById('analysisStatus');
+                    if (analysisStatusEl) {
+                        analysisStatusEl.textContent = `最新更新: ${latestDate}`;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('加载异动解析状态失败:', error);
+            const analysisStatusEl = document.getElementById('analysisStatus');
+            if (analysisStatusEl) {
+                analysisStatusEl.textContent = '最新更新: 加载失败';
+            }
+        }
+        
     }
 }
 
@@ -233,6 +255,13 @@ async function loadJsonViewer() {
                     dates = Object.keys(articlesData).sort().reverse();
                 }
             }
+            else if (dataType === 'analysis') {
+                const response = await fetch('analysis/index.json');
+                if (response.ok) {
+                    const analysisData = await response.json();
+                    dates = Object.keys(analysisData).sort().reverse();
+                }
+            }
             
             dates.forEach(date => {
                 const option = document.createElement('option');
@@ -266,6 +295,9 @@ async function loadJsonViewer() {
                 response = await fetch(`data/${date}.json`);
             } else if (dataType === 'articles') {
                 response = await fetch('articles/index.json');
+            }
+            else if (dataType === 'analysis') {
+                response = await fetch(`analysis/${date}.json`);
             }
             
             if (response && response.ok) {

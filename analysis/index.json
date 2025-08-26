@@ -1,0 +1,12 @@
+{
+  "2025-08-26": {
+    "date": "2025-08-26",
+    "update_time": "2025-08-26 19:42:43",
+    "category_count": 13,
+    "total_stocks": 102,
+    "files": {
+      "json": "analysis/2025-08-26.json",
+      "txt": "analysis/2025-08-26.txt"
+    }
+  }
+}
