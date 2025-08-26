@@ -3887,8 +3887,8 @@ function showAnalysisStats() {
     });
 }'''
 
-with open('assets/js/analysis.js', 'w', encoding='utf-8') as f:
-    f.write(analysis_js)
+    with open('assets/js/analysis.js', 'w', encoding='utf-8') as f:
+        f.write(analysis_js)
 
 
     
@@ -3995,6 +3995,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
