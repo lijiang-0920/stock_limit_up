@@ -2245,7 +2245,7 @@ function showLoading(container) {
 }
 
 function showError(container, message) {
-    container.innerHTML = `<div class="loading">错误: ${message}</div>`;
+    container.innerHTML = '<div class="loading">错误: ' + message + '</div>';
 }
 
 // 复制到剪贴板
@@ -2277,20 +2277,9 @@ async function copyToClipboard(text) {
 // 显示提示消息
 function showToast(message, type = 'success') {
     const toast = document.createElement('div');
-    toast.className = `toast toast-${type}`;
+    toast.className = 'toast toast-' + type;
     toast.textContent = message;
-    toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#48bb78' : '#f56565'};
-        color: white;
-        padding: 12px 20px;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 10000;
-        animation: slideIn 0.3s ease-out;
-    `;
+    toast.style.cssText = 'position: fixed; top: 20px; right: 20px; background: ' + (type === 'success' ? '#48bb78' : '#f56565') + '; color: white; padding: 12px 20px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10000; animation: slideIn 0.3s ease-out;';
     
     document.body.appendChild(toast);
     
@@ -2308,16 +2297,7 @@ function showToast(message, type = 'success') {
 if (!document.querySelector('#toast-styles')) {
     const style = document.createElement('style');
     style.id = 'toast-styles';
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-    `;
+    style.textContent = '@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } } @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }';
     document.head.appendChild(style);
 }
 
@@ -2345,30 +2325,24 @@ async function loadMainPageStats() {
 // 加载涨停池状态
 async function loadLimitUpStatus() {
     try {
-        const response = await fetch('limitup/index.json');
+        const response = await fetch('data/index.json');
         if (response.ok) {
-            const limitupData = await response.json();
-            const dates = Object.keys(limitupData).sort().reverse();
+            const dates = await response.json();
             if (dates.length > 0) {
                 const latestDate = dates[0];
                 const limitupStatusEl = document.getElementById('limitupStatus');
                 if (limitupStatusEl) {
-                    limitupStatusEl.textContent = `最新更新: ${latestDate}`;
+                    limitupStatusEl.textContent = '最新更新: ' + latestDate;
                 }
                 
-                // 获取今日涨停数量 - 优先显示今天的数据
-                const today = new Date().toISOString().split('T')[0];
-                const todayLimitUpEl = document.getElementById('todayLimitUp');
-                if (todayLimitUpEl) {
-                    if (limitupData[today] && limitupData[today].total_stocks) {
-                        // 如果有今天的数据，显示今天的
-                        todayLimitUpEl.textContent = `${limitupData[today].total_stocks}只`;
-                    } else if (limitupData[latestDate] && limitupData[latestDate].total_stocks) {
-                        // 如果没有今天的数据，显示最新的数据
-                        todayLimitUpEl.textContent = `${limitupData[latestDate].total_stocks}只`;
-                    } else {
-                        // 如果都没有，显示暂无数据
-                        todayLimitUpEl.textContent = '暂无';
+                // 加载最新数据获取股票数量
+                const dataResponse = await fetch('data/' + latestDate + '.json');
+                if (dataResponse.ok) {
+                    const data = await dataResponse.json();
+                    const todayLimitUpEl = document.getElementById('todayLimitUp');
+                    if (todayLimitUpEl) {
+                        const stockCount = data.count || data.total_stocks || data.stocks?.length || 0;
+                        todayLimitUpEl.textContent = stockCount + '只';
                     }
                 }
             }
@@ -2397,7 +2371,7 @@ async function loadArticlesStatus() {
                 const latestDate = dates[0];
                 const articlesStatusEl = document.getElementById('articlesStatus');
                 if (articlesStatusEl) {
-                    articlesStatusEl.textContent = `最新更新: ${latestDate}`;
+                    articlesStatusEl.textContent = '最新更新: ' + latestDate;
                 }
                 
                 // 计算本周文章数量
@@ -2413,7 +2387,7 @@ async function loadArticlesStatus() {
                 });
                 const weeklyArticlesEl = document.getElementById('weeklyArticles');
                 if (weeklyArticlesEl) {
-                    weeklyArticlesEl.textContent = `${weeklyCount}篇`;
+                    weeklyArticlesEl.textContent = weeklyCount + '篇';
                 }
             }
         }
@@ -2437,7 +2411,7 @@ async function loadAnalysisStatus() {
                 const latestDate = dates[0];
                 const analysisStatusEl = document.getElementById('analysisStatus');
                 if (analysisStatusEl) {
-                    analysisStatusEl.textContent = `最新更新: ${latestDate}`;
+                    analysisStatusEl.textContent = '最新更新: ' + latestDate;
                 }
             }
         }
@@ -2452,32 +2426,12 @@ async function loadAnalysisStatus() {
 
 // 显示关于信息
 function showAbout() {
-    const aboutContent = `
-        <div style="text-align: center; padding: 20px;">
-            <h2>📊 数据中心</h2>
-            <p style="margin: 20px 0; color: #666;">
-                这是一个股票数据和研报文章的收集展示平台<br>
-                自动收集财联社涨停池数据和韭研公社研报文章
-            </p>
-            <p style="color: #999; font-size: 0.9rem;">
-                数据仅供参考，投资有风险，入市需谨慎
-            </p>
-        </div>
-    `;
+    const aboutContent = '<div style="text-align: center; padding: 20px;"><h2>📊 数据中心</h2><p style="margin: 20px 0; color: #666;">这是一个股票数据和研报文章的收集展示平台<br>自动收集财联社涨停池数据和韭研公社研报文章</p><p style="color: #999; font-size: 0.9rem;">数据仅供参考，投资有风险，入市需谨慎</p></div>';
     
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.style.display = 'block';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 400px;">
-            <div class="modal-header">
-                <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
-            </div>
-            <div class="modal-body">
-                ${aboutContent}
-            </div>
-        </div>
-    `;
+    modal.innerHTML = '<div class="modal-content" style="max-width: 400px;"><div class="modal-header"><span class="close" onclick="this.closest(\\'.modal\\').remove()">&times;</span></div><div class="modal-body">' + aboutContent + '</div></div>';
     
     document.body.appendChild(modal);
     
@@ -2509,10 +2463,9 @@ async function loadJsonViewer() {
         try {
             let dates = [];
             if (dataType === 'limitup') {
-                const response = await fetch('limitup/index.json');
+                const response = await fetch('data/index.json');
                 if (response.ok) {
-                    const limitupData = await response.json();
-                    dates = Object.keys(limitupData).sort().reverse();
+                    dates = await response.json();
                 }
             } else if (dataType === 'articles') {
                 const response = await fetch('articles/index.json');
@@ -2558,12 +2511,12 @@ async function loadJsonViewer() {
         try {
             let response;
             if (dataType === 'limitup') {
-                response = await fetch(`limitup/${date}.json`);
+                response = await fetch('data/' + date + '.json');
             } else if (dataType === 'articles') {
                 response = await fetch('articles/index.json');
             }
             else if (dataType === 'analysis') {
-                response = await fetch(`analysis/${date}.json`);
+                response = await fetch('analysis/' + date + '.json');
             }
             
             if (response && response.ok) {
@@ -2576,7 +2529,7 @@ async function loadJsonViewer() {
                 jsonContent.textContent = '加载数据失败';
             }
         } catch (error) {
-            jsonContent.textContent = `加载失败: ${error.message}`;
+            jsonContent.textContent = '加载失败: ' + error.message;
         }
     }
     
@@ -2636,6 +2589,7 @@ function throttle(func, limit) {
     
     with open('assets/js/common.js', 'w', encoding='utf-8') as f:
         f.write(common_js)
+
 
     
     # limitup.js
@@ -4037,6 +3991,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
