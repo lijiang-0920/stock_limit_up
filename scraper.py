@@ -137,24 +137,18 @@ JIUYAN_USERS = {
         'user_url': 'https://www.jiuyangongshe.com/u/4df747be1bf143a998171ef03559b517',
         'user_name': '盘前纪要',
         'save_dir_prefix': '韭研公社_盘前纪要',
-        'default_time': '07:40',
-        'retry_time': '08:00',
         'mode': 'full'
     },
     '盘前解读': {
         'user_url': 'https://www.jiuyangongshe.com/u/97fc2a020e644adb89570e69ae35ec02',
         'user_name': '盘前解读',
         'save_dir_prefix': '韭研公社_盘前解读',
-        'default_time': '08:17',
-        'retry_time': '08:27',
         'mode': 'full'
     },
     '优秀阿呆': {
         'user_url': 'https://www.jiuyangongshe.com/u/88cf268bc56c423c985b87d1b1ff5de4',
         'user_name': '优秀阿呆',
         'save_dir_prefix': '韭研公社_优秀阿呆',
-        'default_time': '23:30',
-        'retry_time': None,
         'mode': 'simple'
     }
 }
@@ -163,41 +157,57 @@ JIUYAN_HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
 }
 
+def get_beijing_time():
+    """获取北京时间"""
+    beijing_tz = pytz.timezone('Asia/Shanghai')
+    return datetime.now(beijing_tz)
+
 def get_target_article_url(user_url, date_str):
-    resp = requests.get(user_url, headers=JIUYAN_HEADERS, timeout=15)
-    resp.encoding = resp.apparent_encoding
-    soup = BeautifulSoup(resp.text, "html.parser")
-    for li in soup.find_all('li'):
-        title_tag = li.select_one('.book-title span')
-        time_tag = li.select_one('.fs13-ash')
-        if not title_tag or not time_tag:
-            continue
-        title = title_tag.text.strip()
-        pub_time = time_tag.text.strip()
-        if pub_time.startswith(date_str):
-            a_tag = li.select_one('a[href^="/a/"]')
-            if a_tag:
-                article_url = urljoin(user_url, a_tag['href'])
-                return title, article_url
+    """从用户主页获取指定日期的文章链接"""
+    try:
+        resp = requests.get(user_url, headers=JIUYAN_HEADERS, timeout=15)
+        resp.encoding = resp.apparent_encoding
+        soup = BeautifulSoup(resp.text, "html.parser")
+        
+        for li in soup.find_all('li'):
+            title_tag = li.select_one('.book-title span')
+            time_tag = li.select_one('.fs13-ash')
+            if not title_tag or not time_tag:
+                continue
+            title = title_tag.text.strip()
+            pub_time = time_tag.text.strip()
+            if pub_time.startswith(date_str):
+                a_tag = li.select_one('a[href^="/a/"]')
+                if a_tag:
+                    article_url = urljoin(user_url, a_tag['href'])
+                    return title, article_url
+    except Exception as e:
+        print(f"获取文章列表失败: {e}")
+    
     return None, None
 
 def fetch_article_content(article_url):
-    resp = requests.get(article_url, headers=JIUYAN_HEADERS, timeout=15)
-    html = resp.text
+    """获取文章详细内容"""
+    try:
+        resp = requests.get(article_url, headers=JIUYAN_HEADERS, timeout=15)
+        html = resp.text
 
-    pattern = r'content:"(.*?)",url:'
-    match = re.search(pattern, html, re.DOTALL)
-    if not match:
+        pattern = r'content:"(.*?)",url:'
+        match = re.search(pattern, html, re.DOTALL)
+        if not match:
+            return None, None, None
+
+        content_html = match.group(1)
+        content_html = content_html.replace('\\\\u', '\\u')
+        content_html = codecs.decode(content_html, 'unicode_escape')
+        content_html = content_html.encode('latin1').decode('utf-8')
+        content_html = content_html.replace('\\"', '"')
+
+        soup = BeautifulSoup(content_html, "html.parser")
+        return soup, article_url, html
+    except Exception as e:
+        print(f"获取文章内容失败: {e}")
         return None, None, None
-
-    content_html = match.group(1)
-    content_html = content_html.replace('\\\\u', '\\u')
-    content_html = codecs.decode(content_html, 'unicode_escape')
-    content_html = content_html.encode('latin1').decode('utf-8')
-    content_html = content_html.replace('\\"', '"')
-
-    soup = BeautifulSoup(content_html, "html.parser")
-    return soup, article_url, html
 
 def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user_info, date_str):
     """保存文章并生成JSON数据"""
@@ -408,8 +418,8 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
         "image_count": len(images_data)
     }
 
-
-def crawl_jiuyan_article(user_key, date_str=None, try_second_time=True):
+def crawl_jiuyan_article(user_key, date_str=None):
+    """爬取单个用户的文章 - 移除重试逻辑，由GitHub Actions控制"""
     if user_key not in JIUYAN_USERS:
         print(f"未找到用户配置: {user_key}")
         return None
@@ -423,22 +433,13 @@ def crawl_jiuyan_article(user_key, date_str=None, try_second_time=True):
             print("日期格式错误")
             return None
     else:
-        target_date = datetime.now()
+        # 使用北京时区的当前日期
+        target_date = get_beijing_time()
     
     date_str = target_date.strftime('%Y-%m-%d')
     
     try:
         title, article_url = get_target_article_url(user_info['user_url'], date_str)
-        
-        if not title and try_second_time and user_info.get('retry_time'):
-            now = datetime.now()
-            retry_time_str = user_info['retry_time']
-            retry_time = now.replace(hour=int(retry_time_str[:2]), minute=int(retry_time_str[3:]), second=0, microsecond=0)
-            wait_sec = (retry_time - now).total_seconds()
-            if wait_sec > 0:
-                print(f"未找到今日文章，等待到{retry_time_str}再试一次（约{int(wait_sec)}秒）")
-                time.sleep(wait_sec)
-            title, article_url = get_target_article_url(user_info['user_url'], date_str)
         
         if not title:
             print(f"未找到{user_info['user_name']} {date_str}的文章")
@@ -466,7 +467,7 @@ def crawl_jiuyan_article(user_key, date_str=None, try_second_time=True):
         result = {
             "author": user_info['user_name'],
             "title": title,
-            "publish_time": user_info['default_time'],
+            "publish_time": get_beijing_time().strftime("%H:%M"),
             "date": date_str,
             "url": article_url,
             **article_data
@@ -503,11 +504,31 @@ def save_articles_index(articles_data, date_str):
         index_data = {}
     
     # 更新当日数据
-    index_data[date_str] = {
-        "date": date_str,
-        "update_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "articles": articles_data
-    }
+    if date_str not in index_data:
+        index_data[date_str] = {
+            "date": date_str,
+            "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
+            "articles": []
+        }
+    
+    # 更新或添加文章数据
+    existing_articles = index_data[date_str].get("articles", [])
+    
+    for new_article in articles_data:
+        # 检查是否已存在相同作者的文章
+        updated = False
+        for i, existing_article in enumerate(existing_articles):
+            if existing_article.get("author") == new_article.get("author"):
+                existing_articles[i] = new_article
+                updated = True
+                break
+        
+        # 如果不存在，添加新文章
+        if not updated:
+            existing_articles.append(new_article)
+    
+    index_data[date_str]["articles"] = existing_articles
+    index_data[date_str]["update_time"] = get_beijing_time().strftime("%Y-%m-%d %H:%M:%S")
     
     # 保存索引
     with open(index_file, 'w', encoding='utf-8') as f:
@@ -515,9 +536,29 @@ def save_articles_index(articles_data, date_str):
     
     print(f"文章索引已更新: {date_str}")
 
+def crawl_single_jiuyan_user(user_key, date_str=None):
+    """爬取单个用户的文章"""
+    print(f"开始爬取 {user_key} 的文章...")
+    
+    if user_key not in JIUYAN_USERS:
+        print(f"错误：未找到用户 '{user_key}'")
+        print(f"可用用户: {', '.join(JIUYAN_USERS.keys())}")
+        return None
+    
+    article_data = crawl_jiuyan_article(user_key, date_str)
+    
+    if article_data:
+        current_date = date_str or get_beijing_time().strftime('%Y-%m-%d')
+        save_articles_index([article_data], current_date)
+        print(f"成功爬取 {user_key} 的文章")
+        return article_data
+    else:
+        print(f"未能获取 {user_key} 的文章")
+        return None
 
 def crawl_all_jiuyan_articles(date_str=None):
-    print("开始爬取韭研公社文章...")
+    """爬取所有韭研公社文章"""
+    print("开始爬取所有韭研公社文章...")
     articles_data = []
     
     for user_key in JIUYAN_USERS.keys():
@@ -525,15 +566,15 @@ def crawl_all_jiuyan_articles(date_str=None):
         article_data = crawl_jiuyan_article(user_key, date_str)
         if article_data:
             articles_data.append(article_data)
-        time.sleep(2)
+        time.sleep(2)  # 避免请求过于频繁
     
     # 保存文章索引
     if articles_data:
-        current_date = date_str or datetime.now().strftime('%Y-%m-%d')
+        current_date = date_str or get_beijing_time().strftime('%Y-%m-%d')
         save_articles_index(articles_data, current_date)
     
     print(f"\n韭研公社文章爬取完成！成功: {len(articles_data)}/{len(JIUYAN_USERS)}")
-    return articles_data
+    return articles_data    
 
 # ========== 网页生成函数 ==========
 
@@ -3153,6 +3194,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
