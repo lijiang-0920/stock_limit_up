@@ -572,6 +572,209 @@ def crawl_all_jiuyan_articles(date_str=None):
     print(f"\n韭研公社文章爬取完成！成功: {len(articles_data)}/{len(JIUYAN_USERS)}")
     return articles_data    
 
+# ========== 韭研公社异动解析相关函数 ==========
+
+def fetch_stock_analysis_data(date_str=None):
+    """获取韭研公社异动解析数据"""
+    if not date_str:
+        date_str = get_beijing_time().strftime('%Y-%m-%d')
+    
+    url = "https://app.jiuyangongshe.com/jystock-app/api/v1/action/field"
+    
+    headers = {
+        "Host": "app.jiuyangongshe.com",
+        "Connection": "keep-alive",
+        "sec-ch-ua": '"Not A(Brand";v="99", "Google Chrome";v="121", "Chromium";v="121"',
+        "sec-ch-ua-mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+        "Content-Type": "application/json",
+        "Accept": "application/json, text/plain, */*",
+        "timestamp": str(int(time.time() * 1000)),
+        "platform": "3",
+        "token": "c9f25f21829e88387639723f4f98272a",
+        "sec-ch-ua-platform": '"Windows"',
+        "Origin": "https://www.jiuyangongshe.com",
+        "Sec-Fetch-Site": "same-site",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.jiuyangongshe.com/",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Cookie": "SESSION=Njk3YTRhNTUtZjFkMi00NzNiLTk2NGYtNTVlNDU5NTRmNWU3; Hm_lvt_58aa18061df7855800f2a1b32d6da7f4=1754989369,1755050145; Hm_lpvt_58aa18061df7855800f2a1b32d6da7f4=1755052203"
+    }
+    
+    payload = {
+        "date": date_str,
+        "pc": 1
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        
+        if data.get("errCode") == "0" and "data" in data:
+            return data["data"]
+        else:
+            print(f"异动解析API返回错误: {data.get('errCode', '未知错误')}")
+            return None
+            
+    except Exception as e:
+        print(f"获取异动解析数据失败: {e}")
+        return None
+
+def process_stock_analysis_data(raw_data, date_str):
+    """处理异动解析数据"""
+    if not raw_data:
+        return None
+    
+    current_time = get_beijing_time().strftime("%Y-%m-%d %H:%M:%S")
+    
+    categories = []
+    total_stocks = 0
+    
+    for category in raw_data:
+        category_name = category.get("name", "")
+        category_reason = category.get("reason", "")
+        stock_list = category.get("list", [])
+        
+        if stock_list:  # 只处理有股票数据的分类
+            processed_stocks = []
+            
+            for stock in stock_list:
+                stock_code = stock.get("code", "")
+                stock_name = stock.get("name", "")
+                
+                # 获取异动信息
+                action_info = stock.get("article", {}).get("action_info", {})
+                limit_time = action_info.get("time", "")
+                analysis = action_info.get("expound", "")
+                
+                processed_stock = {
+                    "code": stock_code,
+                    "name": stock_name,
+                    "limit_time": limit_time,
+                    "analysis": analysis
+                }
+                processed_stocks.append(processed_stock)
+                total_stocks += 1
+            
+            category_data = {
+                "name": category_name,
+                "reason": category_reason,
+                "stock_count": len(processed_stocks),
+                "stocks": processed_stocks
+            }
+            categories.append(category_data)
+    
+    result = {
+        "date": date_str,
+        "update_time": current_time,
+        "category_count": len(categories),
+        "total_stocks": total_stocks,
+        "categories": categories
+    }
+    
+    return result
+
+def generate_analysis_text_content(data):
+    """生成异动解析的文本内容"""
+    content = f"韭研公社异动解析 - {data['date']}\n"
+    content += f"更新时间: {data['update_time']}\n"
+    content += f"板块数量: {data['category_count']} 个\n"
+    content += f"股票数量: {data['total_stocks']} 只\n"
+    content += "=" * 80 + "\n\n"
+    
+    for category in data['categories']:
+        content += f"=== {category['name']} ===\n"
+        if category['reason']:
+            content += f"板块异动解析: {category['reason']}\n"
+        content += f"涉及股票: {category['stock_count']} 只\n\n"
+        
+        for stock in category['stocks']:
+            content += f"{stock['name']}（{stock['code']}）\n"
+            if stock['limit_time']:
+                content += f"涨停时间: {stock['limit_time']}\n"
+            content += f"个股异动解析: {stock['analysis']}\n"
+            content += "\n" + "-" * 80 + "\n\n"
+    
+    return content
+
+def save_stock_analysis_data(data):
+    """保存异动解析数据"""
+    if not data:
+        return
+    
+    # 创建数据目录
+    os.makedirs('analysis', exist_ok=True)
+    current_date = data['date']
+    
+    # 保存JSON数据
+    json_path = f'analysis/{current_date}.json'
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    # 保存文本格式
+    text_content = generate_analysis_text_content(data)
+    txt_path = f'analysis/{current_date}.txt'
+    with open(txt_path, 'w', encoding='utf-8') as f:
+        f.write(text_content)
+    
+    # 更新索引文件
+    index_path = 'analysis/index.json'
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            try:
+                index_data = json.load(f)
+                if not isinstance(index_data, dict):
+                    index_data = {}
+            except:
+                index_data = {}
+    else:
+        index_data = {}
+    
+    # 更新索引
+    index_data[current_date] = {
+        "date": current_date,
+        "update_time": data['update_time'],
+        "category_count": data['category_count'],
+        "total_stocks": data['total_stocks'],
+        "files": {
+            "json": f"analysis/{current_date}.json",
+            "txt": f"analysis/{current_date}.txt"
+        }
+    }
+    
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, ensure_ascii=False, indent=2)
+    
+    print(f"异动解析数据已保存: {current_date}, 共{data['category_count']}个板块，{data['total_stocks']}只股票")
+
+def crawl_stock_analysis(date_str=None):
+    """爬取异动解析数据"""
+    print("开始获取韭研公社异动解析数据...")
+    
+    if not date_str:
+        date_str = get_beijing_time().strftime('%Y-%m-%d')
+    
+    try:
+        raw_data = fetch_stock_analysis_data(date_str)
+        processed_data = process_stock_analysis_data(raw_data, date_str)
+        
+        if processed_data:
+            save_stock_analysis_data(processed_data)
+            print(f"异动解析数据获取成功: {date_str}")
+            return processed_data
+        else:
+            print(f"未获取到 {date_str} 的异动解析数据")
+            return None
+            
+    except Exception as e:
+        print(f"获取异动解析数据时发生错误: {e}")
+        return None
+
+
+
 # ========== 网页生成函数 ==========
 
 def generate_main_page():
@@ -608,6 +811,13 @@ def generate_main_page():
                 <div class="card-button">进入查看</div>
             </div>
         </div>
+            <div class="nav-card" onclick="location.href='analysis.html'">
+                <div class="card-icon">📈</div>
+                <h3>异动解析数据</h3>
+                <p>查看股票异动解析</p>
+                <div class="card-status" id="analysisStatus">最新更新: 加载中...</div>
+                <div class="card-button">进入查看</div>
+            </div>
         
         <div class="stats-panel">
             <h3>📈 快速统计</h3>
@@ -784,6 +994,66 @@ def generate_jiuyan_page():
     with open('jiuyan.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
+def generate_analysis_page():
+    """生成异动解析页面"""
+    html_content = '''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 韭研公社异动解析</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>📈 韭研公社异动解析</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="filter-section">
+                <select id="dateFilter" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="搜索股票代码或名称..." class="search-input">
+                <button id="copyDataBtn" class="action-btn">📋 复制数据</button>
+                <button id="viewJsonBtn" class="action-btn">📄 查看JSON</button>
+                <button id="refreshBtn" class="action-btn">🔄 刷新</button>
+            </div>
+        </div>
+        
+        <div class="data-info" id="dataInfo" style="display: none;">
+            <div class="info-item">
+                <span class="info-label">更新时间:</span>
+                <span id="updateTime">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">板块数量:</span>
+                <span id="categoryCount">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">股票数量:</span>
+                <span id="stockCount">--</span>
+            </div>
+        </div>
+        
+        <div class="analysis-container" id="analysisContainer">
+            <div class="loading">请选择日期查看数据...</div>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/analysis.js"></script>
+</body>
+</html>'''
+    
+    with open('analysis.html', 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+
 def generate_json_viewer():
     """生成JSON查看器页面"""
     html_content = '''<!DOCTYPE html>
@@ -808,6 +1078,7 @@ def generate_json_viewer():
                 <select id="dataTypeSelect" class="filter-select">
                     <option value="limitup">涨停池数据</option>
                     <option value="articles">文章数据</option>
+                    <option value="analysis">异动解析数据</option>                    
                 </select>
                 <select id="dateSelect" class="filter-select">
                     <option value="">选择日期</option>
@@ -1253,7 +1524,122 @@ body {
 .article-btn.primary:hover {
     background: #5a67d8;
 }
+/* 异动解析样式 */
+.analysis-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
 
+.category-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.category-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.category-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.category-reason {
+    color: #4a5568;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.category-stats {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.stocks-list {
+    margin-top: 15px;
+}
+
+.analysis-stock-card {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+.analysis-stock-card:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.stock-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stock-basic {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stock-code-analysis {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stock-name-analysis {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.limit-time {
+    font-size: 0.9rem;
+    color: #e53e3e;
+    font-weight: 500;
+}
+
+.stock-analysis {
+    color: #4a5568;
+    line-height: 1.6;
+    margin-top: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    border-left: 3px solid #667eea;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .stock-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .stock-basic {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
 /* 模态框 */
 .modal {
     display: none;
@@ -1999,6 +2385,28 @@ async function loadMainPageStats() {
         if (limitupStatusEl) limitupStatusEl.textContent = '最新更新: 加载失败';
         if (articlesStatusEl) articlesStatusEl.textContent = '最新更新: 加载失败';
         if (dataStatusEl) dataStatusEl.textContent = '异常';
+        // 加载异动解析数据状态
+        try {
+            const analysisResponse = await fetch('analysis/index.json');
+            if (analysisResponse.ok) {
+                const analysisData = await analysisResponse.json();
+                const dates = Object.keys(analysisData).sort().reverse();
+                if (dates.length > 0) {
+                    const latestDate = dates[0];
+                    const analysisStatusEl = document.getElementById('analysisStatus');
+                    if (analysisStatusEl) {
+                        analysisStatusEl.textContent = `最新更新: ${latestDate}`;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('加载异动解析状态失败:', error);
+            const analysisStatusEl = document.getElementById('analysisStatus');
+            if (analysisStatusEl) {
+                analysisStatusEl.textContent = '最新更新: 加载失败';
+            }
+        }
+        
     }
 }
 
@@ -2072,6 +2480,13 @@ async function loadJsonViewer() {
                     dates = Object.keys(articlesData).sort().reverse();
                 }
             }
+            else if (dataType === 'analysis') {
+                const response = await fetch('analysis/index.json');
+                if (response.ok) {
+                    const analysisData = await response.json();
+                    dates = Object.keys(analysisData).sort().reverse();
+                }
+            }
             
             dates.forEach(date => {
                 const option = document.createElement('option');
@@ -2105,6 +2520,9 @@ async function loadJsonViewer() {
                 response = await fetch(`data/${date}.json`);
             } else if (dataType === 'articles') {
                 response = await fetch('articles/index.json');
+            }
+            else if (dataType === 'analysis') {
+                response = await fetch(`analysis/${date}.json`);
             }
             
             if (response && response.ok) {
@@ -3099,6 +3517,373 @@ function showStats() {
     
     with open('assets/js/jiuyan.js', 'w', encoding='utf-8') as f:
         f.write(jiuyan_js)
+   
+    # analysis.js
+    analysis_js = '''// assets/js/analysis.js - 异动解析页面功能
+
+// assets/js/analysis.js - 异动解析页面功能
+
+let currentAnalysisData = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    initAnalysisPage();
+});
+
+async function initAnalysisPage() {
+    await loadAnalysisDateOptions();
+    setupAnalysisEventListeners();
+}
+
+// 加载日期选项
+async function loadAnalysisDateOptions() {
+    try {
+        const response = await fetch('analysis/index.json');
+        if (!response.ok) throw new Error('无法加载异动解析日期数据');
+        
+        const indexData = await response.json();
+        const dates = Object.keys(indexData).sort().reverse();
+        const dateFilter = document.getElementById('dateFilter');
+        
+        if (!dateFilter) {
+            console.error('dateFilter元素未找到');
+            return;
+        }
+        
+        dateFilter.innerHTML = '<option value="">选择日期</option>';
+        dates.forEach(date => {
+            const option = document.createElement('option');
+            option.value = date;
+            option.textContent = date;
+            dateFilter.appendChild(option);
+        });
+        
+        // 默认选择最新日期
+        if (dates.length > 0) {
+            dateFilter.value = dates[0];
+            await loadAnalysisData(dates[0]);
+        }
+    } catch (error) {
+        console.error('加载异动解析日期选项失败:', error);
+        const container = document.getElementById('analysisContainer');
+        if (container) {
+            showError(container, '加载日期数据失败');
+        }
+    }
+}
+
+// 设置事件监听器
+function setupAnalysisEventListeners() {
+    const dateFilter = document.getElementById('dateFilter');
+    const searchInput = document.getElementById('searchInput');
+    const copyDataBtn = document.getElementById('copyDataBtn');
+    const viewJsonBtn = document.getElementById('viewJsonBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+    
+    if (dateFilter) {
+        dateFilter.addEventListener('change', (e) => {
+            if (e.target.value) {
+                loadAnalysisData(e.target.value);
+            }
+        });
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(filterAnalysisStocks, 300));
+    }
+    
+    if (copyDataBtn) {
+        copyDataBtn.addEventListener('click', copyAnalysisData);
+    }
+    
+    if (viewJsonBtn) {
+        viewJsonBtn.addEventListener('click', viewAnalysisJsonData);
+    }
+    
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            location.reload();
+        });
+    }
+}
+
+// 加载异动解析数据
+async function loadAnalysisData(date) {
+    const container = document.getElementById('analysisContainer');
+    const dataInfo = document.getElementById('dataInfo');
+    
+    if (!container) {
+        console.error('analysisContainer元素未找到');
+        return;
+    }
+    
+    showLoading(container);
+    if (dataInfo) {
+        dataInfo.style.display = 'none';
+    }
+    
+    try {
+        const response = await fetch(`analysis/${date}.json`);
+        if (!response.ok) throw new Error('异动解析数据加载失败');
+        
+        currentAnalysisData = await response.json();
+        
+        // 更新数据信息
+        const updateTimeEl = document.getElementById('updateTime');
+        const categoryCountEl = document.getElementById('categoryCount');
+        const stockCountEl = document.getElementById('stockCount');
+        
+        if (updateTimeEl) {
+            updateTimeEl.textContent = currentAnalysisData.update_time;
+        }
+        if (categoryCountEl) {
+            categoryCountEl.textContent = `${currentAnalysisData.category_count}个`;
+        }
+        if (stockCountEl) {
+            stockCountEl.textContent = `${currentAnalysisData.total_stocks}只`;
+        }
+        if (dataInfo) {
+            dataInfo.style.display = 'flex';
+        }
+        
+        // 渲染异动解析数据
+        renderAnalysisData(currentAnalysisData.categories);
+        
+    } catch (error) {
+        console.error('加载异动解析数据失败:', error);
+        showError(container, '加载数据失败');
+    }
+}
+
+// 渲染异动解析数据
+function renderAnalysisData(categories) {
+    const container = document.getElementById('analysisContainer');
+    
+    if (!container) {
+        console.error('analysisContainer元素未找到');
+        return;
+    }
+    
+    if (!categories || categories.length === 0) {
+        container.innerHTML = '<div class="loading">暂无异动解析数据</div>';
+        return;
+    }
+    
+    const categoriesHtml = categories.map(category => `
+        <div class="category-card" data-category="${category.name}">
+            <div class="category-header">
+                <div class="category-title">${category.name}</div>
+                ${category.reason ? `<div class="category-reason">${category.reason}</div>` : ''}
+                <div class="category-stats">涉及股票: ${category.stock_count} 只</div>
+            </div>
+            <div class="stocks-list">
+                ${category.stocks.map(stock => `
+                    <div class="analysis-stock-card" data-code="${stock.code}" data-name="${stock.name}">
+                        <div class="stock-info">
+                            <div class="stock-basic">
+                                <span class="stock-code-analysis">${stock.code}</span>
+                                <span class="stock-name-analysis">${stock.name}</span>
+                            </div>
+                            ${stock.limit_time ? `<div class="limit-time">涨停时间: ${stock.limit_time}</div>` : ''}
+                        </div>
+                        ${stock.analysis ? `<div class="stock-analysis">${stock.analysis}</div>` : ''}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+    
+    container.innerHTML = categoriesHtml;
+}
+
+// 筛选股票
+function filterAnalysisStocks() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.toLowerCase();
+    const categoryCards = document.querySelectorAll('.category-card');
+    
+    categoryCards.forEach(categoryCard => {
+        const stockCards = categoryCard.querySelectorAll('.analysis-stock-card');
+        let hasVisibleStocks = false;
+        
+        stockCards.forEach(stockCard => {
+            const code = stockCard.dataset.code.toLowerCase();
+            const name = stockCard.dataset.name.toLowerCase();
+            
+            if (code.includes(searchTerm) || name.includes(searchTerm)) {
+                stockCard.style.display = 'block';
+                hasVisibleStocks = true;
+            } else {
+                stockCard.style.display = 'none';
+            }
+        });
+        
+        // 如果板块下没有匹配的股票，隐藏整个板块
+        if (searchTerm && !hasVisibleStocks) {
+            categoryCard.style.display = 'none';
+        } else {
+            categoryCard.style.display = 'block';
+        }
+    });
+}
+
+// 复制异动解析数据
+function copyAnalysisData() {
+    if (!currentAnalysisData) {
+        showToast('暂无数据可复制', 'error');
+        return;
+    }
+    
+    let textData = `韭研公社异动解析 - ${currentAnalysisData.date}\n`;
+    textData += `更新时间: ${currentAnalysisData.update_time}\n`;
+    textData += `板块数量: ${currentAnalysisData.category_count} 个\n`;
+    textData += `股票数量: ${currentAnalysisData.total_stocks} 只\n`;
+    textData += "=" + "=".repeat(80) + "\n\n";
+    
+    currentAnalysisData.categories.forEach(category => {
+        textData += `=== ${category.name} ===\n`;
+        if (category.reason) {
+            textData += `板块异动解析: ${category.reason}\n`;
+        }
+        textData += `涉及股票: ${category.stock_count} 只\n\n`;
+        
+        category.stocks.forEach(stock => {
+            textData += `${stock.name}（${stock.code}）\n`;
+            if (stock.limit_time) {
+                textData += `涨停时间: ${stock.limit_time}\n`;
+            }
+            textData += `个股异动解析: ${stock.analysis}\n`;
+            textData += "\n" + "-".repeat(80) + "\n\n";
+        });
+    });
+    
+    copyToClipboard(textData);
+}
+
+// 查看JSON数据
+function viewAnalysisJsonData() {
+    const dateFilter = document.getElementById('dateFilter');
+    if (!dateFilter) {
+        showToast('页面元素异常', 'error');
+        return;
+    }
+    
+    const date = dateFilter.value;
+    if (date) {
+        window.open(`json_viewer.html?type=analysis&date=${date}`, '_blank');
+    } else {
+        showToast('请先选择日期', 'error');
+    }
+}
+
+// 导出Excel格式数据
+function exportAnalysisToExcel() {
+    if (!currentAnalysisData) {
+        showToast('暂无数据可导出', 'error');
+        return;
+    }
+    
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "板块名称,板块解析,股票代码,股票名称,涨停时间,个股解析\n";
+    
+    currentAnalysisData.categories.forEach(category => {
+        category.stocks.forEach(stock => {
+            csvContent += `"${category.name}","${category.reason}","${stock.code}","${stock.name}","${stock.limit_time}","${stock.analysis}"\n`;
+        });
+    });
+    
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `异动解析_${currentAnalysisData.date}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    showToast('数据导出成功！');
+}
+
+// 获取异动解析统计信息
+function getAnalysisStats() {
+    if (!currentAnalysisData) return null;
+    
+    const stats = {
+        totalCategories: currentAnalysisData.category_count,
+        totalStocks: currentAnalysisData.total_stocks,
+        categoriesWithReason: 0,
+        stocksWithLimitTime: 0,
+        avgStocksPerCategory: 0
+    };
+    
+    currentAnalysisData.categories.forEach(category => {
+        if (category.reason) {
+            stats.categoriesWithReason++;
+        }
+        
+        category.stocks.forEach(stock => {
+            if (stock.limit_time) {
+                stats.stocksWithLimitTime++;
+            }
+        });
+    });
+    
+    stats.avgStocksPerCategory = (stats.totalStocks / stats.totalCategories).toFixed(1);
+    
+    return stats;
+}
+
+// 显示统计信息
+function showAnalysisStats() {
+    const stats = getAnalysisStats();
+    if (!stats) {
+        showToast('暂无统计数据', 'error');
+        return;
+    }
+    
+    const statsContent = `
+        <div style="padding: 20px;">
+            <h3>📊 异动解析统计</h3>
+            <div style="margin: 20px 0;">
+                <p><strong>总板块数:</strong> ${stats.totalCategories} 个</p>
+                <p><strong>总股票数:</strong> ${stats.totalStocks} 只</p>
+                <p><strong>有解析的板块:</strong> ${stats.categoriesWithReason} 个</p>
+                <p><strong>有涨停时间的股票:</strong> ${stats.stocksWithLimitTime} 只</p>
+                <p><strong>平均每板块股票数:</strong> ${stats.avgStocksPerCategory} 只</p>
+            </div>
+            <p style="color: #999; font-size: 0.9rem;">
+                数据更新时间: ${currentAnalysisData.update_time}
+            </p>
+        </div>
+    `;
+    
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.style.display = 'block';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
+                <h2>统计信息</h2>
+            </div>
+            <div class="modal-body">
+                ${statsContent}
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}    
+    with open('assets/js/analysis.js', 'w', encoding='utf-8') as f:
+        f.write(analysis_js)
+
+
     
     print("JavaScript文件生成完成:")
     print("- assets/js/common.js")
@@ -3114,6 +3899,7 @@ def generate_all_pages():
     generate_main_page()
     generate_limitup_page()
     generate_jiuyan_page()
+    generate_analysis_page()  
     generate_json_viewer()
     generate_css()        # 修改这行
     generate_js_files()   # 添加这行
@@ -3157,11 +3943,19 @@ def main():
                 crawl_all_jiuyan_articles()
             elif len(sys.argv) == 3:
                 user_key = sys.argv[2]
-                crawl_jiuyan_article(user_key)
+                crawl_single_jiuyan_user(user_key)
             elif len(sys.argv) == 4:
                 user_key = sys.argv[2]
                 date_str = sys.argv[3]
-                crawl_jiuyan_article(user_key, date_str)
+                crawl_single_jiuyan_user(user_key, date_str)
+            generate_all_pages()
+        
+        elif command == 'analysis':  # 添加异动解析命令
+            if len(sys.argv) == 2:
+                crawl_stock_analysis()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_stock_analysis(date_str)
             generate_all_pages()
                 
         elif command == 'all':
@@ -3169,6 +3963,8 @@ def main():
             main_limit_up()
             print("\n" + "="*60 + "\n")
             crawl_all_jiuyan_articles()
+            print("\n" + "="*60 + "\n")
+            crawl_stock_analysis()  # 添加异动解析
             generate_all_pages()
             
         elif command == 'generate':
@@ -3182,6 +3978,8 @@ def main():
             print("  python script.py jiuyan                    # 爬取韭研公社所有用户文章")
             print("  python script.py jiuyan 盘前纪要           # 爬取韭研公社指定用户文章")
             print("  python script.py jiuyan 盘前纪要 2025-01-21 # 爬取韭研公社指定用户指定日期文章")
+            print("  python script.py analysis                  # 获取异动解析数据")
+            print("  python script.py analysis 2025-01-21       # 获取指定日期异动解析数据")
             print("  python script.py all                       # 执行所有功能")
             print("  python script.py generate                  # 只生成网页文件")
             print("\n可用的韭研公社用户:")
@@ -3190,6 +3988,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
