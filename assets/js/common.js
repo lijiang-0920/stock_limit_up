@@ -130,18 +130,32 @@ async function loadLimitUpStatus() {
                     limitupStatusEl.textContent = `最新更新: ${latestDate}`;
                 }
                 
-                // 加载最新数据获取股票数量
+                // 获取今日涨停数量 - 优先显示今天的数据
+                const today = new Date().toISOString().split('T')[0];
                 const todayLimitUpEl = document.getElementById('todayLimitUp');
-                if (todayLimitUpEl && limitupData[latestDate]) {
-                    todayLimitUpEl.textContent = `${limitupData[latestDate].total_stocks}只`;
+                if (todayLimitUpEl) {
+                    if (limitupData[today] && limitupData[today].total_stocks) {
+                        // 如果有今天的数据，显示今天的
+                        todayLimitUpEl.textContent = `${limitupData[today].total_stocks}只`;
+                    } else if (limitupData[latestDate] && limitupData[latestDate].total_stocks) {
+                        // 如果没有今天的数据，显示最新的数据
+                        todayLimitUpEl.textContent = `${limitupData[latestDate].total_stocks}只`;
+                    } else {
+                        // 如果都没有，显示暂无数据
+                        todayLimitUpEl.textContent = '暂无';
+                    }
                 }
             }
         }
     } catch (error) {
         console.error('加载涨停池状态失败:', error);
         const limitupStatusEl = document.getElementById('limitupStatus');
+        const todayLimitUpEl = document.getElementById('todayLimitUp');
         if (limitupStatusEl) {
             limitupStatusEl.textContent = '最新更新: 加载失败';
+        }
+        if (todayLimitUpEl) {
+            todayLimitUpEl.textContent = '加载失败';
         }
     }
 }
