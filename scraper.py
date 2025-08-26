@@ -3521,8 +3521,6 @@ function showStats() {
     # analysis.js
     analysis_js = '''// assets/js/analysis.js - 异动解析页面功能
 
-// assets/js/analysis.js - 异动解析页面功能
-
 let currentAnalysisData = null;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -3879,7 +3877,7 @@ function showAnalysisStats() {
             modal.remove();
         }
     });
-}    
+}'''
     with open('assets/js/analysis.js', 'w', encoding='utf-8') as f:
         f.write(analysis_js)
 
@@ -3988,6 +3986,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
