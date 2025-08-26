@@ -99,9 +99,30 @@ if (!document.querySelector('#toast-styles')) {
 async function loadMainPageStats() {
     try {
         // 加载涨停池数据状态
-        const response = await fetch('data/index.json');
+        await loadLimitUpStatus();
+        
+        // 加载文章数据状态
+        await loadArticlesStatus();
+        
+        // 加载异动解析数据状态
+        await loadAnalysisStatus();
+        
+    } catch (error) {
+        console.error('加载统计数据失败:', error);
+        const dataStatusEl = document.getElementById('dataStatus');
+        if (dataStatusEl) {
+            dataStatusEl.textContent = '异常';
+        }
+    }
+}
+
+// 加载涨停池状态
+async function loadLimitUpStatus() {
+    try {
+        const response = await fetch('limitup/index.json');
         if (response.ok) {
-            const dates = await response.json();
+            const limitupData = await response.json();
+            const dates = Object.keys(limitupData).sort().reverse();
             if (dates.length > 0) {
                 const latestDate = dates[0];
                 const limitupStatusEl = document.getElementById('limitupStatus');
@@ -110,18 +131,24 @@ async function loadMainPageStats() {
                 }
                 
                 // 加载最新数据获取股票数量
-                const dataResponse = await fetch(`data/${latestDate}.json`);
-                if (dataResponse.ok) {
-                    const data = await dataResponse.json();
-                    const todayLimitUpEl = document.getElementById('todayLimitUp');
-                    if (todayLimitUpEl) {
-                        todayLimitUpEl.textContent = `${data.count}只`;
-                    }
+                const todayLimitUpEl = document.getElementById('todayLimitUp');
+                if (todayLimitUpEl && limitupData[latestDate]) {
+                    todayLimitUpEl.textContent = `${limitupData[latestDate].total_stocks}只`;
                 }
             }
         }
-        
-        // 加载文章数据状态
+    } catch (error) {
+        console.error('加载涨停池状态失败:', error);
+        const limitupStatusEl = document.getElementById('limitupStatus');
+        if (limitupStatusEl) {
+            limitupStatusEl.textContent = '最新更新: 加载失败';
+        }
+    }
+}
+
+// 加载文章状态
+async function loadArticlesStatus() {
+    try {
         const articlesResponse = await fetch('articles/index.json');
         if (articlesResponse.ok) {
             const articlesData = await articlesResponse.json();
@@ -150,38 +177,36 @@ async function loadMainPageStats() {
                 }
             }
         }
-        
     } catch (error) {
-        console.error('加载统计数据失败:', error);
-        const limitupStatusEl = document.getElementById('limitupStatus');
+        console.error('加载文章状态失败:', error);
         const articlesStatusEl = document.getElementById('articlesStatus');
-        const dataStatusEl = document.getElementById('dataStatus');
-        
-        if (limitupStatusEl) limitupStatusEl.textContent = '最新更新: 加载失败';
-        if (articlesStatusEl) articlesStatusEl.textContent = '最新更新: 加载失败';
-        if (dataStatusEl) dataStatusEl.textContent = '异常';
-        // 加载异动解析数据状态
-        try {
-            const analysisResponse = await fetch('analysis/index.json');
-            if (analysisResponse.ok) {
-                const analysisData = await analysisResponse.json();
-                const dates = Object.keys(analysisData).sort().reverse();
-                if (dates.length > 0) {
-                    const latestDate = dates[0];
-                    const analysisStatusEl = document.getElementById('analysisStatus');
-                    if (analysisStatusEl) {
-                        analysisStatusEl.textContent = `最新更新: ${latestDate}`;
-                    }
+        if (articlesStatusEl) {
+            articlesStatusEl.textContent = '最新更新: 加载失败';
+        }
+    }
+}
+
+// 加载异动解析状态
+async function loadAnalysisStatus() {
+    try {
+        const analysisResponse = await fetch('analysis/index.json');
+        if (analysisResponse.ok) {
+            const analysisData = await analysisResponse.json();
+            const dates = Object.keys(analysisData).sort().reverse();
+            if (dates.length > 0) {
+                const latestDate = dates[0];
+                const analysisStatusEl = document.getElementById('analysisStatus');
+                if (analysisStatusEl) {
+                    analysisStatusEl.textContent = `最新更新: ${latestDate}`;
                 }
             }
-        } catch (error) {
-            console.error('加载异动解析状态失败:', error);
-            const analysisStatusEl = document.getElementById('analysisStatus');
-            if (analysisStatusEl) {
-                analysisStatusEl.textContent = '最新更新: 加载失败';
-            }
         }
-        
+    } catch (error) {
+        console.error('加载异动解析状态失败:', error);
+        const analysisStatusEl = document.getElementById('analysisStatus');
+        if (analysisStatusEl) {
+            analysisStatusEl.textContent = '最新更新: 加载失败';
+        }
     }
 }
 
@@ -244,9 +269,10 @@ async function loadJsonViewer() {
         try {
             let dates = [];
             if (dataType === 'limitup') {
-                const response = await fetch('data/index.json');
+                const response = await fetch('limitup/index.json');
                 if (response.ok) {
-                    dates = await response.json();
+                    const limitupData = await response.json();
+                    dates = Object.keys(limitupData).sort().reverse();
                 }
             } else if (dataType === 'articles') {
                 const response = await fetch('articles/index.json');
@@ -292,7 +318,7 @@ async function loadJsonViewer() {
         try {
             let response;
             if (dataType === 'limitup') {
-                response = await fetch(`data/${date}.json`);
+                response = await fetch(`limitup/${date}.json`);
             } else if (dataType === 'articles') {
                 response = await fetch('articles/index.json');
             }
