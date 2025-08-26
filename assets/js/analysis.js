@@ -283,7 +283,14 @@ function exportAnalysisToExcel() {
     
     currentAnalysisData.categories.forEach(category => {
         category.stocks.forEach(stock => {
-            csvContent += `"${category.name}","${category.reason}","${stock.code}","${stock.name}","${stock.limit_time}","${stock.analysis}"
+            const categoryName = category.name || "";
+            const categoryReason = category.reason || "";
+            const stockCode = stock.code || "";
+            const stockName = stock.name || "";
+            const limitTime = stock.limit_time || "";
+            const analysis = stock.analysis || "";
+            
+            csvContent += `"${categoryName}","${categoryReason}","${stockCode}","${stockName}","${limitTime}","${analysis}"
 `;
         });
     });
@@ -298,6 +305,7 @@ function exportAnalysisToExcel() {
     
     showToast('数据导出成功！');
 }
+
 
 // 获取异动解析统计信息
 function getAnalysisStats() {
