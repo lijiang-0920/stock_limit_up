@@ -220,7 +220,9 @@ function copyAnalysisData() {
 `;
     textData += `股票数量: ${currentAnalysisData.total_stocks} 只
 `;
-    textData += "=" + "=".repeat(80) + "\n\n";
+    textData += "=" + "=".repeat(80) + "
+
+";
     
     currentAnalysisData.categories.forEach(category => {
         textData += `=== ${category.name} ===
@@ -242,7 +244,10 @@ function copyAnalysisData() {
             }
             textData += `个股异动解析: ${stock.analysis}
 `;
-            textData += "\n" + "-".repeat(80) + "\n\n";
+            textData += "
+" + "-".repeat(80) + "
+
+";
         });
     });
     
