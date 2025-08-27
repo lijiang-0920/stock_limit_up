@@ -2,6 +2,7 @@ name: 自动更新数据和文章
 
 on:
   schedule:
+    - cron: '17 10 * * *'  # UTC 10:07 = 北京时间 18:07
     # 上午7:40 (北京时间) - 获取韭研公社盘前纪要
     - cron: '40 23 * * 0-4'  # UTC 23:40 = 北京时间 07:40
     # 上午8:00 (北京时间) - 盘前纪要重试
@@ -138,9 +139,12 @@ jobs:
               }
               
               # 检查各个时间窗口（允许30分钟的时间偏差）
+              if check_time_window 10 7 30; then
+                task_type="limitup"
+                echo "匹配测试时间窗口: 测试涨停池数据 (UTC 10:07±30分钟)"
               
               # 北京时间7:40 (UTC 23:40前一天) - 韭研公社盘前纪要
-              if check_time_window 23 40 30; then
+              elif check_time_window 23 40 30; then
                 task_type="jiuyan_morning_memo"
                 echo "匹配时间窗口: 韭研公社盘前纪要 (北京时间7:40±30分钟)"
               
