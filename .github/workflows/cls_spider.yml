@@ -11,9 +11,9 @@ on:
     # 上午8:27 (北京时间) - 盘前解读重试
     - cron: '27 0 * * 1-5'   # UTC 00:27 = 北京时间 08:27
     # 下午16:00 (北京时间) - 获取异动解析数据
-    - cron: '00 8 * * 1-5'   # UTC 07:00 = 北京时间 16:00
+    - cron: '00 8 * * 1-5'   # UTC 08:00 = 北京时间 16:00
     # 下午15:30 (北京时间) - 获取财联社涨停池数据
-    - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
+    - cron: '40 9 * * 1-5'   # UTC 07:30 = 北京时间 15:30
     # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
     - cron: '30 15 * * 1-5'  # UTC 15:30 = 北京时间 23:30
   workflow_dispatch:
@@ -30,18 +30,24 @@ on:
         - 'analysis'
         - 'generate'
 
+# 设置权限
 permissions:
   contents: write
   pages: write
   id-token: write
 
 jobs:
-  run-tasks:
+  # 第一个作业：更新数据
+  update-data:
     runs-on: ubuntu-latest
     outputs:
       has_changes: ${{ steps.check-changes.outputs.has_changes }}
+      task_type: ${{ steps.determine-task.outputs.task }}
     steps:
-      - uses: actions/checkout@v4
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史
 
       - name: 设置 Python
         uses: actions/setup-python@v4
@@ -99,7 +105,7 @@ jobs:
               # 北京时间7:40 (UTC 23:00前一天) - 韭研公社盘前纪要
               if [ "$hour" = "23" ] && [ "$minute" = "40" ]; then
                 echo "task=jiuyan_morning_7" >> $GITHUB_OUTPUT
-                echo "识别任务: 韭研公社盘前纪要 (北京时间7:00)"
+                echo "识别任务: 韭研公社盘前纪要 (北京时间7:40)"
               # 北京时间8:00 (UTC 00:00) - 盘前纪要重试
               elif [ "$hour" = "00" ] && [ "$minute" = "00" ]; then
                 echo "task=jiuyan_morning_8_retry" >> $GITHUB_OUTPUT
@@ -115,9 +121,9 @@ jobs:
               # 北京时间16:00 (UTC 08:00) - 异动解析数据
               elif [ "$hour" = "08" ] && [ "$minute" = "00" ]; then
                 echo "task=analysis" >> $GITHUB_OUTPUT
-                echo "识别任务: 异动解析数据 (北京时间15:00)"
+                echo "识别任务: 异动解析数据 (北京时间16:00)"
               # 北京时间15:30 (UTC 07:30) - 财联社涨停池数据
-              elif [ "$hour" = "07" ] && [ "$minute" = "30" ]; then
+              elif [ "$hour" = "09" ] && [ "$minute" = "40" ]; then
                 echo "task=limitup" >> $GITHUB_OUTPUT
                 echo "识别任务: 财联社涨停池数据 (北京时间15:30)"
               # 北京时间23:30 (UTC 15:30) - 韭研公社优秀阿呆
@@ -137,7 +143,7 @@ jobs:
       - name: 执行韭研公社盘前纪要 (北京时间7:40)
         if: steps.determine-task.outputs.task == 'jiuyan_morning_7'
         run: |
-          echo "执行韭研公社盘前纪要爬取 (北京时间7:00)..."
+          echo "执行韭研公社盘前纪要爬取 (北京时间7:40)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} generate
 
@@ -220,13 +226,14 @@ jobs:
       - name: 检查文件变化
         id: check-changes
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "发现文件变化:"
-            git status --porcelain
-          else
+          git add -A
+          if git diff --staged --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "没有文件变化"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "发现文件变化:"
+            git diff --staged --name-only
           fi
 
       - name: 配置 Git
@@ -238,14 +245,18 @@ jobs:
       - name: 提交更改
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
+          # 确保在主分支上
+          git checkout main || git checkout -b main
+          
           # 添加所有相关文件
-          git add data/ articles/ analysis/ assets/ *.html
+          git add data/ articles/ analysis/ assets/ *.html || true
+          git add . || true
           
           # 生成提交信息
           task_name="${{ steps.determine-task.outputs.task }}"
           case $task_name in
             "jiuyan_morning_7")
-              commit_msg="自动更新: 韭研公社盘前纪要 (北京时间7:00)"
+              commit_msg="自动更新: 韭研公社盘前纪要 (北京时间7:40)"
               ;;
             "jiuyan_morning_8_retry")
               commit_msg="自动更新: 盘前纪要重试 (北京时间8:00)"
@@ -260,7 +271,7 @@ jobs:
               if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
                 commit_msg="手动更新: 异动解析数据"
               else
-                commit_msg="自动更新: 异动解析数据 (北京时间15:00)"
+                commit_msg="自动更新: 异动解析数据 (北京时间16:00)"
               fi
               ;;
             "limitup")
@@ -293,8 +304,11 @@ jobs:
               ;;
           esac
           
+          # 提交变更
           git commit -m "$commit_msg ($(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S'))" || echo "No changes to commit"
-          git push
+          
+          # 推送到远程仓库
+          git push origin main || git push origin HEAD:main
 
       - name: 输出执行结果
         run: |
@@ -305,4 +319,85 @@ jobs:
           echo "是否有变化: ${{ steps.check-changes.outputs.has_changes }}"
           echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           echo "UTC时间: $(date '+%Y-%m-%d %H:%M:%S')"
+          echo "当前分支: $(git branch --show-current)"
+          echo "最新提交: $(git log -1 --oneline)"
           echo "==================="
+
+  # 第二个作业：部署到GitHub Pages
+  deploy-pages:
+    needs: update-data
+    if: needs.update-data.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    
+    # 为Pages部署设置特定权限
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    # 设置GitHub Pages环境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: 检出最新代码
+        uses: actions/checkout@v4
+        with:
+          ref: main  # 确保使用最新的main分支
+          fetch-depth: 1
+
+      - name: 等待提交完成
+        run: |
+          echo "等待提交完全完成..."
+          sleep 10
+
+      - name: 验证文件存在
+        run: |
+          echo "验证关键文件是否存在:"
+          ls -la
+          echo "HTML文件:"
+          find . -name "*.html" -type f | head -10
+          echo "数据文件:"
+          find . -name "data" -type d | head -5
+          find . -name "articles" -type d | head -5
+
+      - name: 设置GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: 上传Pages文件
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 上传整个仓库内容，或者指定特定目录
+          path: '.'
+
+      - name: 部署到GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: 验证部署结果
+        run: |
+          echo "Pages部署完成!"
+          echo "部署URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "任务类型: ${{ needs.update-data.outputs.task_type }}"
+          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+
+  # 第三个作业：发送通知（可选）
+  notify:
+    needs: [update-data, deploy-pages]
+    if: always() && needs.update-data.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 发送部署通知
+        run: |
+          echo "=== 部署通知 ==="
+          echo "数据更新状态: ${{ needs.update-data.result }}"
+          echo "Pages部署状态: ${{ needs.deploy-pages.result }}"
+          echo "任务类型: ${{ needs.update-data.outputs.task_type }}"
+          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+          
+          if [ "${{ needs.deploy-pages.result }}" = "success" ]; then
+            echo "✅ GitHub Pages部署成功!"
+          else
+            echo "❌ GitHub Pages部署失败!"
+          fi
