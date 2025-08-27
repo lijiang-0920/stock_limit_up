@@ -3,7 +3,7 @@ name: 自动更新数据和文章
 on:
   schedule:
     # 上午7:40 (北京时间) - 获取韭研公社盘前纪要
-    - cron: '40 23 * * 0-4'  # UTC 23:00 = 北京时间 07:40
+    - cron: '40 23 * * 0-4'  # UTC 23:40 = 北京时间 07:40
     # 上午8:00 (北京时间) - 盘前纪要重试
     - cron: '00 0 * * 1-5'   # UTC 00:00 = 北京时间 08:00
     # 上午8:17 (北京时间) - 获取韭研公社盘前解读
@@ -13,7 +13,7 @@ on:
     # 下午16:00 (北京时间) - 获取异动解析数据
     - cron: '00 8 * * 1-5'   # UTC 08:00 = 北京时间 16:00
     # 下午15:30 (北京时间) - 获取财联社涨停池数据
-    - cron: '40 9 * * 1-5'   # UTC 07:30 = 北京时间 15:30
+    - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
     # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
     - cron: '30 15 * * 1-5'  # UTC 15:30 = 北京时间 23:30
   workflow_dispatch:
@@ -30,24 +30,18 @@ on:
         - 'analysis'
         - 'generate'
 
-# 设置权限
 permissions:
   contents: write
   pages: write
   id-token: write
 
 jobs:
-  # 第一个作业：更新数据
-  update-data:
+  run-tasks:
     runs-on: ubuntu-latest
     outputs:
       has_changes: ${{ steps.check-changes.outputs.has_changes }}
-      task_type: ${{ steps.determine-task.outputs.task }}
     steps:
-      - name: 检出代码
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # 获取完整历史
+      - uses: actions/checkout@v4
 
       - name: 设置 Python
         uses: actions/setup-python@v4
@@ -88,137 +82,218 @@ jobs:
       - name: 确定执行任务
         id: determine-task
         run: |
+          # 创建锁文件目录
+          mkdir -p .github/locks
+          
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # 手动触发：无限制执行
             echo "task=${{ github.event.inputs.task_type }}" >> $GITHUB_OUTPUT
+            echo "manual_trigger=true" >> $GITHUB_OUTPUT
+            echo "should_execute=true" >> $GITHUB_OUTPUT
             echo "手动触发任务: ${{ github.event.inputs.task_type }}"
           else
-            # 根据UTC时间确定任务类型
-            hour=$(date -u +%H)
-            minute=$(date -u +%M)
+            # 自动触发：需要检查时间窗口和防重复
+            echo "manual_trigger=false" >> $GITHUB_OUTPUT
+            
+            # 获取当前时间信息
+            current_utc_hour=$(date -u +%H)
+            current_utc_minute=$(date -u +%M)
+            current_beijing_hour=$(TZ='Asia/Shanghai' date +%H)
+            current_beijing_minute=$(TZ='Asia/Shanghai' date +%M)
+            current_date=$(TZ='Asia/Shanghai' date +%Y%m%d)
             day_of_week=$(date -u +%u)  # 1-7 (Monday-Sunday)
             
-            echo "当前UTC时间: $hour:$minute, 星期: $day_of_week"
-            echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+            echo "当前UTC时间: $current_utc_hour:$current_utc_minute"
+            echo "当前北京时间: $current_beijing_hour:$current_beijing_minute"
+            echo "当前日期: $current_date, 星期: $day_of_week"
+            
+            # 初始化
+            task_type=""
+            should_execute="false"
             
             # 只在工作日执行
             if [ "$day_of_week" -ge "1" ] && [ "$day_of_week" -le "5" ]; then
-              # 北京时间7:40 (UTC 23:00前一天) - 韭研公社盘前纪要
-              if [ "$hour" = "23" ] && [ "$minute" = "40" ]; then
-                echo "task=jiuyan_morning_7" >> $GITHUB_OUTPUT
-                echo "识别任务: 韭研公社盘前纪要 (北京时间7:40)"
+              
+              # 定义时间窗口匹配函数
+              check_time_window() {
+                local target_hour=$1
+                local target_minute=$2
+                local window_minutes=$3
+                local current_total_minutes=$((current_utc_hour * 60 + current_utc_minute))
+                local target_total_minutes=$((target_hour * 60 + target_minute))
+                local diff=$((current_total_minutes - target_total_minutes))
+                
+                # 处理跨天情况
+                if [ $diff -lt -720 ]; then
+                  diff=$((diff + 1440))
+                elif [ $diff -gt 720 ]; then
+                  diff=$((diff - 1440))
+                fi
+                
+                if [ $diff -ge 0 ] && [ $diff -le $window_minutes ]; then
+                  return 0
+                else
+                  return 1
+                fi
+              }
+              
+              # 检查各个时间窗口（允许30分钟的时间偏差）
+              
+              # 北京时间7:40 (UTC 23:40前一天) - 韭研公社盘前纪要
+              if check_time_window 23 40 30; then
+                task_type="jiuyan_morning_memo"
+                echo "匹配时间窗口: 韭研公社盘前纪要 (北京时间7:40±30分钟)"
+              
               # 北京时间8:00 (UTC 00:00) - 盘前纪要重试
-              elif [ "$hour" = "00" ] && [ "$minute" = "00" ]; then
-                echo "task=jiuyan_morning_8_retry" >> $GITHUB_OUTPUT
-                echo "识别任务: 盘前纪要重试 (北京时间8:00)"
+              elif check_time_window 0 0 30; then
+                task_type="jiuyan_morning_memo_retry"
+                echo "匹配时间窗口: 盘前纪要重试 (北京时间8:00±30分钟)"
+              
               # 北京时间8:17 (UTC 00:17) - 韭研公社盘前解读
-              elif [ "$hour" = "00" ] && [ "$minute" = "17" ]; then
-                echo "task=jiuyan_morning_817" >> $GITHUB_OUTPUT
-                echo "识别任务: 韭研公社盘前解读 (北京时间8:17)"
+              elif check_time_window 0 17 30; then
+                task_type="jiuyan_morning_analysis"
+                echo "匹配时间窗口: 韭研公社盘前解读 (北京时间8:17±30分钟)"
+              
               # 北京时间8:27 (UTC 00:27) - 盘前解读重试
-              elif [ "$hour" = "00" ] && [ "$minute" = "27" ]; then
-                echo "task=jiuyan_morning_827_retry" >> $GITHUB_OUTPUT
-                echo "识别任务: 盘前解读重试 (北京时间8:27)"
-              # 北京时间16:00 (UTC 08:00) - 异动解析数据
-              elif [ "$hour" = "08" ] && [ "$minute" = "00" ]; then
-                echo "task=analysis" >> $GITHUB_OUTPUT
-                echo "识别任务: 异动解析数据 (北京时间16:00)"
+              elif check_time_window 0 27 30; then
+                task_type="jiuyan_morning_analysis_retry"
+                echo "匹配时间窗口: 盘前解读重试 (北京时间8:27±30分钟)"
+              
               # 北京时间15:30 (UTC 07:30) - 财联社涨停池数据
-              elif [ "$hour" = "09" ] && [ "$minute" = "40" ]; then
-                echo "task=limitup" >> $GITHUB_OUTPUT
-                echo "识别任务: 财联社涨停池数据 (北京时间15:30)"
+              elif check_time_window 7 30 30; then
+                task_type="limitup"
+                echo "匹配时间窗口: 财联社涨停池数据 (北京时间15:30±30分钟)"
+              
+              # 北京时间16:00 (UTC 08:00) - 异动解析数据
+              elif check_time_window 8 0 30; then
+                task_type="analysis"
+                echo "匹配时间窗口: 异动解析数据 (北京时间16:00±30分钟)"
+              
               # 北京时间23:30 (UTC 15:30) - 韭研公社优秀阿呆
-              elif [ "$hour" = "15" ] && [ "$minute" = "30" ]; then
-                echo "task=jiuyan_evening" >> $GITHUB_OUTPUT
-                echo "识别任务: 韭研公社优秀阿呆 (北京时间23:30)"
+              elif check_time_window 15 30 30; then
+                task_type="jiuyan_evening"
+                echo "匹配时间窗口: 韭研公社优秀阿呆 (北京时间23:30±30分钟)"
+              
               else
-                echo "task=unknown" >> $GITHUB_OUTPUT
-                echo "未识别的时间点，跳过执行"
+                task_type="unknown"
+                echo "当前时间不在任何预定义的时间窗口内"
               fi
+              
+              # 检查是否已经执行过（防重复机制）
+              if [ "$task_type" != "unknown" ] && [ "$task_type" != "" ]; then
+                lock_file=".github/locks/${task_type}_${current_date}.lock"
+                
+                if [ -f "$lock_file" ]; then
+                  echo "任务 $task_type 在 $current_date 已经执行过，跳过执行"
+                  should_execute="false"
+                else
+                  echo "任务 $task_type 在 $current_date 首次执行，创建锁文件"
+                  echo "$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" > "$lock_file"
+                  should_execute="true"
+                fi
+              else
+                should_execute="false"
+              fi
+              
             else
-              echo "task=weekend" >> $GITHUB_OUTPUT
+              task_type="weekend"
+              should_execute="false"
               echo "周末时间，跳过执行"
             fi
+            
+            echo "task=$task_type" >> $GITHUB_OUTPUT
+            echo "should_execute=$should_execute" >> $GITHUB_OUTPUT
           fi
 
-      - name: 执行韭研公社盘前纪要 (北京时间7:40)
-        if: steps.determine-task.outputs.task == 'jiuyan_morning_7'
+      # 清理过期的锁文件（保留最近7天）
+      - name: 清理过期锁文件
+        if: steps.determine-task.outputs.manual_trigger == 'false'
         run: |
-          echo "执行韭研公社盘前纪要爬取 (北京时间7:40)..."
+          if [ -d ".github/locks" ]; then
+            find .github/locks -name "*.lock" -type f -mtime +7 -delete
+            echo "已清理7天前的锁文件"
+          fi
+
+      # 自动触发的任务执行
+      - name: 执行韭研公社盘前纪要
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_memo' && steps.determine-task.outputs.should_execute == 'true'
+        run: |
+          echo "执行韭研公社盘前纪要爬取..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行盘前纪要重试 (北京时间8:00)
-        if: steps.determine-task.outputs.task == 'jiuyan_morning_8_retry'
+      - name: 执行盘前纪要重试
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_memo_retry' && steps.determine-task.outputs.should_execute == 'true'
         run: |
-          echo "执行盘前纪要重试 (北京时间8:00)..."
+          echo "执行盘前纪要重试..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行韭研公社盘前解读 (北京时间8:17)
-        if: steps.determine-task.outputs.task == 'jiuyan_morning_817'
+      - name: 执行韭研公社盘前解读
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_analysis' && steps.determine-task.outputs.should_execute == 'true'
         run: |
-          echo "执行韭研公社盘前解读爬取 (北京时间8:17)..."
+          echo "执行韭研公社盘前解读爬取..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行盘前解读重试 (北京时间8:27)
-        if: steps.determine-task.outputs.task == 'jiuyan_morning_827_retry'
+      - name: 执行盘前解读重试
+        if: steps.determine-task.outputs.task == 'jiuyan_morning_analysis_retry' && steps.determine-task.outputs.should_execute == 'true'
         run: |
-          echo "执行盘前解读重试 (北京时间8:27)..."
+          echo "执行盘前解读重试..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行异动解析数据获取 (北京时间16:00)
-        if: steps.determine-task.outputs.task == 'analysis'
+      - name: 执行异动解析数据获取
+        if: steps.determine-task.outputs.task == 'analysis' && steps.determine-task.outputs.should_execute == 'true'
         run: |
-          echo "执行异动解析数据获取 (北京时间16:00)..."
+          echo "执行异动解析数据获取..."
           python ${{ steps.script-name.outputs.script_file }} analysis
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行财联社涨停池数据获取 (北京时间15:30)
-        if: steps.determine-task.outputs.task == 'limitup'
+      - name: 执行财联社涨停池数据获取
+        if: steps.determine-task.outputs.task == 'limitup' && steps.determine-task.outputs.should_execute == 'true'
         run: |
-          echo "执行财联社涨停池数据获取 (北京时间15:30)..."
+          echo "执行财联社涨停池数据获取..."
           python ${{ steps.script-name.outputs.script_file }} limitup
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行韭研公社优秀阿呆文章爬取 (北京时间23:30)
-        if: steps.determine-task.outputs.task == 'jiuyan_evening'
+      - name: 执行韭研公社优秀阿呆文章爬取
+        if: steps.determine-task.outputs.task == 'jiuyan_evening' && steps.determine-task.outputs.should_execute == 'true'
         run: |
-          echo "执行韭研公社优秀阿呆文章爬取 (北京时间23:30)..."
+          echo "执行韭研公社优秀阿呆文章爬取..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 优秀阿呆
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      # 手动触发的任务
+      # 手动触发的任务执行（无限制）
       - name: 执行所有任务
-        if: steps.determine-task.outputs.task == 'all' && github.event_name == 'workflow_dispatch'
+        if: steps.determine-task.outputs.task == 'all' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
           echo "手动执行所有任务..."
           python ${{ steps.script-name.outputs.script_file }} all
 
       - name: 手动执行韭研公社任务
-        if: steps.determine-task.outputs.task == 'jiuyan' && github.event_name == 'workflow_dispatch'
+        if: steps.determine-task.outputs.task == 'jiuyan' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
           echo "手动执行韭研公社任务..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan
           python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 手动执行异动解析任务
-        if: steps.determine-task.outputs.task == 'analysis' && github.event_name == 'workflow_dispatch'
+        if: steps.determine-task.outputs.task == 'analysis' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
           echo "手动执行异动解析任务..."
           python ${{ steps.script-name.outputs.script_file }} analysis
           python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 手动执行涨停池任务
-        if: steps.determine-task.outputs.task == 'limitup' && github.event_name == 'workflow_dispatch'
+        if: steps.determine-task.outputs.task == 'limitup' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
           echo "手动执行涨停池任务..."
           python ${{ steps.script-name.outputs.script_file }} limitup
           python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 手动生成网页
-        if: steps.determine-task.outputs.task == 'generate' && github.event_name == 'workflow_dispatch'
+        if: steps.determine-task.outputs.task == 'generate' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
           echo "手动生成网页文件..."
           python ${{ steps.script-name.outputs.script_file }} generate
@@ -226,14 +301,13 @@ jobs:
       - name: 检查文件变化
         id: check-changes
         run: |
-          git add -A
-          if git diff --staged --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "没有文件变化"
-          else
+          if [ -n "$(git status --porcelain)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "发现文件变化:"
-            git diff --staged --name-only
+            git status --porcelain
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "没有文件变化"
           fi
 
       - name: 配置 Git
@@ -245,70 +319,73 @@ jobs:
       - name: 提交更改
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
-          # 确保在主分支上
-          git checkout main || git checkout -b main
-          
-          # 添加所有相关文件
-          git add data/ articles/ analysis/ assets/ *.html || true
-          git add . || true
+          # 添加所有相关文件（包括锁文件）
+          git add data/ articles/ analysis/ assets/ .github/locks/ *.html
           
           # 生成提交信息
           task_name="${{ steps.determine-task.outputs.task }}"
-          case $task_name in
-            "jiuyan_morning_7")
-              commit_msg="自动更新: 韭研公社盘前纪要 (北京时间7:40)"
-              ;;
-            "jiuyan_morning_8_retry")
-              commit_msg="自动更新: 盘前纪要重试 (北京时间8:00)"
-              ;;
-            "jiuyan_morning_817")
-              commit_msg="自动更新: 韭研公社盘前解读 (北京时间8:17)"
-              ;;
-            "jiuyan_morning_827_retry")
-              commit_msg="自动更新: 盘前解读重试 (北京时间8:27)"
-              ;;
-            "analysis")
-              if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          is_manual="${{ steps.determine-task.outputs.manual_trigger }}"
+          
+          if [ "$is_manual" = "true" ]; then
+            # 手动触发的提交信息
+            case $task_name in
+              "all")
+                commit_msg="手动更新: 所有数据和文章"
+                ;;
+              "jiuyan")
+                commit_msg="手动更新: 韭研公社文章"
+                ;;
+              "analysis")
                 commit_msg="手动更新: 异动解析数据"
-              else
-                commit_msg="自动更新: 异动解析数据 (北京时间16:00)"
-              fi
-              ;;
-            "limitup")
-              if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+                ;;
+              "limitup")
                 commit_msg="手动更新: 财联社涨停池数据"
-              else
+                ;;
+              "generate")
+                commit_msg="手动更新: 重新生成网页文件"
+                ;;
+              *)
+                commit_msg="手动更新: $task_name"
+                ;;
+            esac
+          else
+            # 自动触发的提交信息
+            case $task_name in
+              "jiuyan_morning_memo")
+                commit_msg="自动更新: 韭研公社盘前纪要 (北京时间7:40)"
+                ;;
+              "jiuyan_morning_memo_retry")
+                commit_msg="自动更新: 盘前纪要重试 (北京时间8:00)"
+                ;;
+              "jiuyan_morning_analysis")
+                commit_msg="自动更新: 韭研公社盘前解读 (北京时间8:17)"
+                ;;
+              "jiuyan_morning_analysis_retry")
+                commit_msg="自动更新: 盘前解读重试 (北京时间8:27)"
+                ;;
+              "analysis")
+                commit_msg="自动更新: 异动解析数据 (北京时间16:00)"
+                ;;
+              "limitup")
                 commit_msg="自动更新: 财联社涨停池数据 (北京时间15:30)"
-              fi
-              ;;
-            "jiuyan_evening")
-              commit_msg="自动更新: 韭研公社优秀阿呆文章 (北京时间23:30)"
-              ;;
-            "all")
-              commit_msg="手动更新: 所有数据和文章"
-              ;;
-            "jiuyan")
-              commit_msg="手动更新: 韭研公社文章"
-              ;;
-            "generate")
-              commit_msg="手动更新: 重新生成网页文件"
-              ;;
-            "unknown")
-              commit_msg="未识别时间点的更新"
-              ;;
-            "weekend")
-              commit_msg="周末时间的更新"
-              ;;
-            *)
-              commit_msg="自动更新数据"
-              ;;
-          esac
+                ;;
+              "jiuyan_evening")
+                commit_msg="自动更新: 韭研公社优秀阿呆文章 (北京时间23:30)"
+                ;;
+              "unknown")
+                commit_msg="未识别时间点的更新"
+                ;;
+              "weekend")
+                commit_msg="周末时间的更新"
+                ;;
+              *)
+                commit_msg="自动更新数据: $task_name"
+                ;;
+            esac
+          fi
           
-          # 提交变更
           git commit -m "$commit_msg ($(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S'))" || echo "No changes to commit"
-          
-          # 推送到远程仓库
-          git push origin main || git push origin HEAD:main
+          git push
 
       - name: 输出执行结果
         run: |
@@ -316,88 +393,20 @@ jobs:
           echo "脚本文件: ${{ steps.script-name.outputs.script_file }}"
           echo "任务类型: ${{ steps.determine-task.outputs.task }}"
           echo "触发方式: ${{ github.event_name }}"
+          echo "是否手动触发: ${{ steps.determine-task.outputs.manual_trigger }}"
+          echo "是否应该执行: ${{ steps.determine-task.outputs.should_execute }}"
           echo "是否有变化: ${{ steps.check-changes.outputs.has_changes }}"
           echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           echo "UTC时间: $(date '+%Y-%m-%d %H:%M:%S')"
-          echo "当前分支: $(git branch --show-current)"
-          echo "最新提交: $(git log -1 --oneline)"
-          echo "==================="
-
-  # 第二个作业：部署到GitHub Pages
-  deploy-pages:
-    needs: update-data
-    if: needs.update-data.outputs.has_changes == 'true'
-    runs-on: ubuntu-latest
-    
-    # 为Pages部署设置特定权限
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    
-    # 设置GitHub Pages环境
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-      - name: 检出最新代码
-        uses: actions/checkout@v4
-        with:
-          ref: main  # 确保使用最新的main分支
-          fetch-depth: 1
-
-      - name: 等待提交完成
-        run: |
-          echo "等待提交完全完成..."
-          sleep 10
-
-      - name: 验证文件存在
-        run: |
-          echo "验证关键文件是否存在:"
-          ls -la
-          echo "HTML文件:"
-          find . -name "*.html" -type f | head -10
-          echo "数据文件:"
-          find . -name "data" -type d | head -5
-          find . -name "articles" -type d | head -5
-
-      - name: 设置GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: 上传Pages文件
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # 上传整个仓库内容，或者指定特定目录
-          path: '.'
-
-      - name: 部署到GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: 验证部署结果
-        run: |
-          echo "Pages部署完成!"
-          echo "部署URL: ${{ steps.deployment.outputs.page_url }}"
-          echo "任务类型: ${{ needs.update-data.outputs.task_type }}"
-          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
-
-  # 第三个作业：发送通知（可选）
-  notify:
-    needs: [update-data, deploy-pages]
-    if: always() && needs.update-data.outputs.has_changes == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 发送部署通知
-        run: |
-          echo "=== 部署通知 ==="
-          echo "数据更新状态: ${{ needs.update-data.result }}"
-          echo "Pages部署状态: ${{ needs.deploy-pages.result }}"
-          echo "任务类型: ${{ needs.update-data.outputs.task_type }}"
-          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           
-          if [ "${{ needs.deploy-pages.result }}" = "success" ]; then
-            echo "✅ GitHub Pages部署成功!"
-          else
-            echo "❌ GitHub Pages部署失败!"
+          # 显示锁文件状态
+          if [ "${{ steps.determine-task.outputs.manual_trigger }}" = "false" ]; then
+            echo "=== 锁文件状态 ==="
+            if [ -d ".github/locks" ]; then
+              echo "当前锁文件:"
+              ls -la .github/locks/ || echo "锁文件目录为空"
+            else
+              echo "锁文件目录不存在"
+            fi
           fi
+          echo "==================="
