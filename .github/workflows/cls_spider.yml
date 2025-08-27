@@ -2,16 +2,16 @@ name: 自动更新数据和文章
 
 on:
   schedule:
-    # 上午7:00 (北京时间) - 获取韭研公社盘前纪要
-    - cron: '00 23 * * 0-4'  # UTC 23:00 = 北京时间 07:00
+    # 上午7:40 (北京时间) - 获取韭研公社盘前纪要
+    - cron: '40 23 * * 0-4'  # UTC 23:00 = 北京时间 07:40
     # 上午8:00 (北京时间) - 盘前纪要重试
     - cron: '00 0 * * 1-5'   # UTC 00:00 = 北京时间 08:00
     # 上午8:17 (北京时间) - 获取韭研公社盘前解读
     - cron: '17 0 * * 1-5'   # UTC 00:17 = 北京时间 08:17
     # 上午8:27 (北京时间) - 盘前解读重试
     - cron: '27 0 * * 1-5'   # UTC 00:27 = 北京时间 08:27
-    # 下午15:00 (北京时间) - 获取异动解析数据
-    - cron: '00 7 * * 1-5'   # UTC 07:00 = 北京时间 15:00
+    # 下午16:00 (北京时间) - 获取异动解析数据
+    - cron: '00 8 * * 1-5'   # UTC 07:00 = 北京时间 16:00
     # 下午15:30 (北京时间) - 获取财联社涨停池数据
     - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
     # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
@@ -96,8 +96,8 @@ jobs:
             
             # 只在工作日执行
             if [ "$day_of_week" -ge "1" ] && [ "$day_of_week" -le "5" ]; then
-              # 北京时间7:00 (UTC 23:00前一天) - 韭研公社盘前纪要
-              if [ "$hour" = "23" ] && [ "$minute" = "00" ]; then
+              # 北京时间7:40 (UTC 23:00前一天) - 韭研公社盘前纪要
+              if [ "$hour" = "23" ] && [ "$minute" = "40" ]; then
                 echo "task=jiuyan_morning_7" >> $GITHUB_OUTPUT
                 echo "识别任务: 韭研公社盘前纪要 (北京时间7:00)"
               # 北京时间8:00 (UTC 00:00) - 盘前纪要重试
@@ -112,8 +112,8 @@ jobs:
               elif [ "$hour" = "00" ] && [ "$minute" = "27" ]; then
                 echo "task=jiuyan_morning_827_retry" >> $GITHUB_OUTPUT
                 echo "识别任务: 盘前解读重试 (北京时间8:27)"
-              # 北京时间15:00 (UTC 07:00) - 异动解析数据
-              elif [ "$hour" = "07" ] && [ "$minute" = "00" ]; then
+              # 北京时间16:00 (UTC 08:00) - 异动解析数据
+              elif [ "$hour" = "08" ] && [ "$minute" = "00" ]; then
                 echo "task=analysis" >> $GITHUB_OUTPUT
                 echo "识别任务: 异动解析数据 (北京时间15:00)"
               # 北京时间15:30 (UTC 07:30) - 财联社涨停池数据
@@ -134,7 +134,7 @@ jobs:
             fi
           fi
 
-      - name: 执行韭研公社盘前纪要 (北京时间7:00)
+      - name: 执行韭研公社盘前纪要 (北京时间7:40)
         if: steps.determine-task.outputs.task == 'jiuyan_morning_7'
         run: |
           echo "执行韭研公社盘前纪要爬取 (北京时间7:00)..."
@@ -162,10 +162,10 @@ jobs:
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行异动解析数据获取 (北京时间15:00)
+      - name: 执行异动解析数据获取 (北京时间16:00)
         if: steps.determine-task.outputs.task == 'analysis'
         run: |
-          echo "执行异动解析数据获取 (北京时间15:00)..."
+          echo "执行异动解析数据获取 (北京时间16:00)..."
           python ${{ steps.script-name.outputs.script_file }} analysis
           python ${{ steps.script-name.outputs.script_file }} generate
 
