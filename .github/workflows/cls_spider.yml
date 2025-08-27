@@ -306,31 +306,3 @@ jobs:
           echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           echo "UTC时间: $(date '+%Y-%m-%d %H:%M:%S')"
           echo "==================="
-
-  # 部署到 GitHub Pages
-  deploy-pages:
-    needs: run-tasks
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && needs.run-tasks.outputs.has_changes == 'true'
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: main
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
