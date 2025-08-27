@@ -38,6 +38,8 @@ permissions:
 jobs:
   run-tasks:
     runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.check-changes.outputs.has_changes }}
     steps:
       - uses: actions/checkout@v4
 
@@ -82,102 +84,137 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "task=${{ github.event.inputs.task_type }}" >> $GITHUB_OUTPUT
+            echo "手动触发任务: ${{ github.event.inputs.task_type }}"
           else
             # 根据UTC时间确定任务类型
             hour=$(date -u +%H)
             minute=$(date -u +%M)
+            day_of_week=$(date -u +%u)  # 1-7 (Monday-Sunday)
             
-            # 北京时间7:00 (UTC 23:00前一天)
-            if [ "$hour" = "23" ] && [ "$minute" -ge "00" ] && [ "$minute" -lt "10" ]; then
-              echo "task=jiuyan_morning_7" >> $GITHUB_OUTPUT
-            # 北京时间8:00 (UTC 00:00) - 盘前纪要重试
-            elif [ "$hour" = "00" ] && [ "$minute" -ge "00" ] && [ "$minute" -lt "10" ]; then
-              echo "task=jiuyan_morning_8_retry" >> $GITHUB_OUTPUT
-            # 北京时间8:17 (UTC 00:17) - 盘前解读
-            elif [ "$hour" = "00" ] && [ "$minute" -ge "17" ] && [ "$minute" -lt "25" ]; then
-              echo "task=jiuyan_morning_817" >> $GITHUB_OUTPUT
-            # 北京时间8:27 (UTC 00:27) - 盘前解读重试
-            elif [ "$hour" = "00" ] && [ "$minute" -ge "27" ] && [ "$minute" -lt "35" ]; then
-              echo "task=jiuyan_morning_827_retry" >> $GITHUB_OUTPUT
-            # 北京时间15:00 (UTC 07:00) - 异动解析数据
-            elif [ "$hour" = "07" ] && [ "$minute" -ge "00" ] && [ "$minute" -lt "10" ]; then
-              echo "task=analysis" >> $GITHUB_OUTPUT
-            # 北京时间15:30 (UTC 07:30) - 涨停池数据
-            elif [ "$hour" = "07" ] && [ "$minute" -ge "30" ] && [ "$minute" -lt "40" ]; then
-              echo "task=limitup" >> $GITHUB_OUTPUT
-            # 北京时间23:30 (UTC 15:30) - 优秀阿呆
-            elif [ "$hour" = "15" ] && [ "$minute" -ge "30" ] && [ "$minute" -lt "40" ]; then
-              echo "task=jiuyan_evening" >> $GITHUB_OUTPUT
+            echo "当前UTC时间: $hour:$minute, 星期: $day_of_week"
+            echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+            
+            # 只在工作日执行
+            if [ "$day_of_week" -ge "1" ] && [ "$day_of_week" -le "5" ]; then
+              # 北京时间7:00 (UTC 23:00前一天) - 韭研公社盘前纪要
+              if [ "$hour" = "23" ] && [ "$minute" = "00" ]; then
+                echo "task=jiuyan_morning_7" >> $GITHUB_OUTPUT
+                echo "识别任务: 韭研公社盘前纪要 (北京时间7:00)"
+              # 北京时间8:00 (UTC 00:00) - 盘前纪要重试
+              elif [ "$hour" = "00" ] && [ "$minute" = "00" ]; then
+                echo "task=jiuyan_morning_8_retry" >> $GITHUB_OUTPUT
+                echo "识别任务: 盘前纪要重试 (北京时间8:00)"
+              # 北京时间8:17 (UTC 00:17) - 韭研公社盘前解读
+              elif [ "$hour" = "00" ] && [ "$minute" = "17" ]; then
+                echo "task=jiuyan_morning_817" >> $GITHUB_OUTPUT
+                echo "识别任务: 韭研公社盘前解读 (北京时间8:17)"
+              # 北京时间8:27 (UTC 00:27) - 盘前解读重试
+              elif [ "$hour" = "00" ] && [ "$minute" = "27" ]; then
+                echo "task=jiuyan_morning_827_retry" >> $GITHUB_OUTPUT
+                echo "识别任务: 盘前解读重试 (北京时间8:27)"
+              # 北京时间15:00 (UTC 07:00) - 异动解析数据
+              elif [ "$hour" = "07" ] && [ "$minute" = "00" ]; then
+                echo "task=analysis" >> $GITHUB_OUTPUT
+                echo "识别任务: 异动解析数据 (北京时间15:00)"
+              # 北京时间15:30 (UTC 07:30) - 财联社涨停池数据
+              elif [ "$hour" = "07" ] && [ "$minute" = "30" ]; then
+                echo "task=limitup" >> $GITHUB_OUTPUT
+                echo "识别任务: 财联社涨停池数据 (北京时间15:30)"
+              # 北京时间23:30 (UTC 15:30) - 韭研公社优秀阿呆
+              elif [ "$hour" = "15" ] && [ "$minute" = "30" ]; then
+                echo "task=jiuyan_evening" >> $GITHUB_OUTPUT
+                echo "识别任务: 韭研公社优秀阿呆 (北京时间23:30)"
+              else
+                echo "task=unknown" >> $GITHUB_OUTPUT
+                echo "未识别的时间点，跳过执行"
+              fi
             else
-              echo "task=all" >> $GITHUB_OUTPUT
+              echo "task=weekend" >> $GITHUB_OUTPUT
+              echo "周末时间，跳过执行"
             fi
           fi
 
-      - name: 执行北京时间7:00任务 (盘前纪要)
+      - name: 执行韭研公社盘前纪要 (北京时间7:00)
         if: steps.determine-task.outputs.task == 'jiuyan_morning_7'
         run: |
-          echo "执行盘前纪要爬取 (北京时间7:00)..."
+          echo "执行韭研公社盘前纪要爬取 (北京时间7:00)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行北京时间8:00任务 (盘前纪要重试)
+      - name: 执行盘前纪要重试 (北京时间8:00)
         if: steps.determine-task.outputs.task == 'jiuyan_morning_8_retry'
         run: |
           echo "执行盘前纪要重试 (北京时间8:00)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行北京时间8:17任务 (盘前解读)
+      - name: 执行韭研公社盘前解读 (北京时间8:17)
         if: steps.determine-task.outputs.task == 'jiuyan_morning_817'
         run: |
-          echo "执行盘前解读爬取 (北京时间8:17)..."
+          echo "执行韭研公社盘前解读爬取 (北京时间8:17)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行北京时间8:27任务 (盘前解读重试)
+      - name: 执行盘前解读重试 (北京时间8:27)
         if: steps.determine-task.outputs.task == 'jiuyan_morning_827_retry'
         run: |
           echo "执行盘前解读重试 (北京时间8:27)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行北京时间15:00任务 (异动解析数据)
+      - name: 执行异动解析数据获取 (北京时间15:00)
         if: steps.determine-task.outputs.task == 'analysis'
         run: |
           echo "执行异动解析数据获取 (北京时间15:00)..."
           python ${{ steps.script-name.outputs.script_file }} analysis
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行北京时间15:30任务 (涨停池数据)
+      - name: 执行财联社涨停池数据获取 (北京时间15:30)
         if: steps.determine-task.outputs.task == 'limitup'
         run: |
-          echo "执行涨停池数据获取 (北京时间15:30)..."
+          echo "执行财联社涨停池数据获取 (北京时间15:30)..."
           python ${{ steps.script-name.outputs.script_file }} limitup
           python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 执行北京时间23:30任务 (优秀阿呆)
+      - name: 执行韭研公社优秀阿呆文章爬取 (北京时间23:30)
         if: steps.determine-task.outputs.task == 'jiuyan_evening'
         run: |
-          echo "执行优秀阿呆文章爬取 (北京时间23:30)..."
+          echo "执行韭研公社优秀阿呆文章爬取 (北京时间23:30)..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 优秀阿呆
           python ${{ steps.script-name.outputs.script_file }} generate
 
+      # 手动触发的任务
       - name: 执行所有任务
-        if: steps.determine-task.outputs.task == 'all'
+        if: steps.determine-task.outputs.task == 'all' && github.event_name == 'workflow_dispatch'
         run: |
-          echo "执行所有任务..."
+          echo "手动执行所有任务..."
           python ${{ steps.script-name.outputs.script_file }} all
 
-      - name: 只执行异动解析
-        if: steps.determine-task.outputs.task == 'analysis'
+      - name: 手动执行韭研公社任务
+        if: steps.determine-task.outputs.task == 'jiuyan' && github.event_name == 'workflow_dispatch'
         run: |
-          echo "只执行异动解析..."
-          python ${{ steps.script-name.outputs.script_file }} analysis
+          echo "手动执行韭研公社任务..."
+          python ${{ steps.script-name.outputs.script_file }} jiuyan
+          python ${{ steps.script-name.outputs.script_file }} generate
 
-      - name: 只生成网页
-        if: steps.determine-task.outputs.task == 'generate'
+      - name: 手动执行异动解析任务
+        if: steps.determine-task.outputs.task == 'analysis' && github.event_name == 'workflow_dispatch'
         run: |
-          echo "只生成网页文件..."
+          echo "手动执行异动解析任务..."
+          python ${{ steps.script-name.outputs.script_file }} analysis
+          python ${{ steps.script-name.outputs.script_file }} generate
+
+      - name: 手动执行涨停池任务
+        if: steps.determine-task.outputs.task == 'limitup' && github.event_name == 'workflow_dispatch'
+        run: |
+          echo "手动执行涨停池任务..."
+          python ${{ steps.script-name.outputs.script_file }} limitup
+          python ${{ steps.script-name.outputs.script_file }} generate
+
+      - name: 手动生成网页
+        if: steps.determine-task.outputs.task == 'generate' && github.event_name == 'workflow_dispatch'
+        run: |
+          echo "手动生成网页文件..."
           python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 检查文件变化
@@ -208,31 +245,48 @@ jobs:
           task_name="${{ steps.determine-task.outputs.task }}"
           case $task_name in
             "jiuyan_morning_7")
-              commit_msg="自动更新: 盘前纪要文章 (北京时间7:00)"
+              commit_msg="自动更新: 韭研公社盘前纪要 (北京时间7:00)"
               ;;
             "jiuyan_morning_8_retry")
-              commit_msg="自动更新: 盘前纪要文章重试 (北京时间8:00)"
+              commit_msg="自动更新: 盘前纪要重试 (北京时间8:00)"
               ;;
             "jiuyan_morning_817")
-              commit_msg="自动更新: 盘前解读文章 (北京时间8:17)"
+              commit_msg="自动更新: 韭研公社盘前解读 (北京时间8:17)"
               ;;
             "jiuyan_morning_827_retry")
-              commit_msg="自动更新: 盘前解读文章重试 (北京时间8:27)"
+              commit_msg="自动更新: 盘前解读重试 (北京时间8:27)"
               ;;
             "analysis")
-              commit_msg="自动更新: 异动解析数据 (北京时间15:00)"
+              if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+                commit_msg="手动更新: 异动解析数据"
+              else
+                commit_msg="自动更新: 异动解析数据 (北京时间15:00)"
+              fi
               ;;
             "limitup")
-              commit_msg="自动更新: 涨停池数据 (北京时间15:30)"
+              if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+                commit_msg="手动更新: 财联社涨停池数据"
+              else
+                commit_msg="自动更新: 财联社涨停池数据 (北京时间15:30)"
+              fi
               ;;
             "jiuyan_evening")
-              commit_msg="自动更新: 优秀阿呆文章 (北京时间23:30)"
+              commit_msg="自动更新: 韭研公社优秀阿呆文章 (北京时间23:30)"
               ;;
             "all")
-              commit_msg="自动更新: 所有数据和文章"
+              commit_msg="手动更新: 所有数据和文章"
+              ;;
+            "jiuyan")
+              commit_msg="手动更新: 韭研公社文章"
               ;;
             "generate")
-              commit_msg="更新: 重新生成网页文件"
+              commit_msg="手动更新: 重新生成网页文件"
+              ;;
+            "unknown")
+              commit_msg="未识别时间点的更新"
+              ;;
+            "weekend")
+              commit_msg="周末时间的更新"
               ;;
             *)
               commit_msg="自动更新数据"
@@ -244,13 +298,16 @@ jobs:
 
       - name: 输出执行结果
         run: |
+          echo "=== 执行结果摘要 ==="
           echo "脚本文件: ${{ steps.script-name.outputs.script_file }}"
           echo "任务类型: ${{ steps.determine-task.outputs.task }}"
+          echo "触发方式: ${{ github.event_name }}"
           echo "是否有变化: ${{ steps.check-changes.outputs.has_changes }}"
           echo "北京时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           echo "UTC时间: $(date '+%Y-%m-%d %H:%M:%S')"
+          echo "==================="
 
-  # 部署到 GitHub Pages (可选)
+  # 部署到 GitHub Pages
   deploy-pages:
     needs: run-tasks
     runs-on: ubuntu-latest
