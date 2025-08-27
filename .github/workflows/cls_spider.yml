@@ -130,7 +130,7 @@ jobs:
                   diff=$((diff - 1440))
                 fi
                 
-                if [ $diff -ge 0 ] && [ $diff -le $window_minutes ]; then
+                if [ $diff -ge -$window_minutes ] && [ $diff -le $window_minutes ]; then
                   return 0
                 else
                   return 1
