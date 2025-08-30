@@ -14,6 +14,8 @@ on:
     - cron: '00 8 * * 1-5'   # UTC 08:00 = 北京时间 16:00
     # 下午15:30 (北京时间) - 获取财联社涨停池数据
     - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
+    # 下午18:00 (北京时间) - 获取龙虎榜数据
+    - cron: '00 10 * * 1-5'  # UTC 10:00 = 北京时间 18:00
     # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
     - cron: '30 15 * * 1-5'  # UTC 15:30 = 北京时间 23:30
   workflow_dispatch:
@@ -28,6 +30,7 @@ on:
         - 'limitup'
         - 'jiuyan'
         - 'analysis'
+        - 'dragon_tiger'
         - 'generate'
 
 permissions:
@@ -169,6 +172,11 @@ jobs:
                 task_type="analysis"
                 echo "匹配时间窗口: 异动解析数据 (北京时间16:00±30分钟)"
               
+              # 北京时间18:00 (UTC 10:00) - 龙虎榜数据
+              elif check_time_window 10 0 30; then
+                task_type="dragon_tiger"
+                echo "匹配时间窗口: 龙虎榜数据 (北京时间18:00±30分钟)"
+              
               # 北京时间23:30 (UTC 15:30) - 韭研公社优秀阿呆
               elif check_time_window 15 30 30; then
                 task_type="jiuyan_evening"
@@ -257,6 +265,13 @@ jobs:
           python ${{ steps.script-name.outputs.script_file }} limitup
           python ${{ steps.script-name.outputs.script_file }} generate
 
+      - name: 执行龙虎榜数据获取
+        if: steps.determine-task.outputs.task == 'dragon_tiger' && steps.determine-task.outputs.should_execute == 'true'
+        run: |
+          echo "执行龙虎榜数据获取..."
+          python ${{ steps.script-name.outputs.script_file }} dragon_tiger
+          python ${{ steps.script-name.outputs.script_file }} generate
+
       - name: 执行韭研公社优秀阿呆文章爬取
         if: steps.determine-task.outputs.task == 'jiuyan_evening' && steps.determine-task.outputs.should_execute == 'true'
         run: |
@@ -290,6 +305,13 @@ jobs:
         run: |
           echo "手动执行涨停池任务..."
           python ${{ steps.script-name.outputs.script_file }} limitup
+          python ${{ steps.script-name.outputs.script_file }} generate
+
+      - name: 手动执行龙虎榜任务
+        if: steps.determine-task.outputs.task == 'dragon_tiger' && steps.determine-task.outputs.manual_trigger == 'true'
+        run: |
+          echo "手动执行龙虎榜任务..."
+          python ${{ steps.script-name.outputs.script_file }} dragon_tiger
           python ${{ steps.script-name.outputs.script_file }} generate
 
       - name: 手动生成网页
@@ -341,6 +363,9 @@ jobs:
               "limitup")
                 commit_msg="手动更新: 财联社涨停池数据"
                 ;;
+              "dragon_tiger")
+                commit_msg="手动更新: 龙虎榜数据"
+                ;;
               "generate")
                 commit_msg="手动更新: 重新生成网页文件"
                 ;;
@@ -368,6 +393,9 @@ jobs:
                 ;;
               "limitup")
                 commit_msg="自动更新: 财联社涨停池数据 (北京时间15:30)"
+                ;;
+              "dragon_tiger")
+                commit_msg="自动更新: 龙虎榜数据 (北京时间18:00)"
                 ;;
               "jiuyan_evening")
                 commit_msg="自动更新: 韭研公社优秀阿呆文章 (北京时间23:30)"
