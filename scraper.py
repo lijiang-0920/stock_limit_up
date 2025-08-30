@@ -4745,13 +4745,13 @@ def generate_all_pages():
     generate_main_page()
     generate_limitup_page()
     generate_jiuyan_page()
-    generate_analysis_page()  
+    generate_analysis_page()
+    generate_dragon_tiger_page()  # 添加这行
     generate_json_viewer()
-    generate_css()        # 修改这行
-    generate_js_files()   # 添加这行
+    generate_css()
+    generate_js_files()
     
     print("网页文件生成完成！")
-
     
 
 # ========== 主函数和统一接口 ==========
@@ -4796,12 +4796,20 @@ def main():
                 crawl_single_jiuyan_user(user_key, date_str)
             generate_all_pages()
         
-        elif command == 'analysis':  # 添加异动解析命令
+        elif command == 'analysis':
             if len(sys.argv) == 2:
                 crawl_stock_analysis()
             elif len(sys.argv) == 3:
                 date_str = sys.argv[2]
                 crawl_stock_analysis(date_str)
+            generate_all_pages()
+        
+        elif command == 'dragon_tiger':  # 添加龙虎榜命令
+            if len(sys.argv) == 2:
+                crawl_dragon_tiger_data()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_dragon_tiger_data(date_str)
             generate_all_pages()
                 
         elif command == 'all':
@@ -4810,7 +4818,9 @@ def main():
             print("\n" + "="*60 + "\n")
             crawl_all_jiuyan_articles()
             print("\n" + "="*60 + "\n")
-            crawl_stock_analysis()  # 添加异动解析
+            crawl_stock_analysis()
+            print("\n" + "="*60 + "\n")
+            crawl_dragon_tiger_data()  # 添加龙虎榜
             generate_all_pages()
             
         elif command == 'generate':
@@ -4826,14 +4836,14 @@ def main():
             print("  python script.py jiuyan 盘前纪要 2025-01-21 # 爬取韭研公社指定用户指定日期文章")
             print("  python script.py analysis                  # 获取异动解析数据")
             print("  python script.py analysis 2025-01-21       # 获取指定日期异动解析数据")
+            print("  python script.py dragon_tiger              # 获取龙虎榜数据")
+            print("  python script.py dragon_tiger 2025-01-21   # 获取指定日期龙虎榜数据")
             print("  python script.py all                       # 执行所有功能")
             print("  python script.py generate                  # 只生成网页文件")
             print("\n可用的韭研公社用户:")
             for key, info in JIUYAN_USERS.items():
                 print(f"  {key} - {info['user_name']}")
 
-if __name__ == "__main__":
-    main()
 
 
 
