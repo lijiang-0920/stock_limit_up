@@ -416,6 +416,341 @@ body {
 .article-btn.primary:hover {
     background: #5a67d8;
 }
+/* 龙虎榜相关样式 */
+.market-stats {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.market-stats h3 {
+    margin-bottom: 15px;
+    color: #2d3748;
+}
+
+.dragon-tiger-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.dragon-tiger-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.dragon-tiger-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.dragon-tiger-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stock-basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stock-code-dt {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1rem;
+}
+
+.stock-name-dt {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.stock-market {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.stock-price-info {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stock-price-dt {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.stock-change-dt {
+    background: #e53e3e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.stock-change-dt.positive {
+    background: #e53e3e;
+}
+
+.stock-change-dt.negative {
+    background: #38a169;
+}
+
+.dragon-tiger-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #f7fafc;
+    border-radius: 6px;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.capital-flow-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.flow-item {
+    text-align: center;
+}
+
+.flow-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-bottom: 3px;
+}
+
+.flow-value {
+    display: block;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.flow-value.positive {
+    color: #e53e3e;
+}
+
+.flow-value.negative {
+    color: #38a169;
+}
+
+.dragon-tiger-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dt-btn {
+    padding: 8px 16px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.dt-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.dt-btn.primary {
+    background: #667eea;
+    color: white;
+}
+
+.dt-btn.primary:hover {
+    background: #5a67d8;
+}
+
+/* 详情模态框内容 */
+.detail-modal-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.basic-info-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.basic-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.info-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-pair:last-child {
+    border-bottom: none;
+}
+
+.seats-section {
+    margin-bottom: 25px;
+}
+
+.seats-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.seats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.seats-table th,
+.seats-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.seats-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.9rem;
+}
+
+.seats-table td {
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.seat-rank {
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+}
+
+.seat-amount {
+    font-weight: 600;
+    text-align: right;
+}
+
+.seat-label {
+    display: inline-block;
+    padding: 2px 6px;
+    background: #667eea;
+    color: white;
+    border-radius: 3px;
+    font-size: 0.7rem;
+}
+
+.seat-label.institution {
+    background: #38a169;
+}
+
+.seat-label.hot-money {
+    background: #e53e3e;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dragon-tiger-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .stock-price-info {
+        align-self: stretch;
+        text-align: left;
+    }
+    
+    .dragon-tiger-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .capital-flow-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dragon-tiger-actions {
+        justify-content: center;
+    }
+    
+    .seats-table {
+        font-size: 0.8rem;
+    }
+    
+    .seats-table th,
+    .seats-table td {
+        padding: 8px 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .capital-flow-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .basic-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .seats-table th,
+    .seats-table td {
+        padding: 6px 3px;
+        font-size: 0.75rem;
+    }
+}
 /* 异动解析样式 */
 .analysis-container {
     background: white;

@@ -1,0 +1,13 @@
+{
+  "2025-08-29": {
+    "date": "2025-08-29",
+    "update_time": "2025-08-30 15:11:35",
+    "total_count": 54,
+    "success_count": 54,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-08-29.json",
+      "txt": "dragon_tiger/2025-08-29.txt"
+    }
+  }
+}

@@ -509,44 +509,67 @@ function generateDetailTextContent(stockData) {
     const buySeats = stockData.buy_seats || [];
     const sellSeats = stockData.sell_seats || [];
     
-    let content = `${stockData.code} ${stockData.name} - 龙虎榜详情\n\n`;
-    content += `交易日期: ${stockData.query_date}\n`;
-    content += `收盘价: ¥${lhbInfo.close_price?.toFixed(2) || '0.00'}\n`;
-    content += `涨跌幅: ${lhbInfo.change_percent >= 0 ? '+' : ''}${lhbInfo.change_percent?.toFixed(2) || '0.00'}%\n`;
-    content += `市场: ${stockData.market_name}\n`;
-    content += `上榜原因: ${lhbInfo.list_reason || 'N/A'}\n`;
-    content += `成交额: ${formatAmount(lhbInfo.amount)}万元\n`;
-    content += `成交量: ${formatAmount(lhbInfo.volume)}万股\n\n`;
+    let content = `${stockData.code} ${stockData.name} - 龙虎榜详情
+
+`;
+    content += `交易日期: ${stockData.query_date}
+`;
+    content += `收盘价: ¥${lhbInfo.close_price?.toFixed(2) || '0.00'}
+`;
+    content += `涨跌幅: ${lhbInfo.change_percent >= 0 ? '+' : ''}${lhbInfo.change_percent?.toFixed(2) || '0.00'}%
+`;
+    content += `市场: ${stockData.market_name}
+`;
+    content += `上榜原因: ${lhbInfo.list_reason || 'N/A'}
+`;
+    content += `成交额: ${formatAmount(lhbInfo.amount)}万元
+`;
+    content += `成交量: ${formatAmount(lhbInfo.volume)}万股
+
+`;
     
     // 资金流向
     if (capitalFlow.net_inflow !== undefined) {
-        content += `=== 资金流向 ===\n`;
-        content += `总买入: ${formatAmount(capitalFlow.buy_total)}万元\n`;
-        content += `总卖出: ${formatAmount(capitalFlow.sell_total)}万元\n`;
-        content += `净流入: ${capitalFlow.net_inflow >= 0 ? '+' : ''}${formatAmount(capitalFlow.net_inflow)}万元\n`;
-        content += `净流入占比: ${((capitalFlow.net_inflow / lhbInfo.amount) * 100).toFixed(1)}%\n\n`;
+        content += `=== 资金流向 ===
+`;
+        content += `总买入: ${formatAmount(capitalFlow.buy_total)}万元
+`;
+        content += `总卖出: ${formatAmount(capitalFlow.sell_total)}万元
+`;
+        content += `净流入: ${capitalFlow.net_inflow >= 0 ? '+' : ''}${formatAmount(capitalFlow.net_inflow)}万元
+`;
+        content += `净流入占比: ${((capitalFlow.net_inflow / lhbInfo.amount) * 100).toFixed(1)}%
+
+`;
     }
     
     // 买入席位
     if (buySeats.length > 0) {
-        content += `=== 买入席位 TOP5 ===\n`;
+        content += `=== 买入席位 TOP5 ===
+`;
         buySeats.slice(0, 5).forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}\n`;
+            content += `${index + 1}. ${seat.department_name}
+`;
             content += `   买入: ${formatAmount(seat.buy_amount)}万元  占比: ${seat.amount_ratio}%`;
             if (seat.label) content += `  ${seat.label}`;
-            content += `\n`;
+            content += `
+`;
         });
-        content += `\n`;
+        content += `
+`;
     }
     
     // 卖出席位
     if (sellSeats.length > 0) {
-        content += `=== 卖出席位 TOP5 ===\n`;
+        content += `=== 卖出席位 TOP5 ===
+`;
         sellSeats.slice(0, 5).forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}\n`;
+            content += `${index + 1}. ${seat.department_name}
+`;
             content += `   卖出: ${formatAmount(seat.sell_amount)}万元  占比: ${seat.amount_ratio}%`;
             if (seat.label) content += `  ${seat.label}`;
-            content += `\n`;
+            content += `
+`;
         });
     }
     
@@ -558,24 +581,31 @@ function generateSeatsTextContent(stockData) {
     const buySeats = stockData.buy_seats || [];
     const sellSeats = stockData.sell_seats || [];
     
-    let content = `${stockData.code} ${stockData.name} - 席位信息\n\n`;
+    let content = `${stockData.code} ${stockData.name} - 席位信息
+
+`;
     
     if (buySeats.length > 0) {
-        content += `买入席位:\n`;
+        content += `买入席位:
+`;
         buySeats.forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}\t${formatAmount(seat.buy_amount)}万元\t${seat.amount_ratio}%`;
-            if (seat.label) content += `\t${seat.label}`;
-            content += `\n`;
+            content += `${index + 1}. ${seat.department_name}	${formatAmount(seat.buy_amount)}万元	${seat.amount_ratio}%`;
+            if (seat.label) content += `	${seat.label}`;
+            content += `
+`;
         });
-        content += `\n`;
+        content += `
+`;
     }
     
     if (sellSeats.length > 0) {
-        content += `卖出席位:\n`;
+        content += `卖出席位:
+`;
         sellSeats.forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}\t${formatAmount(seat.sell_amount)}万元\t${seat.amount_ratio}%`;
-            if (seat.label) content += `\t${seat.label}`;
-            content += `\n`;
+            content += `${index + 1}. ${seat.department_name}	${formatAmount(seat.sell_amount)}万元	${seat.amount_ratio}%`;
+            if (seat.label) content += `	${seat.label}`;
+            content += `
+`;
         });
     }
     
@@ -644,21 +674,23 @@ function copyDragonTigerData() {
         data.status === 'success'
     );
     
-    let textData = '股票代码\t股票名称\t市场\t收盘价\t涨跌幅\t上榜原因\t成交额(万元)\t成交量(万股)\t净流入(万元)\n';
+    let textData = '股票代码	股票名称	市场	收盘价	涨跌幅	上榜原因	成交额(万元)	成交量(万股)	净流入(万元)
+';
     
     successfulStocks.forEach(([code, data]) => {
         const lhbInfo = data.lhb_info || {};
         const capitalFlow = data.capital_flow || {};
         
-        textData += `${code}\t`;
-        textData += `${data.name}\t`;
-        textData += `${data.market_name}\t`;
-        textData += `${lhbInfo.close_price?.toFixed(2) || '0.00'}\t`;
-        textData += `${lhbInfo.change_percent?.toFixed(2) || '0.00'}%\t`;
-        textData += `${lhbInfo.list_reason || 'N/A'}\t`;
-        textData += `${formatAmount(lhbInfo.amount)}\t`;
-        textData += `${formatAmount(lhbInfo.volume)}\t`;
-        textData += `${formatAmount(capitalFlow.net_inflow || 0)}\n`;
+        textData += `${code}	`;
+        textData += `${data.name}	`;
+        textData += `${data.market_name}	`;
+        textData += `${lhbInfo.close_price?.toFixed(2) || '0.00'}	`;
+        textData += `${lhbInfo.change_percent?.toFixed(2) || '0.00'}%	`;
+        textData += `${lhbInfo.list_reason || 'N/A'}	`;
+        textData += `${formatAmount(lhbInfo.amount)}	`;
+        textData += `${formatAmount(lhbInfo.volume)}	`;
+        textData += `${formatAmount(capitalFlow.net_inflow || 0)}
+`;
     });
     
     copyToClipboard(textData);
@@ -692,7 +724,8 @@ function exportDragonTigerToExcel() {
     );
     
     let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "股票代码,股票名称,市场,收盘价,涨跌幅,上榜原因,成交额(万元),成交量(万股),净流入(万元),买入席位数,卖出席位数\n";
+    csvContent += "股票代码,股票名称,市场,收盘价,涨跌幅,上榜原因,成交额(万元),成交量(万股),净流入(万元),买入席位数,卖出席位数
+";
     
     successfulStocks.forEach(([code, data]) => {
         const lhbInfo = data.lhb_info || {};
@@ -707,7 +740,8 @@ function exportDragonTigerToExcel() {
         csvContent += `"${formatAmount(lhbInfo.amount)}",`;
         csvContent += `"${formatAmount(lhbInfo.volume)}",`;
         csvContent += `"${formatAmount(capitalFlow.net_inflow || 0)}",`;
-        csvContent += `"${buySeats.length}","${sellSeats.length}"\n`;
+        csvContent += `"${buySeats.length}","${sellSeats.length}"
+`;
     });
     
     const encodedUri = encodeURI(csvContent);
