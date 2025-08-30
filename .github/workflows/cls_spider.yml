@@ -68,6 +68,10 @@ jobs:
           pip install --upgrade pip
           pip install requests beautifulsoup4 python-docx pillow lxml
 
+      - name: 确保目录存在
+        run: |
+          mkdir -p data articles analysis dragon_tiger assets .github/locks
+
       - name: 确定脚本文件名
         id: script-name
         run: |
@@ -341,8 +345,8 @@ jobs:
       - name: 提交更改
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
-          # 添加所有相关文件（包括锁文件）
-          git add data/ articles/ analysis/ assets/ .github/locks/ *.html
+          # 添加所有相关文件（包括锁文件和龙虎榜数据）
+          git add data/ articles/ analysis/ dragon_tiger/ assets/ .github/locks/ *.html
           
           # 生成提交信息
           task_name="${{ steps.determine-task.outputs.task }}"
