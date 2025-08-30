@@ -773,6 +773,413 @@ def crawl_stock_analysis(date_str=None):
         print(f"获取异动解析数据时发生错误: {e}")
         return None
 
+# ========== 通达信龙虎榜相关函数 ==========
+
+def get_tdx_lhb_overview():
+    """获取通达信龙虎榜总览数据"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_lhbd_lhbzl"
+    
+    headers = {
+        "Host": "fk.tdx.com.cn",
+        "Connection": "keep-alive",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+        "Origin": "https://fk.tdx.com.cn",
+        "Referer": "https://fk.tdx.com.cn/site/tdxsj/html/tdxsj_lhbd.html?from=www&webfrom=1&pc=0",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Accept": "text/plain, */*; q=0.01",
+        "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Google Chrome\";v=\"121\", \"Chromium\";v=\"121\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\""
+    }
+    
+    data = {"Params": ["0", "0", "0"]}
+    
+    try:
+        response = requests.post(url, headers=headers, data=json.dumps(data), timeout=15)
+        response.raise_for_status()
+        
+        result = response.json()
+        if result.get('ErrorCode') == 0:
+            return result
+        else:
+            print(f"龙虎榜API返回错误: {result.get('ErrorCode')}")
+            return None
+    except Exception as e:
+        print(f"获取龙虎榜总览失败: {e}")
+        return None
+
+def parse_lhb_overview(overview_data):
+    """解析龙虎榜总览数据"""
+    if not overview_data or not overview_data.get('ResultSets'):
+        return None
+    
+    result_sets = overview_data['ResultSets']
+    stocks_info = []
+    trading_date = None
+    
+    # 解析股票列表
+    if len(result_sets) > 0 and result_sets[0].get('Count', 0) > 0:
+        table0 = result_sets[0]
+        for row in table0['Content']:
+            stock_info = {
+                "code": row[0],
+                "name": row[1],
+                "market_code": row[2],
+                "change_percent": float(row[3]) if row[3] else 0,
+                "close_price": float(row[4]) if row[4] else 0,
+                "market_name": row[5]
+            }
+            stocks_info.append(stock_info)
+    
+    # 解析交易日期
+    if len(result_sets) > 1 and result_sets[1].get('Count', 0) > 0:
+        table1 = result_sets[1]
+        if table1['Content']:
+            trading_date = table1['Content'][0][2]
+    
+    return {
+        "trading_date": trading_date,
+        "total_count": len(stocks_info),
+        "stocks": stocks_info
+    }
+
+def get_single_dragon_tiger_detail(stock_code, date):
+    """获取单只股票的龙虎榜详细信息"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_lhbd_ggxq"
+    
+    headers = {
+        'Host': 'fk.tdx.com.cn',
+        'Connection': 'keep-alive',
+        'sec-ch-ua': '"Not A(Brand";v="99", "Google Chrome";v="121", "Chromium";v="121"',
+        'Accept': 'text/plain, */*; q=0.01',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Requested-With': 'XMLHttpRequest',
+        'sec-ch-ua-mobile': '?0',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+        'sec-ch-ua-platform': '"Windows"',
+        'Origin': 'https://fk.tdx.com.cn',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Dest': 'empty',
+        'Referer': f'https://fk.tdx.com.cn/site/tdxsj/html/tdxsj_lhbd_ggxq.html?back=tdxsj_lhbd,%E9%BE%99%E8%99%8E%E6%A6%9C%E4%B8%AA%E8%82%A1,{stock_code}&pc=0&webfrom=1',
+        'Accept-Encoding': 'gzip, deflate, br, zstd',
+        'Accept-Language': 'zh-CN,zh;q=0.9'
+    }
+    
+    payload = json.dumps({"Params": ["1", stock_code, date]})
+    
+    try:
+        response = requests.post(url, headers=headers, data=payload, timeout=10)
+        response.raise_for_status()
+        
+        raw_data = response.json()
+        
+        if raw_data.get('ErrorCode') != 0:
+            return {"code": stock_code, "status": "api_error", "error_code": raw_data.get('ErrorCode')}
+        
+        result_sets = raw_data.get('ResultSets', [])
+        
+        structured_data = {
+            "code": stock_code,
+            "query_date": date,
+            "status": "success"
+        }
+        
+        # 解析基本信息
+        if len(result_sets) > 0 and result_sets[0].get('Count', 0) > 0:
+            table0 = result_sets[0]
+            basic_info = table0['Content'][0]
+            
+            structured_data["lhb_info"] = {
+                "list_code": basic_info[0],
+                "list_reason": basic_info[1],
+                "volume": float(basic_info[2]) if basic_info[2] else 0,
+                "amount": float(basic_info[3]) if basic_info[3] else 0,
+                "close_price": float(basic_info[4]) if basic_info[4] else 0,
+                "change_percent": float(basic_info[5]) if basic_info[5] else 0
+            }
+        else:
+            structured_data["status"] = "no_detail_data"
+            return structured_data
+        
+        # 解析席位信息
+        if len(result_sets) > 1 and result_sets[1].get('Count', 0) > 0:
+            table1 = result_sets[1]
+            
+            buy_seats = []
+            sell_seats = []
+            
+            for row in table1['Content']:
+                seat_info = {
+                    "rank": int(row[0]) if row[0] else 0,
+                    "department_name": row[2],
+                    "buy_amount": float(row[3]) if row[3] else 0,
+                    "sell_amount": float(row[4]) if row[4] else 0,
+                    "net_amount": float(row[5]) if row[5] else 0,
+                    "direction": row[7],
+                    "label": row[12] if row[12] else ""
+                }
+                
+                # 计算占比
+                total_amount = basic_info[3] if basic_info[3] > 0 else 1
+                seat_info["amount_ratio"] = round(abs(row[5]) / total_amount * 100, 2)
+                
+                if row[7] == "B":
+                    buy_seats.append(seat_info)
+                else:
+                    sell_seats.append(seat_info)
+            
+            structured_data["buy_seats"] = buy_seats
+            structured_data["sell_seats"] = sell_seats
+            
+            # 计算资金流向
+            buy_total = sum([seat.get("buy_amount", 0) for seat in buy_seats])
+            sell_total = sum([seat.get("sell_amount", 0) for seat in sell_seats])
+            
+            structured_data["capital_flow"] = {
+                "buy_total": buy_total,
+                "sell_total": sell_total,
+                "net_inflow": buy_total - sell_total,
+                "buy_ratio": round(buy_total / total_amount * 100, 2),
+                "sell_ratio": round(sell_total / total_amount * 100, 2)
+            }
+        
+        return structured_data
+        
+    except Exception as e:
+        return {"code": stock_code, "status": "query_failed", "error": str(e)}
+
+def crawl_dragon_tiger_data(date_str=None, max_workers=5, delay=0.1):
+    """爬取龙虎榜数据"""
+    print("开始获取通达信龙虎榜数据...")
+    
+    if not date_str:
+        date_str = get_beijing_time().strftime('%Y-%m-%d')
+    
+    try:
+        # 获取总览数据
+        print("1. 获取龙虎榜总览...")
+        overview_data = get_tdx_lhb_overview()
+        if not overview_data:
+            print("获取龙虎榜总览失败")
+            return None
+        
+        # 解析总览数据
+        print("2. 解析总览数据...")
+        parsed_overview = parse_lhb_overview(overview_data)
+        if not parsed_overview:
+            print("解析龙虎榜总览失败")
+            return None
+        
+        trading_date = parsed_overview["trading_date"]
+        stocks_list = parsed_overview["stocks"]
+        
+        print(f"发现 {len(stocks_list)} 只龙虎榜股票，交易日期: {trading_date}")
+        
+        # 并发获取详细数据
+        print(f"3. 并发获取详细数据（线程数: {max_workers}）...")
+        
+        all_detailed_data = {
+            "date": trading_date,
+            "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
+            "total_count": len(stocks_list),
+            "overview": parsed_overview,
+            "details": {},
+            "statistics": {
+                "success_count": 0,
+                "failed_count": 0,
+                "no_detail_count": 0
+            }
+        }
+        
+        completed_count = 0
+        lock = threading.Lock()
+        
+        def query_with_delay(stock_info):
+            nonlocal completed_count
+            
+            time.sleep(delay)
+            detail_data = get_single_dragon_tiger_detail(stock_info["code"], trading_date)
+            
+            # 合并总览信息
+            detail_data.update({
+                "name": stock_info["name"],
+                "market_name": stock_info["market_name"],
+                "overview_change_percent": stock_info["change_percent"],
+                "overview_close_price": stock_info["close_price"]
+            })
+            
+            with lock:
+                completed_count += 1
+                all_detailed_data["details"][stock_info["code"]] = detail_data
+                
+                status = detail_data.get("status", "unknown")
+                if status == "success":
+                    all_detailed_data["statistics"]["success_count"] += 1
+                    lhb_info = detail_data.get("lhb_info", {})
+                    flow_info = detail_data.get("capital_flow", {})
+                    print(f"[{completed_count:2d}/{len(stocks_list)}] ✓ {stock_info['code']} {stock_info['name'][:8]} - "
+                          f"{lhb_info.get('list_reason', 'N/A')[:15]} - 净流入: {flow_info.get('net_inflow', 0):>8.2f}万元")
+                elif status == "no_detail_data":
+                    all_detailed_data["statistics"]["no_detail_count"] += 1
+                    print(f"[{completed_count:2d}/{len(stocks_list)}] - {stock_info['code']} {stock_info['name'][:8]} - 无详细数据")
+                else:
+                    all_detailed_data["statistics"]["failed_count"] += 1
+                    print(f"[{completed_count:2d}/{len(stocks_list)}] ✗ {stock_info['code']} {stock_info['name'][:8]} - 查询失败")
+            
+            return detail_data
+        
+        # 使用线程池并发执行
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_stock = {
+                executor.submit(query_with_delay, stock): stock 
+                for stock in stocks_list
+            }
+            
+            for future in as_completed(future_to_stock):
+                try:
+                    future.result()
+                except Exception as e:
+                    stock = future_to_stock[future]
+                    print(f"✗ {stock['code']} 查询异常: {e}")
+        
+        # 保存数据
+        save_dragon_tiger_data(all_detailed_data)
+        
+        success_rate = all_detailed_data["statistics"]["success_count"] / len(stocks_list) * 100
+        print(f"龙虎榜数据获取完成: {trading_date}, 成功率: {success_rate:.1f}%")
+        
+        return all_detailed_data
+        
+    except Exception as e:
+        print(f"获取龙虎榜数据时发生错误: {e}")
+        return None
+
+def save_dragon_tiger_data(data):
+    """保存龙虎榜数据"""
+    if not data:
+        return
+    
+    # 创建数据目录
+    os.makedirs('dragon_tiger', exist_ok=True)
+    current_date = data['date']
+    
+    # 保存JSON数据
+    json_path = f'dragon_tiger/{current_date}.json'
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    # 生成文本格式
+    text_content = generate_dragon_tiger_text_content(data)
+    txt_path = f'dragon_tiger/{current_date}.txt'
+    with open(txt_path, 'w', encoding='utf-8') as f:
+        f.write(text_content)
+    
+    # 更新索引文件
+    index_path = 'dragon_tiger/index.json'
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            try:
+                index_data = json.load(f)
+                if not isinstance(index_data, dict):
+                    index_data = {}
+            except:
+                index_data = {}
+    else:
+        index_data = {}
+    
+    # 更新索引
+    index_data[current_date] = {
+        "date": current_date,
+        "update_time": data['update_time'],
+        "total_count": data['total_count'],
+        "success_count": data['statistics']['success_count'],
+        "success_rate": round(data['statistics']['success_count'] / data['total_count'] * 100, 1),
+        "files": {
+            "json": f"dragon_tiger/{current_date}.json",
+            "txt": f"dragon_tiger/{current_date}.txt"
+        }
+    }
+    
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, ensure_ascii=False, indent=2)
+    
+    print(f"龙虎榜数据已保存: {current_date}, 共{data['total_count']}只股票，成功{data['statistics']['success_count']}只")
+
+def generate_dragon_tiger_text_content(data):
+    """生成龙虎榜的文本内容"""
+    content = f"通达信龙虎榜数据 - {data['date']}\n"
+    content += f"更新时间: {data['update_time']}\n"
+    content += f"股票总数: {data['total_count']} 只\n"
+    content += f"查询成功: {data['statistics']['success_count']} 只\n"
+    content += f"成功率: {data['statistics']['success_count']/data['total_count']*100:.1f}%\n"
+    content += "=" * 80 + "\n\n"
+    
+    # 市场分布统计
+    market_stats = {}
+    for stock in data['overview']['stocks']:
+        market = stock['market_name']
+        if market not in market_stats:
+            market_stats[market] = 0
+        market_stats[market] += 1
+    
+    content += "=== 市场分布 ===\n"
+    for market, count in market_stats.items():
+        content += f"{market}: {count}只\n"
+    content += "\n"
+    
+    # 详细数据
+    content += "=== 龙虎榜详细数据 ===\n\n"
+    
+    for stock_code, detail in data['details'].items():
+        if detail.get('status') != 'success':
+            continue
+            
+        content += f"股票代码: {stock_code}\n"
+        content += f"股票名称: {detail.get('name', 'N/A')}\n"
+        content += f"市场: {detail.get('market_name', 'N/A')}\n"
+        
+        lhb_info = detail.get('lhb_info', {})
+        content += f"收盘价: {lhb_info.get('close_price', 0):.2f}元\n"
+        content += f"涨跌幅: {lhb_info.get('change_percent', 0):.2f}%\n"
+        content += f"上榜原因: {lhb_info.get('list_reason', 'N/A')}\n"
+        content += f"成交额: {lhb_info.get('amount', 0):.2f}万元\n"
+        content += f"成交量: {lhb_info.get('volume', 0):.2f}万股\n"
+        
+        # 资金流向
+        flow_info = detail.get('capital_flow', {})
+        if flow_info:
+            content += f"买入合计: {flow_info.get('buy_total', 0):.2f}万元\n"
+            content += f"卖出合计: {flow_info.get('sell_total', 0):.2f}万元\n"
+            content += f"净流入: {flow_info.get('net_inflow', 0):.2f}万元\n"
+        
+        # 买入席位
+        buy_seats = detail.get('buy_seats', [])
+        if buy_seats:
+            content += "\n买入席位TOP5:\n"
+            for i, seat in enumerate(buy_seats[:5], 1):
+                content += f"  {i}. {seat.get('department_name', 'N/A')} - "
+                content += f"买入: {seat.get('buy_amount', 0):.2f}万元 "
+                content += f"占比: {seat.get('amount_ratio', 0):.2f}% "
+                content += f"{seat.get('label', '')}\n"
+        
+        # 卖出席位
+        sell_seats = detail.get('sell_seats', [])
+        if sell_seats:
+            content += "\n卖出席位TOP5:\n"
+            for i, seat in enumerate(sell_seats[:5], 1):
+                content += f"  {i}. {seat.get('department_name', 'N/A')} - "
+                content += f"卖出: {seat.get('sell_amount', 0):.2f}万元 "
+                content += f"占比: {seat.get('amount_ratio', 0):.2f}% "
+                content += f"{seat.get('label', '')}\n"
+        
+        content += "\n" + "-" * 80 + "\n\n"
+    
+    return content
+
 
 
 # ========== 网页生成函数 ==========
@@ -817,6 +1224,14 @@ def generate_main_page():
                 <div class="card-status" id="analysisStatus">最新更新: 加载中...</div>
                 <div class="card-button">进入查看</div>
             </div>
+            
+            <div class="nav-card" onclick="location.href='dragon_tiger.html'">
+                <div class="card-icon">🐉</div>
+                <h3>通达信龙虎榜</h3>
+                <p>查看龙虎榜数据</p>
+                <div class="card-status" id="dragonTigerStatus">最新更新: 加载中...</div>
+                <div class="card-button">进入查看</div>
+            </div>
         </div>
         
         <div class="stats-panel">
@@ -829,6 +1244,10 @@ def generate_main_page():
                 <div class="stat-item">
                     <span class="stat-label">本周文章</span>
                     <span class="stat-value" id="weeklyArticles">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">龙虎榜股票</span>
+                    <span class="stat-value" id="todayDragonTiger">--</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">数据状态</span>
@@ -857,6 +1276,7 @@ def generate_main_page():
     
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
+
 
 
 def generate_limitup_page():
@@ -1055,6 +1475,90 @@ def generate_analysis_page():
         f.write(html_content)
 
 
+def generate_dragon_tiger_page():
+    """生成龙虎榜页面"""
+    html_content = '''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐉 通达信龙虎榜数据</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>🐉 通达信龙虎榜数据</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="filter-section">
+                <select id="dateFilter" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="搜索股票代码或名称..." class="search-input">
+                <button id="copyDataBtn" class="action-btn">📋 复制数据</button>
+                <button id="viewJsonBtn" class="action-btn">📄 查看JSON</button>
+                <button id="refreshBtn" class="action-btn">🔄 刷新</button>
+            </div>
+        </div>
+        
+        <div class="data-info" id="dataInfo" style="display: none;">
+            <div class="info-item">
+                <span class="info-label">更新时间:</span>
+                <span id="updateTime">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">龙虎榜股票:</span>
+                <span id="stockCount">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">查询成功率:</span>
+                <span id="successRate">--</span>
+            </div>
+        </div>
+        
+        <div class="market-stats" id="marketStats" style="display: none;">
+            <h3>📊 市场分布</h3>
+            <div class="stats-grid" id="marketStatsGrid">
+            </div>
+        </div>
+        
+        <div class="dragon-tiger-container" id="dragonTigerContainer">
+            <div class="loading">请选择日期查看数据...</div>
+        </div>
+    </div>
+    
+    <!-- 详情模态框 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeDetailModal()">&times;</span>
+                <h2 id="modalTitle">股票详情</h2>
+                <div class="modal-actions">
+                    <button onclick="copyDetailContent('full')" class="action-btn">📋 复制全部</button>
+                    <button onclick="copyDetailContent('seats')" class="action-btn">📋 复制席位</button>
+                    <button onclick="downloadDetail()" class="action-btn">💾 下载详情</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="detailContent"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/dragon_tiger.js"></script>
+</body>
+</html>'''
+    
+    with open('dragon_tiger.html', 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+
 def generate_json_viewer():
     """生成JSON查看器页面"""
     html_content = '''<!DOCTYPE html>
@@ -1079,7 +1583,8 @@ def generate_json_viewer():
                 <select id="dataTypeSelect" class="filter-select">
                     <option value="limitup">涨停池数据</option>
                     <option value="articles">文章数据</option>
-                    <option value="analysis">异动解析数据</option>                    
+                    <option value="analysis">异动解析数据</option>
+                    <option value="dragon_tiger">龙虎榜数据</option>
                 </select>
                 <select id="dateSelect" class="filter-select">
                     <option value="">选择日期</option>
@@ -1102,6 +1607,9 @@ def generate_json_viewer():
     
     with open('json_viewer.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
+
+
+
 
 def generate_css():
     """生成CSS样式文件"""
@@ -1524,6 +2032,341 @@ body {
 
 .article-btn.primary:hover {
     background: #5a67d8;
+}
+/* 龙虎榜相关样式 */
+.market-stats {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.market-stats h3 {
+    margin-bottom: 15px;
+    color: #2d3748;
+}
+
+.dragon-tiger-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.dragon-tiger-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.dragon-tiger-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.dragon-tiger-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stock-basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stock-code-dt {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1rem;
+}
+
+.stock-name-dt {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.stock-market {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.stock-price-info {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stock-price-dt {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.stock-change-dt {
+    background: #e53e3e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.stock-change-dt.positive {
+    background: #e53e3e;
+}
+
+.stock-change-dt.negative {
+    background: #38a169;
+}
+
+.dragon-tiger-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #f7fafc;
+    border-radius: 6px;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.capital-flow-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.flow-item {
+    text-align: center;
+}
+
+.flow-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-bottom: 3px;
+}
+
+.flow-value {
+    display: block;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.flow-value.positive {
+    color: #e53e3e;
+}
+
+.flow-value.negative {
+    color: #38a169;
+}
+
+.dragon-tiger-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dt-btn {
+    padding: 8px 16px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.dt-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.dt-btn.primary {
+    background: #667eea;
+    color: white;
+}
+
+.dt-btn.primary:hover {
+    background: #5a67d8;
+}
+
+/* 详情模态框内容 */
+.detail-modal-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.basic-info-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.basic-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.info-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-pair:last-child {
+    border-bottom: none;
+}
+
+.seats-section {
+    margin-bottom: 25px;
+}
+
+.seats-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.seats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.seats-table th,
+.seats-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.seats-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.9rem;
+}
+
+.seats-table td {
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.seat-rank {
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+}
+
+.seat-amount {
+    font-weight: 600;
+    text-align: right;
+}
+
+.seat-label {
+    display: inline-block;
+    padding: 2px 6px;
+    background: #667eea;
+    color: white;
+    border-radius: 3px;
+    font-size: 0.7rem;
+}
+
+.seat-label.institution {
+    background: #38a169;
+}
+
+.seat-label.hot-money {
+    background: #e53e3e;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dragon-tiger-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .stock-price-info {
+        align-self: stretch;
+        text-align: left;
+    }
+    
+    .dragon-tiger-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .capital-flow-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dragon-tiger-actions {
+        justify-content: center;
+    }
+    
+    .seats-table {
+        font-size: 0.8rem;
+    }
+    
+    .seats-table th,
+    .seats-table td {
+        padding: 8px 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .capital-flow-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .basic-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .seats-table th,
+    .seats-table td {
+        padding: 6px 3px;
+        font-size: 0.75rem;
+    }
 }
 /* 异动解析样式 */
 .analysis-container {
@@ -3991,6 +4834,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
