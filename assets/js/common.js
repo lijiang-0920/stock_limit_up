@@ -87,6 +87,9 @@ async function loadMainPageStats() {
         // 加载异动解析数据状态
         await loadAnalysisStatus();
         
+        // 加载龙虎榜数据状态
+        await loadDragonTigerStatus();
+        
     } catch (error) {
         console.error('加载统计数据失败:', error);
         const dataStatusEl = document.getElementById('dataStatus');
@@ -173,7 +176,44 @@ async function loadArticlesStatus() {
         }
     }
 }
-
+// 加载龙虎榜状态
+async function loadDragonTigerStatus() {
+    try {
+        const response = await fetch('dragon_tiger/index.json');
+        if (response.ok) {
+            const indexData = await response.json();
+            const dates = Object.keys(indexData).sort().reverse();
+            if (dates.length > 0) {
+                const latestDate = dates[0];
+                const dragonTigerStatusEl = document.getElementById('dragonTigerStatus');
+                if (dragonTigerStatusEl) {
+                    dragonTigerStatusEl.textContent = '最新更新: ' + latestDate;
+                }
+                
+                // 加载最新数据获取股票数量
+                const dataResponse = await fetch('dragon_tiger/' + latestDate + '.json');
+                if (dataResponse.ok) {
+                    const data = await dataResponse.json();
+                    const todayDragonTigerEl = document.getElementById('todayDragonTiger');
+                    if (todayDragonTigerEl) {
+                        const stockCount = data.statistics?.success_count || 0;
+                        todayDragonTigerEl.textContent = stockCount + '只';
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.error('加载龙虎榜状态失败:', error);
+        const dragonTigerStatusEl = document.getElementById('dragonTigerStatus');
+        const todayDragonTigerEl = document.getElementById('todayDragonTiger');
+        if (dragonTigerStatusEl) {
+            dragonTigerStatusEl.textContent = '最新更新: 加载失败';
+        }
+        if (todayDragonTigerEl) {
+            todayDragonTigerEl.textContent = '加载失败';
+        }
+    }
+}
 // 加载异动解析状态
 async function loadAnalysisStatus() {
     try {
@@ -247,12 +287,17 @@ async function loadJsonViewer() {
                     const articlesData = await response.json();
                     dates = Object.keys(articlesData).sort().reverse();
                 }
-            }
-            else if (dataType === 'analysis') {
+            } else if (dataType === 'analysis') {
                 const response = await fetch('analysis/index.json');
                 if (response.ok) {
                     const analysisData = await response.json();
                     dates = Object.keys(analysisData).sort().reverse();
+                }
+            } else if (dataType === 'dragon_tiger') {
+                const response = await fetch('dragon_tiger/index.json');
+                if (response.ok) {
+                    const dragonTigerData = await response.json();
+                    dates = Object.keys(dragonTigerData).sort().reverse();
                 }
             }
             
@@ -288,9 +333,10 @@ async function loadJsonViewer() {
                 response = await fetch('data/' + date + '.json');
             } else if (dataType === 'articles') {
                 response = await fetch('articles/index.json');
-            }
-            else if (dataType === 'analysis') {
+            } else if (dataType === 'analysis') {
                 response = await fetch('analysis/' + date + '.json');
+            } else if (dataType === 'dragon_tiger') {
+                response = await fetch('dragon_tiger/' + date + '.json');
             }
             
             if (response && response.ok) {
