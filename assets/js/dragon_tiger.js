@@ -118,11 +118,11 @@ async function loadDragonTigerData(date) {
             updateTimeEl.textContent = currentDragonTigerData.update_time;
         }
         if (stockCountEl) {
-            stockCountEl.textContent = `${currentDragonTigerData.total_count}只`;
+            stockCountEl.textContent = currentDragonTigerData.total_count + '只';
         }
         if (successRateEl) {
             const successRate = (currentDragonTigerData.statistics.success_count / currentDragonTigerData.total_count * 100).toFixed(1);
-            successRateEl.textContent = `${successRate}%`;
+            successRateEl.textContent = successRate + '%';
         }
         if (dataInfo) {
             dataInfo.style.display = 'flex';
@@ -154,12 +154,9 @@ function renderMarketStats(stocks) {
         marketCounts[market] = (marketCounts[market] || 0) + 1;
     });
     
-    const statsHtml = Object.entries(marketCounts).map(([market, count]) => `
-        <div class="stat-item">
-            <span class="stat-label">${market}</span>
-            <span class="stat-value">${count}只</span>
-        </div>
-    `).join('');
+    const statsHtml = Object.entries(marketCounts).map(([market, count]) => 
+        '<div class="stat-item"><span class="stat-label">' + market + '</span><span class="stat-value">' + count + '只</span></div>'
+    ).join('');
     
     marketStatsGrid.innerHTML = statsHtml;
     marketStats.style.display = 'block';
@@ -190,72 +187,63 @@ function renderDragonTigerStocks(details) {
         const changePercent = lhbInfo.change_percent || 0;
         const changeClass = changePercent >= 0 ? 'positive' : 'negative';
         const changeSign = changePercent >= 0 ? '+' : '';
+        const closePrice = lhbInfo.close_price ? lhbInfo.close_price.toFixed(2) : '0.00';
         
-        return `
-            <div class="dragon-tiger-card" data-code="${code}" data-name="${data.name}">
-                <div class="dragon-tiger-header">
-                    <div class="stock-basic-info">
-                        <div class="stock-code-dt">${code}</div>
-                        <div class="stock-name-dt">${data.name}</div>
-                        <div class="stock-market">🏢 ${data.market_name}</div>
-                    </div>
-                    <div class="stock-price-info">
-                        <div class="stock-price-dt">¥${lhbInfo.close_price?.toFixed(2) || '0.00'}</div>
-                        <div class="stock-change-dt ${changeClass}">${changeSign}${changePercent.toFixed(2)}%</div>
-                    </div>
-                </div>
-                
-                <div class="dragon-tiger-details">
-                    <div class="detail-item">
-                        <span class="detail-label">上榜原因:</span>
-                        <span class="detail-value">${lhbInfo.list_reason || 'N/A'}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">成交额:</span>
-                        <span class="detail-value">${formatAmount(lhbInfo.amount)}万元</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">成交量:</span>
-                        <span class="detail-value">${formatAmount(lhbInfo.volume)}万股</span>
-                    </div>
-                </div>
-                
-                ${capitalFlow.net_inflow !== undefined ? `
-                <div class="capital-flow-summary">
-                    <div class="flow-item">
-                        <span class="flow-label">买入合计</span>
-                        <span class="flow-value">${formatAmount(capitalFlow.buy_total)}万</span>
-                    </div>
-                    <div class="flow-item">
-                        <span class="flow-label">卖出合计</span>
-                        <span class="flow-value">${formatAmount(capitalFlow.sell_total)}万</span>
-                    </div>
-                    <div class="flow-item">
-                        <span class="flow-label">净流入</span>
-                        <span class="flow-value ${capitalFlow.net_inflow >= 0 ? 'positive' : 'negative'}">
-                            ${capitalFlow.net_inflow >= 0 ? '+' : ''}${formatAmount(capitalFlow.net_inflow)}万
-                        </span>
-                    </div>
-                    <div class="flow-item">
-                        <span class="flow-label">主力席位</span>
-                        <span class="flow-value">${(data.buy_seats?.length || 0) + (data.sell_seats?.length || 0)}个</span>
-                    </div>
-                </div>
-                ` : ''}
-                
-                <div class="dragon-tiger-actions">
-                    <button class="dt-btn primary" onclick="viewDragonTigerDetail('${code}')">
-                        📖 查看详情
-                    </button>
-                    <button class="dt-btn" onclick="copyStockData('${code}')">
-                        📋 复制数据
-                    </button>
-                    <button class="dt-btn" onclick="exportStockData('${code}')">
-                        💾 导出
-                    </button>
-                </div>
-            </div>
-        `;
+        const capitalFlowHtml = capitalFlow.net_inflow !== undefined ? 
+            '<div class="capital-flow-summary">' +
+                '<div class="flow-item">' +
+                    '<span class="flow-label">买入合计</span>' +
+                    '<span class="flow-value">' + formatAmount(capitalFlow.buy_total) + '万</span>' +
+                '</div>' +
+                '<div class="flow-item">' +
+                    '<span class="flow-label">卖出合计</span>' +
+                    '<span class="flow-value">' + formatAmount(capitalFlow.sell_total) + '万</span>' +
+                '</div>' +
+                '<div class="flow-item">' +
+                    '<span class="flow-label">净流入</span>' +
+                    '<span class="flow-value ' + (capitalFlow.net_inflow >= 0 ? 'positive' : 'negative') + '">' +
+                        (capitalFlow.net_inflow >= 0 ? '+' : '') + formatAmount(capitalFlow.net_inflow) + '万' +
+                    '</span>' +
+                '</div>' +
+                '<div class="flow-item">' +
+                    '<span class="flow-label">主力席位</span>' +
+                    '<span class="flow-value">' + ((data.buy_seats ? data.buy_seats.length : 0) + (data.sell_seats ? data.sell_seats.length : 0)) + '个</span>' +
+                '</div>' +
+            '</div>' : '';
+        
+        return '<div class="dragon-tiger-card" data-code="' + code + '" data-name="' + data.name + '">' +
+            '<div class="dragon-tiger-header">' +
+                '<div class="stock-basic-info">' +
+                    '<div class="stock-code-dt">' + code + '</div>' +
+                    '<div class="stock-name-dt">' + data.name + '</div>' +
+                    '<div class="stock-market">🏢 ' + data.market_name + '</div>' +
+                '</div>' +
+                '<div class="stock-price-info">' +
+                    '<div class="stock-price-dt">¥' + closePrice + '</div>' +
+                    '<div class="stock-change-dt ' + changeClass + '">' + changeSign + changePercent.toFixed(2) + '%</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="dragon-tiger-details">' +
+                '<div class="detail-item">' +
+                    '<span class="detail-label">上榜原因:</span>' +
+                    '<span class="detail-value">' + (lhbInfo.list_reason || 'N/A') + '</span>' +
+                '</div>' +
+                '<div class="detail-item">' +
+                    '<span class="detail-label">成交额:</span>' +
+                    '<span class="detail-value">' + formatAmount(lhbInfo.amount) + '万元</span>' +
+                '</div>' +
+                '<div class="detail-item">' +
+                    '<span class="detail-label">成交量:</span>' +
+                    '<span class="detail-value">' + formatAmount(lhbInfo.volume) + '万股</span>' +
+                '</div>' +
+            '</div>' +
+            capitalFlowHtml +
+            '<div class="dragon-tiger-actions">' +
+                '<button class="dt-btn primary" onclick="viewDragonTigerDetail(\'' + code + '\')">📖 查看详情</button>' +
+                '<button class="dt-btn" onclick="copyStockData(\'' + code + '\')">📋 复制数据</button>' +
+                '<button class="dt-btn" onclick="exportStockData(\'' + code + '\')">💾 导出</button>' +
+            '</div>' +
+        '</div>';
     }).join('');
     
     container.innerHTML = stocksHtml;
@@ -287,6 +275,38 @@ function filterDragonTigerStocks() {
     });
 }
 
+// 复制龙虎榜数据
+function copyDragonTigerData() {
+    if (!currentDragonTigerData) {
+        showToast('暂无数据可复制', 'error');
+        return;
+    }
+    
+    // 生成表格格式数据
+    const successfulStocks = Object.entries(currentDragonTigerData.details).filter(([code, data]) => 
+        data.status === 'success'
+    );
+    
+    let textData = '股票代码\t股票名称\t市场\t收盘价\t涨跌幅\t上榜原因\t成交额(万元)\t成交量(万股)\t净流入(万元)\n';
+    
+    successfulStocks.forEach(([code, data]) => {
+        const lhbInfo = data.lhb_info || {};
+        const capitalFlow = data.capital_flow || {};
+        
+        textData += code + '\t';
+        textData += data.name + '\t';
+        textData += data.market_name + '\t';
+        textData += (lhbInfo.close_price ? lhbInfo.close_price.toFixed(2) : '0.00') + '\t';
+        textData += (lhbInfo.change_percent ? lhbInfo.change_percent.toFixed(2) : '0.00') + '%\t';
+        textData += (lhbInfo.list_reason || 'N/A') + '\t';
+        textData += formatAmount(lhbInfo.amount) + '\t';
+        textData += formatAmount(lhbInfo.volume) + '\t';
+        textData += formatAmount(capitalFlow.net_inflow || 0) + '\n';
+    });
+    
+    copyToClipboard(textData);
+}
+
 // 查看股票详情
 function viewDragonTigerDetail(stockCode) {
     if (!currentDragonTigerData || !currentDragonTigerData.details[stockCode]) {
@@ -307,7 +327,7 @@ function viewDragonTigerDetail(stockCode) {
         return;
     }
     
-    modalTitle.textContent = `${stockCode} ${stockData.name} - 龙虎榜详情`;
+    modalTitle.textContent = stockCode + ' ' + stockData.name + ' - 龙虎榜详情';
     
     // 生成详情内容
     const detailHtml = generateDetailContent(stockData);
@@ -324,136 +344,72 @@ function generateDetailContent(stockData) {
     const buySeats = stockData.buy_seats || [];
     const sellSeats = stockData.sell_seats || [];
     
-    let html = `
-        <div class="basic-info-section">
-            <h4>📊 基本信息</h4>
-            <div class="basic-info-grid">
-                <div class="info-pair">
-                    <span>交易日期:</span>
-                    <span>${stockData.query_date}</span>
-                </div>
-                <div class="info-pair">
-                    <span>收盘价:</span>
-                    <span>¥${lhbInfo.close_price?.toFixed(2) || '0.00'}</span>
-                </div>
-                <div class="info-pair">
-                    <span>涨跌幅:</span>
-                    <span class="${lhbInfo.change_percent >= 0 ? 'positive' : 'negative'}">
-                        ${lhbInfo.change_percent >= 0 ? '+' : ''}${lhbInfo.change_percent?.toFixed(2) || '0.00'}%
-                    </span>
-                </div>
-                <div class="info-pair">
-                    <span>市场:</span>
-                    <span>${stockData.market_name}</span>
-                </div>
-                <div class="info-pair">
-                    <span>上榜原因:</span>
-                    <span>${lhbInfo.list_reason || 'N/A'}</span>
-                </div>
-                <div class="info-pair">
-                    <span>成交额:</span>
-                    <span>${formatAmount(lhbInfo.amount)}万元</span>
-                </div>
-                <div class="info-pair">
-                    <span>成交量:</span>
-                    <span>${formatAmount(lhbInfo.volume)}万股</span>
-                </div>
-            </div>
-        </div>
-    `;
+    let html = '<div class="basic-info-section">' +
+        '<h4>📊 基本信息</h4>' +
+        '<div class="basic-info-grid">' +
+            '<div class="info-pair"><span>交易日期:</span><span>' + stockData.query_date + '</span></div>' +
+            '<div class="info-pair"><span>收盘价:</span><span>¥' + (lhbInfo.close_price ? lhbInfo.close_price.toFixed(2) : '0.00') + '</span></div>' +
+            '<div class="info-pair"><span>涨跌幅:</span><span class="' + ((lhbInfo.change_percent || 0) >= 0 ? 'positive' : 'negative') + '">' +
+                ((lhbInfo.change_percent || 0) >= 0 ? '+' : '') + (lhbInfo.change_percent ? lhbInfo.change_percent.toFixed(2) : '0.00') + '%</span></div>' +
+            '<div class="info-pair"><span>市场:</span><span>' + stockData.market_name + '</span></div>' +
+            '<div class="info-pair"><span>上榜原因:</span><span>' + (lhbInfo.list_reason || 'N/A') + '</span></div>' +
+            '<div class="info-pair"><span>成交额:</span><span>' + formatAmount(lhbInfo.amount) + '万元</span></div>' +
+            '<div class="info-pair"><span>成交量:</span><span>' + formatAmount(lhbInfo.volume) + '万股</span></div>' +
+        '</div>' +
+    '</div>';
     
     // 资金流向
     if (capitalFlow.net_inflow !== undefined) {
-        html += `
-            <div class="capital-flow-summary">
-                <div class="flow-item">
-                    <span class="flow-label">💹 总买入</span>
-                    <span class="flow-value">${formatAmount(capitalFlow.buy_total)}万元</span>
-                </div>
-                <div class="flow-item">
-                    <span class="flow-label">💸 总卖出</span>
-                    <span class="flow-value">${formatAmount(capitalFlow.sell_total)}万元</span>
-                </div>
-                <div class="flow-item">
-                    <span class="flow-label">📈 净流入</span>
-                    <span class="flow-value ${capitalFlow.net_inflow >= 0 ? 'positive' : 'negative'}">
-                        ${capitalFlow.net_inflow >= 0 ? '+' : ''}${formatAmount(capitalFlow.net_inflow)}万元
-                    </span>
-                </div>
-                <div class="flow-item">
-                    <span class="flow-label">📊 净流入占比</span>
-                    <span class="flow-value">
-                        ${((capitalFlow.net_inflow / lhbInfo.amount) * 100).toFixed(1)}%
-                    </span>
-                </div>
-            </div>
-        `;
+        html += '<div class="capital-flow-summary">' +
+            '<div class="flow-item"><span class="flow-label">💹 总买入</span><span class="flow-value">' + formatAmount(capitalFlow.buy_total) + '万元</span></div>' +
+            '<div class="flow-item"><span class="flow-label">💸 总卖出</span><span class="flow-value">' + formatAmount(capitalFlow.sell_total) + '万元</span></div>' +
+            '<div class="flow-item"><span class="flow-label">📈 净流入</span><span class="flow-value ' + (capitalFlow.net_inflow >= 0 ? 'positive' : 'negative') + '">' +
+                (capitalFlow.net_inflow >= 0 ? '+' : '') + formatAmount(capitalFlow.net_inflow) + '万元</span></div>' +
+            '<div class="flow-item"><span class="flow-label">📊 净流入占比</span><span class="flow-value">' +
+                ((capitalFlow.net_inflow / lhbInfo.amount) * 100).toFixed(1) + '%</span></div>' +
+        '</div>';
     }
     
     // 买入席位
     if (buySeats.length > 0) {
-        html += `
-            <div class="seats-section">
-                <h4>🔴 买入席位 TOP${Math.min(buySeats.length, 5)}</h4>
-                <table class="seats-table">
-                    <thead>
-                        <tr>
-                            <th>排名</th>
-                            <th>营业部名称</th>
-                            <th>买入金额(万元)</th>
-                            <th>占比(%)</th>
-                            <th>标签</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${buySeats.slice(0, 5).map(seat => `
-                            <tr>
-                                <td class="seat-rank">${seat.rank}</td>
-                                <td>${seat.department_name}</td>
-                                <td class="seat-amount">${formatAmount(seat.buy_amount)}</td>
-                                <td class="seat-amount">${seat.amount_ratio}%</td>
-                                <td>
-                                    ${seat.label ? `<span class="seat-label ${getSeatLabelClass(seat.label)}">${seat.label}</span>` : ''}
-                                </td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            </div>
-        `;
+        html += '<div class="seats-section">' +
+            '<h4>🔴 买入席位 TOP' + Math.min(buySeats.length, 5) + '</h4>' +
+            '<table class="seats-table">' +
+                '<thead><tr><th>排名</th><th>营业部名称</th><th>买入金额(万元)</th><th>占比(%)</th><th>标签</th></tr></thead>' +
+                '<tbody>';
+        
+        buySeats.slice(0, 5).forEach(seat => {
+            html += '<tr>' +
+                '<td class="seat-rank">' + seat.rank + '</td>' +
+                '<td>' + seat.department_name + '</td>' +
+                '<td class="seat-amount">' + formatAmount(seat.buy_amount) + '</td>' +
+                '<td class="seat-amount">' + seat.amount_ratio + '%</td>' +
+                '<td>' + (seat.label ? '<span class="seat-label ' + getSeatLabelClass(seat.label) + '">' + seat.label + '</span>' : '') + '</td>' +
+            '</tr>';
+        });
+        
+        html += '</tbody></table></div>';
     }
     
     // 卖出席位
     if (sellSeats.length > 0) {
-        html += `
-            <div class="seats-section">
-                <h4>🟢 卖出席位 TOP${Math.min(sellSeats.length, 5)}</h4>
-                <table class="seats-table">
-                    <thead>
-                        <tr>
-                            <th>排名</th>
-                            <th>营业部名称</th>
-                            <th>卖出金额(万元)</th>
-                            <th>占比(%)</th>
-                            <th>标签</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${sellSeats.slice(0, 5).map(seat => `
-                            <tr>
-                                <td class="seat-rank">${seat.rank}</td>
-                                <td>${seat.department_name}</td>
-                                <td class="seat-amount">${formatAmount(seat.sell_amount)}</td>
-                                <td class="seat-amount">${seat.amount_ratio}%</td>
-                                <td>
-                                    ${seat.label ? `<span class="seat-label ${getSeatLabelClass(seat.label)}">${seat.label}</span>` : ''}
-                                </td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            </div>
-        `;
+        html += '<div class="seats-section">' +
+            '<h4>🟢 卖出席位 TOP' + Math.min(sellSeats.length, 5) + '</h4>' +
+            '<table class="seats-table">' +
+                '<thead><tr><th>排名</th><th>营业部名称</th><th>卖出金额(万元)</th><th>占比(%)</th><th>标签</th></tr></thead>' +
+                '<tbody>';
+        
+        sellSeats.slice(0, 5).forEach(seat => {
+            html += '<tr>' +
+                '<td class="seat-rank">' + seat.rank + '</td>' +
+                '<td>' + seat.department_name + '</td>' +
+                '<td class="seat-amount">' + formatAmount(seat.sell_amount) + '</td>' +
+                '<td class="seat-amount">' + seat.amount_ratio + '%</td>' +
+                '<td>' + (seat.label ? '<span class="seat-label ' + getSeatLabelClass(seat.label) + '">' + seat.label + '</span>' : '') + '</td>' +
+            '</tr>';
+        });
+        
+        html += '</tbody></table></div>';
     }
     
     return html;
@@ -483,16 +439,12 @@ function copyDetailContent(type) {
     }
     
     let content = '';
-    const lhbInfo = currentDetailStock.lhb_info || {};
-    const capitalFlow = currentDetailStock.capital_flow || {};
     
     switch (type) {
         case 'full':
-            // 完整内容
             content = generateDetailTextContent(currentDetailStock);
             break;
         case 'seats':
-            // 只复制席位信息
             content = generateSeatsTextContent(currentDetailStock);
             break;
         default:
@@ -509,67 +461,44 @@ function generateDetailTextContent(stockData) {
     const buySeats = stockData.buy_seats || [];
     const sellSeats = stockData.sell_seats || [];
     
-    let content = `${stockData.code} ${stockData.name} - 龙虎榜详情
-
-`;
-    content += `交易日期: ${stockData.query_date}
-`;
-    content += `收盘价: ¥${lhbInfo.close_price?.toFixed(2) || '0.00'}
-`;
-    content += `涨跌幅: ${lhbInfo.change_percent >= 0 ? '+' : ''}${lhbInfo.change_percent?.toFixed(2) || '0.00'}%
-`;
-    content += `市场: ${stockData.market_name}
-`;
-    content += `上榜原因: ${lhbInfo.list_reason || 'N/A'}
-`;
-    content += `成交额: ${formatAmount(lhbInfo.amount)}万元
-`;
-    content += `成交量: ${formatAmount(lhbInfo.volume)}万股
-
-`;
+    let content = stockData.code + ' ' + stockData.name + ' - 龙虎榜详情\n\n';
+    content += '交易日期: ' + stockData.query_date + '\n';
+    content += '收盘价: ¥' + (lhbInfo.close_price ? lhbInfo.close_price.toFixed(2) : '0.00') + '\n';
+    content += '涨跌幅: ' + ((lhbInfo.change_percent || 0) >= 0 ? '+' : '') + (lhbInfo.change_percent ? lhbInfo.change_percent.toFixed(2) : '0.00') + '%\n';
+    content += '市场: ' + stockData.market_name + '\n';
+    content += '上榜原因: ' + (lhbInfo.list_reason || 'N/A') + '\n';
+    content += '成交额: ' + formatAmount(lhbInfo.amount) + '万元\n';
+    content += '成交量: ' + formatAmount(lhbInfo.volume) + '万股\n\n';
     
     // 资金流向
     if (capitalFlow.net_inflow !== undefined) {
-        content += `=== 资金流向 ===
-`;
-        content += `总买入: ${formatAmount(capitalFlow.buy_total)}万元
-`;
-        content += `总卖出: ${formatAmount(capitalFlow.sell_total)}万元
-`;
-        content += `净流入: ${capitalFlow.net_inflow >= 0 ? '+' : ''}${formatAmount(capitalFlow.net_inflow)}万元
-`;
-        content += `净流入占比: ${((capitalFlow.net_inflow / lhbInfo.amount) * 100).toFixed(1)}%
-
-`;
+        content += '=== 资金流向 ===\n';
+        content += '总买入: ' + formatAmount(capitalFlow.buy_total) + '万元\n';
+        content += '总卖出: ' + formatAmount(capitalFlow.sell_total) + '万元\n';
+        content += '净流入: ' + (capitalFlow.net_inflow >= 0 ? '+' : '') + formatAmount(capitalFlow.net_inflow) + '万元\n';
+        content += '净流入占比: ' + ((capitalFlow.net_inflow / lhbInfo.amount) * 100).toFixed(1) + '%\n\n';
     }
     
     // 买入席位
     if (buySeats.length > 0) {
-        content += `=== 买入席位 TOP5 ===
-`;
+        content += '=== 买入席位 TOP5 ===\n';
         buySeats.slice(0, 5).forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}
-`;
-            content += `   买入: ${formatAmount(seat.buy_amount)}万元  占比: ${seat.amount_ratio}%`;
-            if (seat.label) content += `  ${seat.label}`;
-            content += `
-`;
+            content += (index + 1) + '. ' + seat.department_name + '\n';
+            content += '   买入: ' + formatAmount(seat.buy_amount) + '万元  占比: ' + seat.amount_ratio + '%';
+            if (seat.label) content += '  ' + seat.label;
+            content += '\n';
         });
-        content += `
-`;
+        content += '\n';
     }
     
     // 卖出席位
     if (sellSeats.length > 0) {
-        content += `=== 卖出席位 TOP5 ===
-`;
+        content += '=== 卖出席位 TOP5 ===\n';
         sellSeats.slice(0, 5).forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}
-`;
-            content += `   卖出: ${formatAmount(seat.sell_amount)}万元  占比: ${seat.amount_ratio}%`;
-            if (seat.label) content += `  ${seat.label}`;
-            content += `
-`;
+            content += (index + 1) + '. ' + seat.department_name + '\n';
+            content += '   卖出: ' + formatAmount(seat.sell_amount) + '万元  占比: ' + seat.amount_ratio + '%';
+            if (seat.label) content += '  ' + seat.label;
+            content += '\n';
         });
     }
     
@@ -581,31 +510,24 @@ function generateSeatsTextContent(stockData) {
     const buySeats = stockData.buy_seats || [];
     const sellSeats = stockData.sell_seats || [];
     
-    let content = `${stockData.code} ${stockData.name} - 席位信息
-
-`;
+    let content = stockData.code + ' ' + stockData.name + ' - 席位信息\n\n';
     
     if (buySeats.length > 0) {
-        content += `买入席位:
-`;
+        content += '买入席位:\n';
         buySeats.forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}	${formatAmount(seat.buy_amount)}万元	${seat.amount_ratio}%`;
-            if (seat.label) content += `	${seat.label}`;
-            content += `
-`;
+            content += (index + 1) + '. ' + seat.department_name + '\t' + formatAmount(seat.buy_amount) + '万元\t' + seat.amount_ratio + '%';
+            if (seat.label) content += '\t' + seat.label;
+            content += '\n';
         });
-        content += `
-`;
+        content += '\n';
     }
     
     if (sellSeats.length > 0) {
-        content += `卖出席位:
-`;
+        content += '卖出席位:\n';
         sellSeats.forEach((seat, index) => {
-            content += `${index + 1}. ${seat.department_name}	${formatAmount(seat.sell_amount)}万元	${seat.amount_ratio}%`;
-            if (seat.label) content += `	${seat.label}`;
-            content += `
-`;
+            content += (index + 1) + '. ' + seat.department_name + '\t' + formatAmount(seat.sell_amount) + '万元\t' + seat.amount_ratio + '%';
+            if (seat.label) content += '\t' + seat.label;
+            content += '\n';
         });
     }
     
@@ -624,7 +546,7 @@ function downloadDetail() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `龙虎榜详情_${currentDetailStock.code}_${currentDetailStock.name}_${currentDetailStock.query_date}.txt`;
+    link.download = '龙虎榜详情_' + currentDetailStock.code + '_' + currentDetailStock.name + '_' + currentDetailStock.query_date + '.txt';
     link.click();
     URL.revokeObjectURL(url);
     showToast('详情下载中...');
@@ -656,44 +578,10 @@ function exportStockData(stockCode) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `龙虎榜_${stockCode}_${stockData.name}_${stockData.query_date}.txt`;
+    link.download = '龙虎榜_' + stockCode + '_' + stockData.name + '_' + stockData.query_date + '.txt';
     link.click();
     URL.revokeObjectURL(url);
     showToast('数据导出中...');
-}
-
-// 复制龙虎榜数据
-function copyDragonTigerData() {
-    if (!currentDragonTigerData) {
-        showToast('暂无数据可复制', 'error');
-        return;
-    }
-    
-    // 生成表格格式数据
-    const successfulStocks = Object.entries(currentDragonTigerData.details).filter(([code, data]) => 
-        data.status === 'success'
-    );
-    
-    let textData = '股票代码	股票名称	市场	收盘价	涨跌幅	上榜原因	成交额(万元)	成交量(万股)	净流入(万元)
-';
-    
-    successfulStocks.forEach(([code, data]) => {
-        const lhbInfo = data.lhb_info || {};
-        const capitalFlow = data.capital_flow || {};
-        
-        textData += `${code}	`;
-        textData += `${data.name}	`;
-        textData += `${data.market_name}	`;
-        textData += `${lhbInfo.close_price?.toFixed(2) || '0.00'}	`;
-        textData += `${lhbInfo.change_percent?.toFixed(2) || '0.00'}%	`;
-        textData += `${lhbInfo.list_reason || 'N/A'}	`;
-        textData += `${formatAmount(lhbInfo.amount)}	`;
-        textData += `${formatAmount(lhbInfo.volume)}	`;
-        textData += `${formatAmount(capitalFlow.net_inflow || 0)}
-`;
-    });
-    
-    copyToClipboard(textData);
 }
 
 // 查看JSON数据
@@ -706,53 +594,10 @@ function viewDragonTigerJsonData() {
     
     const date = dateFilter.value;
     if (date) {
-        window.open(`json_viewer.html?type=dragon_tiger&date=${date}`, '_blank');
+        window.open('json_viewer.html?type=dragon_tiger&date=' + date, '_blank');
     } else {
         showToast('请先选择日期', 'error');
     }
-}
-
-// 导出Excel格式数据
-function exportDragonTigerToExcel() {
-    if (!currentDragonTigerData) {
-        showToast('暂无数据可导出', 'error');
-        return;
-    }
-    
-    const successfulStocks = Object.entries(currentDragonTigerData.details).filter(([code, data]) => 
-        data.status === 'success'
-    );
-    
-    let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "股票代码,股票名称,市场,收盘价,涨跌幅,上榜原因,成交额(万元),成交量(万股),净流入(万元),买入席位数,卖出席位数
-";
-    
-    successfulStocks.forEach(([code, data]) => {
-        const lhbInfo = data.lhb_info || {};
-        const capitalFlow = data.capital_flow || {};
-        const buySeats = data.buy_seats || [];
-        const sellSeats = data.sell_seats || [];
-        
-        csvContent += `"${code}","${data.name}","${data.market_name}",`;
-        csvContent += `"${lhbInfo.close_price?.toFixed(2) || '0.00'}",`;
-        csvContent += `"${lhbInfo.change_percent?.toFixed(2) || '0.00'}%",`;
-        csvContent += `"${lhbInfo.list_reason || 'N/A'}",`;
-        csvContent += `"${formatAmount(lhbInfo.amount)}",`;
-        csvContent += `"${formatAmount(lhbInfo.volume)}",`;
-        csvContent += `"${formatAmount(capitalFlow.net_inflow || 0)}",`;
-        csvContent += `"${buySeats.length}","${sellSeats.length}"
-`;
-    });
-    
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `龙虎榜数据_${currentDragonTigerData.date}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    showToast('数据导出成功！');
 }
 
 // 模态框外部点击关闭
@@ -770,126 +615,3 @@ document.addEventListener('keydown', (e) => {
         closeDetailModal();
     }
 });
-
-// 获取龙虎榜统计信息
-function getDragonTigerStats() {
-    if (!currentDragonTigerData) return null;
-    
-    const successfulStocks = Object.entries(currentDragonTigerData.details).filter(([code, data]) => 
-        data.status === 'success'
-    );
-    
-    let totalNetInflow = 0;
-    let positiveFlowCount = 0;
-    let negativeFlowCount = 0;
-    const departmentCounts = {};
-    const reasonCounts = {};
-    
-    successfulStocks.forEach(([code, data]) => {
-        const capitalFlow = data.capital_flow || {};
-        const lhbInfo = data.lhb_info || {};
-        const buySeats = data.buy_seats || [];
-        const sellSeats = data.sell_seats || [];
-        
-        // 资金流向统计
-        if (capitalFlow.net_inflow !== undefined) {
-            totalNetInflow += capitalFlow.net_inflow;
-            if (capitalFlow.net_inflow > 0) {
-                positiveFlowCount++;
-            } else if (capitalFlow.net_inflow < 0) {
-                negativeFlowCount++;
-            }
-        }
-        
-        // 营业部统计
-        [...buySeats, ...sellSeats].forEach(seat => {
-            const dept = seat.department_name;
-            departmentCounts[dept] = (departmentCounts[dept] || 0) + 1;
-        });
-        
-        // 上榜原因统计
-        const reason = lhbInfo.list_reason;
-        if (reason) {
-            reasonCounts[reason] = (reasonCounts[reason] || 0) + 1;
-        }
-    });
-    
-    // 排序
-    const topDepartments = Object.entries(departmentCounts)
-        .sort(([,a], [,b]) => b - a)
-        .slice(0, 10);
-    
-    const topReasons = Object.entries(reasonCounts)
-        .sort(([,a], [,b]) => b - a)
-        .slice(0, 5);
-    
-    return {
-        totalStocks: successfulStocks.length,
-        totalNetInflow: totalNetInflow,
-        positiveFlowCount: positiveFlowCount,
-        negativeFlowCount: negativeFlowCount,
-        topDepartments: topDepartments,
-        topReasons: topReasons,
-        successRate: (currentDragonTigerData.statistics.success_count / currentDragonTigerData.total_count * 100).toFixed(1)
-    };
-}
-
-// 显示统计信息
-function showDragonTigerStats() {
-    const stats = getDragonTigerStats();
-    if (!stats) {
-        showToast('暂无统计数据', 'error');
-        return;
-    }
-    
-    const statsContent = `
-        <div style="padding: 20px;">
-            <h3>📊 龙虎榜统计</h3>
-            <div style="margin: 20px 0;">
-                <p><strong>成功查询股票:</strong> ${stats.totalStocks} 只</p>
-                <p><strong>查询成功率:</strong> ${stats.successRate}%</p>
-                <p><strong>总净流入:</strong> ${formatAmount(stats.totalNetInflow)}万元</p>
-                <p><strong>净流入股票:</strong> ${stats.positiveFlowCount} 只</p>
-                <p><strong>净流出股票:</strong> ${stats.negativeFlowCount} 只</p>
-            </div>
-            <h4>🏦 活跃营业部 TOP5:</h4>
-            <div style="margin: 10px 0;">
-                ${stats.topDepartments.slice(0, 5).map(([dept, count]) => 
-                    `<p><strong>${dept}:</strong> ${count} 次</p>`
-                ).join('')}
-            </div>
-            <h4>📋 上榜原因分布:</h4>
-            <div style="margin: 10px 0;">
-                ${stats.topReasons.map(([reason, count]) => 
-                    `<p><strong>${reason}:</strong> ${count} 只</p>`
-                ).join('')}
-            </div>
-            <p style="color: #999; font-size: 0.9rem; margin-top: 20px;">
-                数据更新时间: ${currentDragonTigerData.update_time}
-            </p>
-        </div>
-    `;
-    
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.style.display = 'block';
-    modal.innerHTML = `
-        <div class="modal-content" style="max-width: 500px;">
-            <div class="modal-header">
-                <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
-                <h2>统计信息</h2>
-            </div>
-            <div class="modal-body">
-                ${statsContent}
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    });
-}
