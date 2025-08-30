@@ -5763,6 +5763,9 @@ def main():
             for key, info in JIUYAN_USERS.items():
                 print(f"  {key} - {info['user_name']}")
 
+if __name__ == "__main__":
+    main()
+
 
 
 
