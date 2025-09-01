@@ -41,9 +41,9 @@
   },
   "2025-09-01": {
     "date": "2025-09-01",
-    "update_time": "2025-09-01 09:57:13",
-    "category_count": 0,
-    "total_stocks": 0,
+    "update_time": "2025-09-01 16:28:57",
+    "category_count": 15,
+    "total_stocks": 133,
     "files": {
       "json": "analysis/2025-09-01.json",
       "txt": "analysis/2025-09-01.txt"
