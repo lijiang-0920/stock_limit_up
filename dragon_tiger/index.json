@@ -9,5 +9,16 @@
       "json": "dragon_tiger/2025-08-29.json",
       "txt": "dragon_tiger/2025-08-29.txt"
     }
+  },
+  "2025-09-01": {
+    "date": "2025-09-01",
+    "update_time": "2025-09-01 18:19:28",
+    "total_count": 71,
+    "success_count": 71,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-09-01.json",
+      "txt": "dragon_tiger/2025-09-01.txt"
+    }
   }
 }
