@@ -23,10 +23,10 @@
   },
   "2025-09-02": {
     "date": "2025-09-02",
-    "update_time": "2025-09-02 18:18:40",
+    "update_time": "2025-09-03 08:29:40",
     "total_count": 74,
-    "success_count": 73,
-    "success_rate": 98.6,
+    "success_count": 74,
+    "success_rate": 100.0,
     "files": {
       "json": "dragon_tiger/2025-09-02.json",
       "txt": "dragon_tiger/2025-09-02.txt"

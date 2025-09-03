@@ -1,6 +1,6 @@
 {
   "date": "2025-09-02",
-  "update_time": "2025-09-02 18:18:40",
+  "update_time": "2025-09-03 08:29:40",
   "total_count": 74,
   "overview": {
     "trading_date": "2025-09-02",
@@ -729,134 +729,6 @@
       "overview_change_percent": 9.976247,
       "overview_close_price": 18.52
     },
-    "600107": {
-      "code": "600107",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070072",
-        "list_reason": "ST、*ST证券连续三个交易日内收盘价格涨幅偏离值累计达到12%的证券",
-        "volume": 2232.5176,
-        "amount": 13616.87,
-        "close_price": 6.6,
-        "change_percent": 4.93
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "长城证券股份有限公司北京小营路证券营业部",
-          "buy_amount": 438.449,
-          "sell_amount": 0,
-          "net_amount": 438.449,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 3.22
-        },
-        {
-          "rank": 2,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 400.5813,
-          "sell_amount": 0,
-          "net_amount": 400.5813,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 2.94
-        },
-        {
-          "rank": 3,
-          "department_name": "国投证券股份有限公司深圳宝安海秀路证券营业部",
-          "buy_amount": 375.0441,
-          "sell_amount": 0,
-          "net_amount": 375.0441,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 2.75
-        },
-        {
-          "rank": 4,
-          "department_name": "中国银河证券股份有限公司北京安贞门证券营业部",
-          "buy_amount": 338.8209,
-          "sell_amount": 0,
-          "net_amount": 338.8209,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 2.49
-        },
-        {
-          "rank": 5,
-          "department_name": "国信证券股份有限公司深圳泰然九路证券营业部",
-          "buy_amount": 325.9646,
-          "sell_amount": 0,
-          "net_amount": 325.9646,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 2.39
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 0,
-          "sell_amount": 572.40608,
-          "net_amount": -572.40608,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 4.2
-        },
-        {
-          "rank": 2,
-          "department_name": "渤海证券股份有限公司天津奉化道证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 339.812,
-          "net_amount": -339.812,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 2.5
-        },
-        {
-          "rank": 3,
-          "department_name": "华福证券有限责任公司泉州丰泽街证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 301.4425,
-          "net_amount": -301.4425,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 2.21
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 258.1503,
-          "net_amount": -258.1503,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 1.9
-        },
-        {
-          "rank": 5,
-          "department_name": "中国银河证券股份有限公司北京安贞门证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 247.6266,
-          "net_amount": -247.6266,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.82
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 1878.8599,
-        "sell_total": 1719.43748,
-        "net_inflow": 159.42241999999987,
-        "buy_ratio": 13.8,
-        "sell_ratio": 12.63
-      },
-      "name": "ST尔雅",
-      "market_name": "沪市主板",
-      "overview_change_percent": 4.9284579,
-      "overview_close_price": 6.6
-    },
     "600246": {
       "code": "600246",
       "query_date": "2025-09-02",
@@ -1241,68 +1113,196 @@
       "overview_change_percent": 4.9808429,
       "overview_close_price": 5.48
     },
-    "601069": {
-      "code": "601069",
+    "600107": {
+      "code": "600107",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070005",
-        "list_reason": "连续三个交易日内涨幅偏离值累计达20%的证券",
-        "volume": 7025.6903,
-        "amount": 161811.24,
-        "close_price": 24.1,
-        "change_percent": 10.0
+        "list_code": "070072",
+        "list_reason": "ST、*ST证券连续三个交易日内收盘价格涨幅偏离值累计达到12%的证券",
+        "volume": 2232.5176,
+        "amount": 13616.87,
+        "close_price": 6.6,
+        "change_percent": 4.93
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "广发证券股份有限公司深圳广电金融中心证券营业部",
-          "buy_amount": 9443.75049,
+          "department_name": "长城证券股份有限公司北京小营路证券营业部",
+          "buy_amount": 438.449,
           "sell_amount": 0,
-          "net_amount": 9443.75049,
+          "net_amount": 438.449,
           "direction": "B",
           "label": "",
-          "amount_ratio": 5.84
+          "amount_ratio": 3.22
         },
         {
           "rank": 2,
-          "department_name": "沪股通专用",
-          "buy_amount": 7666.7557,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 400.5813,
           "sell_amount": 0,
-          "net_amount": 7666.7557,
+          "net_amount": 400.5813,
           "direction": "B",
-          "label": "沪股通专用",
-          "amount_ratio": 4.74
+          "label": "量化基金",
+          "amount_ratio": 2.94
         },
         {
           "rank": 3,
-          "department_name": "中国中金财富证券有限公司成都东御街证券营业部",
-          "buy_amount": 7297.305,
+          "department_name": "国投证券股份有限公司深圳宝安海秀路证券营业部",
+          "buy_amount": 375.0441,
           "sell_amount": 0,
-          "net_amount": 7297.305,
+          "net_amount": 375.0441,
           "direction": "B",
           "label": "",
-          "amount_ratio": 4.51
+          "amount_ratio": 2.75
         },
         {
           "rank": 4,
-          "department_name": "东方财富证券股份有限公司上海东方路证券营业部",
-          "buy_amount": 3342.7594,
+          "department_name": "中国银河证券股份有限公司北京安贞门证券营业部",
+          "buy_amount": 338.8209,
           "sell_amount": 0,
-          "net_amount": 3342.7594,
+          "net_amount": 338.8209,
           "direction": "B",
           "label": "",
-          "amount_ratio": 2.07
+          "amount_ratio": 2.49
         },
         {
           "rank": 5,
-          "department_name": "东北证券股份有限公司佛山分公司",
-          "buy_amount": 2581.9632,
+          "department_name": "国信证券股份有限公司深圳泰然九路证券营业部",
+          "buy_amount": 325.9646,
           "sell_amount": 0,
-          "net_amount": 2581.9632,
+          "net_amount": 325.9646,
           "direction": "B",
           "label": "",
-          "amount_ratio": 1.6
+          "amount_ratio": 2.39
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 572.40608,
+          "net_amount": -572.40608,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 4.2
+        },
+        {
+          "rank": 2,
+          "department_name": "渤海证券股份有限公司天津奉化道证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 339.812,
+          "net_amount": -339.812,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 2.5
+        },
+        {
+          "rank": 3,
+          "department_name": "华福证券有限责任公司泉州丰泽街证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 301.4425,
+          "net_amount": -301.4425,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 2.21
+        },
+        {
+          "rank": 4,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 258.1503,
+          "net_amount": -258.1503,
+          "direction": "S",
+          "label": "T王",
+          "amount_ratio": 1.9
+        },
+        {
+          "rank": 5,
+          "department_name": "中国银河证券股份有限公司北京安贞门证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 247.6266,
+          "net_amount": -247.6266,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.82
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 1878.8599,
+        "sell_total": 1719.43748,
+        "net_inflow": 159.42241999999987,
+        "buy_ratio": 13.8,
+        "sell_ratio": 12.63
+      },
+      "name": "ST尔雅",
+      "market_name": "沪市主板",
+      "overview_change_percent": 4.9284579,
+      "overview_close_price": 6.6
+    },
+    "600580": {
+      "code": "600580",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070003",
+        "list_reason": "振幅值达15%的证券",
+        "volume": 29380.027,
+        "amount": 979676.65,
+        "close_price": 34.44,
+        "change_percent": 1.2
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "沪股通专用",
+          "buy_amount": 22369.863085,
+          "sell_amount": 0,
+          "net_amount": 22369.863085,
+          "direction": "B",
+          "label": "沪股通专用",
+          "amount_ratio": 2.28
+        },
+        {
+          "rank": 2,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "buy_amount": 9830.723624,
+          "sell_amount": 0,
+          "net_amount": 9830.723624,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 1.0
+        },
+        {
+          "rank": 3,
+          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "buy_amount": 8525.576492,
+          "sell_amount": 0,
+          "net_amount": 8525.576492,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.87
+        },
+        {
+          "rank": 4,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
+          "buy_amount": 7792.620674,
+          "sell_amount": 0,
+          "net_amount": 7792.620674,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.8
+        },
+        {
+          "rank": 5,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 7631.97566,
+          "sell_amount": 0,
+          "net_amount": 7631.97566,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.78
         }
       ],
       "sell_seats": [
@@ -1310,64 +1310,64 @@
           "rank": 1,
           "department_name": "沪股通专用",
           "buy_amount": 0,
-          "sell_amount": 6858.17967,
-          "net_amount": -6858.17967,
+          "sell_amount": 43260.439153,
+          "net_amount": -43260.439153,
           "direction": "S",
           "label": "沪股通专用",
-          "amount_ratio": 4.24
+          "amount_ratio": 4.42
         },
         {
           "rank": 2,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 2522.6042,
-          "net_amount": -2522.6042,
+          "sell_amount": 19339.151776,
+          "net_amount": -19339.151776,
           "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 1.56
+          "label": "量化基金",
+          "amount_ratio": 1.97
         },
         {
           "rank": 3,
-          "department_name": "东方财富证券股份有限公司上海东方路证券营业部",
+          "department_name": "中信证券股份有限公司上海分公司",
           "buy_amount": 0,
-          "sell_amount": 2340.7084,
-          "net_amount": -2340.7084,
+          "sell_amount": 18711.617945,
+          "net_amount": -18711.617945,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.45
+          "label": "量化基金",
+          "amount_ratio": 1.91
         },
         {
           "rank": 4,
-          "department_name": "国泰海通证券股份有限公司总部",
+          "department_name": "中国国际金融股份有限公司北京建国门外大街证券营业部",
           "buy_amount": 0,
-          "sell_amount": 1464.3698,
-          "net_amount": -1464.3698,
+          "sell_amount": 13656.769444,
+          "net_amount": -13656.769444,
           "direction": "S",
           "label": "量化基金",
-          "amount_ratio": 0.9
+          "amount_ratio": 1.39
         },
         {
           "rank": 5,
-          "department_name": "中国中金财富证券有限公司成都东御街证券营业部",
+          "department_name": "招商证券股份有限公司深圳招商证券大厦证券营业部",
           "buy_amount": 0,
-          "sell_amount": 1446.0,
-          "net_amount": -1446.0,
+          "sell_amount": 10576.888571,
+          "net_amount": -10576.888571,
           "direction": "S",
           "label": "",
-          "amount_ratio": 0.89
+          "amount_ratio": 1.08
         }
       ],
       "capital_flow": {
-        "buy_total": 30332.53379,
-        "sell_total": 14631.862070000001,
-        "net_inflow": 15700.67172,
-        "buy_ratio": 18.75,
-        "sell_ratio": 9.04
+        "buy_total": 56150.759535000005,
+        "sell_total": 105544.86688900001,
+        "net_inflow": -49394.10735400001,
+        "buy_ratio": 5.73,
+        "sell_ratio": 10.77
       },
-      "name": "西部黄金",
+      "name": "卧龙电驱",
       "market_name": "沪市主板",
-      "overview_change_percent": 9.9954359,
-      "overview_close_price": 24.1
+      "overview_change_percent": 1.2048193,
+      "overview_close_price": 34.44
     },
     "601208": {
       "code": "601208",
@@ -1496,6 +1496,262 @@
       "market_name": "沪市主板",
       "overview_change_percent": -9.7996751,
       "overview_close_price": 16.66
+    },
+    "601069": {
+      "code": "601069",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070005",
+        "list_reason": "连续三个交易日内涨幅偏离值累计达20%的证券",
+        "volume": 7025.6903,
+        "amount": 161811.24,
+        "close_price": 24.1,
+        "change_percent": 10.0
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "广发证券股份有限公司深圳广电金融中心证券营业部",
+          "buy_amount": 9443.75049,
+          "sell_amount": 0,
+          "net_amount": 9443.75049,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 5.84
+        },
+        {
+          "rank": 2,
+          "department_name": "沪股通专用",
+          "buy_amount": 7666.7557,
+          "sell_amount": 0,
+          "net_amount": 7666.7557,
+          "direction": "B",
+          "label": "沪股通专用",
+          "amount_ratio": 4.74
+        },
+        {
+          "rank": 3,
+          "department_name": "中国中金财富证券有限公司成都东御街证券营业部",
+          "buy_amount": 7297.305,
+          "sell_amount": 0,
+          "net_amount": 7297.305,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 4.51
+        },
+        {
+          "rank": 4,
+          "department_name": "东方财富证券股份有限公司上海东方路证券营业部",
+          "buy_amount": 3342.7594,
+          "sell_amount": 0,
+          "net_amount": 3342.7594,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 2.07
+        },
+        {
+          "rank": 5,
+          "department_name": "东北证券股份有限公司佛山分公司",
+          "buy_amount": 2581.9632,
+          "sell_amount": 0,
+          "net_amount": 2581.9632,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.6
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "沪股通专用",
+          "buy_amount": 0,
+          "sell_amount": 6858.17967,
+          "net_amount": -6858.17967,
+          "direction": "S",
+          "label": "沪股通专用",
+          "amount_ratio": 4.24
+        },
+        {
+          "rank": 2,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2522.6042,
+          "net_amount": -2522.6042,
+          "direction": "S",
+          "label": "量化打板",
+          "amount_ratio": 1.56
+        },
+        {
+          "rank": 3,
+          "department_name": "东方财富证券股份有限公司上海东方路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2340.7084,
+          "net_amount": -2340.7084,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.45
+        },
+        {
+          "rank": 4,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 1464.3698,
+          "net_amount": -1464.3698,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 0.9
+        },
+        {
+          "rank": 5,
+          "department_name": "中国中金财富证券有限公司成都东御街证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1446.0,
+          "net_amount": -1446.0,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 0.89
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 30332.53379,
+        "sell_total": 14631.862070000001,
+        "net_inflow": 15700.67172,
+        "buy_ratio": 18.75,
+        "sell_ratio": 9.04
+      },
+      "name": "西部黄金",
+      "market_name": "沪市主板",
+      "overview_change_percent": 9.9954359,
+      "overview_close_price": 24.1
+    },
+    "600653": {
+      "code": "600653",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070001",
+        "list_reason": "涨幅偏离值达7%的证券",
+        "volume": 13670.6401,
+        "amount": 29565.37,
+        "close_price": 2.19,
+        "change_percent": 10.05
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 2052.9936,
+          "sell_amount": 0,
+          "net_amount": 2052.9936,
+          "direction": "B",
+          "label": "量化打板",
+          "amount_ratio": 6.94
+        },
+        {
+          "rank": 2,
+          "department_name": "中信证券股份有限公司杭州凤起路证券营业部",
+          "buy_amount": 1843.02538,
+          "sell_amount": 0,
+          "net_amount": 1843.02538,
+          "direction": "B",
+          "label": "N周二",
+          "amount_ratio": 6.23
+        },
+        {
+          "rank": 3,
+          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
+          "buy_amount": 994.9827,
+          "sell_amount": 0,
+          "net_amount": 994.9827,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 3.37
+        },
+        {
+          "rank": 4,
+          "department_name": "华鑫证券有限责任公司上海莲花路证券营业部",
+          "buy_amount": 993.9972,
+          "sell_amount": 0,
+          "net_amount": 993.9972,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 3.36
+        },
+        {
+          "rank": 5,
+          "department_name": "国新证券股份有限公司北京中关村大街证券营业部",
+          "buy_amount": 865.922496,
+          "sell_amount": 0,
+          "net_amount": 865.922496,
+          "direction": "B",
+          "label": "量化打板",
+          "amount_ratio": 2.93
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 634.56042,
+          "net_amount": -634.56042,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.15
+        },
+        {
+          "rank": 2,
+          "department_name": "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 616.2017,
+          "net_amount": -616.2017,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 2.08
+        },
+        {
+          "rank": 3,
+          "department_name": "浙商证券股份有限公司乐清千帆东路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 560.4561,
+          "net_amount": -560.4561,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.9
+        },
+        {
+          "rank": 4,
+          "department_name": "中信证券股份有限公司上海分公司",
+          "buy_amount": 0,
+          "sell_amount": 524.7078,
+          "net_amount": -524.7078,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 1.77
+        },
+        {
+          "rank": 5,
+          "department_name": "申万宏源证券有限公司上海闵行区莘松路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 513.5497,
+          "net_amount": -513.5497,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.74
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 6750.921375999999,
+        "sell_total": 2849.47572,
+        "net_inflow": 3901.4456559999994,
+        "buy_ratio": 22.83,
+        "sell_ratio": 9.64
+      },
+      "name": "申华控股",
+      "market_name": "沪市主板",
+      "overview_change_percent": 10.0502513,
+      "overview_close_price": 2.19
     },
     "601212": {
       "code": "601212",
@@ -1725,389 +1981,133 @@
       "overview_change_percent": 10.0775194,
       "overview_close_price": 4.26
     },
-    "600580": {
-      "code": "600580",
+    "601869": {
+      "code": "601869",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070003",
-        "list_reason": "振幅值达15%的证券",
-        "volume": 29380.027,
-        "amount": 979676.65,
-        "close_price": 34.44,
-        "change_percent": 1.2
+        "list_code": "070002",
+        "list_reason": "跌幅偏离值达7%的证券",
+        "volume": 2788.9542,
+        "amount": 244642.36,
+        "close_price": 82.78,
+        "change_percent": -10.0
       },
       "buy_seats": [
         {
           "rank": 1,
           "department_name": "沪股通专用",
-          "buy_amount": 22369.863085,
+          "buy_amount": 12839.392222,
           "sell_amount": 0,
-          "net_amount": 22369.863085,
+          "net_amount": 12839.392222,
           "direction": "B",
           "label": "沪股通专用",
-          "amount_ratio": 2.28
+          "amount_ratio": 5.25
         },
         {
           "rank": 2,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
-          "buy_amount": 9830.723624,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 5990.305504,
           "sell_amount": 0,
-          "net_amount": 9830.723624,
+          "net_amount": 5990.305504,
           "direction": "B",
-          "label": "T王",
-          "amount_ratio": 1.0
+          "label": "量化基金",
+          "amount_ratio": 2.45
         },
         {
           "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "buy_amount": 8525.576492,
+          "department_name": "国投证券股份有限公司青岛东海西路证券营业部",
+          "buy_amount": 4743.467,
           "sell_amount": 0,
-          "net_amount": 8525.576492,
+          "net_amount": 4743.467,
           "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.87
+          "label": "",
+          "amount_ratio": 1.94
         },
         {
           "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
-          "buy_amount": 7792.620674,
+          "department_name": "光大证券股份有限公司上海淮海中路证券营业部",
+          "buy_amount": 4511.762143,
           "sell_amount": 0,
-          "net_amount": 7792.620674,
+          "net_amount": 4511.762143,
           "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.8
+          "label": "",
+          "amount_ratio": 1.84
         },
         {
           "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 7631.97566,
+          "department_name": "中国国际金融股份有限公司上海分公司",
+          "buy_amount": 4487.340178,
           "sell_amount": 0,
-          "net_amount": 7631.97566,
+          "net_amount": 4487.340178,
           "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.78
+          "label": "量化基金",
+          "amount_ratio": 1.83
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
+          "department_name": "中信建投证券股份有限公司深圳中信国际大厦证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 26285.310159,
+          "net_amount": -26285.310159,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 10.74
+        },
+        {
+          "rank": 2,
           "department_name": "沪股通专用",
           "buy_amount": 0,
-          "sell_amount": 43260.439153,
-          "net_amount": -43260.439153,
+          "sell_amount": 15400.612728,
+          "net_amount": -15400.612728,
           "direction": "S",
           "label": "沪股通专用",
-          "amount_ratio": 4.42
-        },
-        {
-          "rank": 2,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 19339.151776,
-          "net_amount": -19339.151776,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.97
+          "amount_ratio": 6.3
         },
         {
           "rank": 3,
-          "department_name": "中信证券股份有限公司上海分公司",
+          "department_name": "机构专用",
           "buy_amount": 0,
-          "sell_amount": 18711.617945,
-          "net_amount": -18711.617945,
+          "sell_amount": 4450.903976,
+          "net_amount": -4450.903976,
           "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.91
+          "label": "机构专用",
+          "amount_ratio": 1.82
         },
         {
           "rank": 4,
-          "department_name": "中国国际金融股份有限公司北京建国门外大街证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 13656.769444,
-          "net_amount": -13656.769444,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.39
-        },
-        {
-          "rank": 5,
-          "department_name": "招商证券股份有限公司深圳招商证券大厦证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 10576.888571,
-          "net_amount": -10576.888571,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.08
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 56150.759535000005,
-        "sell_total": 105544.86688900001,
-        "net_inflow": -49394.10735400001,
-        "buy_ratio": 5.73,
-        "sell_ratio": 10.77
-      },
-      "name": "卧龙电驱",
-      "market_name": "沪市主板",
-      "overview_change_percent": 1.2048193,
-      "overview_close_price": 34.44
-    },
-    "600653": {
-      "code": "600653",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070001",
-        "list_reason": "涨幅偏离值达7%的证券",
-        "volume": 13670.6401,
-        "amount": 29565.37,
-        "close_price": 2.19,
-        "change_percent": 10.05
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 2052.9936,
-          "sell_amount": 0,
-          "net_amount": 2052.9936,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 6.94
-        },
-        {
-          "rank": 2,
-          "department_name": "中信证券股份有限公司杭州凤起路证券营业部",
-          "buy_amount": 1843.02538,
-          "sell_amount": 0,
-          "net_amount": 1843.02538,
-          "direction": "B",
-          "label": "N周二",
-          "amount_ratio": 6.23
-        },
-        {
-          "rank": 3,
-          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
-          "buy_amount": 994.9827,
-          "sell_amount": 0,
-          "net_amount": 994.9827,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 3.37
-        },
-        {
-          "rank": 4,
-          "department_name": "华鑫证券有限责任公司上海莲花路证券营业部",
-          "buy_amount": 993.9972,
-          "sell_amount": 0,
-          "net_amount": 993.9972,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 3.36
-        },
-        {
-          "rank": 5,
-          "department_name": "国新证券股份有限公司北京中关村大街证券营业部",
-          "buy_amount": 865.922496,
-          "sell_amount": 0,
-          "net_amount": 865.922496,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 2.93
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
           "department_name": "国泰海通证券股份有限公司总部",
           "buy_amount": 0,
-          "sell_amount": 634.56042,
-          "net_amount": -634.56042,
+          "sell_amount": 4025.2607,
+          "net_amount": -4025.2607,
           "direction": "S",
           "label": "量化基金",
-          "amount_ratio": 2.15
-        },
-        {
-          "rank": 2,
-          "department_name": "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 616.2017,
-          "net_amount": -616.2017,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 2.08
-        },
-        {
-          "rank": 3,
-          "department_name": "浙商证券股份有限公司乐清千帆东路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 560.4561,
-          "net_amount": -560.4561,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.9
-        },
-        {
-          "rank": 4,
-          "department_name": "中信证券股份有限公司上海分公司",
-          "buy_amount": 0,
-          "sell_amount": 524.7078,
-          "net_amount": -524.7078,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.77
+          "amount_ratio": 1.65
         },
         {
           "rank": 5,
-          "department_name": "申万宏源证券有限公司上海闵行区莘松路证券营业部",
+          "department_name": "海通证券股份有限公司深圳南山智谷证券营业部",
           "buy_amount": 0,
-          "sell_amount": 513.5497,
-          "net_amount": -513.5497,
+          "sell_amount": 3217.6867,
+          "net_amount": -3217.6867,
           "direction": "S",
           "label": "",
-          "amount_ratio": 1.74
+          "amount_ratio": 1.32
         }
       ],
       "capital_flow": {
-        "buy_total": 6750.921375999999,
-        "sell_total": 2849.47572,
-        "net_inflow": 3901.4456559999994,
-        "buy_ratio": 22.83,
-        "sell_ratio": 9.64
+        "buy_total": 32572.267047,
+        "sell_total": 53379.774263,
+        "net_inflow": -20807.507215999998,
+        "buy_ratio": 13.31,
+        "sell_ratio": 21.82
       },
-      "name": "申华控股",
+      "name": "长飞光纤",
       "market_name": "沪市主板",
-      "overview_change_percent": 10.0502513,
-      "overview_close_price": 2.19
-    },
-    "603033": {
-      "code": "603033",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070001",
-        "list_reason": "涨幅偏离值达7%的证券",
-        "volume": 3487.7511,
-        "amount": 44360.08,
-        "close_price": 12.96,
-        "change_percent": 10.02
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "国泰海通证券股份有限公司上海虹口区大连路证券营业部",
-          "buy_amount": 3710.59484,
-          "sell_amount": 0,
-          "net_amount": 3710.59484,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 8.36
-        },
-        {
-          "rank": 2,
-          "department_name": "沪股通专用",
-          "buy_amount": 3076.916037,
-          "sell_amount": 0,
-          "net_amount": 3076.916037,
-          "direction": "B",
-          "label": "沪股通专用",
-          "amount_ratio": 6.94
-        },
-        {
-          "rank": 3,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 2117.967264,
-          "sell_amount": 0,
-          "net_amount": 2117.967264,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 4.77
-        },
-        {
-          "rank": 4,
-          "department_name": "华泰证券股份有限公司总部",
-          "buy_amount": 1749.083887,
-          "sell_amount": 0,
-          "net_amount": 1749.083887,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 3.94
-        },
-        {
-          "rank": 5,
-          "department_name": "招商证券股份有限公司深圳深南大道车公庙证券营业部",
-          "buy_amount": 1654.3539,
-          "sell_amount": 0,
-          "net_amount": 1654.3539,
-          "direction": "B",
-          "label": "温州帮",
-          "amount_ratio": 3.73
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "中国中金财富证券有限公司杭州江河汇证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 5467.190764,
-          "net_amount": -5467.190764,
-          "direction": "S",
-          "label": "歌神",
-          "amount_ratio": 12.32
-        },
-        {
-          "rank": 2,
-          "department_name": "浙商证券股份有限公司三门南山路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 3193.370406,
-          "net_amount": -3193.370406,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 7.2
-        },
-        {
-          "rank": 3,
-          "department_name": "方正证券股份有限公司三门梧桐路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2716.992292,
-          "net_amount": -2716.992292,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 6.12
-        },
-        {
-          "rank": 4,
-          "department_name": "中信证券股份有限公司杭州婺江路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1416.8597,
-          "net_amount": -1416.8597,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 3.19
-        },
-        {
-          "rank": 5,
-          "department_name": "沪股通专用",
-          "buy_amount": 0,
-          "sell_amount": 1286.8748,
-          "net_amount": -1286.8748,
-          "direction": "S",
-          "label": "沪股通专用",
-          "amount_ratio": 2.9
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 12308.915928,
-        "sell_total": 14081.287962,
-        "net_inflow": -1772.372034,
-        "buy_ratio": 27.75,
-        "sell_ratio": 31.74
-      },
-      "name": "三维股份",
-      "market_name": "沪市主板",
-      "overview_change_percent": 10.0169779,
-      "overview_close_price": 12.96
+      "overview_change_percent": -10.0021744,
+      "overview_close_price": 82.78
     },
     "603051": {
       "code": "603051",
@@ -2237,133 +2237,261 @@
       "overview_change_percent": 10.0189036,
       "overview_close_price": 23.28
     },
-    "601869": {
-      "code": "601869",
+    "603014": {
+      "code": "603014",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070002",
-        "list_reason": "跌幅偏离值达7%的证券",
-        "volume": 2788.9542,
-        "amount": 244642.36,
-        "close_price": 82.78,
-        "change_percent": -10.0
+        "list_code": "070004",
+        "list_reason": "换手率达20%的证券",
+        "volume": 1757.1492,
+        "amount": 76985.01,
+        "close_price": 42.66,
+        "change_percent": 4.02
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 12839.392222,
+          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
+          "buy_amount": 3566.0141,
           "sell_amount": 0,
-          "net_amount": 12839.392222,
+          "net_amount": 3566.0141,
           "direction": "B",
-          "label": "沪股通专用",
-          "amount_ratio": 5.25
+          "label": "",
+          "amount_ratio": 4.63
         },
         {
           "rank": 2,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 5990.305504,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 3458.5837,
           "sell_amount": 0,
-          "net_amount": 5990.305504,
+          "net_amount": 3458.5837,
           "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 2.45
+          "label": "量化打板",
+          "amount_ratio": 4.49
         },
         {
           "rank": 3,
-          "department_name": "国投证券股份有限公司青岛东海西路证券营业部",
-          "buy_amount": 4743.467,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 2202.666726,
           "sell_amount": 0,
-          "net_amount": 4743.467,
+          "net_amount": 2202.666726,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 1.94
+          "label": "量化基金",
+          "amount_ratio": 2.86
         },
         {
           "rank": 4,
-          "department_name": "光大证券股份有限公司上海淮海中路证券营业部",
-          "buy_amount": 4511.762143,
+          "department_name": "中泰证券股份有限公司常州惠国路证券营业部",
+          "buy_amount": 1782.2592,
           "sell_amount": 0,
-          "net_amount": 4511.762143,
+          "net_amount": 1782.2592,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 1.84
+          "label": "量化打板",
+          "amount_ratio": 2.32
         },
         {
           "rank": 5,
-          "department_name": "中国国际金融股份有限公司上海分公司",
-          "buy_amount": 4487.340178,
+          "department_name": "华鑫证券有限责任公司上海分公司",
+          "buy_amount": 1318.9868,
           "sell_amount": 0,
-          "net_amount": 4487.340178,
+          "net_amount": 1318.9868,
           "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.83
+          "label": "量化打板",
+          "amount_ratio": 1.71
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
-          "department_name": "中信建投证券股份有限公司深圳中信国际大厦证券营业部",
+          "department_name": "中信证券股份有限公司深圳福田金田路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 26285.310159,
-          "net_amount": -26285.310159,
+          "sell_amount": 6006.843089,
+          "net_amount": -6006.843089,
           "direction": "S",
           "label": "",
-          "amount_ratio": 10.74
+          "amount_ratio": 7.8
+        },
+        {
+          "rank": 2,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 2421.844296,
+          "net_amount": -2421.844296,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 3.15
+        },
+        {
+          "rank": 3,
+          "department_name": "国盛证券有限责任公司上海浦东新区东方路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2106.125274,
+          "net_amount": -2106.125274,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 2.74
+        },
+        {
+          "rank": 4,
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1736.08734,
+          "net_amount": -1736.08734,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.26
+        },
+        {
+          "rank": 5,
+          "department_name": "东亚前海证券有限责任公司上海分公司",
+          "buy_amount": 0,
+          "sell_amount": 1660.3776,
+          "net_amount": -1660.3776,
+          "direction": "S",
+          "label": "思明南路",
+          "amount_ratio": 2.16
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 12328.510526,
+        "sell_total": 13931.277599000001,
+        "net_inflow": -1602.767073000001,
+        "buy_ratio": 16.01,
+        "sell_ratio": 18.1
+      },
+      "name": "威高血净",
+      "market_name": "沪市主板",
+      "overview_change_percent": 4.0234089,
+      "overview_close_price": 42.66
+    },
+    "603033": {
+      "code": "603033",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070001",
+        "list_reason": "涨幅偏离值达7%的证券",
+        "volume": 3487.7511,
+        "amount": 44360.08,
+        "close_price": 12.96,
+        "change_percent": 10.02
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司上海虹口区大连路证券营业部",
+          "buy_amount": 3710.59484,
+          "sell_amount": 0,
+          "net_amount": 3710.59484,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 8.36
         },
         {
           "rank": 2,
           "department_name": "沪股通专用",
-          "buy_amount": 0,
-          "sell_amount": 15400.612728,
-          "net_amount": -15400.612728,
-          "direction": "S",
+          "buy_amount": 3076.916037,
+          "sell_amount": 0,
+          "net_amount": 3076.916037,
+          "direction": "B",
           "label": "沪股通专用",
-          "amount_ratio": 6.3
+          "amount_ratio": 6.94
         },
         {
           "rank": 3,
-          "department_name": "机构专用",
-          "buy_amount": 0,
-          "sell_amount": 4450.903976,
-          "net_amount": -4450.903976,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 1.82
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 2117.967264,
+          "sell_amount": 0,
+          "net_amount": 2117.967264,
+          "direction": "B",
+          "label": "量化打板",
+          "amount_ratio": 4.77
         },
         {
           "rank": 4,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 0,
-          "sell_amount": 4025.2607,
-          "net_amount": -4025.2607,
-          "direction": "S",
+          "department_name": "华泰证券股份有限公司总部",
+          "buy_amount": 1749.083887,
+          "sell_amount": 0,
+          "net_amount": 1749.083887,
+          "direction": "B",
           "label": "量化基金",
-          "amount_ratio": 1.65
+          "amount_ratio": 3.94
         },
         {
           "rank": 5,
-          "department_name": "海通证券股份有限公司深圳南山智谷证券营业部",
+          "department_name": "招商证券股份有限公司深圳深南大道车公庙证券营业部",
+          "buy_amount": 1654.3539,
+          "sell_amount": 0,
+          "net_amount": 1654.3539,
+          "direction": "B",
+          "label": "温州帮",
+          "amount_ratio": 3.73
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "中国中金财富证券有限公司杭州江河汇证券营业部",
           "buy_amount": 0,
-          "sell_amount": 3217.6867,
-          "net_amount": -3217.6867,
+          "sell_amount": 5467.190764,
+          "net_amount": -5467.190764,
+          "direction": "S",
+          "label": "歌神",
+          "amount_ratio": 12.32
+        },
+        {
+          "rank": 2,
+          "department_name": "浙商证券股份有限公司三门南山路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 3193.370406,
+          "net_amount": -3193.370406,
           "direction": "S",
           "label": "",
-          "amount_ratio": 1.32
+          "amount_ratio": 7.2
+        },
+        {
+          "rank": 3,
+          "department_name": "方正证券股份有限公司三门梧桐路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2716.992292,
+          "net_amount": -2716.992292,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 6.12
+        },
+        {
+          "rank": 4,
+          "department_name": "中信证券股份有限公司杭州婺江路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1416.8597,
+          "net_amount": -1416.8597,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 3.19
+        },
+        {
+          "rank": 5,
+          "department_name": "沪股通专用",
+          "buy_amount": 0,
+          "sell_amount": 1286.8748,
+          "net_amount": -1286.8748,
+          "direction": "S",
+          "label": "沪股通专用",
+          "amount_ratio": 2.9
         }
       ],
       "capital_flow": {
-        "buy_total": 32572.267047,
-        "sell_total": 53379.774263,
-        "net_inflow": -20807.507215999998,
-        "buy_ratio": 13.31,
-        "sell_ratio": 21.82
+        "buy_total": 12308.915928,
+        "sell_total": 14081.287962,
+        "net_inflow": -1772.372034,
+        "buy_ratio": 27.75,
+        "sell_ratio": 31.74
       },
-      "name": "长飞光纤",
+      "name": "三维股份",
       "market_name": "沪市主板",
-      "overview_change_percent": -10.0021744,
-      "overview_close_price": 82.78
+      "overview_change_percent": 10.0169779,
+      "overview_close_price": 12.96
     },
     "601908": {
       "code": "601908",
@@ -2493,261 +2621,261 @@
       "overview_change_percent": 10.1298701,
       "overview_close_price": 4.24
     },
-    "603014": {
-      "code": "603014",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070004",
-        "list_reason": "换手率达20%的证券",
-        "volume": 1757.1492,
-        "amount": 76985.01,
-        "close_price": 42.66,
-        "change_percent": 4.02
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
-          "buy_amount": 3566.0141,
-          "sell_amount": 0,
-          "net_amount": 3566.0141,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 4.63
-        },
-        {
-          "rank": 2,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 3458.5837,
-          "sell_amount": 0,
-          "net_amount": 3458.5837,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 4.49
-        },
-        {
-          "rank": 3,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 2202.666726,
-          "sell_amount": 0,
-          "net_amount": 2202.666726,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 2.86
-        },
-        {
-          "rank": 4,
-          "department_name": "中泰证券股份有限公司常州惠国路证券营业部",
-          "buy_amount": 1782.2592,
-          "sell_amount": 0,
-          "net_amount": 1782.2592,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 2.32
-        },
-        {
-          "rank": 5,
-          "department_name": "华鑫证券有限责任公司上海分公司",
-          "buy_amount": 1318.9868,
-          "sell_amount": 0,
-          "net_amount": 1318.9868,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 1.71
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "中信证券股份有限公司深圳福田金田路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 6006.843089,
-          "net_amount": -6006.843089,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 7.8
-        },
-        {
-          "rank": 2,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 0,
-          "sell_amount": 2421.844296,
-          "net_amount": -2421.844296,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 3.15
-        },
-        {
-          "rank": 3,
-          "department_name": "国盛证券有限责任公司上海浦东新区东方路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2106.125274,
-          "net_amount": -2106.125274,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 2.74
-        },
-        {
-          "rank": 4,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1736.08734,
-          "net_amount": -1736.08734,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.26
-        },
-        {
-          "rank": 5,
-          "department_name": "东亚前海证券有限责任公司上海分公司",
-          "buy_amount": 0,
-          "sell_amount": 1660.3776,
-          "net_amount": -1660.3776,
-          "direction": "S",
-          "label": "思明南路",
-          "amount_ratio": 2.16
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 12328.510526,
-        "sell_total": 13931.277599000001,
-        "net_inflow": -1602.767073000001,
-        "buy_ratio": 16.01,
-        "sell_ratio": 18.1
-      },
-      "name": "威高血净",
-      "market_name": "沪市主板",
-      "overview_change_percent": 4.0234089,
-      "overview_close_price": 42.66
-    },
-    "603222": {
-      "code": "603222",
+    "603083": {
+      "code": "603083",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
         "list_code": "070002",
         "list_reason": "跌幅偏离值达7%的证券",
-        "volume": 10859.1621,
-        "amount": 133051.13,
-        "close_price": 11.4,
-        "change_percent": -10.02
+        "volume": 4437.3701,
+        "amount": 392723.55,
+        "close_price": 84.56,
+        "change_percent": -9.99
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 6922.889639,
+          "department_name": "沪股通专用",
+          "buy_amount": 31253.758853,
           "sell_amount": 0,
-          "net_amount": 6922.889639,
+          "net_amount": 31253.758853,
           "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 5.2
+          "label": "沪股通专用",
+          "amount_ratio": 7.96
         },
         {
           "rank": 2,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 3898.536338,
+          "department_name": "机构专用",
+          "buy_amount": 8335.952049,
           "sell_amount": 0,
-          "net_amount": 3898.536338,
+          "net_amount": 8335.952049,
           "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 2.93
+          "label": "机构专用",
+          "amount_ratio": 2.12
         },
         {
           "rank": 3,
-          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
-          "buy_amount": 3611.27168,
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
+          "buy_amount": 5042.796216,
           "sell_amount": 0,
-          "net_amount": 3611.27168,
+          "net_amount": 5042.796216,
           "direction": "B",
           "label": "量化基金",
-          "amount_ratio": 2.71
+          "amount_ratio": 1.28
         },
         {
           "rank": 4,
-          "department_name": "中信证券股份有限公司上海分公司",
-          "buy_amount": 3087.34508,
+          "department_name": "中国国际金融股份有限公司上海分公司",
+          "buy_amount": 4980.6168,
           "sell_amount": 0,
-          "net_amount": 3087.34508,
+          "net_amount": 4980.6168,
           "direction": "B",
           "label": "量化基金",
-          "amount_ratio": 2.32
+          "amount_ratio": 1.27
         },
         {
           "rank": 5,
-          "department_name": "东莞证券股份有限公司常熟东南大道证券营业部",
-          "buy_amount": 1815.1364,
+          "department_name": "中国国际金融股份有限公司北京建国门外大街证券营业部",
+          "buy_amount": 4862.6799,
           "sell_amount": 0,
-          "net_amount": 1815.1364,
+          "net_amount": 4862.6799,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 1.36
+          "label": "量化基金",
+          "amount_ratio": 1.24
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
-          "department_name": "国泰海通证券股份有限公司总部",
+          "department_name": "沪股通专用",
           "buy_amount": 0,
-          "sell_amount": 5182.576638,
-          "net_amount": -5182.576638,
+          "sell_amount": 20732.007243,
+          "net_amount": -20732.007243,
           "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 3.9
+          "label": "沪股通专用",
+          "amount_ratio": 5.28
         },
         {
           "rank": 2,
-          "department_name": "东方证券股份有限公司无锡新生路证券营业部",
+          "department_name": "华泰证券股份有限公司成都蜀金路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 4065.2242,
-          "net_amount": -4065.2242,
+          "sell_amount": 11502.826329,
+          "net_amount": -11502.826329,
           "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 3.06
+          "label": "",
+          "amount_ratio": 2.93
         },
         {
           "rank": 3,
-          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "department_name": "东吴证券股份有限公司苏州相城大道证券营业部",
           "buy_amount": 0,
-          "sell_amount": 2656.32959,
-          "net_amount": -2656.32959,
+          "sell_amount": 10416.7881,
+          "net_amount": -10416.7881,
           "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.0
+          "label": "",
+          "amount_ratio": 2.65
         },
         {
           "rank": 4,
-          "department_name": "方正证券股份有限公司乐山龙游路证券营业部",
+          "department_name": "海通证券股份有限公司深圳分公司华富路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 2306.2932,
-          "net_amount": -2306.2932,
+          "sell_amount": 6992.2862,
+          "net_amount": -6992.2862,
           "direction": "S",
-          "label": "毛老板",
-          "amount_ratio": 1.73
+          "label": "",
+          "amount_ratio": 1.78
         },
         {
           "rank": 5,
-          "department_name": "海通证券股份有限公司北京中关村南大街证券营业部",
+          "department_name": "国信证券股份有限公司杭州体育场路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 2222.1374,
-          "net_amount": -2222.1374,
+          "sell_amount": 6507.05958,
+          "net_amount": -6507.05958,
           "direction": "S",
           "label": "",
-          "amount_ratio": 1.67
+          "amount_ratio": 1.66
         }
       ],
       "capital_flow": {
-        "buy_total": 19335.179137,
-        "sell_total": 16432.561028,
-        "net_inflow": 2902.618108999999,
-        "buy_ratio": 14.53,
-        "sell_ratio": 12.35
+        "buy_total": 54475.803818,
+        "sell_total": 56150.967452000004,
+        "net_inflow": -1675.163634000004,
+        "buy_ratio": 13.87,
+        "sell_ratio": 14.3
       },
-      "name": "济民健康",
+      "name": "剑桥科技",
       "market_name": "沪市主板",
-      "overview_change_percent": -10.023678,
-      "overview_close_price": 11.4
+      "overview_change_percent": -9.994678,
+      "overview_close_price": 84.56
+    },
+    "603177": {
+      "code": "603177",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070003",
+        "list_reason": "振幅值达15%的证券",
+        "volume": 5914.0914,
+        "amount": 87365.62,
+        "close_price": 14.5,
+        "change_percent": -9.09
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "国信证券股份有限公司浙江互联网分公司",
+          "buy_amount": 1530.379,
+          "sell_amount": 0,
+          "net_amount": 1530.379,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.75
+        },
+        {
+          "rank": 2,
+          "department_name": "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
+          "buy_amount": 879.1246,
+          "sell_amount": 0,
+          "net_amount": 879.1246,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.01
+        },
+        {
+          "rank": 3,
+          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "buy_amount": 859.7428,
+          "sell_amount": 0,
+          "net_amount": 859.7428,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.98
+        },
+        {
+          "rank": 4,
+          "department_name": "中信证券股份有限公司浙江分公司",
+          "buy_amount": 851.188,
+          "sell_amount": 0,
+          "net_amount": 851.188,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 0.97
+        },
+        {
+          "rank": 5,
+          "department_name": "华鑫证券有限责任公司上海红宝石路证券营业部",
+          "buy_amount": 803.9187,
+          "sell_amount": 0,
+          "net_amount": 803.9187,
+          "direction": "B",
+          "label": "炒股养家",
+          "amount_ratio": 0.92
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "信达证券股份有限公司温州瓯江路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2439.617428,
+          "net_amount": -2439.617428,
+          "direction": "S",
+          "label": "温州帮",
+          "amount_ratio": 2.79
+        },
+        {
+          "rank": 2,
+          "department_name": "财通证券股份有限公司杭州上塘路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2280.5751,
+          "net_amount": -2280.5751,
+          "direction": "S",
+          "label": "上塘路",
+          "amount_ratio": 2.61
+        },
+        {
+          "rank": 3,
+          "department_name": "华鑫证券有限责任公司深圳益田路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2124.058134,
+          "net_amount": -2124.058134,
+          "direction": "S",
+          "label": "益田路",
+          "amount_ratio": 2.43
+        },
+        {
+          "rank": 4,
+          "department_name": "中信证券股份有限公司杭州凤起路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1942.8979,
+          "net_amount": -1942.8979,
+          "direction": "S",
+          "label": "N周二",
+          "amount_ratio": 2.22
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 0,
+          "sell_amount": 1792.2337,
+          "net_amount": -1792.2337,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 2.05
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 4924.3531,
+        "sell_total": 10579.382262,
+        "net_inflow": -5655.029161999999,
+        "buy_ratio": 5.64,
+        "sell_ratio": 12.11
+      },
+      "name": "德创环保",
+      "market_name": "沪市主板",
+      "overview_change_percent": -9.0909091,
+      "overview_close_price": 14.5
     },
     "603119": {
       "code": "603119",
@@ -2977,6 +3105,134 @@
       "overview_change_percent": 9.9961749,
       "overview_close_price": 86.27
     },
+    "603222": {
+      "code": "603222",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070002",
+        "list_reason": "跌幅偏离值达7%的证券",
+        "volume": 10859.1621,
+        "amount": 133051.13,
+        "close_price": 11.4,
+        "change_percent": -10.02
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 6922.889639,
+          "sell_amount": 0,
+          "net_amount": 6922.889639,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 5.2
+        },
+        {
+          "rank": 2,
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
+          "buy_amount": 3898.536338,
+          "sell_amount": 0,
+          "net_amount": 3898.536338,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 2.93
+        },
+        {
+          "rank": 3,
+          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "buy_amount": 3611.27168,
+          "sell_amount": 0,
+          "net_amount": 3611.27168,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 2.71
+        },
+        {
+          "rank": 4,
+          "department_name": "中信证券股份有限公司上海分公司",
+          "buy_amount": 3087.34508,
+          "sell_amount": 0,
+          "net_amount": 3087.34508,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 2.32
+        },
+        {
+          "rank": 5,
+          "department_name": "东莞证券股份有限公司常熟东南大道证券营业部",
+          "buy_amount": 1815.1364,
+          "sell_amount": 0,
+          "net_amount": 1815.1364,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.36
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 5182.576638,
+          "net_amount": -5182.576638,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 3.9
+        },
+        {
+          "rank": 2,
+          "department_name": "东方证券股份有限公司无锡新生路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 4065.2242,
+          "net_amount": -4065.2242,
+          "direction": "S",
+          "label": "量化打板",
+          "amount_ratio": 3.06
+        },
+        {
+          "rank": 3,
+          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2656.32959,
+          "net_amount": -2656.32959,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.0
+        },
+        {
+          "rank": 4,
+          "department_name": "方正证券股份有限公司乐山龙游路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2306.2932,
+          "net_amount": -2306.2932,
+          "direction": "S",
+          "label": "毛老板",
+          "amount_ratio": 1.73
+        },
+        {
+          "rank": 5,
+          "department_name": "海通证券股份有限公司北京中关村南大街证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 2222.1374,
+          "net_amount": -2222.1374,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.67
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 19335.179137,
+        "sell_total": 16432.561028,
+        "net_inflow": 2902.618108999999,
+        "buy_ratio": 14.53,
+        "sell_ratio": 12.35
+      },
+      "name": "济民健康",
+      "market_name": "沪市主板",
+      "overview_change_percent": -10.023678,
+      "overview_close_price": 11.4
+    },
     "603200": {
       "code": "603200",
       "query_date": "2025-09-02",
@@ -3105,262 +3361,6 @@
       "overview_change_percent": 7.1120955,
       "overview_close_price": 87.05
     },
-    "603177": {
-      "code": "603177",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070003",
-        "list_reason": "振幅值达15%的证券",
-        "volume": 5914.0914,
-        "amount": 87365.62,
-        "close_price": 14.5,
-        "change_percent": -9.09
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "国信证券股份有限公司浙江互联网分公司",
-          "buy_amount": 1530.379,
-          "sell_amount": 0,
-          "net_amount": 1530.379,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 1.75
-        },
-        {
-          "rank": 2,
-          "department_name": "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
-          "buy_amount": 879.1246,
-          "sell_amount": 0,
-          "net_amount": 879.1246,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 1.01
-        },
-        {
-          "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "buy_amount": 859.7428,
-          "sell_amount": 0,
-          "net_amount": 859.7428,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.98
-        },
-        {
-          "rank": 4,
-          "department_name": "中信证券股份有限公司浙江分公司",
-          "buy_amount": 851.188,
-          "sell_amount": 0,
-          "net_amount": 851.188,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 0.97
-        },
-        {
-          "rank": 5,
-          "department_name": "华鑫证券有限责任公司上海红宝石路证券营业部",
-          "buy_amount": 803.9187,
-          "sell_amount": 0,
-          "net_amount": 803.9187,
-          "direction": "B",
-          "label": "炒股养家",
-          "amount_ratio": 0.92
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "信达证券股份有限公司温州瓯江路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2439.617428,
-          "net_amount": -2439.617428,
-          "direction": "S",
-          "label": "温州帮",
-          "amount_ratio": 2.79
-        },
-        {
-          "rank": 2,
-          "department_name": "财通证券股份有限公司杭州上塘路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2280.5751,
-          "net_amount": -2280.5751,
-          "direction": "S",
-          "label": "上塘路",
-          "amount_ratio": 2.61
-        },
-        {
-          "rank": 3,
-          "department_name": "华鑫证券有限责任公司深圳益田路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2124.058134,
-          "net_amount": -2124.058134,
-          "direction": "S",
-          "label": "益田路",
-          "amount_ratio": 2.43
-        },
-        {
-          "rank": 4,
-          "department_name": "中信证券股份有限公司杭州凤起路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1942.8979,
-          "net_amount": -1942.8979,
-          "direction": "S",
-          "label": "N周二",
-          "amount_ratio": 2.22
-        },
-        {
-          "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 0,
-          "sell_amount": 1792.2337,
-          "net_amount": -1792.2337,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 2.05
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 4924.3531,
-        "sell_total": 10579.382262,
-        "net_inflow": -5655.029161999999,
-        "buy_ratio": 5.64,
-        "sell_ratio": 12.11
-      },
-      "name": "德创环保",
-      "market_name": "沪市主板",
-      "overview_change_percent": -9.0909091,
-      "overview_close_price": 14.5
-    },
-    "603083": {
-      "code": "603083",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070002",
-        "list_reason": "跌幅偏离值达7%的证券",
-        "volume": 4437.3701,
-        "amount": 392723.55,
-        "close_price": 84.56,
-        "change_percent": -9.99
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 31253.758853,
-          "sell_amount": 0,
-          "net_amount": 31253.758853,
-          "direction": "B",
-          "label": "沪股通专用",
-          "amount_ratio": 7.96
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 8335.952049,
-          "sell_amount": 0,
-          "net_amount": 8335.952049,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 2.12
-        },
-        {
-          "rank": 3,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 5042.796216,
-          "sell_amount": 0,
-          "net_amount": 5042.796216,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.28
-        },
-        {
-          "rank": 4,
-          "department_name": "中国国际金融股份有限公司上海分公司",
-          "buy_amount": 4980.6168,
-          "sell_amount": 0,
-          "net_amount": 4980.6168,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.27
-        },
-        {
-          "rank": 5,
-          "department_name": "中国国际金融股份有限公司北京建国门外大街证券营业部",
-          "buy_amount": 4862.6799,
-          "sell_amount": 0,
-          "net_amount": 4862.6799,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.24
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 0,
-          "sell_amount": 20732.007243,
-          "net_amount": -20732.007243,
-          "direction": "S",
-          "label": "沪股通专用",
-          "amount_ratio": 5.28
-        },
-        {
-          "rank": 2,
-          "department_name": "华泰证券股份有限公司成都蜀金路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 11502.826329,
-          "net_amount": -11502.826329,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 2.93
-        },
-        {
-          "rank": 3,
-          "department_name": "东吴证券股份有限公司苏州相城大道证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 10416.7881,
-          "net_amount": -10416.7881,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 2.65
-        },
-        {
-          "rank": 4,
-          "department_name": "海通证券股份有限公司深圳分公司华富路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 6992.2862,
-          "net_amount": -6992.2862,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.78
-        },
-        {
-          "rank": 5,
-          "department_name": "国信证券股份有限公司杭州体育场路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 6507.05958,
-          "net_amount": -6507.05958,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.66
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 54475.803818,
-        "sell_total": 56150.967452000004,
-        "net_inflow": -1675.163634000004,
-        "buy_ratio": 13.87,
-        "sell_ratio": 14.3
-      },
-      "name": "剑桥科技",
-      "market_name": "沪市主板",
-      "overview_change_percent": -9.994678,
-      "overview_close_price": 84.56
-    },
     "603228": {
       "code": "603228",
       "query_date": "2025-09-02",
@@ -3488,6 +3488,234 @@
       "market_name": "沪市主板",
       "overview_change_percent": -9.9983636,
       "overview_close_price": 55.0
+    },
+    "603257": {
+      "code": "603257",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070004",
+        "list_reason": "换手率达20%的证券",
+        "volume": 1059.6155,
+        "amount": 68727.17,
+        "close_price": 66.53,
+        "change_percent": 10.0
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
+          "buy_amount": 4271.767818,
+          "sell_amount": 0,
+          "net_amount": 4271.767818,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 6.22
+        },
+        {
+          "rank": 2,
+          "department_name": "华宝证券股份有限公司上海东大名路证券营业部",
+          "buy_amount": 1779.0122,
+          "sell_amount": 0,
+          "net_amount": 1779.0122,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 2.59
+        },
+        {
+          "rank": 3,
+          "department_name": "中国银河证券股份有限公司绍兴证券营业部",
+          "buy_amount": 1192.9925,
+          "sell_amount": 0,
+          "net_amount": 1192.9925,
+          "direction": "B",
+          "label": "赵老哥",
+          "amount_ratio": 1.74
+        },
+        {
+          "rank": 4,
+          "department_name": "国金证券股份有限公司成都新都区马超西路证券营业部",
+          "buy_amount": 845.5032,
+          "sell_amount": 0,
+          "net_amount": 845.5032,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.23
+        },
+        {
+          "rank": 5,
+          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "buy_amount": 768.6949,
+          "sell_amount": 0,
+          "net_amount": 768.6949,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 1.12
+        },
+        {
+          "rank": 1,
+          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
+          "buy_amount": 4274.179118,
+          "sell_amount": 0,
+          "net_amount": 4274.179118,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 6.22
+        },
+        {
+          "rank": 2,
+          "department_name": "东方证券股份有限公司厦门仙岳路证券营业部",
+          "buy_amount": 3032.9503,
+          "sell_amount": 0,
+          "net_amount": 3032.9503,
+          "direction": "B",
+          "label": "山东帮",
+          "amount_ratio": 4.41
+        },
+        {
+          "rank": 3,
+          "department_name": "东方证券股份有限公司无锡新生路证券营业部",
+          "buy_amount": 2370.8602,
+          "sell_amount": 0,
+          "net_amount": 2370.8602,
+          "direction": "B",
+          "label": "量化打板",
+          "amount_ratio": 3.45
+        },
+        {
+          "rank": 4,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 1804.9349,
+          "sell_amount": 0,
+          "net_amount": 1804.9349,
+          "direction": "B",
+          "label": "量化打板",
+          "amount_ratio": 2.63
+        },
+        {
+          "rank": 5,
+          "department_name": "华宝证券股份有限公司上海东大名路证券营业部",
+          "buy_amount": 1804.7615,
+          "sell_amount": 0,
+          "net_amount": 1804.7615,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 2.63
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1927.104376,
+          "net_amount": -1927.104376,
+          "direction": "S",
+          "label": "量化打板",
+          "amount_ratio": 2.8
+        },
+        {
+          "rank": 2,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 1569.881505,
+          "net_amount": -1569.881505,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.28
+        },
+        {
+          "rank": 3,
+          "department_name": "中信证券股份有限公司上海分公司",
+          "buy_amount": 0,
+          "sell_amount": 1487.009966,
+          "net_amount": -1487.009966,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.16
+        },
+        {
+          "rank": 4,
+          "department_name": "中国中金财富证券有限公司上海黄浦区中山东二路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1370.9811,
+          "net_amount": -1370.9811,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.99
+        },
+        {
+          "rank": 5,
+          "department_name": "华鑫证券有限责任公司上海莲花路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1067.0054,
+          "net_amount": -1067.0054,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.55
+        },
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 0,
+          "sell_amount": 2267.73982,
+          "net_amount": -2267.73982,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 3.3
+        },
+        {
+          "rank": 2,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1927.104376,
+          "net_amount": -1927.104376,
+          "direction": "S",
+          "label": "量化打板",
+          "amount_ratio": 2.8
+        },
+        {
+          "rank": 3,
+          "department_name": "中信证券股份有限公司上海分公司",
+          "buy_amount": 0,
+          "sell_amount": 1658.391266,
+          "net_amount": -1658.391266,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.41
+        },
+        {
+          "rank": 4,
+          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1454.895,
+          "net_amount": -1454.895,
+          "direction": "S",
+          "label": "量化基金",
+          "amount_ratio": 2.12
+        },
+        {
+          "rank": 5,
+          "department_name": "中国中金财富证券有限公司上海黄浦区中山东二路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1370.9811,
+          "net_amount": -1370.9811,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.99
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 22145.656636000003,
+        "sell_total": 16101.093909,
+        "net_inflow": 6044.562727000004,
+        "buy_ratio": 32.22,
+        "sell_ratio": 23.43
+      },
+      "name": "中国瑞林",
+      "market_name": "沪市主板",
+      "overview_change_percent": 10.0033069,
+      "overview_close_price": 66.53
     },
     "603382": {
       "code": "603382",
@@ -3873,321 +4101,133 @@
       "overview_change_percent": -9.5045185,
       "overview_close_price": 29.04
     },
-    "603257": {
-      "code": "603257",
+    "605133": {
+      "code": "605133",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070004",
-        "list_reason": "换手率达20%的证券",
-        "volume": 1059.6155,
-        "amount": 68727.17,
-        "close_price": 66.53,
-        "change_percent": 10.0
+        "list_code": "070005",
+        "list_reason": "连续三个交易日内涨幅偏离值累计达20%的证券",
+        "volume": 4694.0226,
+        "amount": 203595.64,
+        "close_price": 48.34,
+        "change_percent": 9.99
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
-          "buy_amount": 4271.767818,
+          "department_name": "沪股通专用",
+          "buy_amount": 14523.5238,
           "sell_amount": 0,
-          "net_amount": 4271.767818,
+          "net_amount": 14523.5238,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 6.22
+          "label": "沪股通专用",
+          "amount_ratio": 7.13
         },
         {
           "rank": 2,
-          "department_name": "华宝证券股份有限公司上海东大名路证券营业部",
-          "buy_amount": 1779.0122,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 3120.89295,
           "sell_amount": 0,
-          "net_amount": 1779.0122,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 2.59
-        },
-        {
-          "rank": 3,
-          "department_name": "中国银河证券股份有限公司绍兴证券营业部",
-          "buy_amount": 1192.9925,
-          "sell_amount": 0,
-          "net_amount": 1192.9925,
-          "direction": "B",
-          "label": "赵老哥",
-          "amount_ratio": 1.74
-        },
-        {
-          "rank": 4,
-          "department_name": "国金证券股份有限公司成都新都区马超西路证券营业部",
-          "buy_amount": 845.5032,
-          "sell_amount": 0,
-          "net_amount": 845.5032,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 1.23
-        },
-        {
-          "rank": 5,
-          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
-          "buy_amount": 768.6949,
-          "sell_amount": 0,
-          "net_amount": 768.6949,
+          "net_amount": 3120.89295,
           "direction": "B",
           "label": "量化基金",
-          "amount_ratio": 1.12
-        },
-        {
-          "rank": 1,
-          "department_name": "华鑫证券有限责任公司上海云锦路证券营业部",
-          "buy_amount": 4274.179118,
-          "sell_amount": 0,
-          "net_amount": 4274.179118,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 6.22
-        },
-        {
-          "rank": 2,
-          "department_name": "东方证券股份有限公司厦门仙岳路证券营业部",
-          "buy_amount": 3032.9503,
-          "sell_amount": 0,
-          "net_amount": 3032.9503,
-          "direction": "B",
-          "label": "山东帮",
-          "amount_ratio": 4.41
+          "amount_ratio": 1.53
         },
         {
           "rank": 3,
-          "department_name": "东方证券股份有限公司无锡新生路证券营业部",
-          "buy_amount": 2370.8602,
+          "department_name": "国投证券股份有限公司广州猎德大道证券营业部",
+          "buy_amount": 3043.68297,
           "sell_amount": 0,
-          "net_amount": 2370.8602,
+          "net_amount": 3043.68297,
           "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 3.45
+          "label": "温州帮",
+          "amount_ratio": 1.49
         },
         {
           "rank": 4,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 1804.9349,
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
+          "buy_amount": 2692.308047,
           "sell_amount": 0,
-          "net_amount": 1804.9349,
+          "net_amount": 2692.308047,
           "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 2.63
+          "label": "量化基金",
+          "amount_ratio": 1.32
         },
         {
           "rank": 5,
-          "department_name": "华宝证券股份有限公司上海东大名路证券营业部",
-          "buy_amount": 1804.7615,
+          "department_name": "华金证券股份有限公司上海陆家嘴环路证券营业部",
+          "buy_amount": 2436.95596,
           "sell_amount": 0,
-          "net_amount": 1804.7615,
+          "net_amount": 2436.95596,
           "direction": "B",
           "label": "",
-          "amount_ratio": 2.63
+          "amount_ratio": 1.2
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "department_name": "沪股通专用",
           "buy_amount": 0,
-          "sell_amount": 1927.104376,
-          "net_amount": -1927.104376,
+          "sell_amount": 13342.945133,
+          "net_amount": -13342.945133,
           "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 2.8
+          "label": "沪股通专用",
+          "amount_ratio": 6.55
         },
         {
           "rank": 2,
-          "department_name": "国泰海通证券股份有限公司总部",
+          "department_name": "兴业证券股份有限公司厦门湖里大道证券营业部",
           "buy_amount": 0,
-          "sell_amount": 1569.881505,
-          "net_amount": -1569.881505,
+          "sell_amount": 2761.72665,
+          "net_amount": -2761.72665,
           "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.28
+          "label": "湖里大道",
+          "amount_ratio": 1.36
         },
         {
           "rank": 3,
-          "department_name": "中信证券股份有限公司上海分公司",
+          "department_name": "华金证券股份有限公司上海陆家嘴环路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 1487.009966,
-          "net_amount": -1487.009966,
+          "sell_amount": 2624.7602,
+          "net_amount": -2624.7602,
           "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.16
+          "label": "",
+          "amount_ratio": 1.29
         },
         {
           "rank": 4,
-          "department_name": "中国中金财富证券有限公司上海黄浦区中山东二路证券营业部",
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 1370.9811,
-          "net_amount": -1370.9811,
+          "sell_amount": 2559.62423,
+          "net_amount": -2559.62423,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.99
+          "label": "量化基金",
+          "amount_ratio": 1.26
         },
         {
           "rank": 5,
-          "department_name": "华鑫证券有限责任公司上海莲花路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1067.0054,
-          "net_amount": -1067.0054,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.55
-        },
-        {
-          "rank": 1,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 0,
-          "sell_amount": 2267.73982,
-          "net_amount": -2267.73982,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 3.3
-        },
-        {
-          "rank": 2,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1927.104376,
-          "net_amount": -1927.104376,
-          "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 2.8
-        },
-        {
-          "rank": 3,
           "department_name": "中信证券股份有限公司上海分公司",
           "buy_amount": 0,
-          "sell_amount": 1658.391266,
-          "net_amount": -1658.391266,
+          "sell_amount": 2462.82246,
+          "net_amount": -2462.82246,
           "direction": "S",
           "label": "量化基金",
-          "amount_ratio": 2.41
-        },
-        {
-          "rank": 4,
-          "department_name": "摩根大通证券(中国)有限公司上海银城中路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1454.895,
-          "net_amount": -1454.895,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.12
-        },
-        {
-          "rank": 5,
-          "department_name": "中国中金财富证券有限公司上海黄浦区中山东二路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1370.9811,
-          "net_amount": -1370.9811,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.99
+          "amount_ratio": 1.21
         }
       ],
       "capital_flow": {
-        "buy_total": 22145.656636000003,
-        "sell_total": 16101.093909,
-        "net_inflow": 6044.562727000004,
-        "buy_ratio": 32.22,
-        "sell_ratio": 23.43
+        "buy_total": 25817.363726999996,
+        "sell_total": 23751.878673,
+        "net_inflow": 2065.485053999997,
+        "buy_ratio": 12.68,
+        "sell_ratio": 11.67
       },
-      "name": "中国瑞林",
+      "name": "嵘泰股份",
       "market_name": "沪市主板",
-      "overview_change_percent": 10.0033069,
-      "overview_close_price": 66.53
-    },
-    "605255": {
-      "code": "605255",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070037",
-        "list_reason": "有价格涨跌幅限制的连续10个交易日内收盘价格涨幅偏离值累计达到100%的证券",
-        "volume": 116.26,
-        "amount": 4531.14,
-        "close_price": 57.1,
-        "change_percent": 10.0
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "机构",
-          "buy_amount": 3019.95,
-          "sell_amount": 1589.05,
-          "net_amount": 1430.9,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 31.58
-        },
-        {
-          "rank": 2,
-          "department_name": "其他自然人",
-          "buy_amount": 1502.89,
-          "sell_amount": 715.96,
-          "net_amount": 786.93,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 17.37
-        },
-        {
-          "rank": 3,
-          "department_name": "中小投资者",
-          "buy_amount": 8.31,
-          "sell_amount": 2226.13,
-          "net_amount": -2217.82,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 48.95
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "中小投资者",
-          "buy_amount": 8.31,
-          "sell_amount": 2226.13,
-          "net_amount": -2217.82,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 48.95
-        },
-        {
-          "rank": 2,
-          "department_name": "机构",
-          "buy_amount": 3019.95,
-          "sell_amount": 1589.05,
-          "net_amount": 1430.9,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 31.58
-        },
-        {
-          "rank": 3,
-          "department_name": "其他自然人",
-          "buy_amount": 1502.89,
-          "sell_amount": 715.96,
-          "net_amount": 786.93,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 17.37
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 4531.150000000001,
-        "sell_total": 4531.14,
-        "net_inflow": 0.010000000000218279,
-        "buy_ratio": 100.0,
-        "sell_ratio": 100.0
-      },
-      "name": "天普股份",
-      "market_name": "沪市主板",
-      "overview_change_percent": 9.9980736,
-      "overview_close_price": 57.1
+      "overview_change_percent": 9.9886234,
+      "overview_close_price": 48.34
     },
     "605188": {
       "code": "605188",
@@ -4317,261 +4357,93 @@
       "overview_change_percent": -5.1359517,
       "overview_close_price": 18.84
     },
-    "605133": {
-      "code": "605133",
+    "605255": {
+      "code": "605255",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070005",
-        "list_reason": "连续三个交易日内涨幅偏离值累计达20%的证券",
-        "volume": 4694.0226,
-        "amount": 203595.64,
-        "close_price": 48.34,
-        "change_percent": 9.99
+        "list_code": "070037",
+        "list_reason": "有价格涨跌幅限制的连续10个交易日内收盘价格涨幅偏离值累计达到100%的证券",
+        "volume": 116.26,
+        "amount": 4531.14,
+        "close_price": 57.1,
+        "change_percent": 10.0
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 14523.5238,
-          "sell_amount": 0,
-          "net_amount": 14523.5238,
+          "department_name": "机构",
+          "buy_amount": 3019.95,
+          "sell_amount": 1589.05,
+          "net_amount": 1430.9,
           "direction": "B",
-          "label": "沪股通专用",
-          "amount_ratio": 7.13
+          "label": "",
+          "amount_ratio": 31.58
         },
         {
           "rank": 2,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 3120.89295,
-          "sell_amount": 0,
-          "net_amount": 3120.89295,
+          "department_name": "其他自然人",
+          "buy_amount": 1502.89,
+          "sell_amount": 715.96,
+          "net_amount": 786.93,
           "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.53
+          "label": "",
+          "amount_ratio": 17.37
         },
         {
           "rank": 3,
-          "department_name": "国投证券股份有限公司广州猎德大道证券营业部",
-          "buy_amount": 3043.68297,
-          "sell_amount": 0,
-          "net_amount": 3043.68297,
-          "direction": "B",
-          "label": "温州帮",
-          "amount_ratio": 1.49
-        },
-        {
-          "rank": 4,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 2692.308047,
-          "sell_amount": 0,
-          "net_amount": 2692.308047,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.32
-        },
-        {
-          "rank": 5,
-          "department_name": "华金证券股份有限公司上海陆家嘴环路证券营业部",
-          "buy_amount": 2436.95596,
-          "sell_amount": 0,
-          "net_amount": 2436.95596,
+          "department_name": "中小投资者",
+          "buy_amount": 8.31,
+          "sell_amount": 2226.13,
+          "net_amount": -2217.82,
           "direction": "B",
           "label": "",
-          "amount_ratio": 1.2
+          "amount_ratio": 48.95
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 0,
-          "sell_amount": 13342.945133,
-          "net_amount": -13342.945133,
+          "department_name": "中小投资者",
+          "buy_amount": 8.31,
+          "sell_amount": 2226.13,
+          "net_amount": -2217.82,
           "direction": "S",
-          "label": "沪股通专用",
-          "amount_ratio": 6.55
+          "label": "",
+          "amount_ratio": 48.95
         },
         {
           "rank": 2,
-          "department_name": "兴业证券股份有限公司厦门湖里大道证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2761.72665,
-          "net_amount": -2761.72665,
+          "department_name": "机构",
+          "buy_amount": 3019.95,
+          "sell_amount": 1589.05,
+          "net_amount": 1430.9,
           "direction": "S",
-          "label": "湖里大道",
-          "amount_ratio": 1.36
+          "label": "",
+          "amount_ratio": 31.58
         },
         {
           "rank": 3,
-          "department_name": "华金证券股份有限公司上海陆家嘴环路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2624.7602,
-          "net_amount": -2624.7602,
+          "department_name": "其他自然人",
+          "buy_amount": 1502.89,
+          "sell_amount": 715.96,
+          "net_amount": 786.93,
           "direction": "S",
           "label": "",
-          "amount_ratio": 1.29
-        },
-        {
-          "rank": 4,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 2559.62423,
-          "net_amount": -2559.62423,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.26
-        },
-        {
-          "rank": 5,
-          "department_name": "中信证券股份有限公司上海分公司",
-          "buy_amount": 0,
-          "sell_amount": 2462.82246,
-          "net_amount": -2462.82246,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.21
+          "amount_ratio": 17.37
         }
       ],
       "capital_flow": {
-        "buy_total": 25817.363726999996,
-        "sell_total": 23751.878673,
-        "net_inflow": 2065.485053999997,
-        "buy_ratio": 12.68,
-        "sell_ratio": 11.67
+        "buy_total": 4531.150000000001,
+        "sell_total": 4531.14,
+        "net_inflow": 0.010000000000218279,
+        "buy_ratio": 100.0,
+        "sell_ratio": 100.0
       },
-      "name": "嵘泰股份",
+      "name": "天普股份",
       "market_name": "沪市主板",
-      "overview_change_percent": 9.9886234,
-      "overview_close_price": 48.34
-    },
-    "900922": {
-      "code": "900922",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070001",
-        "list_reason": "涨幅偏离值达7%的证券",
-        "volume": 129.2162,
-        "amount": 105.83,
-        "close_price": 0.84,
-        "change_percent": 10.05
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "南京证券股份有限公司杭州新塘路证券营业部",
-          "buy_amount": 17.05538,
-          "sell_amount": 0,
-          "net_amount": 17.05538,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 16.12
-        },
-        {
-          "rank": 2,
-          "department_name": "中国银河证券股份有限公司上海长宁区镇宁路证券营业部",
-          "buy_amount": 16.97691,
-          "sell_amount": 0,
-          "net_amount": 16.97691,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 16.04
-        },
-        {
-          "rank": 3,
-          "department_name": "中信证券华南股份有限公司广州环市东路证券营业部",
-          "buy_amount": 6.16595,
-          "sell_amount": 0,
-          "net_amount": 6.16595,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 5.83
-        },
-        {
-          "rank": 4,
-          "department_name": "中银国际证券股份有限公司北京宣外大街证券营业部",
-          "buy_amount": 3.305509,
-          "sell_amount": 0,
-          "net_amount": 3.305509,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 3.12
-        },
-        {
-          "rank": 5,
-          "department_name": "国投证券股份有限公司茂名西粤南路证券营业部",
-          "buy_amount": 2.63016,
-          "sell_amount": 0,
-          "net_amount": 2.63016,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 2.49
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "中国银河证券股份有限公司上海虹井路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 5.60066,
-          "net_amount": -5.60066,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 5.29
-        },
-        {
-          "rank": 2,
-          "department_name": "中信证券股份有限公司上海世博馆路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 5.42019,
-          "net_amount": -5.42019,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 5.12
-        },
-        {
-          "rank": 3,
-          "department_name": "国信证券股份有限公司上海漕溪北路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 4.42207,
-          "net_amount": -4.42207,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 4.18
-        },
-        {
-          "rank": 4,
-          "department_name": "华泰证券股份有限公司常州和平北路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 3.65032,
-          "net_amount": -3.65032,
-          "direction": "S",
-          "label": "温州帮",
-          "amount_ratio": 3.45
-        },
-        {
-          "rank": 5,
-          "department_name": "长江证券股份有限公司上海黄兴路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 3.296,
-          "net_amount": -3.296,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 3.11
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 46.133909,
-        "sell_total": 22.389239999999997,
-        "net_inflow": 23.744669000000005,
-        "buy_ratio": 43.59,
-        "sell_ratio": 21.16
-      },
-      "name": "三毛B股",
-      "market_name": "沪市主板",
-      "overview_change_percent": 10.0522193,
-      "overview_close_price": 0.843
+      "overview_change_percent": 9.9980736,
+      "overview_close_price": 57.1
     },
     "000564": {
       "code": "000564",
@@ -4700,6 +4572,134 @@
       "market_name": "深市主板",
       "overview_change_percent": 9.8360656,
       "overview_close_price": 2.68
+    },
+    "900922": {
+      "code": "900922",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070001",
+        "list_reason": "涨幅偏离值达7%的证券",
+        "volume": 129.2162,
+        "amount": 105.83,
+        "close_price": 0.84,
+        "change_percent": 10.05
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "南京证券股份有限公司杭州新塘路证券营业部",
+          "buy_amount": 17.05538,
+          "sell_amount": 0,
+          "net_amount": 17.05538,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 16.12
+        },
+        {
+          "rank": 2,
+          "department_name": "中国银河证券股份有限公司上海长宁区镇宁路证券营业部",
+          "buy_amount": 16.97691,
+          "sell_amount": 0,
+          "net_amount": 16.97691,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 16.04
+        },
+        {
+          "rank": 3,
+          "department_name": "中信证券华南股份有限公司广州环市东路证券营业部",
+          "buy_amount": 6.16595,
+          "sell_amount": 0,
+          "net_amount": 6.16595,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 5.83
+        },
+        {
+          "rank": 4,
+          "department_name": "中银国际证券股份有限公司北京宣外大街证券营业部",
+          "buy_amount": 3.305509,
+          "sell_amount": 0,
+          "net_amount": 3.305509,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 3.12
+        },
+        {
+          "rank": 5,
+          "department_name": "国投证券股份有限公司茂名西粤南路证券营业部",
+          "buy_amount": 2.63016,
+          "sell_amount": 0,
+          "net_amount": 2.63016,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 2.49
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "中国银河证券股份有限公司上海虹井路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 5.60066,
+          "net_amount": -5.60066,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 5.29
+        },
+        {
+          "rank": 2,
+          "department_name": "中信证券股份有限公司上海世博馆路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 5.42019,
+          "net_amount": -5.42019,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 5.12
+        },
+        {
+          "rank": 3,
+          "department_name": "国信证券股份有限公司上海漕溪北路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 4.42207,
+          "net_amount": -4.42207,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 4.18
+        },
+        {
+          "rank": 4,
+          "department_name": "华泰证券股份有限公司常州和平北路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 3.65032,
+          "net_amount": -3.65032,
+          "direction": "S",
+          "label": "温州帮",
+          "amount_ratio": 3.45
+        },
+        {
+          "rank": 5,
+          "department_name": "长江证券股份有限公司上海黄兴路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 3.296,
+          "net_amount": -3.296,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 3.11
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 46.133909,
+        "sell_total": 22.389239999999997,
+        "net_inflow": 23.744669000000005,
+        "buy_ratio": 43.59,
+        "sell_ratio": 21.16
+      },
+      "name": "三毛B股",
+      "market_name": "沪市主板",
+      "overview_change_percent": 10.0522193,
+      "overview_close_price": 0.843
     },
     "000603": {
       "code": "000603",
@@ -5669,133 +5669,261 @@
       "overview_change_percent": 9.9585062,
       "overview_close_price": 2.65
     },
-    "002131": {
-      "code": "002131",
+    "001296": {
+      "code": "001296",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
         "list_code": "070004",
-        "list_reason": "日换手率达到34.11%",
-        "volume": 199557.4154,
-        "amount": 1192721.0123,
-        "close_price": 5.85,
-        "change_percent": 1.04
+        "list_reason": "日换手率达到32.05%",
+        "volume": 2463.0337,
+        "amount": 61338.7188,
+        "close_price": 25.5,
+        "change_percent": 2.74
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "机构专用",
+          "buy_amount": 1065.9116,
+          "sell_amount": 521.1133,
+          "net_amount": 544.7983,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.89
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 664.5944,
+          "sell_amount": 777.564,
+          "net_amount": -112.9696,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.18
+        },
+        {
+          "rank": 3,
+          "department_name": "机构专用",
+          "buy_amount": 632.1032,
+          "sell_amount": 210.5873,
+          "net_amount": 421.5159,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.69
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 580.505,
+          "sell_amount": 629.541,
+          "net_amount": -49.036,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.08
+        },
+        {
+          "rank": 5,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 479.4118,
+          "sell_amount": 232.2213,
+          "net_amount": 247.1905,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.4
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司上海松江区中山东路证券营业部",
+          "buy_amount": 4.0552,
+          "sell_amount": 5071.8645,
+          "net_amount": -5067.8093,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 8.26
+        },
+        {
+          "rank": 2,
+          "department_name": "华宝证券股份有限公司上海东大名路证券营业部",
+          "buy_amount": 6.29,
+          "sell_amount": 2224.763,
+          "net_amount": -2218.473,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 3.62
+        },
+        {
+          "rank": 3,
+          "department_name": "东亚前海证券有限责任公司四川分公司",
+          "buy_amount": 0,
+          "sell_amount": 1142.9765,
+          "net_amount": -1142.9765,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.86
+        },
+        {
+          "rank": 4,
+          "department_name": "民生证券股份有限公司郑州桐柏路证券营业部",
+          "buy_amount": 49.3935,
+          "sell_amount": 1002.0587,
+          "net_amount": -952.6652,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.55
+        },
+        {
+          "rank": 5,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 0.5034,
+          "sell_amount": 965.4318,
+          "net_amount": -964.9284,
+          "direction": "S",
+          "label": "量化打板",
+          "amount_ratio": 1.57
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 3422.526,
+        "sell_total": 10407.0945,
+        "net_inflow": -6984.568499999999,
+        "buy_ratio": 5.58,
+        "sell_ratio": 16.97
+      },
+      "name": "长江材料",
+      "market_name": "深市主板",
+      "overview_change_percent": 2.739726,
+      "overview_close_price": 25.5
+    },
+    "002031": {
+      "code": "002031",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070001",
+        "list_reason": "日价格涨幅偏离值达到12.05%",
+        "volume": 33894.7805,
+        "amount": 289052.3737,
+        "close_price": 8.9,
+        "change_percent": 10.01
       },
       "buy_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 32179.4822,
-          "sell_amount": 47052.9816,
-          "net_amount": -14873.4994,
+          "buy_amount": 13094.2163,
+          "sell_amount": 6032.283,
+          "net_amount": 7061.9333,
           "direction": "B",
           "label": "深股通专用",
-          "amount_ratio": 1.25
+          "amount_ratio": 2.44
         },
         {
           "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 11886.1837,
-          "sell_amount": 3856.955,
-          "net_amount": 8029.2287,
+          "department_name": "国泰海通证券股份有限公司上海静安区新闸路证券营业部",
+          "buy_amount": 11521.705,
+          "sell_amount": 2.1684,
+          "net_amount": 11519.5366,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.67
+          "label": "",
+          "amount_ratio": 3.99
         },
         {
           "rank": 3,
           "department_name": "机构专用",
-          "buy_amount": 11533.0373,
-          "sell_amount": 4195.9117,
-          "net_amount": 7337.1256,
+          "buy_amount": 10427.9042,
+          "sell_amount": 1320.3991,
+          "net_amount": 9107.5051,
           "direction": "B",
           "label": "机构专用",
-          "amount_ratio": 0.62
+          "amount_ratio": 3.15
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 11379.3052,
-          "sell_amount": 4500.6678,
-          "net_amount": 6878.6374,
+          "department_name": "国泰海通证券股份有限公司咸宁咸宁大道证券营业部",
+          "buy_amount": 10172.8685,
+          "sell_amount": 1.5956,
+          "net_amount": 10171.2729,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.58
+          "label": "低位挖掘",
+          "amount_ratio": 3.52
         },
         {
           "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
-          "buy_amount": 10552.0977,
-          "sell_amount": 8702.842,
-          "net_amount": 1849.2557,
+          "department_name": "中泰证券股份有限公司湖北分公司",
+          "buy_amount": 8927.7467,
+          "sell_amount": 0,
+          "net_amount": 8927.7467,
           "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.16
+          "label": "一瞬流光",
+          "amount_ratio": 3.09
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 32179.4822,
-          "sell_amount": 47052.9816,
-          "net_amount": -14873.4994,
+          "buy_amount": 13094.2163,
+          "sell_amount": 6032.283,
+          "net_amount": 7061.9333,
           "direction": "S",
           "label": "深股通专用",
-          "amount_ratio": 1.25
+          "amount_ratio": 2.44
         },
         {
           "rank": 2,
-          "department_name": "中信证券股份有限公司上海徐汇区漕溪北路证券营业部",
-          "buy_amount": 5871.5904,
-          "sell_amount": 12109.1724,
-          "net_amount": -6237.582,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "buy_amount": 2213.3663,
+          "sell_amount": 2724.3107,
+          "net_amount": -510.9444,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 0.52
+          "label": "T王",
+          "amount_ratio": 0.18
         },
         {
           "rank": 3,
-          "department_name": "中泰证券股份有限公司湖北分公司",
-          "buy_amount": 141.0077,
-          "sell_amount": 10338.1087,
-          "net_amount": -10197.101,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 1750.771,
+          "sell_amount": 2612.5394,
+          "net_amount": -861.7684,
           "direction": "S",
-          "label": "一瞬流光",
-          "amount_ratio": 0.85
+          "label": "T王",
+          "amount_ratio": 0.3
         },
         {
           "rank": 4,
-          "department_name": "华鑫证券有限责任公司上海茅台路证券营业部",
-          "buy_amount": 134.537,
-          "sell_amount": 9408.3187,
-          "net_amount": -9273.7817,
+          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "buy_amount": 1458.6826,
+          "sell_amount": 2100.9122,
+          "net_amount": -642.2296,
           "direction": "S",
-          "label": "炒股养家",
-          "amount_ratio": 0.78
+          "label": "T王",
+          "amount_ratio": 0.22
         },
         {
           "rank": 5,
-          "department_name": "国投证券股份有限公司西安朱雀大街证券营业部",
-          "buy_amount": 6.0218,
-          "sell_amount": 9405.0563,
-          "net_amount": -9399.0345,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
+          "buy_amount": 1024.8644,
+          "sell_amount": 2069.0635,
+          "net_amount": -1044.1991,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 0.79
+          "label": "T王",
+          "amount_ratio": 0.36
         }
       ],
       "capital_flow": {
-        "buy_total": 77530.1061,
-        "sell_total": 88313.63769999999,
-        "net_inflow": -10783.531599999988,
-        "buy_ratio": 6.5,
-        "sell_ratio": 7.4
+        "buy_total": 54144.44070000001,
+        "sell_total": 15539.108800000002,
+        "net_inflow": 38605.331900000005,
+        "buy_ratio": 18.73,
+        "sell_ratio": 5.38
       },
-      "name": "利欧股份",
+      "name": "巨轮智能",
       "market_name": "深市主板",
-      "overview_change_percent": 1.0362694,
-      "overview_close_price": 5.85
+      "overview_change_percent": 10.0123609,
+      "overview_close_price": 8.9
     },
     "002104": {
       "code": "002104",
@@ -6125,134 +6253,6 @@
       "overview_change_percent": -9.9895942,
       "overview_close_price": 25.95
     },
-    "001296": {
-      "code": "001296",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070004",
-        "list_reason": "日换手率达到32.05%",
-        "volume": 2463.0337,
-        "amount": 61338.7188,
-        "close_price": 25.5,
-        "change_percent": 2.74
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "机构专用",
-          "buy_amount": 1065.9116,
-          "sell_amount": 521.1133,
-          "net_amount": 544.7983,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.89
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 664.5944,
-          "sell_amount": 777.564,
-          "net_amount": -112.9696,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.18
-        },
-        {
-          "rank": 3,
-          "department_name": "机构专用",
-          "buy_amount": 632.1032,
-          "sell_amount": 210.5873,
-          "net_amount": 421.5159,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.69
-        },
-        {
-          "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 580.505,
-          "sell_amount": 629.541,
-          "net_amount": -49.036,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.08
-        },
-        {
-          "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 479.4118,
-          "sell_amount": 232.2213,
-          "net_amount": 247.1905,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.4
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "国泰海通证券股份有限公司上海松江区中山东路证券营业部",
-          "buy_amount": 4.0552,
-          "sell_amount": 5071.8645,
-          "net_amount": -5067.8093,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 8.26
-        },
-        {
-          "rank": 2,
-          "department_name": "华宝证券股份有限公司上海东大名路证券营业部",
-          "buy_amount": 6.29,
-          "sell_amount": 2224.763,
-          "net_amount": -2218.473,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 3.62
-        },
-        {
-          "rank": 3,
-          "department_name": "东亚前海证券有限责任公司四川分公司",
-          "buy_amount": 0,
-          "sell_amount": 1142.9765,
-          "net_amount": -1142.9765,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.86
-        },
-        {
-          "rank": 4,
-          "department_name": "民生证券股份有限公司郑州桐柏路证券营业部",
-          "buy_amount": 49.3935,
-          "sell_amount": 1002.0587,
-          "net_amount": -952.6652,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.55
-        },
-        {
-          "rank": 5,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 0.5034,
-          "sell_amount": 965.4318,
-          "net_amount": -964.9284,
-          "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 1.57
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 3422.526,
-        "sell_total": 10407.0945,
-        "net_inflow": -6984.568499999999,
-        "buy_ratio": 5.58,
-        "sell_ratio": 16.97
-      },
-      "name": "长江材料",
-      "market_name": "深市主板",
-      "overview_change_percent": 2.739726,
-      "overview_close_price": 25.5
-    },
     "002115": {
       "code": "002115",
       "query_date": "2025-09-02",
@@ -6481,133 +6481,133 @@
       "overview_change_percent": -4.5138889,
       "overview_close_price": 11.0
     },
-    "002031": {
-      "code": "002031",
+    "002131": {
+      "code": "002131",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070001",
-        "list_reason": "日价格涨幅偏离值达到12.05%",
-        "volume": 33894.7805,
-        "amount": 289052.3737,
-        "close_price": 8.9,
-        "change_percent": 10.01
+        "list_code": "070004",
+        "list_reason": "日换手率达到34.11%",
+        "volume": 199557.4154,
+        "amount": 1192721.0123,
+        "close_price": 5.85,
+        "change_percent": 1.04
       },
       "buy_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 13094.2163,
-          "sell_amount": 6032.283,
-          "net_amount": 7061.9333,
+          "buy_amount": 32179.4822,
+          "sell_amount": 47052.9816,
+          "net_amount": -14873.4994,
           "direction": "B",
           "label": "深股通专用",
-          "amount_ratio": 2.44
+          "amount_ratio": 1.25
         },
         {
           "rank": 2,
-          "department_name": "国泰海通证券股份有限公司上海静安区新闸路证券营业部",
-          "buy_amount": 11521.705,
-          "sell_amount": 2.1684,
-          "net_amount": 11519.5366,
+          "department_name": "机构专用",
+          "buy_amount": 11886.1837,
+          "sell_amount": 3856.955,
+          "net_amount": 8029.2287,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 3.99
+          "label": "机构专用",
+          "amount_ratio": 0.67
         },
         {
           "rank": 3,
           "department_name": "机构专用",
-          "buy_amount": 10427.9042,
-          "sell_amount": 1320.3991,
-          "net_amount": 9107.5051,
+          "buy_amount": 11533.0373,
+          "sell_amount": 4195.9117,
+          "net_amount": 7337.1256,
           "direction": "B",
           "label": "机构专用",
-          "amount_ratio": 3.15
+          "amount_ratio": 0.62
         },
         {
           "rank": 4,
-          "department_name": "国泰海通证券股份有限公司咸宁咸宁大道证券营业部",
-          "buy_amount": 10172.8685,
-          "sell_amount": 1.5956,
-          "net_amount": 10171.2729,
+          "department_name": "机构专用",
+          "buy_amount": 11379.3052,
+          "sell_amount": 4500.6678,
+          "net_amount": 6878.6374,
           "direction": "B",
-          "label": "低位挖掘",
-          "amount_ratio": 3.52
+          "label": "机构专用",
+          "amount_ratio": 0.58
         },
         {
           "rank": 5,
-          "department_name": "中泰证券股份有限公司湖北分公司",
-          "buy_amount": 8927.7467,
-          "sell_amount": 0,
-          "net_amount": 8927.7467,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "buy_amount": 10552.0977,
+          "sell_amount": 8702.842,
+          "net_amount": 1849.2557,
           "direction": "B",
-          "label": "一瞬流光",
-          "amount_ratio": 3.09
+          "label": "T王",
+          "amount_ratio": 0.16
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 13094.2163,
-          "sell_amount": 6032.283,
-          "net_amount": 7061.9333,
+          "buy_amount": 32179.4822,
+          "sell_amount": 47052.9816,
+          "net_amount": -14873.4994,
           "direction": "S",
           "label": "深股通专用",
-          "amount_ratio": 2.44
+          "amount_ratio": 1.25
         },
         {
           "rank": 2,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
-          "buy_amount": 2213.3663,
-          "sell_amount": 2724.3107,
-          "net_amount": -510.9444,
+          "department_name": "中信证券股份有限公司上海徐汇区漕溪北路证券营业部",
+          "buy_amount": 5871.5904,
+          "sell_amount": 12109.1724,
+          "net_amount": -6237.582,
           "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.18
+          "label": "",
+          "amount_ratio": 0.52
         },
         {
           "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 1750.771,
-          "sell_amount": 2612.5394,
-          "net_amount": -861.7684,
+          "department_name": "中泰证券股份有限公司湖北分公司",
+          "buy_amount": 141.0077,
+          "sell_amount": 10338.1087,
+          "net_amount": -10197.101,
           "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.3
+          "label": "一瞬流光",
+          "amount_ratio": 0.85
         },
         {
           "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "buy_amount": 1458.6826,
-          "sell_amount": 2100.9122,
-          "net_amount": -642.2296,
+          "department_name": "华鑫证券有限责任公司上海茅台路证券营业部",
+          "buy_amount": 134.537,
+          "sell_amount": 9408.3187,
+          "net_amount": -9273.7817,
           "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.22
+          "label": "炒股养家",
+          "amount_ratio": 0.78
         },
         {
           "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
-          "buy_amount": 1024.8644,
-          "sell_amount": 2069.0635,
-          "net_amount": -1044.1991,
+          "department_name": "国投证券股份有限公司西安朱雀大街证券营业部",
+          "buy_amount": 6.0218,
+          "sell_amount": 9405.0563,
+          "net_amount": -9399.0345,
           "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.36
+          "label": "",
+          "amount_ratio": 0.79
         }
       ],
       "capital_flow": {
-        "buy_total": 54144.44070000001,
-        "sell_total": 15539.108800000002,
-        "net_inflow": 38605.331900000005,
-        "buy_ratio": 18.73,
-        "sell_ratio": 5.38
+        "buy_total": 77530.1061,
+        "sell_total": 88313.63769999999,
+        "net_inflow": -10783.531599999988,
+        "buy_ratio": 6.5,
+        "sell_ratio": 7.4
       },
-      "name": "巨轮智能",
+      "name": "利欧股份",
       "market_name": "深市主板",
-      "overview_change_percent": 10.0123609,
-      "overview_close_price": 8.9
+      "overview_change_percent": 1.0362694,
+      "overview_close_price": 5.85
     },
     "002210": {
       "code": "002210",
@@ -6737,6 +6737,134 @@
       "overview_change_percent": -1.0309278,
       "overview_close_price": 3.84
     },
+    "002211": {
+      "code": "002211",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070041",
+        "list_reason": "异常期间价格涨幅偏离值累计达到12.53%",
+        "volume": 3583.0124,
+        "amount": 12173.1355,
+        "close_price": 3.59,
+        "change_percent": 4.97
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "机构专用",
+          "buy_amount": 508.8675,
+          "sell_amount": 441.7336,
+          "net_amount": 67.1339,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.55
+        },
+        {
+          "rank": 2,
+          "department_name": "平安证券股份有限公司深圳香蜜湖证券营业部",
+          "buy_amount": 363.3101,
+          "sell_amount": 242.1306,
+          "net_amount": 121.1795,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.0
+        },
+        {
+          "rank": 3,
+          "department_name": "东海证券股份有限公司南京分公司",
+          "buy_amount": 358.927,
+          "sell_amount": 20.4076,
+          "net_amount": 338.5194,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 2.78
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 340.933,
+          "sell_amount": 335.1958,
+          "net_amount": 5.7372,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.05
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 324.0946,
+          "sell_amount": 251.1548,
+          "net_amount": 72.9398,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.6
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "机构专用",
+          "buy_amount": 508.8675,
+          "sell_amount": 441.7336,
+          "net_amount": 67.1339,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.55
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 340.933,
+          "sell_amount": 335.1958,
+          "net_amount": 5.7372,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.05
+        },
+        {
+          "rank": 3,
+          "department_name": "长城证券股份有限公司杭州文一西路证券营业部",
+          "buy_amount": 38.0602,
+          "sell_amount": 275.3129,
+          "net_amount": -237.2527,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.95
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 324.0946,
+          "sell_amount": 251.1548,
+          "net_amount": 72.9398,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.6
+        },
+        {
+          "rank": 5,
+          "department_name": "平安证券股份有限公司深圳香蜜湖证券营业部",
+          "buy_amount": 363.3101,
+          "sell_amount": 242.1306,
+          "net_amount": 121.1795,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.0
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 1896.1322,
+        "sell_total": 1545.5276999999999,
+        "net_inflow": 350.60450000000014,
+        "buy_ratio": 15.58,
+        "sell_ratio": 12.7
+      },
+      "name": "ST宏达",
+      "market_name": "深市主板",
+      "overview_change_percent": 4.9707602,
+      "overview_close_price": 3.59
+    },
     "002173": {
       "code": "002173",
       "query_date": "2025-09-02",
@@ -6864,134 +6992,6 @@
       "market_name": "深市主板",
       "overview_change_percent": -3.3346566,
       "overview_close_price": 24.35
-    },
-    "002229": {
-      "code": "002229",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070006",
-        "list_reason": "异常期间价格跌幅偏离值累计达到-20.10%",
-        "volume": 34003.604,
-        "amount": 711900.249,
-        "close_price": 18.89,
-        "change_percent": -7.58
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "深股通专用",
-          "buy_amount": 32974.8177,
-          "sell_amount": 29900.5284,
-          "net_amount": 3074.2893,
-          "direction": "B",
-          "label": "深股通专用",
-          "amount_ratio": 0.43
-        },
-        {
-          "rank": 2,
-          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "buy_amount": 8902.2445,
-          "sell_amount": 8849.7647,
-          "net_amount": 52.4798,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.01
-        },
-        {
-          "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
-          "buy_amount": 7648.2781,
-          "sell_amount": 7351.299,
-          "net_amount": 296.9791,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.04
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
-          "buy_amount": 6820.5414,
-          "sell_amount": 6762.481,
-          "net_amount": 58.0604,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.01
-        },
-        {
-          "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 6274.0601,
-          "sell_amount": 7418.9997,
-          "net_amount": -1144.9396,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.16
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "深股通专用",
-          "buy_amount": 32974.8177,
-          "sell_amount": 29900.5284,
-          "net_amount": 3074.2893,
-          "direction": "S",
-          "label": "深股通专用",
-          "amount_ratio": 0.43
-        },
-        {
-          "rank": 2,
-          "department_name": "东兴证券股份有限公司上海分公司",
-          "buy_amount": 965.7891,
-          "sell_amount": 11185.2193,
-          "net_amount": -10219.4302,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.44
-        },
-        {
-          "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "buy_amount": 8902.2445,
-          "sell_amount": 8849.7647,
-          "net_amount": 52.4798,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.01
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 6274.0601,
-          "sell_amount": 7418.9997,
-          "net_amount": -1144.9396,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.16
-        },
-        {
-          "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
-          "buy_amount": 7648.2781,
-          "sell_amount": 7351.299,
-          "net_amount": 296.9791,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.04
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 62619.94180000001,
-        "sell_total": 64705.8111,
-        "net_inflow": -2085.869299999991,
-        "buy_ratio": 8.8,
-        "sell_ratio": 9.09
-      },
-      "name": "鸿博股份",
-      "market_name": "深市主板",
-      "overview_change_percent": -7.5831703,
-      "overview_close_price": 18.89
     },
     "002212": {
       "code": "002212",
@@ -7121,133 +7121,133 @@
       "overview_change_percent": -8.5049239,
       "overview_close_price": 10.22
     },
-    "002211": {
-      "code": "002211",
+    "002229": {
+      "code": "002229",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070041",
-        "list_reason": "异常期间价格涨幅偏离值累计达到12.53%",
-        "volume": 3583.0124,
-        "amount": 12173.1355,
-        "close_price": 3.59,
-        "change_percent": 4.97
+        "list_code": "070006",
+        "list_reason": "异常期间价格跌幅偏离值累计达到-20.10%",
+        "volume": 34003.604,
+        "amount": 711900.249,
+        "close_price": 18.89,
+        "change_percent": -7.58
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "机构专用",
-          "buy_amount": 508.8675,
-          "sell_amount": 441.7336,
-          "net_amount": 67.1339,
+          "department_name": "深股通专用",
+          "buy_amount": 32974.8177,
+          "sell_amount": 29900.5284,
+          "net_amount": 3074.2893,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.55
+          "label": "深股通专用",
+          "amount_ratio": 0.43
         },
         {
           "rank": 2,
-          "department_name": "平安证券股份有限公司深圳香蜜湖证券营业部",
-          "buy_amount": 363.3101,
-          "sell_amount": 242.1306,
-          "net_amount": 121.1795,
+          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "buy_amount": 8902.2445,
+          "sell_amount": 8849.7647,
+          "net_amount": 52.4798,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 1.0
+          "label": "T王",
+          "amount_ratio": 0.01
         },
         {
           "rank": 3,
-          "department_name": "东海证券股份有限公司南京分公司",
-          "buy_amount": 358.927,
-          "sell_amount": 20.4076,
-          "net_amount": 338.5194,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "buy_amount": 7648.2781,
+          "sell_amount": 7351.299,
+          "net_amount": 296.9791,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 2.78
+          "label": "T王",
+          "amount_ratio": 0.04
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 340.933,
-          "sell_amount": 335.1958,
-          "net_amount": 5.7372,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
+          "buy_amount": 6820.5414,
+          "sell_amount": 6762.481,
+          "net_amount": 58.0604,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.05
+          "label": "T王",
+          "amount_ratio": 0.01
         },
         {
           "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 324.0946,
-          "sell_amount": 251.1548,
-          "net_amount": 72.9398,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 6274.0601,
+          "sell_amount": 7418.9997,
+          "net_amount": -1144.9396,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.6
+          "label": "T王",
+          "amount_ratio": 0.16
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
-          "department_name": "机构专用",
-          "buy_amount": 508.8675,
-          "sell_amount": 441.7336,
-          "net_amount": 67.1339,
+          "department_name": "深股通专用",
+          "buy_amount": 32974.8177,
+          "sell_amount": 29900.5284,
+          "net_amount": 3074.2893,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.55
+          "label": "深股通专用",
+          "amount_ratio": 0.43
         },
         {
           "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 340.933,
-          "sell_amount": 335.1958,
-          "net_amount": 5.7372,
+          "department_name": "东兴证券股份有限公司上海分公司",
+          "buy_amount": 965.7891,
+          "sell_amount": 11185.2193,
+          "net_amount": -10219.4302,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.05
+          "label": "",
+          "amount_ratio": 1.44
         },
         {
           "rank": 3,
-          "department_name": "长城证券股份有限公司杭州文一西路证券营业部",
-          "buy_amount": 38.0602,
-          "sell_amount": 275.3129,
-          "net_amount": -237.2527,
+          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "buy_amount": 8902.2445,
+          "sell_amount": 8849.7647,
+          "net_amount": 52.4798,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.95
+          "label": "T王",
+          "amount_ratio": 0.01
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 324.0946,
-          "sell_amount": 251.1548,
-          "net_amount": 72.9398,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 6274.0601,
+          "sell_amount": 7418.9997,
+          "net_amount": -1144.9396,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.6
+          "label": "T王",
+          "amount_ratio": 0.16
         },
         {
           "rank": 5,
-          "department_name": "平安证券股份有限公司深圳香蜜湖证券营业部",
-          "buy_amount": 363.3101,
-          "sell_amount": 242.1306,
-          "net_amount": 121.1795,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "buy_amount": 7648.2781,
+          "sell_amount": 7351.299,
+          "net_amount": 296.9791,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.0
+          "label": "T王",
+          "amount_ratio": 0.04
         }
       ],
       "capital_flow": {
-        "buy_total": 1896.1322,
-        "sell_total": 1545.5276999999999,
-        "net_inflow": 350.60450000000014,
-        "buy_ratio": 15.58,
-        "sell_ratio": 12.7
+        "buy_total": 62619.94180000001,
+        "sell_total": 64705.8111,
+        "net_inflow": -2085.869299999991,
+        "buy_ratio": 8.8,
+        "sell_ratio": 9.09
       },
-      "name": "ST宏达",
+      "name": "鸿博股份",
       "market_name": "深市主板",
-      "overview_change_percent": 4.9707602,
-      "overview_close_price": 3.59
+      "overview_change_percent": -7.5831703,
+      "overview_close_price": 18.89
     },
     "002231": {
       "code": "002231",
@@ -7376,6 +7376,134 @@
       "market_name": "深市主板",
       "overview_change_percent": 3.956044,
       "overview_close_price": 4.73
+    },
+    "002484": {
+      "code": "002484",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070002",
+        "list_reason": "日价格跌幅偏离值达到-7.95%",
+        "volume": 13004.0702,
+        "amount": 456061.0699,
+        "close_price": 32.98,
+        "change_percent": -9.99
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "深股通专用",
+          "buy_amount": 41335.119,
+          "sell_amount": 17942.0154,
+          "net_amount": 23393.1036,
+          "direction": "B",
+          "label": "深股通专用",
+          "amount_ratio": 5.13
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 11996.6066,
+          "sell_amount": 2429.1875,
+          "net_amount": 9567.4191,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 2.1
+        },
+        {
+          "rank": 3,
+          "department_name": "机构专用",
+          "buy_amount": 9538.3886,
+          "sell_amount": 5598.2443,
+          "net_amount": 3940.1443,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.86
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 9374.0907,
+          "sell_amount": 0,
+          "net_amount": 9374.0907,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 2.06
+        },
+        {
+          "rank": 5,
+          "department_name": "广发证券股份有限公司东莞大朗证券营业部",
+          "buy_amount": 8067.5677,
+          "sell_amount": 0.3591,
+          "net_amount": 8067.2086,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.77
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "深股通专用",
+          "buy_amount": 41335.119,
+          "sell_amount": 17942.0154,
+          "net_amount": 23393.1036,
+          "direction": "S",
+          "label": "深股通专用",
+          "amount_ratio": 5.13
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 0,
+          "sell_amount": 12267.7856,
+          "net_amount": -12267.7856,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 2.69
+        },
+        {
+          "rank": 3,
+          "department_name": "国金证券股份有限公司深圳分公司",
+          "buy_amount": 2579.3665,
+          "sell_amount": 7970.3263,
+          "net_amount": -5390.9598,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.18
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 1462.3278,
+          "sell_amount": 6849.1051,
+          "net_amount": -5386.7773,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 1.18
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 0,
+          "sell_amount": 6049.868,
+          "net_amount": -6049.868,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 1.33
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 80311.7726,
+        "sell_total": 51079.1004,
+        "net_inflow": 29232.672199999994,
+        "buy_ratio": 17.61,
+        "sell_ratio": 11.2
+      },
+      "name": "江海股份",
+      "market_name": "深市主板",
+      "overview_change_percent": -9.989083,
+      "overview_close_price": 32.98
     },
     "002256": {
       "code": "002256",
@@ -7633,133 +7761,133 @@
       "overview_change_percent": -10.0013479,
       "overview_close_price": 66.77
     },
-    "002664": {
-      "code": "002664",
+    "002620": {
+      "code": "002620",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070003",
-        "list_reason": "日价格振幅达到16.56%",
-        "volume": 3613.6476,
-        "amount": 97138.2714,
-        "close_price": 27.66,
-        "change_percent": 1.47
+        "list_code": "070041",
+        "list_reason": "异常期间价格涨幅偏离值累计达到16.54%",
+        "volume": 1416.435,
+        "amount": 8075.3621,
+        "close_price": 6.14,
+        "change_percent": 4.96
       },
       "buy_seats": [
         {
           "rank": 1,
-          "department_name": "深股通专用",
-          "buy_amount": 10447.4362,
-          "sell_amount": 5847.5179,
-          "net_amount": 4599.9183,
+          "department_name": "广发证券股份有限公司深圳福华一路证券营业部",
+          "buy_amount": 299.8854,
+          "sell_amount": 0,
+          "net_amount": 299.8854,
           "direction": "B",
-          "label": "深股通专用",
-          "amount_ratio": 4.74
+          "label": "欢乐海岸",
+          "amount_ratio": 3.71
         },
         {
           "rank": 2,
-          "department_name": "申万宏源证券有限公司上海浦东新区世纪大道证券营业部",
-          "buy_amount": 2801.8913,
+          "department_name": "中信证券股份有限公司长沙金星中路证券营业部",
+          "buy_amount": 275.0323,
           "sell_amount": 0,
-          "net_amount": 2801.8913,
+          "net_amount": 275.0323,
           "direction": "B",
           "label": "",
-          "amount_ratio": 2.88
+          "amount_ratio": 3.41
         },
         {
           "rank": 3,
-          "department_name": "机构专用",
-          "buy_amount": 2069.2794,
-          "sell_amount": 1154.2904,
-          "net_amount": 914.989,
+          "department_name": "国泰海通证券股份有限公司深圳福田中心区华融大厦证券营业部",
+          "buy_amount": 274.0839,
+          "sell_amount": 0,
+          "net_amount": 274.0839,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.94
+          "label": "",
+          "amount_ratio": 3.39
         },
         {
           "rank": 4,
-          "department_name": "恒泰证券股份有限公司西安科技四路证券营业部",
-          "buy_amount": 1848.1739,
-          "sell_amount": 93.3249,
-          "net_amount": 1754.849,
+          "department_name": "平安证券股份有限公司山西分公司",
+          "buy_amount": 268.2363,
+          "sell_amount": 4.9241,
+          "net_amount": 263.3122,
           "direction": "B",
           "label": "",
-          "amount_ratio": 1.81
+          "amount_ratio": 3.26
         },
         {
           "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 1761.8468,
-          "sell_amount": 1252.2743,
-          "net_amount": 509.5725,
+          "department_name": "中信证券股份有限公司福州振武路证券营业部",
+          "buy_amount": 248.4034,
+          "sell_amount": 0,
+          "net_amount": 248.4034,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.52
+          "label": "",
+          "amount_ratio": 3.08
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
-          "department_name": "深股通专用",
-          "buy_amount": 10447.4362,
-          "sell_amount": 5847.5179,
-          "net_amount": 4599.9183,
+          "department_name": "平安证券股份有限公司广东分公司",
+          "buy_amount": 4.8736,
+          "sell_amount": 1221.1544,
+          "net_amount": -1216.2808,
           "direction": "S",
-          "label": "深股通专用",
-          "amount_ratio": 4.74
+          "label": "",
+          "amount_ratio": 15.06
         },
         {
           "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 0,
-          "sell_amount": 2768.916,
-          "net_amount": -2768.916,
+          "department_name": "东莞证券股份有限公司四川分公司",
+          "buy_amount": 92.6848,
+          "sell_amount": 538.6803,
+          "net_amount": -445.9955,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 2.85
+          "label": "低位挖掘",
+          "amount_ratio": 5.52
         },
         {
           "rank": 3,
-          "department_name": "海通证券股份有限公司上海黄浦区合肥路证券营业部",
-          "buy_amount": 0.5052,
-          "sell_amount": 1831.6369,
-          "net_amount": -1831.1317,
+          "department_name": "国泰海通证券股份有限公司揭阳黄岐山大道证券营业部",
+          "buy_amount": 2.715,
+          "sell_amount": 288.403,
+          "net_amount": -285.688,
           "direction": "S",
           "label": "",
-          "amount_ratio": 1.89
+          "amount_ratio": 3.54
         },
         {
           "rank": 4,
-          "department_name": "浙商证券股份有限公司上海浦东杨高南路证券营业部",
+          "department_name": "华福证券有限责任公司厦门湖滨南路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 1533.4704,
-          "net_amount": -1533.4704,
+          "sell_amount": 252.98,
+          "net_amount": -252.98,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.58
+          "label": "广东帮",
+          "amount_ratio": 3.13
         },
         {
           "rank": 5,
-          "department_name": "金元证券股份有限公司上海东方路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 1308.4327,
-          "net_amount": -1308.4327,
+          "department_name": "机构专用",
+          "buy_amount": 148.1907,
+          "sell_amount": 237.2699,
+          "net_amount": -89.0792,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.35
+          "label": "机构专用",
+          "amount_ratio": 1.1
         }
       ],
       "capital_flow": {
-        "buy_total": 18928.6276,
-        "sell_total": 13289.973899999999,
-        "net_inflow": 5638.653700000001,
-        "buy_ratio": 19.49,
-        "sell_ratio": 13.68
+        "buy_total": 1365.6413,
+        "sell_total": 2538.4875999999995,
+        "net_inflow": -1172.8462999999995,
+        "buy_ratio": 16.91,
+        "sell_ratio": 31.43
       },
-      "name": "信质集团",
+      "name": "ST瑞和",
       "market_name": "深市主板",
-      "overview_change_percent": 1.4673514,
-      "overview_close_price": 27.66
+      "overview_change_percent": 4.957265,
+      "overview_close_price": 6.14
     },
     "002837": {
       "code": "002837",
@@ -7889,261 +8017,133 @@
       "overview_change_percent": -9.992515,
       "overview_close_price": 72.15
     },
-    "002846": {
-      "code": "002846",
+    "002664": {
+      "code": "002664",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070005",
-        "list_reason": "异常期间价格涨幅偏离值累计达到22.22%",
-        "volume": 7496.0739,
-        "amount": 137238.5253,
-        "close_price": 20.15,
-        "change_percent": 9.99
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "五矿证券有限公司深圳滨海大道证券营业部",
-          "buy_amount": 5536.7585,
-          "sell_amount": 4.4719,
-          "net_amount": 5532.2866,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 4.03
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 3486.7091,
-          "sell_amount": 4320.7731,
-          "net_amount": -834.064,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.61
-        },
-        {
-          "rank": 3,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 2600.8457,
-          "sell_amount": 414.9292,
-          "net_amount": 2185.9165,
-          "direction": "B",
-          "label": "量化打板",
-          "amount_ratio": 1.59
-        },
-        {
-          "rank": 4,
-          "department_name": "爱建证券有限责任公司上海锦康路证券营业部",
-          "buy_amount": 2268.2853,
-          "sell_amount": 2495.7427,
-          "net_amount": -227.4574,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 0.17
-        },
-        {
-          "rank": 5,
-          "department_name": "中国银河证券股份有限公司诸暨东旺路证券营业部",
-          "buy_amount": 2184.1796,
-          "sell_amount": 0,
-          "net_amount": 2184.1796,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 1.59
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "机构专用",
-          "buy_amount": 3486.7091,
-          "sell_amount": 4320.7731,
-          "net_amount": -834.064,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.61
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 1867.6883,
-          "sell_amount": 2568.3774,
-          "net_amount": -700.6891,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.51
-        },
-        {
-          "rank": 3,
-          "department_name": "爱建证券有限责任公司上海锦康路证券营业部",
-          "buy_amount": 2268.2853,
-          "sell_amount": 2495.7427,
-          "net_amount": -227.4574,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 0.17
-        },
-        {
-          "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 2001.5241,
-          "sell_amount": 1938.0708,
-          "net_amount": 63.4533,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.05
-        },
-        {
-          "rank": 5,
-          "department_name": "中信建投证券股份有限公司北京朝外大街证券营业部",
-          "buy_amount": 1513.3871,
-          "sell_amount": 1631.2526,
-          "net_amount": -117.8655,
-          "direction": "S",
-          "label": "呼家楼",
-          "amount_ratio": 0.09
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 16076.778199999999,
-        "sell_total": 12954.216599999998,
-        "net_inflow": 3122.561600000001,
-        "buy_ratio": 11.71,
-        "sell_ratio": 9.44
-      },
-      "name": "英联股份",
-      "market_name": "深市主板",
-      "overview_change_percent": 9.989083,
-      "overview_close_price": 20.15
-    },
-    "002484": {
-      "code": "002484",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070002",
-        "list_reason": "日价格跌幅偏离值达到-7.95%",
-        "volume": 13004.0702,
-        "amount": 456061.0699,
-        "close_price": 32.98,
-        "change_percent": -9.99
+        "list_code": "070003",
+        "list_reason": "日价格振幅达到16.56%",
+        "volume": 3613.6476,
+        "amount": 97138.2714,
+        "close_price": 27.66,
+        "change_percent": 1.47
       },
       "buy_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 41335.119,
-          "sell_amount": 17942.0154,
-          "net_amount": 23393.1036,
+          "buy_amount": 10447.4362,
+          "sell_amount": 5847.5179,
+          "net_amount": 4599.9183,
           "direction": "B",
           "label": "深股通专用",
-          "amount_ratio": 5.13
+          "amount_ratio": 4.74
         },
         {
           "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 11996.6066,
-          "sell_amount": 2429.1875,
-          "net_amount": 9567.4191,
+          "department_name": "申万宏源证券有限公司上海浦东新区世纪大道证券营业部",
+          "buy_amount": 2801.8913,
+          "sell_amount": 0,
+          "net_amount": 2801.8913,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 2.1
+          "label": "",
+          "amount_ratio": 2.88
         },
         {
           "rank": 3,
           "department_name": "机构专用",
-          "buy_amount": 9538.3886,
-          "sell_amount": 5598.2443,
-          "net_amount": 3940.1443,
+          "buy_amount": 2069.2794,
+          "sell_amount": 1154.2904,
+          "net_amount": 914.989,
           "direction": "B",
           "label": "机构专用",
-          "amount_ratio": 0.86
+          "amount_ratio": 0.94
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 9374.0907,
-          "sell_amount": 0,
-          "net_amount": 9374.0907,
+          "department_name": "恒泰证券股份有限公司西安科技四路证券营业部",
+          "buy_amount": 1848.1739,
+          "sell_amount": 93.3249,
+          "net_amount": 1754.849,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 2.06
+          "label": "",
+          "amount_ratio": 1.81
         },
         {
           "rank": 5,
-          "department_name": "广发证券股份有限公司东莞大朗证券营业部",
-          "buy_amount": 8067.5677,
-          "sell_amount": 0.3591,
-          "net_amount": 8067.2086,
+          "department_name": "机构专用",
+          "buy_amount": 1761.8468,
+          "sell_amount": 1252.2743,
+          "net_amount": 509.5725,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 1.77
+          "label": "机构专用",
+          "amount_ratio": 0.52
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 41335.119,
-          "sell_amount": 17942.0154,
-          "net_amount": 23393.1036,
+          "buy_amount": 10447.4362,
+          "sell_amount": 5847.5179,
+          "net_amount": 4599.9183,
           "direction": "S",
           "label": "深股通专用",
-          "amount_ratio": 5.13
+          "amount_ratio": 4.74
         },
         {
           "rank": 2,
           "department_name": "机构专用",
           "buy_amount": 0,
-          "sell_amount": 12267.7856,
-          "net_amount": -12267.7856,
+          "sell_amount": 2768.916,
+          "net_amount": -2768.916,
           "direction": "S",
           "label": "机构专用",
-          "amount_ratio": 2.69
+          "amount_ratio": 2.85
         },
         {
           "rank": 3,
-          "department_name": "国金证券股份有限公司深圳分公司",
-          "buy_amount": 2579.3665,
-          "sell_amount": 7970.3263,
-          "net_amount": -5390.9598,
+          "department_name": "海通证券股份有限公司上海黄浦区合肥路证券营业部",
+          "buy_amount": 0.5052,
+          "sell_amount": 1831.6369,
+          "net_amount": -1831.1317,
           "direction": "S",
           "label": "",
-          "amount_ratio": 1.18
+          "amount_ratio": 1.89
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 1462.3278,
-          "sell_amount": 6849.1051,
-          "net_amount": -5386.7773,
+          "department_name": "浙商证券股份有限公司上海浦东杨高南路证券营业部",
+          "buy_amount": 0,
+          "sell_amount": 1533.4704,
+          "net_amount": -1533.4704,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 1.18
+          "label": "",
+          "amount_ratio": 1.58
         },
         {
           "rank": 5,
-          "department_name": "机构专用",
+          "department_name": "金元证券股份有限公司上海东方路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 6049.868,
-          "net_amount": -6049.868,
+          "sell_amount": 1308.4327,
+          "net_amount": -1308.4327,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 1.33
+          "label": "",
+          "amount_ratio": 1.35
         }
       ],
       "capital_flow": {
-        "buy_total": 80311.7726,
-        "sell_total": 51079.1004,
-        "net_inflow": 29232.672199999994,
-        "buy_ratio": 17.61,
-        "sell_ratio": 11.2
+        "buy_total": 18928.6276,
+        "sell_total": 13289.973899999999,
+        "net_inflow": 5638.653700000001,
+        "buy_ratio": 19.49,
+        "sell_ratio": 13.68
       },
-      "name": "江海股份",
+      "name": "信质集团",
       "market_name": "深市主板",
-      "overview_change_percent": -9.989083,
-      "overview_close_price": 32.98
+      "overview_change_percent": 1.4673514,
+      "overview_close_price": 27.66
     },
     "002915": {
       "code": "002915",
@@ -8272,6 +8272,134 @@
       "market_name": "深市主板",
       "overview_change_percent": 6.3235294,
       "overview_close_price": 28.92
+    },
+    "002846": {
+      "code": "002846",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070005",
+        "list_reason": "异常期间价格涨幅偏离值累计达到22.22%",
+        "volume": 7496.0739,
+        "amount": 137238.5253,
+        "close_price": 20.15,
+        "change_percent": 9.99
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "五矿证券有限公司深圳滨海大道证券营业部",
+          "buy_amount": 5536.7585,
+          "sell_amount": 4.4719,
+          "net_amount": 5532.2866,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 4.03
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 3486.7091,
+          "sell_amount": 4320.7731,
+          "net_amount": -834.064,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.61
+        },
+        {
+          "rank": 3,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 2600.8457,
+          "sell_amount": 414.9292,
+          "net_amount": 2185.9165,
+          "direction": "B",
+          "label": "量化打板",
+          "amount_ratio": 1.59
+        },
+        {
+          "rank": 4,
+          "department_name": "爱建证券有限责任公司上海锦康路证券营业部",
+          "buy_amount": 2268.2853,
+          "sell_amount": 2495.7427,
+          "net_amount": -227.4574,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 0.17
+        },
+        {
+          "rank": 5,
+          "department_name": "中国银河证券股份有限公司诸暨东旺路证券营业部",
+          "buy_amount": 2184.1796,
+          "sell_amount": 0,
+          "net_amount": 2184.1796,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.59
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "机构专用",
+          "buy_amount": 3486.7091,
+          "sell_amount": 4320.7731,
+          "net_amount": -834.064,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.61
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 1867.6883,
+          "sell_amount": 2568.3774,
+          "net_amount": -700.6891,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.51
+        },
+        {
+          "rank": 3,
+          "department_name": "爱建证券有限责任公司上海锦康路证券营业部",
+          "buy_amount": 2268.2853,
+          "sell_amount": 2495.7427,
+          "net_amount": -227.4574,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 0.17
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 2001.5241,
+          "sell_amount": 1938.0708,
+          "net_amount": 63.4533,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.05
+        },
+        {
+          "rank": 5,
+          "department_name": "中信建投证券股份有限公司北京朝外大街证券营业部",
+          "buy_amount": 1513.3871,
+          "sell_amount": 1631.2526,
+          "net_amount": -117.8655,
+          "direction": "S",
+          "label": "呼家楼",
+          "amount_ratio": 0.09
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 16076.778199999999,
+        "sell_total": 12954.216599999998,
+        "net_inflow": 3122.561600000001,
+        "buy_ratio": 11.71,
+        "sell_ratio": 9.44
+      },
+      "name": "英联股份",
+      "market_name": "深市主板",
+      "overview_change_percent": 9.989083,
+      "overview_close_price": 20.15
     },
     "002942": {
       "code": "002942",
@@ -8529,6 +8657,134 @@
       "overview_change_percent": 10.0,
       "overview_close_price": 58.08
     },
+    "300139": {
+      "code": "300139",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070031",
+        "list_reason": "日换手率达到45.58%",
+        "volume": 10651.069,
+        "amount": 245143.283,
+        "close_price": 22.84,
+        "change_percent": 2.06
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "国泰海通证券股份有限公司上海闵行区号文路证券营业部",
+          "buy_amount": 6847.3153,
+          "sell_amount": 20.9026,
+          "net_amount": 6826.4127,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 2.78
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 3140.2998,
+          "sell_amount": 6820.4074,
+          "net_amount": -3680.1076,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 1.5
+        },
+        {
+          "rank": 3,
+          "department_name": "机构专用",
+          "buy_amount": 3010.7081,
+          "sell_amount": 2667.0582,
+          "net_amount": 343.6499,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.14
+        },
+        {
+          "rank": 4,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
+          "buy_amount": 2253.3397,
+          "sell_amount": 1731.2007,
+          "net_amount": 522.139,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.21
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 2234.9449,
+          "sell_amount": 1170.3486,
+          "net_amount": 1064.5963,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.43
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "机构专用",
+          "buy_amount": 3140.2998,
+          "sell_amount": 6820.4074,
+          "net_amount": -3680.1076,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 1.5
+        },
+        {
+          "rank": 2,
+          "department_name": "国泰海通证券股份有限公司合肥长江西路证券营业部",
+          "buy_amount": 1440.6665,
+          "sell_amount": 3626.6355,
+          "net_amount": -2185.969,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 0.89
+        },
+        {
+          "rank": 3,
+          "department_name": "东北证券股份有限公司佛山分公司",
+          "buy_amount": 1150.0628,
+          "sell_amount": 2700.3539,
+          "net_amount": -1550.2911,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 0.63
+        },
+        {
+          "rank": 4,
+          "department_name": "华泰证券股份有限公司成都蜀金路证券营业部",
+          "buy_amount": 80.006,
+          "sell_amount": 2669.6221,
+          "net_amount": -2589.6161,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.06
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 3010.7081,
+          "sell_amount": 2667.0582,
+          "net_amount": 343.6499,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.14
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 17486.607799999998,
+        "sell_total": 18484.077100000002,
+        "net_inflow": -997.4693000000043,
+        "buy_ratio": 7.13,
+        "sell_ratio": 7.54
+      },
+      "name": "晓程科技",
+      "market_name": "创业板",
+      "overview_change_percent": 2.0554066,
+      "overview_close_price": 22.84
+    },
     "300092": {
       "code": "300092",
       "query_date": "2025-09-02",
@@ -8756,262 +9012,6 @@
       "market_name": "创业板",
       "overview_change_percent": 19.9706314,
       "overview_close_price": 16.34
-    },
-    "300139": {
-      "code": "300139",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070031",
-        "list_reason": "日换手率达到45.58%",
-        "volume": 10651.069,
-        "amount": 245143.283,
-        "close_price": 22.84,
-        "change_percent": 2.06
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "国泰海通证券股份有限公司上海闵行区号文路证券营业部",
-          "buy_amount": 6847.3153,
-          "sell_amount": 20.9026,
-          "net_amount": 6826.4127,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 2.78
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 3140.2998,
-          "sell_amount": 6820.4074,
-          "net_amount": -3680.1076,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 1.5
-        },
-        {
-          "rank": 3,
-          "department_name": "机构专用",
-          "buy_amount": 3010.7081,
-          "sell_amount": 2667.0582,
-          "net_amount": 343.6499,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.14
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
-          "buy_amount": 2253.3397,
-          "sell_amount": 1731.2007,
-          "net_amount": 522.139,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.21
-        },
-        {
-          "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 2234.9449,
-          "sell_amount": 1170.3486,
-          "net_amount": 1064.5963,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.43
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "机构专用",
-          "buy_amount": 3140.2998,
-          "sell_amount": 6820.4074,
-          "net_amount": -3680.1076,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 1.5
-        },
-        {
-          "rank": 2,
-          "department_name": "国泰海通证券股份有限公司合肥长江西路证券营业部",
-          "buy_amount": 1440.6665,
-          "sell_amount": 3626.6355,
-          "net_amount": -2185.969,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 0.89
-        },
-        {
-          "rank": 3,
-          "department_name": "东北证券股份有限公司佛山分公司",
-          "buy_amount": 1150.0628,
-          "sell_amount": 2700.3539,
-          "net_amount": -1550.2911,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 0.63
-        },
-        {
-          "rank": 4,
-          "department_name": "华泰证券股份有限公司成都蜀金路证券营业部",
-          "buy_amount": 80.006,
-          "sell_amount": 2669.6221,
-          "net_amount": -2589.6161,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.06
-        },
-        {
-          "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 3010.7081,
-          "sell_amount": 2667.0582,
-          "net_amount": 343.6499,
-          "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.14
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 17486.607799999998,
-        "sell_total": 18484.077100000002,
-        "net_inflow": -997.4693000000043,
-        "buy_ratio": 7.13,
-        "sell_ratio": 7.54
-      },
-      "name": "晓程科技",
-      "market_name": "创业板",
-      "overview_change_percent": 2.0554066,
-      "overview_close_price": 22.84
-    },
-    "300324": {
-      "code": "300324",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070031",
-        "list_reason": "日换手率达到39.32%",
-        "volume": 67230.9362,
-        "amount": 538446.9558,
-        "close_price": 7.84,
-        "change_percent": 1.55
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "深股通专用",
-          "buy_amount": 20402.3641,
-          "sell_amount": 33634.3048,
-          "net_amount": -13231.9407,
-          "direction": "B",
-          "label": "深股通专用",
-          "amount_ratio": 2.46
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 7169.9005,
-          "sell_amount": 2836.6423,
-          "net_amount": 4333.2582,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.8
-        },
-        {
-          "rank": 3,
-          "department_name": "国联民生证券股份有限公司宁波财神殿南路证券营业部",
-          "buy_amount": 6002.8601,
-          "sell_amount": 7286.9678,
-          "net_amount": -1284.1077,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 0.24
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
-          "buy_amount": 5247.8848,
-          "sell_amount": 3144.939,
-          "net_amount": 2102.9458,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.39
-        },
-        {
-          "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 4706.8661,
-          "sell_amount": 2855.4457,
-          "net_amount": 1851.4204,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.34
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "深股通专用",
-          "buy_amount": 20402.3641,
-          "sell_amount": 33634.3048,
-          "net_amount": -13231.9407,
-          "direction": "S",
-          "label": "深股通专用",
-          "amount_ratio": 2.46
-        },
-        {
-          "rank": 2,
-          "department_name": "国联民生证券股份有限公司宁波财神殿南路证券营业部",
-          "buy_amount": 6002.8601,
-          "sell_amount": 7286.9678,
-          "net_amount": -1284.1077,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 0.24
-        },
-        {
-          "rank": 3,
-          "department_name": "华鑫证券有限责任公司上海茅台路证券营业部",
-          "buy_amount": 3.3267,
-          "sell_amount": 6535.2345,
-          "net_amount": -6531.9078,
-          "direction": "S",
-          "label": "炒股养家",
-          "amount_ratio": 1.21
-        },
-        {
-          "rank": 4,
-          "department_name": "华鑫证券有限责任公司上海分公司",
-          "buy_amount": 129.7782,
-          "sell_amount": 6299.3421,
-          "net_amount": -6169.5639,
-          "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 1.15
-        },
-        {
-          "rank": 5,
-          "department_name": "开源证券股份有限公司西安西大街证券营业部",
-          "buy_amount": 147.1306,
-          "sell_amount": 6197.6801,
-          "net_amount": -6050.5495,
-          "direction": "S",
-          "label": "量化打板",
-          "amount_ratio": 1.12
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 43529.8756,
-        "sell_total": 59953.529299999995,
-        "net_inflow": -16423.653699999995,
-        "buy_ratio": 8.08,
-        "sell_ratio": 11.13
-      },
-      "name": "旋极信息",
-      "market_name": "创业板",
-      "overview_change_percent": 1.5544041,
-      "overview_close_price": 7.84
     },
     "300237": {
       "code": "300237",
@@ -9269,261 +9269,133 @@
       "overview_change_percent": 7.1624505,
       "overview_close_price": 35.16
     },
-    "301357": {
-      "code": "301357",
+    "300324": {
+      "code": "300324",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
-        "list_code": "070004",
-        "list_reason": "日换手率达到41.18%",
-        "volume": 980.0088,
-        "amount": 176743.2702,
-        "close_price": 185.51,
-        "change_percent": 3.0
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 1662.6497,
-          "sell_amount": 1117.3487,
-          "net_amount": 545.301,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.31
-        },
-        {
-          "rank": 2,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
-          "buy_amount": 1582.8691,
-          "sell_amount": 1445.1243,
-          "net_amount": 137.7448,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.08
-        },
-        {
-          "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
-          "buy_amount": 1459.2025,
-          "sell_amount": 1207.6336,
-          "net_amount": 251.5689,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.14
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "buy_amount": 1347.9179,
-          "sell_amount": 797.8644,
-          "net_amount": 550.0535,
-          "direction": "B",
-          "label": "T王",
-          "amount_ratio": 0.31
-        },
-        {
-          "rank": 5,
-          "department_name": "东吴证券股份有限公司上海西藏南路证券营业部",
-          "buy_amount": 1327.132,
-          "sell_amount": 971.9175,
-          "net_amount": 355.2145,
-          "direction": "B",
-          "label": "",
-          "amount_ratio": 0.2
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
-          "buy_amount": 1582.8691,
-          "sell_amount": 1445.1243,
-          "net_amount": 137.7448,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.08
-        },
-        {
-          "rank": 2,
-          "department_name": "东方财富证券股份有限公司昌都两江大道证券营业部",
-          "buy_amount": 633.3586,
-          "sell_amount": 1287.3093,
-          "net_amount": -653.9507,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 0.37
-        },
-        {
-          "rank": 3,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
-          "buy_amount": 1459.2025,
-          "sell_amount": 1207.6336,
-          "net_amount": 251.5689,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.14
-        },
-        {
-          "rank": 4,
-          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "buy_amount": 1035.0019,
-          "sell_amount": 1133.4539,
-          "net_amount": -98.452,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.06
-        },
-        {
-          "rank": 5,
-          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "buy_amount": 1662.6497,
-          "sell_amount": 1117.3487,
-          "net_amount": 545.301,
-          "direction": "S",
-          "label": "T王",
-          "amount_ratio": 0.31
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 7379.771199999999,
-        "sell_total": 6190.8698,
-        "net_inflow": 1188.9013999999988,
-        "buy_ratio": 4.18,
-        "sell_ratio": 3.5
-      },
-      "name": "北方长龙",
-      "market_name": "创业板",
-      "overview_change_percent": 2.9981678,
-      "overview_close_price": 185.51
-    },
-    "301413": {
-      "code": "301413",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070003",
-        "list_reason": "日价格振幅达到30.81%",
-        "volume": 1199.6171,
-        "amount": 150549.5704,
-        "close_price": 136.0,
-        "change_percent": 13.42
+        "list_code": "070031",
+        "list_reason": "日换手率达到39.32%",
+        "volume": 67230.9362,
+        "amount": 538446.9558,
+        "close_price": 7.84,
+        "change_percent": 1.55
       },
       "buy_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 13999.9505,
-          "sell_amount": 9221.1405,
-          "net_amount": 4778.81,
+          "buy_amount": 20402.3641,
+          "sell_amount": 33634.3048,
+          "net_amount": -13231.9407,
           "direction": "B",
           "label": "深股通专用",
-          "amount_ratio": 3.17
+          "amount_ratio": 2.46
         },
         {
           "rank": 2,
           "department_name": "机构专用",
-          "buy_amount": 4414.1604,
-          "sell_amount": 2148.3401,
-          "net_amount": 2265.8203,
+          "buy_amount": 7169.9005,
+          "sell_amount": 2836.6423,
+          "net_amount": 4333.2582,
           "direction": "B",
           "label": "机构专用",
-          "amount_ratio": 1.51
+          "amount_ratio": 0.8
         },
         {
           "rank": 3,
-          "department_name": "财通证券股份有限公司杭州桐庐白云源路证券营业部",
-          "buy_amount": 4132.7742,
-          "sell_amount": 5298.2686,
-          "net_amount": -1165.4944,
+          "department_name": "国联民生证券股份有限公司宁波财神殿南路证券营业部",
+          "buy_amount": 6002.8601,
+          "sell_amount": 7286.9678,
+          "net_amount": -1284.1077,
           "direction": "B",
           "label": "",
-          "amount_ratio": 0.77
+          "amount_ratio": 0.24
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
-          "buy_amount": 3688.877,
-          "sell_amount": 0,
-          "net_amount": 3688.877,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
+          "buy_amount": 5247.8848,
+          "sell_amount": 3144.939,
+          "net_amount": 2102.9458,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 2.45
+          "label": "T王",
+          "amount_ratio": 0.39
         },
         {
           "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 3423.5736,
-          "sell_amount": 2926.9259,
-          "net_amount": 496.6477,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 4706.8661,
+          "sell_amount": 2855.4457,
+          "net_amount": 1851.4204,
           "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 0.33
+          "label": "T王",
+          "amount_ratio": 0.34
         }
       ],
       "sell_seats": [
         {
           "rank": 1,
           "department_name": "深股通专用",
-          "buy_amount": 13999.9505,
-          "sell_amount": 9221.1405,
-          "net_amount": 4778.81,
+          "buy_amount": 20402.3641,
+          "sell_amount": 33634.3048,
+          "net_amount": -13231.9407,
           "direction": "S",
           "label": "深股通专用",
-          "amount_ratio": 3.17
+          "amount_ratio": 2.46
         },
         {
           "rank": 2,
-          "department_name": "财通证券股份有限公司杭州桐庐白云源路证券营业部",
-          "buy_amount": 4132.7742,
-          "sell_amount": 5298.2686,
-          "net_amount": -1165.4944,
+          "department_name": "国联民生证券股份有限公司宁波财神殿南路证券营业部",
+          "buy_amount": 6002.8601,
+          "sell_amount": 7286.9678,
+          "net_amount": -1284.1077,
           "direction": "S",
           "label": "",
-          "amount_ratio": 0.77
+          "amount_ratio": 0.24
         },
         {
           "rank": 3,
-          "department_name": "招商证券股份有限公司上海中山南路证券营业部",
-          "buy_amount": 1823.6704,
-          "sell_amount": 4240.1851,
-          "net_amount": -2416.5147,
+          "department_name": "华鑫证券有限责任公司上海茅台路证券营业部",
+          "buy_amount": 3.3267,
+          "sell_amount": 6535.2345,
+          "net_amount": -6531.9078,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 1.61
+          "label": "炒股养家",
+          "amount_ratio": 1.21
         },
         {
           "rank": 4,
-          "department_name": "光大证券股份有限公司上海淮海中路证券营业部",
-          "buy_amount": 514.4642,
-          "sell_amount": 4003.1391,
-          "net_amount": -3488.6749,
+          "department_name": "华鑫证券有限责任公司上海分公司",
+          "buy_amount": 129.7782,
+          "sell_amount": 6299.3421,
+          "net_amount": -6169.5639,
           "direction": "S",
-          "label": "",
-          "amount_ratio": 2.32
+          "label": "量化打板",
+          "amount_ratio": 1.15
         },
         {
           "rank": 5,
-          "department_name": "机构专用",
-          "buy_amount": 3423.5736,
-          "sell_amount": 2926.9259,
-          "net_amount": 496.6477,
+          "department_name": "开源证券股份有限公司西安西大街证券营业部",
+          "buy_amount": 147.1306,
+          "sell_amount": 6197.6801,
+          "net_amount": -6050.5495,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 0.33
+          "label": "量化打板",
+          "amount_ratio": 1.12
         }
       ],
       "capital_flow": {
-        "buy_total": 29659.3357,
-        "sell_total": 25689.659200000002,
-        "net_inflow": 3969.6764999999978,
-        "buy_ratio": 19.7,
-        "sell_ratio": 17.06
+        "buy_total": 43529.8756,
+        "sell_total": 59953.529299999995,
+        "net_inflow": -16423.653699999995,
+        "buy_ratio": 8.08,
+        "sell_ratio": 11.13
       },
-      "name": "安培龙",
+      "name": "旋极信息",
       "market_name": "创业板",
-      "overview_change_percent": 13.4183971,
-      "overview_close_price": 136.0
+      "overview_change_percent": 1.5544041,
+      "overview_close_price": 7.84
     },
     "301488": {
       "code": "301488",
@@ -9653,6 +9525,262 @@
       "overview_change_percent": 11.017094,
       "overview_close_price": 129.89
     },
+    "301413": {
+      "code": "301413",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070003",
+        "list_reason": "日价格振幅达到30.81%",
+        "volume": 1199.6171,
+        "amount": 150549.5704,
+        "close_price": 136.0,
+        "change_percent": 13.42
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "深股通专用",
+          "buy_amount": 13999.9505,
+          "sell_amount": 9221.1405,
+          "net_amount": 4778.81,
+          "direction": "B",
+          "label": "深股通专用",
+          "amount_ratio": 3.17
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 4414.1604,
+          "sell_amount": 2148.3401,
+          "net_amount": 2265.8203,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 1.51
+        },
+        {
+          "rank": 3,
+          "department_name": "财通证券股份有限公司杭州桐庐白云源路证券营业部",
+          "buy_amount": 4132.7742,
+          "sell_amount": 5298.2686,
+          "net_amount": -1165.4944,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 0.77
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 3688.877,
+          "sell_amount": 0,
+          "net_amount": 3688.877,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 2.45
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 3423.5736,
+          "sell_amount": 2926.9259,
+          "net_amount": 496.6477,
+          "direction": "B",
+          "label": "机构专用",
+          "amount_ratio": 0.33
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "深股通专用",
+          "buy_amount": 13999.9505,
+          "sell_amount": 9221.1405,
+          "net_amount": 4778.81,
+          "direction": "S",
+          "label": "深股通专用",
+          "amount_ratio": 3.17
+        },
+        {
+          "rank": 2,
+          "department_name": "财通证券股份有限公司杭州桐庐白云源路证券营业部",
+          "buy_amount": 4132.7742,
+          "sell_amount": 5298.2686,
+          "net_amount": -1165.4944,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 0.77
+        },
+        {
+          "rank": 3,
+          "department_name": "招商证券股份有限公司上海中山南路证券营业部",
+          "buy_amount": 1823.6704,
+          "sell_amount": 4240.1851,
+          "net_amount": -2416.5147,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 1.61
+        },
+        {
+          "rank": 4,
+          "department_name": "光大证券股份有限公司上海淮海中路证券营业部",
+          "buy_amount": 514.4642,
+          "sell_amount": 4003.1391,
+          "net_amount": -3488.6749,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 2.32
+        },
+        {
+          "rank": 5,
+          "department_name": "机构专用",
+          "buy_amount": 3423.5736,
+          "sell_amount": 2926.9259,
+          "net_amount": 496.6477,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 0.33
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 29659.3357,
+        "sell_total": 25689.659200000002,
+        "net_inflow": 3969.6764999999978,
+        "buy_ratio": 19.7,
+        "sell_ratio": 17.06
+      },
+      "name": "安培龙",
+      "market_name": "创业板",
+      "overview_change_percent": 13.4183971,
+      "overview_close_price": 136.0
+    },
+    "301357": {
+      "code": "301357",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070004",
+        "list_reason": "日换手率达到41.18%",
+        "volume": 980.0088,
+        "amount": 176743.2702,
+        "close_price": 185.51,
+        "change_percent": 3.0
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 1662.6497,
+          "sell_amount": 1117.3487,
+          "net_amount": 545.301,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.31
+        },
+        {
+          "rank": 2,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
+          "buy_amount": 1582.8691,
+          "sell_amount": 1445.1243,
+          "net_amount": 137.7448,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.08
+        },
+        {
+          "rank": 3,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
+          "buy_amount": 1459.2025,
+          "sell_amount": 1207.6336,
+          "net_amount": 251.5689,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.14
+        },
+        {
+          "rank": 4,
+          "department_name": "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "buy_amount": 1347.9179,
+          "sell_amount": 797.8644,
+          "net_amount": 550.0535,
+          "direction": "B",
+          "label": "T王",
+          "amount_ratio": 0.31
+        },
+        {
+          "rank": 5,
+          "department_name": "东吴证券股份有限公司上海西藏南路证券营业部",
+          "buy_amount": 1327.132,
+          "sell_amount": 971.9175,
+          "net_amount": 355.2145,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 0.2
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "东方财富证券股份有限公司拉萨团结路第二证券营业部",
+          "buy_amount": 1582.8691,
+          "sell_amount": 1445.1243,
+          "net_amount": 137.7448,
+          "direction": "S",
+          "label": "T王",
+          "amount_ratio": 0.08
+        },
+        {
+          "rank": 2,
+          "department_name": "东方财富证券股份有限公司昌都两江大道证券营业部",
+          "buy_amount": 633.3586,
+          "sell_amount": 1287.3093,
+          "net_amount": -653.9507,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 0.37
+        },
+        {
+          "rank": 3,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第一证券营业部",
+          "buy_amount": 1459.2025,
+          "sell_amount": 1207.6336,
+          "net_amount": 251.5689,
+          "direction": "S",
+          "label": "T王",
+          "amount_ratio": 0.14
+        },
+        {
+          "rank": 4,
+          "department_name": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "buy_amount": 1035.0019,
+          "sell_amount": 1133.4539,
+          "net_amount": -98.452,
+          "direction": "S",
+          "label": "T王",
+          "amount_ratio": 0.06
+        },
+        {
+          "rank": 5,
+          "department_name": "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "buy_amount": 1662.6497,
+          "sell_amount": 1117.3487,
+          "net_amount": 545.301,
+          "direction": "S",
+          "label": "T王",
+          "amount_ratio": 0.31
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 7379.771199999999,
+        "sell_total": 6190.8698,
+        "net_inflow": 1188.9013999999988,
+        "buy_ratio": 4.18,
+        "sell_ratio": 3.5
+      },
+      "name": "北方长龙",
+      "market_name": "创业板",
+      "overview_change_percent": 2.9981678,
+      "overview_close_price": 185.51
+    },
     "301550": {
       "code": "301550",
       "query_date": "2025-09-02",
@@ -9781,68 +9909,68 @@
       "overview_change_percent": 11.3172176,
       "overview_close_price": 112.82
     },
-    "688235": {
-      "code": "688235",
+    "688062": {
+      "code": "688062",
       "query_date": "2025-09-02",
       "status": "success",
       "lhb_info": {
         "list_code": "070032",
         "list_reason": "有价格涨跌幅限制的连续3个交易日内收盘价格涨幅偏离值累计达到30%的证券",
-        "volume": 3451.89,
-        "amount": 1037534.79,
-        "close_price": 324.85,
-        "change_percent": 8.28
+        "volume": 8501.36,
+        "amount": 472890.09,
+        "close_price": 59.17,
+        "change_percent": 2.73
       },
       "buy_seats": [
         {
           "rank": 1,
           "department_name": "沪股通专用",
-          "buy_amount": 84494.62,
+          "buy_amount": 47272.18,
           "sell_amount": 0,
-          "net_amount": 84494.62,
+          "net_amount": 47272.18,
           "direction": "B",
           "label": "沪股通专用",
-          "amount_ratio": 8.14
+          "amount_ratio": 10.0
         },
         {
           "rank": 2,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 26024.96,
+          "department_name": "机构专用",
+          "buy_amount": 10937.3,
           "sell_amount": 0,
-          "net_amount": 26024.96,
+          "net_amount": 10937.3,
           "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 2.51
+          "label": "机构专用",
+          "amount_ratio": 2.31
         },
         {
           "rank": 3,
-          "department_name": "国泰海通证券股份有限公司宁波广福街证券营业部",
-          "buy_amount": 16807.91,
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
+          "buy_amount": 10427.98,
           "sell_amount": 0,
-          "net_amount": 16807.91,
+          "net_amount": 10427.98,
           "direction": "B",
-          "label": "",
-          "amount_ratio": 1.62
+          "label": "量化基金",
+          "amount_ratio": 2.21
         },
         {
           "rank": 4,
-          "department_name": "高盛（中国）证券有限责任公司上海浦东新区世纪大道证券营业部",
-          "buy_amount": 15309.71,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 8622.24,
           "sell_amount": 0,
-          "net_amount": 15309.71,
+          "net_amount": 8622.24,
           "direction": "B",
           "label": "量化基金",
-          "amount_ratio": 1.48
+          "amount_ratio": 1.82
         },
         {
           "rank": 5,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 15261.46,
+          "department_name": "中国国际金融股份有限公司上海分公司",
+          "buy_amount": 6690.96,
           "sell_amount": 0,
-          "net_amount": 15261.46,
+          "net_amount": 6690.96,
           "direction": "B",
           "label": "量化基金",
-          "amount_ratio": 1.47
+          "amount_ratio": 1.41
         }
       ],
       "sell_seats": [
@@ -9850,64 +9978,64 @@
           "rank": 1,
           "department_name": "沪股通专用",
           "buy_amount": 0,
-          "sell_amount": 102498.14,
-          "net_amount": -102498.14,
+          "sell_amount": 40098.43,
+          "net_amount": -40098.43,
           "direction": "S",
           "label": "沪股通专用",
-          "amount_ratio": 9.88
+          "amount_ratio": 8.48
         },
         {
           "rank": 2,
-          "department_name": "机构专用",
+          "department_name": "中信证券股份有限公司上海分公司",
           "buy_amount": 0,
-          "sell_amount": 70035.54,
-          "net_amount": -70035.54,
+          "sell_amount": 11476.0,
+          "net_amount": -11476.0,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 6.75
+          "label": "量化基金",
+          "amount_ratio": 2.43
         },
         {
           "rank": 3,
-          "department_name": "机构专用",
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 28326.34,
-          "net_amount": -28326.34,
+          "sell_amount": 10288.91,
+          "net_amount": -10288.91,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 2.73
+          "label": "量化基金",
+          "amount_ratio": 2.18
         },
         {
           "rank": 4,
-          "department_name": "机构专用",
+          "department_name": "中国国际金融股份有限公司上海分公司",
           "buy_amount": 0,
-          "sell_amount": 27775.55,
-          "net_amount": -27775.55,
+          "sell_amount": 6718.23,
+          "net_amount": -6718.23,
           "direction": "S",
-          "label": "机构专用",
-          "amount_ratio": 2.68
+          "label": "量化基金",
+          "amount_ratio": 1.42
         },
         {
           "rank": 5,
-          "department_name": "中国国际金融股份有限公司深圳分公司",
+          "department_name": "海通证券股份有限公司深圳红岭北路证券营业部",
           "buy_amount": 0,
-          "sell_amount": 27333.16,
-          "net_amount": -27333.16,
+          "sell_amount": 5988.99,
+          "net_amount": -5988.99,
           "direction": "S",
           "label": "",
-          "amount_ratio": 2.63
+          "amount_ratio": 1.27
         }
       ],
       "capital_flow": {
-        "buy_total": 157898.65999999997,
-        "sell_total": 255968.72999999998,
-        "net_inflow": -98070.07,
-        "buy_ratio": 15.22,
-        "sell_ratio": 24.67
+        "buy_total": 83950.66,
+        "sell_total": 74570.56,
+        "net_inflow": 9380.100000000006,
+        "buy_ratio": 17.75,
+        "sell_ratio": 15.77
       },
-      "name": "百济神州",
+      "name": "迈威生物",
       "market_name": "科创板",
-      "overview_change_percent": 8.2833333,
-      "overview_close_price": 324.85
+      "overview_change_percent": 2.7256944,
+      "overview_close_price": 59.17
     },
     "831906": {
       "code": "831906",
@@ -10236,6 +10364,134 @@
       "market_name": "北交所",
       "overview_change_percent": 21.1387038,
       "overview_close_price": 40.0
+    },
+    "688235": {
+      "code": "688235",
+      "query_date": "2025-09-02",
+      "status": "success",
+      "lhb_info": {
+        "list_code": "070032",
+        "list_reason": "有价格涨跌幅限制的连续3个交易日内收盘价格涨幅偏离值累计达到30%的证券",
+        "volume": 3451.89,
+        "amount": 1037534.79,
+        "close_price": 324.85,
+        "change_percent": 8.28
+      },
+      "buy_seats": [
+        {
+          "rank": 1,
+          "department_name": "沪股通专用",
+          "buy_amount": 84494.62,
+          "sell_amount": 0,
+          "net_amount": 84494.62,
+          "direction": "B",
+          "label": "沪股通专用",
+          "amount_ratio": 8.14
+        },
+        {
+          "rank": 2,
+          "department_name": "国泰海通证券股份有限公司总部",
+          "buy_amount": 26024.96,
+          "sell_amount": 0,
+          "net_amount": 26024.96,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 2.51
+        },
+        {
+          "rank": 3,
+          "department_name": "国泰海通证券股份有限公司宁波广福街证券营业部",
+          "buy_amount": 16807.91,
+          "sell_amount": 0,
+          "net_amount": 16807.91,
+          "direction": "B",
+          "label": "",
+          "amount_ratio": 1.62
+        },
+        {
+          "rank": 4,
+          "department_name": "高盛（中国）证券有限责任公司上海浦东新区世纪大道证券营业部",
+          "buy_amount": 15309.71,
+          "sell_amount": 0,
+          "net_amount": 15309.71,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 1.48
+        },
+        {
+          "rank": 5,
+          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
+          "buy_amount": 15261.46,
+          "sell_amount": 0,
+          "net_amount": 15261.46,
+          "direction": "B",
+          "label": "量化基金",
+          "amount_ratio": 1.47
+        }
+      ],
+      "sell_seats": [
+        {
+          "rank": 1,
+          "department_name": "沪股通专用",
+          "buy_amount": 0,
+          "sell_amount": 102498.14,
+          "net_amount": -102498.14,
+          "direction": "S",
+          "label": "沪股通专用",
+          "amount_ratio": 9.88
+        },
+        {
+          "rank": 2,
+          "department_name": "机构专用",
+          "buy_amount": 0,
+          "sell_amount": 70035.54,
+          "net_amount": -70035.54,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 6.75
+        },
+        {
+          "rank": 3,
+          "department_name": "机构专用",
+          "buy_amount": 0,
+          "sell_amount": 28326.34,
+          "net_amount": -28326.34,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 2.73
+        },
+        {
+          "rank": 4,
+          "department_name": "机构专用",
+          "buy_amount": 0,
+          "sell_amount": 27775.55,
+          "net_amount": -27775.55,
+          "direction": "S",
+          "label": "机构专用",
+          "amount_ratio": 2.68
+        },
+        {
+          "rank": 5,
+          "department_name": "中国国际金融股份有限公司深圳分公司",
+          "buy_amount": 0,
+          "sell_amount": 27333.16,
+          "net_amount": -27333.16,
+          "direction": "S",
+          "label": "",
+          "amount_ratio": 2.63
+        }
+      ],
+      "capital_flow": {
+        "buy_total": 157898.65999999997,
+        "sell_total": 255968.72999999998,
+        "net_inflow": -98070.07,
+        "buy_ratio": 15.22,
+        "sell_ratio": 24.67
+      },
+      "name": "百济神州",
+      "market_name": "科创板",
+      "overview_change_percent": 8.2833333,
+      "overview_close_price": 324.85
     },
     "833580": {
       "code": "833580",
@@ -11049,134 +11305,6 @@
       "overview_change_percent": 29.9947562,
       "overview_close_price": 24.79
     },
-    "688062": {
-      "code": "688062",
-      "query_date": "2025-09-02",
-      "status": "success",
-      "lhb_info": {
-        "list_code": "070032",
-        "list_reason": "有价格涨跌幅限制的连续3个交易日内收盘价格涨幅偏离值累计达到30%的证券",
-        "volume": 8501.36,
-        "amount": 472890.09,
-        "close_price": 59.17,
-        "change_percent": 2.73
-      },
-      "buy_seats": [
-        {
-          "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 47272.18,
-          "sell_amount": 0,
-          "net_amount": 47272.18,
-          "direction": "B",
-          "label": "沪股通专用",
-          "amount_ratio": 10.0
-        },
-        {
-          "rank": 2,
-          "department_name": "机构专用",
-          "buy_amount": 10937.3,
-          "sell_amount": 0,
-          "net_amount": 10937.3,
-          "direction": "B",
-          "label": "机构专用",
-          "amount_ratio": 2.31
-        },
-        {
-          "rank": 3,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 10427.98,
-          "sell_amount": 0,
-          "net_amount": 10427.98,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 2.21
-        },
-        {
-          "rank": 4,
-          "department_name": "国泰海通证券股份有限公司总部",
-          "buy_amount": 8622.24,
-          "sell_amount": 0,
-          "net_amount": 8622.24,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.82
-        },
-        {
-          "rank": 5,
-          "department_name": "中国国际金融股份有限公司上海分公司",
-          "buy_amount": 6690.96,
-          "sell_amount": 0,
-          "net_amount": 6690.96,
-          "direction": "B",
-          "label": "量化基金",
-          "amount_ratio": 1.41
-        }
-      ],
-      "sell_seats": [
-        {
-          "rank": 1,
-          "department_name": "沪股通专用",
-          "buy_amount": 0,
-          "sell_amount": 40098.43,
-          "net_amount": -40098.43,
-          "direction": "S",
-          "label": "沪股通专用",
-          "amount_ratio": 8.48
-        },
-        {
-          "rank": 2,
-          "department_name": "中信证券股份有限公司上海分公司",
-          "buy_amount": 0,
-          "sell_amount": 11476.0,
-          "net_amount": -11476.0,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.43
-        },
-        {
-          "rank": 3,
-          "department_name": "瑞银证券有限责任公司上海花园石桥路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 10288.91,
-          "net_amount": -10288.91,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 2.18
-        },
-        {
-          "rank": 4,
-          "department_name": "中国国际金融股份有限公司上海分公司",
-          "buy_amount": 0,
-          "sell_amount": 6718.23,
-          "net_amount": -6718.23,
-          "direction": "S",
-          "label": "量化基金",
-          "amount_ratio": 1.42
-        },
-        {
-          "rank": 5,
-          "department_name": "海通证券股份有限公司深圳红岭北路证券营业部",
-          "buy_amount": 0,
-          "sell_amount": 5988.99,
-          "net_amount": -5988.99,
-          "direction": "S",
-          "label": "",
-          "amount_ratio": 1.27
-        }
-      ],
-      "capital_flow": {
-        "buy_total": 83950.66,
-        "sell_total": 74570.56,
-        "net_inflow": 9380.100000000006,
-        "buy_ratio": 17.75,
-        "sell_ratio": 15.77
-      },
-      "name": "迈威生物",
-      "market_name": "科创板",
-      "overview_change_percent": 2.7256944,
-      "overview_close_price": 59.17
-    },
     "873223": {
       "code": "873223",
       "query_date": "2025-09-02",
@@ -11404,20 +11532,11 @@
       "market_name": "北交所",
       "overview_change_percent": 0,
       "overview_close_price": 28.31
-    },
-    "002620": {
-      "code": "002620",
-      "status": "query_failed",
-      "error": "HTTPSConnectionPool(host='fk.tdx.com.cn', port=443): Max retries exceeded with url: /TQLEX?Entry=CWServ.tdxsj_lhbd_ggxq (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f2ac2408c90>, 'Connection to fk.tdx.com.cn timed out. (connect timeout=10)'))",
-      "name": "ST瑞和",
-      "market_name": "深市主板",
-      "overview_change_percent": 4.957265,
-      "overview_close_price": 6.14
     }
   },
   "statistics": {
-    "success_count": 73,
-    "failed_count": 1,
+    "success_count": 74,
+    "failed_count": 0,
     "no_detail_count": 0
   }
 }
