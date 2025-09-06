@@ -420,10 +420,11 @@ body {
 /* 涨停透视页面样式 */
 .core-indicators {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* 强制4列 */
+    grid-template-columns: repeat(4, 1fr);  /* 确保是这个 */
     gap: 20px;
     margin-bottom: 30px;
 }
+
 
 .indicator-card {
     background: white;
