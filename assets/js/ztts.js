@@ -188,22 +188,57 @@ function updateMarketAnalysis(data) {
 function updateLadderDistribution(data) {
     const ladderContentEl = document.getElementById('ladderContent');
     
-    if (ladderContentEl) {
-        // 暂时显示占位符，因为原始数据中可能没有具体的涨停梯队股票信息
-        ladderContentEl.innerHTML = `
-            <div class="ladder-placeholder">
-                <p>📊 涨停梯队分布功能开发中...</p>
-                <p>当前数据包含：</p>
-                <ul>
-                    <li>涨停数量：${formatNumber(data.核心指标?.涨停数量)}只</li>
-                    <li>最高板数：${formatNumber(data.核心指标?.最高板数)}板</li>
-                    <li>连板家数：${formatNumber(data.连板统计?.连板家数)}家</li>
-                </ul>
-                <p class="note">💡 完整的个股梯队信息需要从网站获取更详细的数据</p>
-            </div>
-        `;
+    if (!ladderContentEl) return;
+    
+    const ladderStocks = data.涨停梯队 || {};
+    
+    if (Object.keys(ladderStocks).length === 0) {
+        ladderContentEl.innerHTML = '<div class="no-ladder-data">暂无涨停梯队数据</div>';
+        return;
     }
+    
+    let ladderHTML = '';
+    
+    // 按板数从高到低排序
+    const sortedBoards = Object.keys(ladderStocks).sort((a, b) => {
+        const aNum = parseInt(a.replace('板', ''));
+        const bNum = parseInt(b.replace('板', ''));
+        return bNum - aNum;
+    });
+    
+    sortedBoards.forEach(boardType => {
+        const stocks = ladderStocks[boardType];
+        if (stocks && stocks.length > 0) {
+            ladderHTML += `
+                <div class="ladder-board-section">
+                    <div class="board-header">
+                        <h4>${boardType}</h4>
+                        <span class="stock-count">(${stocks.length}只)</span>
+                    </div>
+                    <div class="stocks-grid">
+            `;
+            
+            stocks.forEach(stock => {
+                ladderHTML += `
+                    <div class="stock-item">
+                        <div class="stock-name">${stock.name}</div>
+                        <div class="stock-code">${stock.code}</div>
+                        <div class="stock-label">${stock.board_label}</div>
+                        <div class="stock-market">${stock.market}</div>
+                    </div>
+                `;
+            });
+            
+            ladderHTML += `
+                    </div>
+                </div>
+            `;
+        }
+    });
+    
+    ladderContentEl.innerHTML = ladderHTML;
 }
+
 
 // 更新对比表格
 function updateComparisonTable(data) {
