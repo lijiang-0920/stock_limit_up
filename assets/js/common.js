@@ -90,6 +90,9 @@ async function loadMainPageStats() {
         // 加载龙虎榜数据状态
         await loadDragonTigerStatus();
         
+        // 加载涨停透视数据状态
+        await loadZTTSStatus();    
+        
     } catch (error) {
         console.error('加载统计数据失败:', error);
         const dataStatusEl = document.getElementById('dataStatus');
@@ -239,6 +242,31 @@ async function loadAnalysisStatus() {
         }
     }
 }
+
+// 添加涨停透视状态加载函数
+async function loadZTTSStatus() {
+    try {
+        const response = await fetch('dzh_ztts/index.json');
+        if (response.ok) {
+            const indexData = await response.json();
+            const dates = Object.keys(indexData).sort().reverse();
+            if (dates.length > 0) {
+                const latestDate = dates[0];
+                const zttsStatusEl = document.getElementById('zttsStatus');
+                if (zttsStatusEl) {
+                    zttsStatusEl.textContent = '最新更新: ' + latestDate;
+                }
+            }
+        }
+    } catch (error) {
+        console.error('加载涨停透视状态失败:', error);
+        const zttsStatusEl = document.getElementById('zttsStatus');
+        if (zttsStatusEl) {
+            zttsStatusEl.textContent = '最新更新: 加载失败';
+        }
+    }
+}
+
 
 // 显示关于信息
 function showAbout() {
