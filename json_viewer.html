@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📄 JSON数据查看器</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>📄 JSON数据查看器</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="json-controls">
+                <select id="dataTypeSelect" class="filter-select">
+                    <option value="limitup">涨停池数据</option>
+                    <option value="articles">文章数据</option>
+                    <option value="analysis">异动解析数据</option>
+                    <option value="dragon_tiger">龙虎榜数据</option>
+                    <option value="ztts">涨停透视数据</option> 
+                </select>
+                <select id="dateSelect" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <button id="copyJsonBtn" class="action-btn">📋 复制JSON</button>
+            </div>
+        </div>
+        
+        <div class="json-container">
+            <pre><code id="jsonContent">请选择数据类型和日期...</code></pre>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script>
+        loadJsonViewer();
+    </script>
+</body>
+</html>

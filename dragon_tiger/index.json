@@ -1,0 +1,68 @@
+{
+  "2025-08-29": {
+    "date": "2025-08-29",
+    "update_time": "2025-09-01 09:57:14",
+    "total_count": 54,
+    "success_count": 54,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-08-29.json",
+      "txt": "dragon_tiger/2025-08-29.txt"
+    }
+  },
+  "2025-09-01": {
+    "date": "2025-09-01",
+    "update_time": "2025-09-01 18:19:28",
+    "total_count": 71,
+    "success_count": 71,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-09-01.json",
+      "txt": "dragon_tiger/2025-09-01.txt"
+    }
+  },
+  "2025-09-02": {
+    "date": "2025-09-02",
+    "update_time": "2025-09-03 08:29:40",
+    "total_count": 74,
+    "success_count": 74,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-09-02.json",
+      "txt": "dragon_tiger/2025-09-02.txt"
+    }
+  },
+  "2025-09-03": {
+    "date": "2025-09-03",
+    "update_time": "2025-09-03 18:17:20",
+    "total_count": 66,
+    "success_count": 66,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-09-03.json",
+      "txt": "dragon_tiger/2025-09-03.txt"
+    }
+  },
+  "2025-09-04": {
+    "date": "2025-09-04",
+    "update_time": "2025-09-04 18:17:41",
+    "total_count": 71,
+    "success_count": 70,
+    "success_rate": 98.6,
+    "files": {
+      "json": "dragon_tiger/2025-09-04.json",
+      "txt": "dragon_tiger/2025-09-04.txt"
+    }
+  },
+  "2025-09-05": {
+    "date": "2025-09-05",
+    "update_time": "2025-09-05 18:17:53",
+    "total_count": 74,
+    "success_count": 74,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-09-05.json",
+      "txt": "dragon_tiger/2025-09-05.txt"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 大智慧涨停透视数据</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>📊 大智慧涨停透视数据</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="filter-section">
+                <select id="dateFilter" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <button id="refreshBtn" class="action-btn">🔄 刷新</button>
+                <button id="copyDataBtn" class="action-btn">📋 复制数据</button>
+                <button id="viewJsonBtn" class="action-btn">📄 查看JSON</button>
+            </div>
+        </div>
+        
+        <div class="data-info" id="dataInfo" style="display: none;">
+            <div class="info-item">
+                <span class="info-label">数据日期:</span>
+                <span id="dataDate">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">更新时间:</span>
+                <span id="updateTime">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">数据来源:</span>
+                <span>大智慧涨停透视</span>
+            </div>
+        </div>
+        
+        <!-- 核心指标卡片 -->
+        <div class="core-indicators" id="coreIndicators" style="display: none;">
+            <div class="indicator-card">
+                <div class="indicator-title">活跃资金情绪</div>
+                <div class="indicator-value" id="marketSentiment">--</div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-title">封板率</div>
+                <div class="indicator-value" id="sealingRate">--</div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-title">涨停数量</div>
+                <div class="indicator-value" id="limitUpCount">--</div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-title">最高板数</div>
+                <div class="indicator-value" id="maxBoards">--</div>
+            </div>
+        </div>
+        
+        <!-- 市场分析 -->
+        <div class="market-analysis" id="marketAnalysis" style="display: none;">
+            <h3>📊 市场分析</h3>
+            <div class="analysis-content" id="analysisContent">
+                --
+            </div>
+        </div>
+        
+        <!-- 涨停梯队分布 -->
+        <div class="ladder-distribution" id="ladderDistribution" style="display: none;">
+            <h3>🔥 涨停梯队分布</h3>
+            <div class="ladder-content" id="ladderContent">
+                <!-- 这里将显示具体的涨停梯队数据 -->
+                <div class="no-ladder-data">暂无涨停梯队数据</div>
+            </div>
+        </div>
+        
+        <!-- 今日vs前日对比 -->
+        <div class="comparison-table" id="comparisonTable" style="display: none;">
+            <h3>📈 今日 vs 前日对比</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th>今日</th>
+                        <th>前日</th>
+                        <th>变化</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonTableBody">
+                    <!-- 对比数据将在这里填充 -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 连板统计 -->
+        <div class="board-statistics" id="boardStatistics" style="display: none;">
+            <h3>🔥 连板统计</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">最高板数</span>
+                    <span class="stat-value" id="maxBoardsStat">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">连板家数</span>
+                    <span class="stat-value" id="boardCount">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">自然板家数</span>
+                    <span class="stat-value" id="naturalBoardCount">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">触及涨停</span>
+                    <span class="stat-value" id="touchLimitUp">--</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ztts-container" id="zttsContainer">
+            <div class="loading">请选择日期查看数据...</div>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/ztts.js"></script>
+</body>
+</html>
