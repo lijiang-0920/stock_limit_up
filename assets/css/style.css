@@ -416,6 +416,156 @@ body {
 .article-btn.primary:hover {
     background: #5a67d8;
 }
+
+/* 涨停透视页面样式 */
+.core-indicators {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.indicator-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.indicator-card:hover {
+    transform: translateY(-2px);
+}
+
+.indicator-title {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.indicator-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.market-analysis {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.analysis-content {
+    color: #4a5568;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.ladder-distribution {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.ladder-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+    color: #718096;
+}
+
+.ladder-placeholder ul {
+    text-align: left;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.ladder-placeholder .note {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    margin-top: 20px;
+}
+
+.comparison-table {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.change-positive {
+    color: #e53e3e;
+    font-weight: 600;
+}
+
+.change-negative {
+    color: #38a169;
+    font-weight: 600;
+}
+
+.change-neutral {
+    color: #718096;
+}
+
+.board-statistics {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.success-message {
+    text-align: center;
+    padding: 20px;
+    color: #38a169;
+    font-weight: 500;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .core-indicators {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .indicator-value {
+        font-size: 1.5rem;
+    }
+    
+    .data-table {
+        font-size: 0.9rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 8px;
+    }
+}
+
 /* 龙虎榜相关样式 */
 .market-stats {
     background: white;
