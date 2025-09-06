@@ -117,7 +117,7 @@ async function loadZTTSData(date) {
         // 更新市场分析
         updateMarketAnalysis(currentZTTSData);
         
-        // 更新涨停梯队（暂时显示占位符）
+        // 更新涨停梯队
         updateLadderDistribution(currentZTTSData);
         
         // 更新对比表格
@@ -126,10 +126,13 @@ async function loadZTTSData(date) {
         // 更新连板统计
         updateBoardStatistics(currentZTTSData);
         
-        // 显示所有数据区域
-        [dataInfo, coreIndicators, marketAnalysis, ladderDistribution, comparisonTable, boardStatistics].forEach(el => {
-            if (el) el.style.display = 'block';
-        });
+        // 显示所有数据区域 - 修改这里
+        if (dataInfo) dataInfo.style.display = 'flex';
+        if (coreIndicators) coreIndicators.style.display = 'grid';  // 改为grid
+        if (marketAnalysis) marketAnalysis.style.display = 'block';
+        if (ladderDistribution) ladderDistribution.style.display = 'block';
+        if (comparisonTable) comparisonTable.style.display = 'block';
+        if (boardStatistics) boardStatistics.style.display = 'block';
         
         container.innerHTML = '<div class="success-message">✅ 数据加载完成</div>';
         
@@ -138,6 +141,7 @@ async function loadZTTSData(date) {
         showError(container, '加载数据失败');
     }
 }
+
 
 // 更新数据信息
 function updateDataInfo(data) {
