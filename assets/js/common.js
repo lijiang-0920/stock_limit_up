@@ -329,6 +329,12 @@ async function loadJsonViewer() {
                     const dragonTigerData = await response.json();
                     dates = Object.keys(dragonTigerData).sort().reverse();
                 }
+            } else if (dataType === 'ztts') {  // 添加涨停透视数据类型
+                const response = await fetch('dzh_ztts/index.json');
+                if (response.ok) {
+                    const zttsData = await response.json();
+                    dates = Object.keys(zttsData).sort().reverse();
+                }
             }
             
             dates.forEach(date => {
@@ -367,6 +373,9 @@ async function loadJsonViewer() {
                 response = await fetch('analysis/' + date + '.json');
             } else if (dataType === 'dragon_tiger') {
                 response = await fetch('dragon_tiger/' + date + '.json');
+            } else if (dataType === 'ztts') {  // 添加涨停透视数据加载
+                const yearMonth = date.substring(0, 7); // 2025-01
+                response = await fetch('dzh_ztts/' + yearMonth + '/' + date + '.json');
             }
             
             if (response && response.ok) {
