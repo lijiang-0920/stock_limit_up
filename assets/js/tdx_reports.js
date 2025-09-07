@@ -210,7 +210,6 @@ function getRatingColorClass(rating) {
 }
 
 // 渲染研报表格
-// 渲染研报表格 - 优化版本
 function renderReportsTable(reports) {
     const container = document.getElementById('reportsContainer');
     
@@ -229,14 +228,14 @@ function renderReportsTable(reports) {
             <thead>
                 <tr class="header-row-1">
                     <th rowspan="2">序号</th>
-                    <th rowspan="2">日期</th>
-                    <th rowspan="2">代码</th>
-                    <th rowspan="2">简称</th>
-                    <th rowspan="2">机构</th>
-                    <th rowspan="2">评级</th>
+                    <th rowspan="2">报告日期</th>
+                    <th rowspan="2">证券代码</th>
+                    <th rowspan="2">证券简称</th>
+                    <th rowspan="2">研究机构</th>
+                    <th rowspan="2">投资评级</th>
                     <th rowspan="2">目标价</th>
-                    <th rowspan="2">年度</th>
-                    <th rowspan="2">实际EPS</th>
+                    <th rowspan="2">T年度</th>
+                    <th rowspan="2">EPS实际值(元)</th>
                     <th colspan="3">EPS预测</th>
                     <th rowspan="2">操作</th>
                 </tr>
@@ -250,13 +249,11 @@ function renderReportsTable(reports) {
                 ${reports.map(report => `
                     <tr class="report-row" data-code="${report.证券代码}" data-name="${report.证券简称}" data-institution="${report.研究机构}" data-rating="${report.评级}">
                         <td class="report-index">${report.序号}</td>
-                        <td>${report.报告日期.substring(5)}</td>
+                        <td>${report.报告日期}</td>
                         <td class="stock-code">${report.证券代码}</td>
-                        <td class="stock-name" title="${report.证券简称}">${report.证券简称}</td>
-                        <td class="institution" title="${report.研究机构}">${report.研究机构}</td>
-                        <td>
-                            <span class="rating ${getRatingColorClass(report.评级)}">${report.评级.split('(')[0]}</span>
-                        </td>
+                        <td class="stock-name">${report.证券简称}</td>
+                        <td class="institution">${report.研究机构}</td>
+                        <td class="rating ${getRatingColorClass(report.评级)}">${report.评级}</td>
                         <td class="target-price">${report.目标价}</td>
                         <td class="t-year">${report.T年度}</td>
                         <td class="eps-actual">${report['EPS实际值(元)']}</td>
@@ -549,4 +546,3 @@ document.addEventListener('keydown', (e) => {
         closeReportDetailModal();
     }
 });
-
