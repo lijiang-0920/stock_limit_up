@@ -417,32 +417,28 @@ body {
     background: #5a67d8;
 }
 
-/* 通达信研报样式优化 */
-/* 通达信研报样式 - 自适应宽度版本 */
+/* 通达信研报样式 */
 .tdx-reports-container {
     background: white;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    overflow: visible; /* 改为可见，不需要滚动 */
+    overflow-x: auto;
 }
 
 .reports-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    table-layout: auto; /* 改为自动布局，让表格自适应 */
+    min-width: 1200px;
 }
 
 .reports-table th,
 .reports-table td {
-    padding: 8px 4px; /* 减少内边距 */
-    text-align: center; /* 所有内容居中 */
+    padding: 12px 8px;
+    text-align: left;
     border-bottom: 1px solid #e2e8f0;
-    font-size: 0.85rem; /* 稍微减小字体 */
-    vertical-align: middle;
-    word-wrap: break-word; /* 允许换行 */
-    overflow: hidden;
+    font-size: 0.9rem;
 }
 
 .reports-table th {
@@ -452,28 +448,15 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
-    text-align: center;
-    padding: 10px 4px;
 }
 
 .header-row-1 th {
     border-bottom: 1px solid #cbd5e0;
-    text-align: center;
 }
 
 .header-row-2 th {
     background: #edf2f7;
-    font-size: 0.8rem;
-    text-align: center;
-    padding: 8px 4px;
-}
-
-/* EPS预测父级表头特殊样式 */
-.reports-table th[colspan="3"] {
-    text-align: center !important;
-    font-weight: 700;
-    background: #e2e8f0;
-    color: #2d3748;
+    font-size: 0.85rem;
 }
 
 .report-row:hover {
@@ -488,40 +471,25 @@ body {
     background: #f0f4f8;
 }
 
-/* 优化各列显示 */
 .stock-code {
     font-weight: bold;
     color: #667eea;
-    font-size: 0.8rem;
 }
 
 .stock-name {
     font-weight: 600;
     color: #2d3748;
-    font-size: 0.8rem;
-    max-width: 80px; /* 限制最大宽度 */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .institution {
     color: #4a5568;
-    font-size: 0.75rem;
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .rating {
     font-weight: 600;
-    padding: 2px 4px;
+    padding: 4px 8px;
     border-radius: 4px;
     text-align: center;
-    display: inline-block;
-    font-size: 0.75rem;
-    min-width: 40px;
 }
 
 .rating-buy {
@@ -547,18 +515,15 @@ body {
 .target-price {
     font-weight: 600;
     color: #e53e3e;
-    text-align: center;
-    font-size: 0.8rem;
+    text-align: right;
 }
 
 .eps-actual,
 .eps-t,
 .eps-t1,
 .eps-t2 {
-    text-align: center;
+    text-align: right;
     font-family: 'Consolas', 'Monaco', monospace;
-    font-weight: 500;
-    font-size: 0.75rem;
 }
 
 .actions {
@@ -567,138 +532,22 @@ body {
 }
 
 .action-btn-sm {
-    padding: 2px 6px;
-    margin: 0 1px;
+    padding: 4px 8px;
+    margin: 0 2px;
     border: 1px solid #667eea;
     background: transparent;
     color: #667eea;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     transition: all 0.3s;
-    display: inline-block;
 }
 
 .action-btn-sm:hover {
     background: #667eea;
     color: white;
 }
-
-/* 响应式设计 - 不同屏幕尺寸下隐藏部分列 */
-@media (max-width: 1400px) {
-    /* 隐藏T年度列 */
-    .reports-table th:nth-child(8),
-    .reports-table td:nth-child(8) {
-        display: none;
-    }
     
-    .reports-table th,
-    .reports-table td {
-        padding: 6px 3px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 1200px) {
-    /* 隐藏EPS实际值列 */
-    .reports-table th:nth-child(9),
-    .reports-table td:nth-child(9) {
-        display: none;
-    }
-    
-    .stock-name,
-    .institution {
-        max-width: 60px;
-    }
-}
-
-@media (max-width: 1000px) {
-    /* 隐藏报告日期列 */
-    .reports-table th:nth-child(2),
-    .reports-table td:nth-child(2) {
-        display: none;
-    }
-    
-    .reports-table th,
-    .reports-table td {
-        padding: 4px 2px;
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 800px) {
-    /* 隐藏研究机构列 */
-    .reports-table th:nth-child(5),
-    .reports-table td:nth-child(5) {
-        display: none;
-    }
-    
-    .action-btn-sm {
-        padding: 1px 4px;
-        font-size: 0.65rem;
-        margin: 0;
-    }
-    
-    /* 简化操作按钮文字 */
-    .action-btn-sm:first-child::before {
-        content: "详";
-    }
-    .action-btn-sm:last-child::before {
-        content: "复";
-    }
-    .action-btn-sm {
-        text-indent: -9999px;
-        width: 20px;
-        height: 20px;
-        position: relative;
-    }
-    .action-btn-sm::before {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        text-indent: 0;
-    }
-}
-
-@media (max-width: 600px) {
-    .tdx-reports-container {
-        padding: 10px;
-    }
-    
-    /* 只保留核心列 */
-    .reports-table th:nth-child(1),  /* 序号 */
-    .reports-table td:nth-child(1) {
-        display: none;
-    }
-    
-    .reports-table th,
-    .reports-table td {
-        padding: 3px 1px;
-        font-size: 0.7rem;
-    }
-    
-    .stock-name,
-    .institution {
-        max-width: 50px;
-    }
-}
-
-/* 表格标题优化 */
-.reports-table th {
-    line-height: 1.2;
-}
-
-/* 确保表格在容器内完全显示 */
-.container {
-    max-width: 100%;
-    overflow-x: visible;
-}
-
-/* 移除最小宽度限制 */
-.reports-table {
-    min-width: unset;
-}
 
 /* 研报详情模态框样式 */
 .report-detail-section {
