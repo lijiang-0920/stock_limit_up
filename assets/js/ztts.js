@@ -184,7 +184,9 @@ function updateMarketAnalysis(data) {
     const analysisContentEl = document.getElementById('analysisContent');
     
     if (analysisContentEl && data.市场分析) {
-        analysisContentEl.textContent = data.市场分析.分析文本 || '暂无分析数据';
+        // 修改这里：从 '分析文本' 改为 '完整解读'
+        const analysisText = data.市场分析.完整解读 || data.市场分析.分析文本 || '暂无分析数据';
+        analysisContentEl.textContent = analysisText;
     }
 }
 
@@ -451,14 +453,14 @@ function copyZTTSData() {
     textData += `自然板家数: ${formatNumber(boardData.自然板家数)}家\n`;
     textData += `触及涨停: ${formatNumber(boardData.触及涨停)}只\n\n`;
     
-    if (currentZTTSData.市场分析?.分析文本) {
+    // 修改这里：使用正确的字段名
+    if (currentZTTSData.市场分析?.完整解读) {
         textData += '市场分析:\n';
-        textData += currentZTTSData.市场分析.分析文本;
+        textData += currentZTTSData.市场分析.完整解读;
     }
     
     copyToClipboard(textData);
 }
-
 // 查看JSON数据
 function viewZTTSJsonData() {
     const dateFilter = document.getElementById('dateFilter');
