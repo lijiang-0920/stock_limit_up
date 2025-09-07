@@ -210,6 +210,7 @@ function getRatingColorClass(rating) {
 }
 
 // 渲染研报表格
+// 渲染研报表格 - 优化版本
 function renderReportsTable(reports) {
     const container = document.getElementById('reportsContainer');
     
@@ -228,41 +229,41 @@ function renderReportsTable(reports) {
             <thead>
                 <tr class="header-row-1">
                     <th rowspan="2">序号</th>
-                    <th rowspan="2">报告日期</th>
-                    <th rowspan="2">证券代码</th>
-                    <th rowspan="2">证券简称</th>
-                    <th rowspan="2">研究机构</th>
-                    <th rowspan="2">投资评级</th>
+                    <th rowspan="2">日期</th>
+                    <th rowspan="2">代码</th>
+                    <th rowspan="2">简称</th>
+                    <th rowspan="2">机构</th>
+                    <th rowspan="2">评级</th>
                     <th rowspan="2">目标价</th>
-                    <th rowspan="2">T年度</th>
-                    <th rowspan="2">EPS实际值(元)</th>
-                    <th colspan="3" style="text-align: center; font-weight: 700; background: #e2e8f0;">EPS预测</th>
-                    <th rowspan="2" style="text-align: center;">操作</th>
+                    <th rowspan="2">年度</th>
+                    <th rowspan="2">实际EPS</th>
+                    <th colspan="3">EPS预测</th>
+                    <th rowspan="2">操作</th>
                 </tr>
                 <tr class="header-row-2">
-                    <th style="text-align: center;">T年</th>
-                    <th style="text-align: center;">T+1年</th>
-                    <th style="text-align: center;">T+2年</th>
+                    <th>T年</th>
+                    <th>T+1年</th>
+                    <th>T+2年</th>
                 </tr>
             </thead>
             <tbody>
                 ${reports.map(report => `
                     <tr class="report-row" data-code="${report.证券代码}" data-name="${report.证券简称}" data-institution="${report.研究机构}" data-rating="${report.评级}">
-                        <td class="report-index" style="text-align: center;">${report.序号}</td>
-                        <td style="text-align: center;">${report.报告日期}</td>
-                        <td class="stock-code" style="text-align: center;">${report.证券代码}</td>
-                        <td class="stock-name" style="text-align: center;">${report.证券简称}</td>
-                        <td class="institution" style="text-align: center;">${report.研究机构}</td>
-                        <td style="text-align: center;">
-                            <span class="rating ${getRatingColorClass(report.评级)}">${report.评级}</span>
+                        <td class="report-index">${report.序号}</td>
+                        <td>${report.报告日期.substring(5)}</td>
+                        <td class="stock-code">${report.证券代码}</td>
+                        <td class="stock-name" title="${report.证券简称}">${report.证券简称}</td>
+                        <td class="institution" title="${report.研究机构}">${report.研究机构}</td>
+                        <td>
+                            <span class="rating ${getRatingColorClass(report.评级)}">${report.评级.split('(')[0]}</span>
                         </td>
-                        <td class="target-price" style="text-align: center;">${report.目标价}</td>
-                        <td class="t-year" style="text-align: center;">${report.T年度}</td>
-                        <td class="eps-actual" style="text-align: center;">${report['EPS实际值(元)']}</td>
-                        <td class="eps-t" style="text-align: center;">${report.EPS预测.T年}</td>
-                        <td class="eps-t1" style="text-align: center;">${report.EPS预测['T+1年']}</td>
-                        <td class="eps-t2" style="text-align: center;">${report.EPS预测['T+2年']}</td>
-                        <td class="actions" style="text-align: center;">
+                        <td class="target-price">${report.目标价}</td>
+                        <td class="t-year">${report.T年度}</td>
+                        <td class="eps-actual">${report['EPS实际值(元)']}</td>
+                        <td class="eps-t">${report.EPS预测.T年}</td>
+                        <td class="eps-t1">${report.EPS预测['T+1年']}</td>
+                        <td class="eps-t2">${report.EPS预测['T+2年']}</td>
+                        <td class="actions">
                             <button onclick="viewReportDetail('${report.证券代码}', ${report.序号})" class="action-btn-sm">📖 详情</button>
                             <button onclick="copyReportData('${report.证券代码}', ${report.序号})" class="action-btn-sm">📋 复制</button>
                         </td>
