@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-涨停透视数据爬虫 - 混合版（Selenium + API）
+涨停透视数据爬虫 - 完善版（支持历史数据查询）
 使用方法：
-  python ztts_crawler_simple.py              # 获取最新数据并推送
-  python ztts_crawler_simple.py 2025-01-21   # 获取指定日期数据
+  python ztts_crawler_enhanced.py              # 获取最新数据并推送
+  python ztts_crawler_enhanced.py 2025-01-21   # 获取指定日期数据
 """
 
 import os
@@ -12,7 +12,7 @@ import json
 import time
 import sys
 import subprocess
-import requests  # 新增：用于API调用
+import requests
 from datetime import datetime, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -23,7 +23,7 @@ from selenium.webdriver.edge.options import Options
 # 配置
 TARGET_URL = "https://webrelease.dzh.com.cn/htmlweb/ztts/index.php"
 DATA_DIR = "dzh_ztts"
-WAIT_TIME = 20
+WAIT_TIME = 25  # 增加等待时间确保数据完全加载
 
 def get_latest_trading_day():
     """获取最新交易日"""
@@ -31,6 +31,7 @@ def get_latest_trading_day():
     while current_date.weekday() >= 5:  # 周末
         current_date -= timedelta(days=1)
     
+    # 如果是今天但在9点前，返回前一个交易日
     if current_date == datetime.now().date() and datetime.now().hour < 9:
         current_date -= timedelta(days=1)
         while current_date.weekday() >= 5:
@@ -64,17 +65,24 @@ def git_push_data(date_str):
     print(f"🚀 推送数据到GitHub...")
     
     try:
-        # 直接使用完整路径
+        # 先拉取远程更改
+        subprocess.run(r'"D:\Git\cmd\git.exe" pull origin main', shell=True, check=True)
+        
+        # 添加文件
         subprocess.run(r'"D:\Git\cmd\git.exe" add dzh_ztts/', shell=True, check=True)
+        
+        # 提交更改
         subprocess.run(rf'"D:\Git\cmd\git.exe" commit -m "Update 涨停透视数据 {date_str}"', shell=True, check=True)
+        
+        # 推送
         subprocess.run(r'"D:\Git\cmd\git.exe" push', shell=True, check=True)
         
         print(f"✅ 推送成功")
         return True
     except subprocess.CalledProcessError as e:
         print(f"❌ 推送失败: {e}")
+        print(f"💡 请稍后手动推送: git push")
         return False
-
 
 def get_ladder_data_via_api(date_str):
     """通过API获取涨停梯队个股数据"""
@@ -163,7 +171,7 @@ class ZTTSCrawler:
     
     def setup_driver(self):
         """设置浏览器"""
-        print(f"🚀 启动浏览器...")
+        print(f"🚀 设置浏览器...")
         
         options = Options()
         options.add_argument('--no-sandbox')
@@ -172,25 +180,161 @@ class ZTTSCrawler:
         
         self.driver = webdriver.Edge(options=options)
     
+    def wait_for_data_update(self):  # 新增方法
+        """等待Vue数据更新完成"""
+        max_wait = 10  # 最多等待10秒
+        wait_interval = 0.5  # 每0.5秒检查一次
+        
+        for _ in range(int(max_wait / wait_interval)):
+            try:
+                # 检查Vue数据是否稳定
+                script = """
+                try {
+                    var app = document.querySelector('#app').__vue__;
+                    return {
+                        ready: app.fblReady !== false,
+                        date: app.thisDay || app.today,
+                        hasData: app.todayStat && app.todayStat.lu !== undefined
+                    };
+                } catch (error) {
+                    return {ready: false, error: error.toString()};
+                }
+                """
+                
+                result = self.driver.execute_script(script)
+                
+                if result.get('ready') and result.get('hasData'):
+                    print(f"✅ Vue数据更新完成")
+                    return True
+                    
+                time.sleep(wait_interval)
+                
+            except:
+                time.sleep(wait_interval)
+        
+        print(f"⚠️ Vue数据更新等待超时")
+        return False
+    
+    def navigate_to_date(self, target_date_str):
+        """导航到指定日期"""
+        print(f"📅 尝试导航到日期: {target_date_str}")
+        
+        # 获取当前页面日期
+        current_date = self.get_current_date()
+        
+        if not current_date:
+            print(f"❌ 无法获取当前日期")
+            return False
+        
+        target_date_obj = datetime.strptime(target_date_str, '%Y%m%d').date()
+        current_date_obj = datetime.strptime(current_date, '%Y%m%d').date()
+        
+        print(f"📅 当前页面日期: {current_date_obj}, 目标日期: {target_date_obj}")
+        
+        if current_date_obj == target_date_obj:
+            print(f"✅ 已在目标日期")
+            return True
+        
+        # 计算需要点击的次数和方向
+        days_diff = (current_date_obj - target_date_obj).days
+        
+        if days_diff > 0:
+            button_selector = '.prev'
+            print(f"⬅️ 需要往前翻 {abs(days_diff)} 天")
+        else:
+            button_selector = '.next'
+            print(f"➡️ 需要往后翻 {abs(days_diff)} 天")
+        
+        # 执行点击操作
+        for i in range(abs(days_diff)):
+            try:
+                button = self.driver.find_element(By.CSS_SELECTOR, button_selector)
+                if 'disable' in button.get_attribute('class'):
+                    print(f"❌ 按钮已禁用，无法继续翻页")
+                    break
+                
+                button.click()
+                print(f"🔄 执行第 {i+1} 次点击...")
+                
+                # 等待更长时间确保数据更新
+                time.sleep(8)  # 增加到8秒
+                
+                # 多次检查日期是否更新
+                for check_attempt in range(5):
+                    new_date = self.get_current_date()
+                    if new_date != current_date:
+                        print(f"📅 日期已更新: {new_date}")
+                        current_date = new_date
+                        break
+                    time.sleep(1)
+                
+                # 检查是否到达目标日期
+                if current_date == target_date_str:
+                    print(f"✅ 成功导航到目标日期")
+                    return True
+                    
+            except Exception as e:
+                print(f"❌ 点击按钮失败: {e}")
+                break
+        
+        print(f"⚠️ 导航完成，最终日期: {current_date}")
+        return current_date == target_date_str
+
+
+    def get_current_date(self):
+        """获取当前页面显示的日期"""
+        try:
+            script = """
+            try {
+                var app = document.querySelector('#app').__vue__;
+                return app.thisDay || app.today || null;
+            } catch (error) {
+                return null;
+            }
+            """
+            
+            result = self.driver.execute_script(script)
+            return result
+            
+        except:
+            return None
+    
     def crawl_data(self):
         """爬取数据"""
-        print(f"🕷️ 开始爬取基础数据（目标日期：{self.target_date}）...")
+        print(f"🕷️ 开始爬取数据（目标日期：{self.target_date}）...")
         
         self.setup_driver()
         
         try:
+            # 访问页面
             self.driver.get(TARGET_URL)
             
+            # 等待加载
             wait = WebDriverWait(self.driver, 30)
             wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
             
-            print(f"⏳ 等待页面加载 {WAIT_TIME} 秒...")
+            print(f"⏳ 等待Vue应用加载 {WAIT_TIME} 秒...")
             time.sleep(WAIT_TIME)
             
+            # 获取当前页面日期
+            current_date = self.get_current_date()
+            print(f"📅 页面加载完成，当前日期: {current_date}")
+            
+            # 如果需要，导航到目标日期
+            target_date_str = self.target_date.strftime('%Y%m%d')
+            if current_date != target_date_str:
+                success = self.navigate_to_date(target_date_str)
+                if not success:
+                    print(f"❌ 无法导航到目标日期，使用当前页面数据")
+                
+                # 等待数据更新
+                time.sleep(5)
+            
+            # 获取实际数据日期
             self.actual_date = self.get_actual_date()
             print(f"📅 实际数据日期: {self.actual_date}")
             
-            # 获取基础数据（Selenium）
+            # 提取基础数据
             base_data = self.extract_data()
             
             if base_data:
@@ -215,21 +359,9 @@ class ZTTSCrawler:
     def get_actual_date(self):
         """获取页面实际数据日期"""
         try:
-            script = """
-            try {
-                var app = document.querySelector('#app').__vue__;
-                if (app && (app.thisDay || app.today)) {
-                    return app.thisDay || app.today;
-                }
-                return null;
-            } catch (error) {
-                return null;
-            }
-            """
-            
-            result = self.driver.execute_script(script)
-            if result and len(result) >= 10:
-                return datetime.strptime(result[:10], '%Y-%m-%d').date()
+            current_date = self.get_current_date()
+            if current_date and len(current_date) >= 8:
+                return datetime.strptime(current_date, '%Y%m%d').date()
             
             return self.target_date
             
@@ -237,17 +369,29 @@ class ZTTSCrawler:
             return self.target_date
     
     def extract_data(self):
-        """提取Vue基础数据"""
+        """提取Vue数据和DOM文本"""
         script = """
         try {
             var app = document.querySelector('#app').__vue__;
             if (!app) return {error: 'Vue实例未找到'};
             
+            // 从DOM获取解读文本
+            var analysisElement = document.querySelector('.mod-introduction');
+            var analysisText = analysisElement ? analysisElement.innerText.trim() : '';
+            
+            // 提取完整的解读段落
+            var analysisLines = analysisText.split('\\n').filter(line => line.trim());
+            var fullAnalysis = analysisLines.join('\\n\\n');
+            
             return {
                 爬取时间: new Date().toISOString(),
                 实际数据日期: app.thisDay || app.today || null,
                 
-                活跃资金情绪: app.todayMarketSense || null,
+                // 解读文本（从DOM获取）
+                完整解读文本: fullAnalysis,
+                
+                // 核心数据
+                活跃资金情绪: app.todayMarketSense,
                 封板率: app.todayStat ? app.todayStat.lufb : null,
                 涨停数量: app.todayStat ? app.todayStat.lu : null,
                 涨停打开数量: app.todayStat ? app.todayStat.luop : null,
@@ -255,17 +399,32 @@ class ZTTSCrawler:
                 跌停封板率: app.todayStat ? app.todayStat.ldfb : null,
                 跌停打开数量: app.todayStat ? app.todayStat.ldop : null,
                 
-                最高板数: app.todayMaxban || null,
-                连板家数: app.todayLbnum || null,
-                自然板家数: app.todayZrb || null,
-                触及涨停: app.todayCjzt || null,
-                
-                昨日封板率: app.yesterdayStat ? app.yesterdayStat.lufb : null,
                 昨日涨停数量: app.yesterdayStat ? app.yesterdayStat.lu : null,
+                昨日封板率: app.yesterdayStat ? app.yesterdayStat.lufb : null,
                 昨日涨停打开数量: app.yesterdayStat ? app.yesterdayStat.luop : null,
                 昨日跌停数量: app.yesterdayStat ? app.yesterdayStat.ld : null,
                 昨日跌停封板率: app.yesterdayStat ? app.yesterdayStat.ldfb : null,
-                昨日跌停打开数量: app.yesterdayStat ? app.yesterdayStat.ldop : null
+                昨日跌停打开数量: app.yesterdayStat ? app.yesterdayStat.ldop : null,
+                
+                // 连板统计
+                最高板数: app.todayMaxban,
+                连板家数: app.todayLbnum,
+                自然板家数: app.todayZrb,
+                触及涨停: app.todayCjzt,
+                
+                // 趋势分析数据（完整的todayWad对象）
+                今日涨停数量: app.todayWad ? app.todayWad.num : null,
+                百日排名: app.todayWad ? app.todayWad.rank100 : null,
+                五日平均: app.todayWad ? app.todayWad.avg5 : null,
+                趋势类型: app.todayWad ? app.todayWad.type : null,
+                连续天数: app.todayWad ? app.todayWad.days : null,
+                
+                // 完整的todayWad对象用于分析
+                todayWad完整数据: app.todayWad,
+                
+                // 其他实时数据
+                昨日涨停今日表现: app.zrztRate || null,
+                上证指数表现: app.shRate || null
             };
         } catch (error) {
             return {error: error.toString()};
@@ -282,9 +441,13 @@ class ZTTSCrawler:
             print(f"❌ 数据提取异常: {e}")
             return None
 
-def format_data(data, actual_date):
-    """格式化数据（增强版，包含涨停梯队）"""
-    def format_percent(value):
+class DataFormatter:
+    def __init__(self, data, actual_date):
+        self.data = data
+        self.actual_date = actual_date
+    
+    def format_percent(self, value):
+        """格式化百分比"""
         if value is None:
             return "暂无数据"
         try:
@@ -296,7 +459,8 @@ def format_data(data, actual_date):
         except:
             return str(value)
     
-    def format_number(value):
+    def format_number(self, value):
+        """格式化数字"""
         if value is None:
             return "暂无数据"
         try:
@@ -304,129 +468,219 @@ def format_data(data, actual_date):
         except:
             return str(value)
     
-    # 生成分析文本
-    num = data.get('涨停数量', 0)
-    封板率 = data.get('封板率', 0)
-    情绪 = data.get('活跃资金情绪', 0)
-    最高板数 = data.get('最高板数', 0)
-    连板家数 = data.get('连板家数', 0)
-    自然板家数 = data.get('自然板家数', 0)
+    def generate_analysis_from_dom(self):
+        """从DOM解读文本中提取分析信息"""
+        full_text = self.data.get('完整解读文本', '')
+        
+        if not full_text:
+            return self.generate_fallback_analysis()
+        
+        # 直接返回从DOM获取的完整解读文本
+        return full_text
     
-    date_text = "今日" if actual_date == datetime.now().date() else f"{actual_date.strftime('%m月%d日')}"
-    analysis = f"{date_text}涨停数量{format_number(num)}只，封板率{format_percent(封板率)}，活跃资金情绪{format_percent(情绪)}"
+    def generate_fallback_analysis(self):
+        """备用分析生成（当DOM文本获取失败时）"""
+        todayWad = self.data.get('todayWad完整数据', {})
+        
+        if not todayWad:
+            return "暂无分析数据"
+        
+        num = todayWad.get('num', 0)
+        rank = todayWad.get('rank100', 0)
+        avg5 = todayWad.get('avg5', 0)
+        days = todayWad.get('days', 0)
+        trend_type = todayWad.get('type', 0)
+        
+        # 趋势判断
+        trend = "上升" if trend_type == 1 else "下降"
+        
+        # 情绪强度判断
+        if rank <= 20:
+            strength = "很强"
+        elif rank <= 40:
+            strength = "较强"
+        elif rank <= 60:
+            strength = "一般"
+        elif rank <= 80:
+            strength = "较弱"
+        else:
+            strength = "很弱"
+        
+        date_text = "今日" if self.actual_date == datetime.now().date() else f"{self.actual_date.strftime('%m月%d日')}"
+        
+        analysis_text = f"解读：{date_text}涨停数量{num}，在过去100个交易日中排名{rank}位，涨停数量连续{days}个交易日{trend}；\n\n"
+        analysis_text += f"市场中线赚钱效应{strength}，赚钱效应有{trend}趋势。"
+        
+        return analysis_text
     
-    if 最高板数:
-        analysis += f"，最高板数达到{format_number(最高板数)}板"
-    if 连板家数:
-        analysis += f"，连板家数{format_number(连板家数)}家"
-    if 自然板家数:
-        analysis += f"，自然板家数{format_number(自然板家数)}家"
+    def generate_txt(self):
+        """生成TXT报告"""
+        date_str = self.actual_date.strftime('%Y年%m月%d日')
+        time_str = datetime.now().strftime('%H:%M:%S')
+        
+        lines = []
+        lines.append("=" * 60)
+        lines.append(f"大智慧涨停透视 - {date_str}")
+        lines.append(f"更新时间：{time_str}")
+        lines.append("=" * 60)
+        lines.append("")
+        
+        # 添加完整的解读文本
+        analysis_text = self.generate_analysis_from_dom()
+        lines.append("【市场分析解读】")
+        lines.append("-" * 40)
+        lines.append(analysis_text)
+        lines.append("")
+        
+        lines.append("【核心指标统计】")
+        lines.append("-" * 40)
+        lines.append(f"活跃资金情绪：{self.format_percent(self.data.get('活跃资金情绪'))}")
+        lines.append(f"封板率：{self.format_percent(self.data.get('封板率'))}")
+        lines.append(f"最高板数：{self.format_number(self.data.get('最高板数'))}板")
+        lines.append(f"连板家数：{self.format_number(self.data.get('连板家数'))}家")
+        lines.append(f"自然板家数：{self.format_number(self.data.get('自然板家数'))}家")
+        lines.append(f"触及涨停：{self.format_number(self.data.get('触及涨停'))}家")
+        lines.append("")
+        
+        date_prefix = "今日" if self.actual_date == datetime.now().date() else "当日"
+        lines.append(f"【{date_prefix}vs前一日对比】")
+        lines.append("-" * 40)
+        
+        comparisons = [
+            ("涨停板", "涨停数量", "昨日涨停数量"),
+            ("涨停封板率", "封板率", "昨日封板率"),
+            ("涨停打开", "涨停打开数量", "昨日涨停打开数量"),
+            ("跌停板", "跌停数量", "昨日跌停数量"),
+            ("跌停封板率", "跌停封板率", "昨日跌停封板率"),
+            ("跌停打开", "跌停打开数量", "昨日跌停打开数量")
+        ]
+        
+        for name, today_key, yesterday_key in comparisons:
+            lines.append(f"{name}：")
+            if "率" in name:
+                lines.append(f"  {date_prefix}：{self.format_percent(self.data.get(today_key))}")
+                lines.append(f"  前一日：{self.format_percent(self.data.get(yesterday_key))}")
+            else:
+                lines.append(f"  {date_prefix}：{self.format_number(self.data.get(today_key))}")
+                lines.append(f"  前一日：{self.format_number(self.data.get(yesterday_key))}")
+            lines.append("")
+        
+        # 添加涨停梯队信息
+        ladder_data = self.data.get('涨停梯队数据', {})
+        if ladder_data.get('ladder_stocks'):
+            lines.append("【涨停梯队详情】")
+            lines.append("=" * 60)
+            
+            # 添加板数分布
+            board_dist = ladder_data.get('board_distribution', {})
+            if board_dist:
+                lines.append("")
+                lines.append("板数分布：")
+                for board_type, count in board_dist.items():
+                    if count > 0:
+                        lines.append(f"  {board_type}: {count}只")
+            
+            # 添加市场分布
+            market_dist = ladder_data.get('market_distribution', {})
+            if market_dist:
+                lines.append("")
+                lines.append("市场分布：")
+                for market, count in market_dist.items():
+                    lines.append(f"  {market}: {count}只")
+            
+            # 添加详细个股信息
+            ladder_stocks = ladder_data.get('ladder_stocks', {})
+            if ladder_stocks:
+                lines.append("")
+                lines.append("详细个股：")
+                # 按板数从高到低排序
+                sorted_boards = sorted(ladder_stocks.keys(), key=lambda x: int(x.replace('板', '')), reverse=True)
+                
+                for board_type in sorted_boards:
+                    stocks = ladder_stocks[board_type]
+                    if stocks and len(stocks) > 0:
+                        lines.append("")
+                        lines.append(f"{board_type} ({len(stocks)}只)：")
+                        lines.append("-" * 40)
+                        for i, stock in enumerate(stocks, 1):
+                            lines.append(f"{i}. {stock['name']} ({stock['code']}) - {stock['market']}")
+                            lines.append(f"   收盘价: {stock['close_price']:.2f}元  涨幅: {stock['change_rate']:.2f}%")
+                            lines.append(f"   连板标签: {stock['board_label']}")
+                            lines.append("")
+        
+        lines.append("【数据说明】")
+        lines.append("-" * 40)
+        lines.append(f"数据来源：大智慧涨停透视")
+        lines.append(f"数据日期：{self.actual_date}")
+        lines.append(f"爬取时间：{self.data.get('爬取时间', '未知')}")
+        lines.append("")
+        lines.append("=" * 60)
+        
+        return "\n".join(lines)
     
-    # 获取涨停梯队数据
-    ladder_data = data.get('涨停梯队数据', {})
-    
-    # 生成JSON数据
-    json_data = {
-        "报告信息": {
-            "生成时间": datetime.now().isoformat(),
-            "数据日期": actual_date.strftime('%Y-%m-%d'),
-            "数据来源": "大智慧涨停透视(Selenium+API)",
-            "更新时间": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        },
-        "核心指标": {
-            "活跃资金情绪": data.get('活跃资金情绪'),
-            "封板率": data.get('封板率'),
-            "涨停数量": data.get('涨停数量'),
-            "最高板数": data.get('最高板数')
-        },
-        "市场分析": {
-            "分析文本": analysis
-        },
-        "今日数据": {
-            "涨停数量": data.get('涨停数量'),
-            "封板率": data.get('封板率'),
-            "涨停打开": data.get('涨停打开数量'),
-            "跌停数量": data.get('跌停数量'),
-            "跌停封板率": data.get('跌停封板率'),
-            "跌停打开": data.get('跌停打开数量'),
-            "活跃资金情绪": data.get('活跃资金情绪')
-        },
-        "前日数据": {
-            "涨停数量": data.get('昨日涨停数量'),
-            "封板率": data.get('昨日封板率'),
-            "涨停打开": data.get('昨日涨停打开数量'),
-            "跌停数量": data.get('昨日跌停数量'),
-            "跌停封板率": data.get('昨日跌停封板率'),
-            "跌停打开": data.get('昨日跌停打开数量')
-        },
-        "连板统计": {
-            "最高板数": data.get('最高板数'),
-            "连板家数": data.get('连板家数'),
-            "自然板家数": data.get('自然板家数'),
-            "触及涨停": data.get('触及涨停')
-        },
-        # 新增：涨停梯队数据
-        "涨停梯队": ladder_data.get('ladder_stocks', {}),
-        "市场分布": ladder_data.get('market_distribution', {}),
-        "板数分布": ladder_data.get('board_distribution', {}),
-        "原始数据": data
-    }
-    
-    # 生成TXT文本（增强版）
-    txt_data = f"""大智慧涨停透视 - {actual_date.strftime('%Y年%m月%d日')}
-更新时间：{datetime.now().strftime('%H:%M:%S')}
-{'=' * 60}
-
-【核心指标】
-活跃资金情绪：{format_percent(data.get('活跃资金情绪'))}
-封板率：{format_percent(data.get('封板率'))}
-涨停数量：{format_number(data.get('涨停数量'))}只
-最高板数：{format_number(data.get('最高板数'))}板
-
-【市场分析】
-{analysis}
-
-【连板统计】
-最高板数：{format_number(data.get('最高板数'))}板
-连板家数：{format_number(data.get('连板家数'))}家
-自然板家数：{format_number(data.get('自然板家数'))}家
-触及涨停：{format_number(data.get('触及涨停'))}只
-
-【今日 vs 前日对比】
-涨停板数量：今日 {format_number(data.get('涨停数量'))}只 / 前日 {format_number(data.get('昨日涨停数量'))}只
-涨停封板率：今日 {format_percent(data.get('封板率'))} / 前日 {format_percent(data.get('昨日封板率'))}
-跌停板数量：今日 {format_number(data.get('跌停数量'))}只 / 前日 {format_number(data.get('昨日跌停数量'))}只
-
-【板数分布】"""
-    
-    # 添加板数分布
-    board_dist = ladder_data.get('board_distribution', {})
-    if board_dist:
-        for board_type, count in board_dist.items():
-            txt_data += f"\n{board_type}: {count}只"
-    
-    txt_data += "\n\n【市场分布】"
-    # 添加市场分布
-    market_dist = ladder_data.get('market_distribution', {})
-    if market_dist:
-        for market, count in market_dist.items():
-            txt_data += f"\n{market}: {count}只"
-    
-    # 添加涨停梯队详情
-    txt_data += "\n\n【涨停梯队详情】\n" + "=" * 60
-    ladder_stocks = ladder_data.get('ladder_stocks', {})
-    if ladder_stocks:
-        for board_type, stocks in ladder_stocks.items():
-            if stocks:  # 只显示有股票的板数
-                txt_data += f"\n\n{board_type} ({len(stocks)}只)\n" + "-" * 40
-                for i, stock in enumerate(stocks, 1):
-                    txt_data += f"\n{i}. {stock['name']} ({stock['code']}) - {stock['market']}"
-                    txt_data += f"\n   收盘价: {stock['close_price']:.2f}元  涨幅: {stock['change_rate']:.2f}%"
-                    txt_data += f"\n   连板标签: {stock['board_label']}\n"
-    
-    txt_data += "\n" + "=" * 60
-    
-    return json_data, txt_data
+    def generate_json(self):
+        """生成JSON报告"""
+        # 获取涨停梯队数据
+        ladder_data = self.data.get('涨停梯队数据', {})
+        
+        return {
+            "报告信息": {
+                "生成时间": datetime.now().isoformat(),
+                "数据日期": self.actual_date.strftime('%Y-%m-%d'),
+                "数据来源": "大智慧涨停透视"
+            },
+            "市场分析": {
+                "完整解读": self.generate_analysis_from_dom(),
+                "分析来源": "页面DOM提取"
+            },
+            "核心指标": {
+                "活跃资金情绪": self.data.get('活跃资金情绪'),
+                "封板率": self.data.get('封板率'),
+                "涨停数量": self.data.get('涨停数量'),
+                "最高板数": self.data.get('最高板数'),
+                "连板家数": self.data.get('连板家数'),
+                "自然板家数": self.data.get('自然板家数'),
+                "触及涨停": self.data.get('触及涨停')
+            },
+            "趋势分析": {
+                "百日排名": self.data.get('百日排名'),
+                "五日平均": self.data.get('五日平均'),
+                "连续天数": self.data.get('连续天数'),
+                "趋势类型": self.data.get('趋势类型'),
+                "趋势描述": "上升" if self.data.get('趋势类型') == 1 else "下降"
+            },
+            "今日数据": {
+                "涨停数量": self.data.get('涨停数量'),
+                "封板率": self.data.get('封板率'),
+                "涨停打开": self.data.get('涨停打开数量'),
+                "跌停数量": self.data.get('跌停数量'),
+                "跌停封板率": self.data.get('跌停封板率'),
+                "跌停打开": self.data.get('跌停打开数量'),
+                "活跃资金情绪": self.data.get('活跃资金情绪')
+            },
+            "前日数据": {
+                "涨停数量": self.data.get('昨日涨停数量'),
+                "封板率": self.data.get('昨日封板率'),
+                "涨停打开": self.data.get('昨日涨停打开数量'),
+                "跌停数量": self.data.get('昨日跌停数量'),
+                "跌停封板率": self.data.get('昨日跌停封板率'),
+                "跌停打开": self.data.get('昨日跌停打开数量')
+            },
+            "连板统计": {
+                "最高板数": self.data.get('最高板数'),
+                "连板家数": self.data.get('连板家数'),
+                "自然板家数": self.data.get('自然板家数'),
+                "触及涨停": self.data.get('触及涨停')
+            },
+            "市场表现": {
+                "昨日涨停今日表现": self.data.get('昨日涨停今日表现'),
+                "上证指数表现": self.data.get('上证指数表现')
+            },
+            "涨停梯队": ladder_data.get('ladder_stocks', {}),
+            "市场分布": ladder_data.get('market_distribution', {}),
+            "板数分布": ladder_data.get('board_distribution', {}),
+            "原始数据": self.data
+        }
 
 def update_index():
     """更新索引文件"""
@@ -449,8 +703,8 @@ def update_index():
                                 
                                 dates_data[date_str] = {
                                     "date": date_str,
-                                    "update_time": data.get('报告信息', {}).get('更新时间', ''),
-                                    "source": "大智慧涨停透视(Selenium+API)",
+                                    "update_time": data.get('报告信息', {}).get('生成时间', ''),
+                                    "source": "大智慧涨停透视",
                                     "files": {
                                         "json": f"dzh_ztts/{year_month}/{filename}",
                                         "txt": f"dzh_ztts/{year_month}/{date_str}.txt"
@@ -460,7 +714,8 @@ def update_index():
                                         "封板率": data.get('核心指标', {}).get('封板率'),
                                         "最高板数": data.get('核心指标', {}).get('最高板数'),
                                         "活跃资金情绪": data.get('核心指标', {}).get('活跃资金情绪')
-                                    }
+                                    },
+                                    "market_analysis": data.get('市场分析', {}).get('完整解读', '')[:200] + "..."
                                 }
                             except:
                                 continue
@@ -481,7 +736,7 @@ def main():
     else:
         target_date = get_latest_trading_day()
     
-    print(f"🚀 涨停透视数据爬虫启动（混合版本）")
+    print(f"🚀 涨停透视数据爬虫启动")
     print(f"📅 目标日期: {target_date}")
     
     # 爬取数据
@@ -494,17 +749,20 @@ def main():
     
     # 格式化数据
     actual_date = crawler.actual_date or target_date
-    json_data, txt_data = format_data(data, actual_date)
+    formatter = DataFormatter(data, actual_date)
+    
+    json_report = formatter.generate_json()
+    txt_report = formatter.generate_txt()
     
     # 保存文件
     paths = get_file_paths(actual_date)
     
     try:
         with open(paths['json'], 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
+            json.dump(json_report, f, ensure_ascii=False, indent=2)
         
         with open(paths['txt'], 'w', encoding='utf-8') as f:
-            f.write(txt_data)
+            f.write(txt_report)
         
         print(f"📁 文件保存成功:")
         print(f"   JSON: {paths['json']}")
@@ -515,22 +773,32 @@ def main():
         
         # 显示关键指标
         print(f"\n📈 关键指标:")
-        print(f"   活跃资金情绪: {json_data['核心指标']['活跃资金情绪']}")
-        print(f"   封板率: {json_data['核心指标']['封板率']}")
-        print(f"   涨停数量: {json_data['核心指标']['涨停数量']}")
-        print(f"   最高板数: {json_data['核心指标']['最高板数']}")
+        print(f"   活跃资金情绪: {formatter.format_percent(data.get('活跃资金情绪'))}")
+        print(f"   封板率: {formatter.format_percent(data.get('封板率'))}")
+        print(f"   涨停数量: {formatter.format_number(data.get('涨停数量'))}")
+        print(f"   最高板数: {formatter.format_number(data.get('最高板数'))}")
+        print(f"   百日排名: {formatter.format_number(data.get('百日排名'))}")
+        print(f"   五日平均: {formatter.format_number(data.get('五日平均'))}")
+        
+        # 显示解读文本预览
+        analysis_preview = formatter.generate_analysis_from_dom()
+        if analysis_preview and len(analysis_preview) > 10:
+            preview_text = analysis_preview[:150] + "..." if len(analysis_preview) > 150 else analysis_preview
+            print(f"\n📊 市场解读预览:")
+            print(f"   {preview_text}")
         
         # 显示涨停梯队统计
-        if json_data.get('板数分布'):
+        ladder_data = data.get('涨停梯队数据', {})
+        if ladder_data.get('board_distribution'):
             print(f"\n🔥 板数分布:")
-            for board_type, count in json_data['板数分布'].items():
+            for board_type, count in ladder_data['board_distribution'].items():
                 if count > 0:
                     print(f"   {board_type}: {count}只")
         
         # 显示市场分布
-        if json_data.get('市场分布'):
+        if ladder_data.get('market_distribution'):
             print(f"\n📊 市场分布:")
-            for market, count in json_data['市场分布'].items():
+            for market, count in ladder_data['market_distribution'].items():
                 print(f"   {market}: {count}只")
         
         # 推送到GitHub
@@ -548,4 +816,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
