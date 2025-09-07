@@ -417,6 +417,276 @@ body {
     background: #5a67d8;
 }
 
+/* 通达信研报样式 */
+.tdx-reports-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+.reports-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    min-width: 1200px;
+}
+
+.reports-table th,
+.reports-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.9rem;
+}
+
+.reports-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-row-1 th {
+    border-bottom: 1px solid #cbd5e0;
+}
+
+.header-row-2 th {
+    background: #edf2f7;
+    font-size: 0.85rem;
+}
+
+.report-row:hover {
+    background: #f7fafc;
+}
+
+.report-row:nth-child(even) {
+    background: #fafafa;
+}
+
+.report-row:nth-child(even):hover {
+    background: #f0f4f8;
+}
+
+.stock-code {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stock-name {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.institution {
+    color: #4a5568;
+}
+
+.rating {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.rating-buy {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.rating-hold {
+    background: #bee3f8;
+    color: #2a4365;
+}
+
+.rating-neutral {
+    background: #fef5e7;
+    color: #744210;
+}
+
+.rating-sell {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.target-price {
+    font-weight: 600;
+    color: #e53e3e;
+    text-align: right;
+}
+
+.eps-actual,
+.eps-t,
+.eps-t1,
+.eps-t2 {
+    text-align: right;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.actions {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.action-btn-sm {
+    padding: 4px 8px;
+    margin: 0 2px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.action-btn-sm:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* 研报详情模态框样式 */
+.report-detail-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.report-detail-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-pair:last-child {
+    border-bottom: none;
+}
+
+.eps-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.eps-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.eps-label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.eps-value {
+    font-weight: 600;
+    color: #2d3748;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.report-title-content {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #38a169;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+/* 统计面板样式 */
+.stat-item.rating-buy {
+    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+    color: #22543d;
+}
+
+.stat-item.rating-hold {
+    background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+    color: #2a4365;
+}
+
+.stat-item.rating-neutral {
+    background: linear-gradient(135deg, #fef5e7 0%, #fbd38d 100%);
+    color: #744210;
+}
+
+.stat-item.rating-sell {
+    background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%);
+    color: #742a2a;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .reports-table {
+        min-width: 1000px;
+    }
+    
+    .reports-table th,
+    .reports-table td {
+        padding: 10px 6px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tdx-reports-container {
+        padding: 15px;
+    }
+    
+    .reports-table {
+        min-width: 800px;
+    }
+    
+    .reports-table th,
+    .reports-table td {
+        padding: 8px 4px;
+        font-size: 0.8rem;
+    }
+    
+    .action-btn-sm {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .detail-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .eps-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+    
+
+
+
+
 /* 涨停透视页面样式 */
 .core-indicators {
     display: grid;
