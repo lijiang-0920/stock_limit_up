@@ -1184,6 +1184,271 @@ def generate_dragon_tiger_text_content(data):
     
     return content
 
+# ========== 通达信价值分析相关函数 ==========
+
+def get_tdx_reports_data():
+    """获取通达信研报数据（固定365天）"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_jzfx_ggtzpj"
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+        "Host": "fk.tdx.com.cn",
+        "Origin": "https://fk.tdx.com.cn",
+        "Referer": "https://fk.tdx.com.cn/site/tdxsj/html/tdxsj_jzfx.html",
+        "Accept": "text/plain, */*; q=0.01",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "zh-CN,zh;q=0.9"
+    }
+    data = '{"Params":["-1","-1","365","","1","1","30000"]}'
+    
+    try:
+        response = requests.post(url, headers=headers, data=data, timeout=15)
+        response.raise_for_status()
+        result = response.json()
+        if result.get("ErrorCode") == 0:
+            return result["ResultSets"][0]["Content"]
+        else:
+            print(f"通达信API返回错误: {result.get('ErrorCode')}")
+            return []
+    except Exception as e:
+        print(f"获取通达信研报数据失败: {e}")
+        return []
+
+def format_tdx_reports(raw_reports):
+    """格式化通达信研报数据"""
+    formatted_reports = []
+    for i, report in enumerate(raw_reports, 1):
+        try:
+            # 解析字段
+            code = report[1]
+            name = report[2]
+            report_date = report[3]
+            rating = report[4]
+            rating_change = report[5]
+            target_price = report[6]
+            eps_actual = report[7]
+            eps_t = report[8]
+            eps_t1 = report[9]
+            eps_t2 = report[10]
+            title = report[11]
+            institution = report[13]
+            year = report[14]
+            
+            # 格式化日期
+            formatted_date = "{}-{}-{}".format(str(report_date)[:4], str(report_date)[4:6], str(report_date)[6:8])
+            
+            # 格式化数据
+            eps_actual_year = int(year) - 1 if year else 2023
+            eps_actual_str = "{}({})".format(eps_actual, eps_actual_year) if eps_actual else "--"
+            target_price_str = "{:.2f}".format(float(target_price)) if target_price else "--"
+            
+            def format_eps(value):
+                return "{:.2f}".format(float(value)) if value else "--"
+            
+            formatted_report = {
+                "序号": i,
+                "报告日期": formatted_date,
+                "证券代码": str(code),
+                "证券简称": str(name),
+                "评级": str(rating) if rating else "--",
+                "评级变化": str(rating_change) if rating_change else "--",
+                "目标价": target_price_str,
+                "EPS实际值(元)": eps_actual_str,
+                "T年度": str(year) if year else "2024",
+                "EPS预测": {
+                    "T年": format_eps(eps_t),
+                    "T+1年": format_eps(eps_t1),
+                    "T+2年": format_eps(eps_t2)
+                },
+                "标题": str(title) if title else "--",
+                "研究机构": str(institution) if institution else "--"
+            }
+            formatted_reports.append(formatted_report)
+        except Exception as e:
+            print(f"格式化研报数据第{i}条时出错: {e}")
+            continue
+    
+    return formatted_reports
+
+def group_reports_by_date(reports):
+    """按日期分组研报数据"""
+    grouped = {}
+    for report in reports:
+        date = report["报告日期"]
+        if date not in grouped:
+            grouped[date] = []
+        grouped[date].append(report)
+    
+    # 重新编号
+    for date_reports in grouped.values():
+        for i, report in enumerate(date_reports, 1):
+            report["序号"] = i
+    
+    return grouped
+
+def save_tdx_reports_files(reports, date_str):
+    """保存通达信研报JSON和TXT文件"""
+    # 创建目录
+    year_month = date_str[:7]
+    dir_path = os.path.join("tdx_value", year_month)
+    os.makedirs(dir_path, exist_ok=True)
+    
+    # 保存JSON
+    beijing_time = get_beijing_time()
+    json_data = {
+        "获取时间": beijing_time.strftime("%Y-%m-%d %H:%M:%S"),
+        "数据日期": date_str,
+        "数据条数": len(reports),
+        "研报数据": reports
+    }
+    
+    json_path = os.path.join(dir_path, "{}.json".format(date_str))
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(json_data, f, ensure_ascii=False, indent=2)
+    
+    # 保存TXT
+    txt_path = os.path.join(dir_path, "{}.txt".format(date_str))
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write("===============================\n")
+        f.write("通达信价值分析_个股投资评级 - {}\n".format(date_str))
+        f.write("===============================\n")
+        f.write("获取时间：{}\n".format(beijing_time.strftime("%Y-%m-%d %H:%M:%S")))
+        f.write("数据条数：{}条\n\n".format(len(reports)))
+        f.write("===============================\n")
+        f.write("详细数据\n")
+        f.write("===============================\n\n")
+        
+        for report in reports:
+            f.write("[{}] {} ({}) - {}\n".format(
+                report["序号"], report["证券简称"], report["证券代码"], report["研究机构"]
+            ))
+            f.write("    报告日期：{}\n".format(report["报告日期"]))
+            f.write("    评级：{} ({})  目标价：{}\n".format(
+                report["评级"], report["评级变化"], report["目标价"]
+            ))
+            f.write("    EPS：{}  预测：{}({}) {}({}) {}({})\n".format(
+                report["EPS实际值(元)"],
+                report["EPS预测"]["T年"], report["T年度"],
+                report["EPS预测"]["T+1年"], int(report["T年度"]) + 1,
+                report["EPS预测"]["T+2年"], int(report["T年度"]) + 2
+            ))
+            f.write("    标题：{}\n\n".format(report["标题"]))
+    
+    return json_path, txt_path
+
+def update_tdx_reports_index(date_str, report_count, stock_count, institution_count):
+    """更新通达信研报索引文件"""
+    index_path = 'tdx_value/index.json'
+    
+    # 读取现有索引
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            try:
+                index_data = json.load(f)
+                if not isinstance(index_data, dict):
+                    index_data = {}
+            except:
+                index_data = {}
+    else:
+        index_data = {}
+    
+    # 更新索引
+    year_month = date_str[:7]
+    index_data[date_str] = {
+        "date": date_str,
+        "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
+        "report_count": report_count,
+        "stock_count": stock_count,
+        "institution_count": institution_count,
+        "files": {
+            "json": f"tdx_value/{year_month}/{date_str}.json",
+            "txt": f"tdx_value/{year_month}/{date_str}.txt"
+        }
+    }
+    
+    # 保存索引
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, ensure_ascii=False, indent=2)
+
+def is_tdx_reports_first_run():
+    """检查是否第一次运行通达信研报功能"""
+    if not os.path.exists("tdx_value"):
+        return True
+    for root, dirs, files in os.walk("tdx_value"):
+        if any(f.endswith('.json') for f in files):
+            return False
+    return True
+
+def crawl_tdx_reports(date_str=None):
+    """爬取通达信研报数据"""
+    print("开始获取通达信价值分析数据...")
+    
+    beijing_time = get_beijing_time()
+    beijing_today = beijing_time.strftime("%Y-%m-%d")
+    
+    try:
+        # 获取原始数据
+        raw_reports = get_tdx_reports_data()
+        if not raw_reports:
+            print("未获取到通达信研报数据")
+            return None
+        
+        # 格式化数据
+        formatted_reports = format_tdx_reports(raw_reports)
+        if not formatted_reports:
+            print("格式化通达信研报数据失败")
+            return None
+        
+        # 按日期分组
+        grouped_reports = group_reports_by_date(formatted_reports)
+        
+        if is_tdx_reports_first_run():
+            print(f"第一次运行，获取历史数据...")
+            print(f"获取到 {len(grouped_reports)} 天数据，共 {len(formatted_reports)} 条研报")
+            
+            # 保存所有历史数据
+            for date_str, date_reports in grouped_reports.items():
+                save_tdx_reports_files(date_reports, date_str)
+                
+                # 计算统计数据
+                stock_count = len(set(r["证券代码"] for r in date_reports))
+                institution_count = len(set(r["研究机构"] for r in date_reports))
+                
+                # 更新索引
+                update_tdx_reports_index(date_str, len(date_reports), stock_count, institution_count)
+            
+            print("通达信研报历史数据保存完成")
+            return grouped_reports
+        else:
+            print("获取今日数据...")
+            # 过滤当天数据
+            target_date = date_str if date_str else beijing_today
+            today_reports = grouped_reports.get(target_date, [])
+            
+            if today_reports:
+                # 重新编号
+                for i, report in enumerate(today_reports, 1):
+                    report["序号"] = i
+                
+                # 保存当天数据
+                save_tdx_reports_files(today_reports, target_date)
+                
+                # 计算统计数据
+                stock_count = len(set(r["证券代码"] for r in today_reports))
+                institution_count = len(set(r["研究机构"] for r in today_reports))
+                
+                # 更新索引
+                update_tdx_reports_index(target_date, len(today_reports), stock_count, institution_count)
+                
+                print(f"通达信研报数据保存完成: {target_date}, 共{len(today_reports)}条研报")
+                return {target_date: today_reports}
+            else:
+                print(f"{target_date} 无新的通达信研报数据")
+                return None
+                
+    except Exception as e:
+        print(f"获取通达信研报数据时发生错误: {e}")
+        return None
 
 # ========== 主函数和统一接口 ==========
 
@@ -1232,12 +1497,26 @@ def main():
                 date_str = sys.argv[2]
                 crawl_stock_analysis(date_str)
         
-        elif command == 'dragon_tiger':  # 添加龙虎榜命令
+        elif command == 'dragon_tiger':
             if len(sys.argv) == 2:
                 crawl_dragon_tiger_data()
             elif len(sys.argv) == 3:
                 date_str = sys.argv[2]
                 crawl_dragon_tiger_data(date_str)
+        
+        elif command == 'ztts':
+            if len(sys.argv) == 2:
+                crawl_ztts_data()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_ztts_data(date_str)
+        
+        elif command == 'tdx_reports':  # 新增通达信研报命令
+            if len(sys.argv) == 2:
+                crawl_tdx_reports()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_tdx_reports(date_str)
                 
         elif command == 'all':
             print("执行所有功能...")
@@ -1247,7 +1526,11 @@ def main():
             print("\n" + "="*60 + "\n")
             crawl_stock_analysis()
             print("\n" + "="*60 + "\n")
-            crawl_dragon_tiger_data()  # 添加龙虎榜
+            crawl_dragon_tiger_data()
+            print("\n" + "="*60 + "\n")
+            crawl_ztts_data()  # 如果你有这个函数
+            print("\n" + "="*60 + "\n")
+            crawl_tdx_reports()  # 新增通达信研报
             
         else:
             print("使用说明:")
@@ -1260,13 +1543,19 @@ def main():
             print("  python script.py analysis 2025-01-21       # 获取指定日期异动解析数据")
             print("  python script.py dragon_tiger              # 获取龙虎榜数据")
             print("  python script.py dragon_tiger 2025-01-21   # 获取指定日期龙虎榜数据")
+            print("  python script.py ztts                      # 获取涨停透视数据")
+            print("  python script.py ztts 2025-01-21           # 获取指定日期涨停透视数据")
+            print("  python script.py tdx_reports               # 获取通达信研报数据")  # 新增
+            print("  python script.py tdx_reports 2025-01-21    # 获取指定日期通达信研报数据")  # 新增
             print("  python script.py all                       # 执行所有功能")
             print("\n可用的韭研公社用户:")
             for key, info in JIUYAN_USERS.items():
                 print(f"  {key} - {info['user_name']}")
 
+
 if __name__ == "__main__":
     main()
+
 
 
 
