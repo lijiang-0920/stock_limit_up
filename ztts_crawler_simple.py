@@ -180,40 +180,6 @@ class ZTTSCrawler:
         
         self.driver = webdriver.Edge(options=options)
     
-    def wait_for_data_update(self):  # 新增方法
-        """等待Vue数据更新完成"""
-        max_wait = 10  # 最多等待10秒
-        wait_interval = 0.5  # 每0.5秒检查一次
-        
-        for _ in range(int(max_wait / wait_interval)):
-            try:
-                # 检查Vue数据是否稳定
-                script = """
-                try {
-                    var app = document.querySelector('#app').__vue__;
-                    return {
-                        ready: app.fblReady !== false,
-                        date: app.thisDay || app.today,
-                        hasData: app.todayStat && app.todayStat.lu !== undefined
-                    };
-                } catch (error) {
-                    return {ready: false, error: error.toString()};
-                }
-                """
-                
-                result = self.driver.execute_script(script)
-                
-                if result.get('ready') and result.get('hasData'):
-                    print(f"✅ Vue数据更新完成")
-                    return True
-                    
-                time.sleep(wait_interval)
-                
-            except:
-                time.sleep(wait_interval)
-        
-        print(f"⚠️ Vue数据更新等待超时")
-        return False
     
     def navigate_to_date(self, target_date_str):
         """导航到指定日期"""
@@ -257,7 +223,7 @@ class ZTTSCrawler:
                 print(f"🔄 执行第 {i+1} 次点击...")
                 
                 # 等待更长时间确保数据更新
-                time.sleep(8)  # 增加到8秒
+                time.sleep(20)  # 增加到8秒
                 
                 # 多次检查日期是否更新
                 for check_attempt in range(5):
@@ -287,7 +253,8 @@ class ZTTSCrawler:
             script = """
             try {
                 var app = document.querySelector('#app').__vue__;
-                return app.thisDay || app.today || null;
+                // 修改：优先使用today，因为它更准确反映选中的日期
+                return app.today || app.thisDay || null;
             } catch (error) {
                 return null;
             }
@@ -298,6 +265,7 @@ class ZTTSCrawler:
             
         except:
             return None
+
     
     def crawl_data(self):
         """爬取数据"""
