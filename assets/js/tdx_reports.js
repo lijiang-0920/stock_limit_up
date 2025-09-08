@@ -13,13 +13,20 @@ async function initTdxReportsPage() {
 }
 
 // 加载日期选项
+// 加载日期选项
 async function loadTdxReportsDateOptions() {
     try {
         const response = await fetch('tdx_value/index.json');
         if (!response.ok) throw new Error('无法加载通达信研报日期数据');
         
         const indexData = await response.json();
-        const dates = Object.keys(indexData).sort().reverse();
+        
+        // 过滤掉 _summary 字段，只保留日期键
+        const dates = Object.keys(indexData)
+            .filter(key => key !== '_summary')  // 过滤掉 _summary
+            .sort()
+            .reverse();
+            
         const dateFilter = document.getElementById('dateFilter');
         
         if (!dateFilter) {
@@ -48,6 +55,7 @@ async function loadTdxReportsDateOptions() {
         }
     }
 }
+
 
 // 设置事件监听器
 function setupTdxReportsEventListeners() {
