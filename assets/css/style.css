@@ -1277,6 +1277,491 @@ body {
     }
 }
 
+/* 融资融券页面样式 */
+.market-overview {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.market-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.market-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.market-card:hover {
+    background: #e3f2fd;
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.market-card.total-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.market-name {
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.total-card .market-name {
+    color: white;
+}
+
+.market-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.total-card .market-value {
+    color: white;
+}
+
+.market-label {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.total-card .market-label {
+    color: rgba(255,255,255,0.9);
+}
+
+.market-details {
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.total-card .market-details {
+    color: rgba(255,255,255,0.8);
+}
+
+.industry-section, .stock-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.industry-controls, .stock-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.market-tabs {
+    display: flex;
+    gap: 10px;
+    margin-right: 15px;
+}
+
+.market-tab {
+    padding: 8px 16px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.market-tab:hover {
+    background: #667eea;
+    color: white;
+}
+
+.market-tab.active {
+    background: #667eea;
+    color: white;
+}
+
+.industry-container, .stock-container {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.industry-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.industry-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.industry-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.industry-rank {
+    background: #667eea;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.industry-name {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.industry-balance {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.industry-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.industry-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.stock-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.stock-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stock-basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stock-code {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1rem;
+}
+
+.stock-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.stock-market {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.stock-main-data {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.main-balance {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.main-label {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.stock-details {
+    margin-bottom: 15px;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f7fafc;
+    border-radius: 6px;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 0.9rem;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.detail-value.positive {
+    color: #e53e3e;
+}
+
+.detail-value.negative {
+    color: #38a169;
+}
+
+.detail-value.highlight {
+    color: #667eea;
+    font-size: 1rem;
+}
+
+.stock-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* 详情模态框融资融券样式 */
+.detail-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.detail-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-pair:last-child {
+    border-bottom: none;
+}
+
+.info-pair span:first-child {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.info-pair span:last-child {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.info-pair .highlight {
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.info-pair .positive {
+    color: #e53e3e;
+}
+
+.info-pair .negative {
+    color: #38a169;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .market-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .industry-controls, .stock-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .market-tabs {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .market-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .market-card {
+        padding: 15px;
+    }
+    
+    .market-value {
+        font-size: 1.5rem;
+    }
+    
+    .stock-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .stock-main-data {
+        align-self: stretch;
+        text-align: left;
+    }
+    
+    .industry-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .industry-balance {
+        align-self: stretch;
+        text-align: left;
+    }
+    
+    .detail-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .industry-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .market-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .market-tab {
+        flex: 1;
+        min-width: 60px;
+        text-align: center;
+    }
+    
+    .industry-actions, .stock-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .industry-section, .stock-section, .market-overview {
+        padding: 20px 15px;
+    }
+    
+    .industry-card, .stock-card {
+        padding: 15px;
+    }
+    
+    .industry-rank {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .industry-name {
+        font-size: 1rem;
+    }
+    
+    .industry-balance {
+        font-size: 1.1rem;
+    }
+    
+    .stock-code {
+        font-size: 0.9rem;
+    }
+    
+    .stock-name {
+        font-size: 1rem;
+    }
+    
+    .main-balance {
+        font-size: 1.1rem;
+    }
+    
+    .detail-item {
+        padding: 6px 10px;
+    }
+    
+    .detail-label, .detail-value {
+        font-size: 0.85rem;
+    }
+    
+    .action-btn-sm {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}
 
 
 /* 异动解析样式 */
