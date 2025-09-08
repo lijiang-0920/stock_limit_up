@@ -42,9 +42,13 @@ async function loadRzrqDateOptions() {
         }
     } catch (error) {
         console.error('加载融资融券日期选项失败:', error);
-        const container = document.getElementById('industryContainer');
-        if (container) {
-            showError(container, '加载日期数据失败');
+        const industryTableBody = document.getElementById('industryTableBody');
+        const stockTableBody = document.getElementById('stockTableBody');
+        if (industryTableBody) {
+            industryTableBody.innerHTML = '<tr><td colspan="11" class="loading">加载日期数据失败</td></tr>';
+        }
+        if (stockTableBody) {
+            stockTableBody.innerHTML = '<tr><td colspan="16" class="loading">加载日期数据失败</td></tr>';
         }
     }
 }
@@ -118,20 +122,20 @@ function setupRzrqEventListeners() {
 
 // 加载融资融券数据
 async function loadRzrqData(date) {
-    const industryContainer = document.getElementById('industryContainer');
-    const stockContainer = document.getElementById('stockContainer');
+    const industryTableBody = document.getElementById('industryTableBody');
+    const stockTableBody = document.getElementById('stockTableBody');
     const dataInfo = document.getElementById('dataInfo');
     const marketOverview = document.getElementById('marketOverview');
     const industrySection = document.getElementById('industrySection');
     const stockSection = document.getElementById('stockSection');
     
-    if (!industryContainer || !stockContainer) {
-        console.error('容器元素未找到');
+    if (!industryTableBody || !stockTableBody) {
+        console.error('表格元素未找到');
         return;
     }
     
-    showLoading(industryContainer);
-    showLoading(stockContainer);
+    industryTableBody.innerHTML = '<tr><td colspan="11" class="loading">加载中...</td></tr>';
+    stockTableBody.innerHTML = '<tr><td colspan="16" class="loading">加载中...</td></tr>';
     
     // 隐藏所有区域
     [dataInfo, marketOverview, industrySection, stockSection].forEach(el => {
@@ -165,8 +169,8 @@ async function loadRzrqData(date) {
         
     } catch (error) {
         console.error('加载融资融券数据失败:', error);
-        showError(industryContainer, '加载数据失败');
-        showError(stockContainer, '加载数据失败');
+        industryTableBody.innerHTML = '<tr><td colspan="11" class="loading">加载数据失败</td></tr>';
+        stockTableBody.innerHTML = '<tr><td colspan="16" class="loading">加载数据失败</td></tr>';
     }
 }
 
@@ -193,7 +197,8 @@ function updateDataInfo(data) {
         if (status.market_data) statusText.push('✅市场');
         if (status.industry_data) statusText.push('✅行业');
         if (status.stock_data) statusText.push('✅个股');
-        dataStatusEl.textContent = statusText.join(' ') || '❌无数据';
+        dataStatusEl.innerHTML = statusText.join(' ') || '❌无数据';
+        dataStatusEl.className = 'status-text';
     }
 }
 
@@ -252,59 +257,46 @@ function renderMarketOverview(marketData) {
     marketStatsGrid.innerHTML = marketCards.join('');
 }
 
-// 渲染行业数据
+// 渲染行业数据为表格
 function renderIndustryData(industryData) {
-    const container = document.getElementById('industryContainer');
-    if (!container || !industryData || industryData.length === 0) {
-        if (container) {
-            container.innerHTML = '<div class="loading">暂无行业数据</div>';
+    const tableBody = document.getElementById('industryTableBody');
+    if (!tableBody || !industryData || industryData.length === 0) {
+        if (tableBody) {
+            tableBody.innerHTML = '<tr><td colspan="11" class="loading">暂无行业数据</td></tr>';
         }
         return;
     }
     
     const industryHtml = industryData.map((industry, index) => `
-        <div class="industry-card" data-name="${industry.行业名称}">
-            <div class="industry-header">
-                <div class="industry-rank">${index + 1}</div>
-                <div class="industry-name">${industry.行业名称}</div>
-                <div class="industry-balance">${formatAmount(industry['融资余额(亿)'])}亿</div>
-            </div>
-            <div class="industry-details">
-                <div class="detail-item">
-                    <span class="detail-label">💹 融资买入:</span>
-                    <span class="detail-value">${formatAmount(industry['融资买入额(亿)'])}亿</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">📤 融资偿还:</span>
-                    <span class="detail-value">${formatAmount(industry['融资偿还额(亿)'])}亿</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">📊 融券余额:</span>
-                    <span class="detail-value">${formatAmount(industry['融券余额(万)'])}万</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">⚖️ 融资融券差值:</span>
-                    <span class="detail-value ${industry['融资融券差值(亿)'] >= 0 ? 'positive' : 'negative'}">
-                        ${industry['融资融券差值(亿)'] >= 0 ? '+' : ''}${formatAmount(industry['融资融券差值(亿)'])}亿
-                    </span>
-                </div>
-            </div>
-            <div class="industry-actions">
+        <tr class="industry-row" data-name="${industry.行业名称}">
+            <td class="rank-cell">${index + 1}</td>
+            <td class="industry-name-cell">${industry.行业名称}</td>
+            <td class="amount-cell">${formatAmount(industry['融资余额(亿)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融资买入额(亿)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融资偿还额(亿)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券余额(万)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券余量(万)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券卖出量(万)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券偿还量(万)'])}</td>
+            <td class="amount-cell ${industry['融资融券差值(亿)'] >= 0 ? 'positive' : 'negative'}">
+                ${industry['融资融券差值(亿)'] >= 0 ? '+' : ''}${formatAmount(industry['融资融券差值(亿)'])}
+            </td>
+            <td class="actions-cell">
                 <button onclick="viewIndustryDetail('${industry.行业名称}')" class="action-btn-sm">📖 详情</button>
                 <button onclick="copyIndustryData('${industry.行业名称}')" class="action-btn-sm">📋 复制</button>
-            </div>
-        </div>
+            </td>
+        </tr>
     `).join('');
     
-    container.innerHTML = industryHtml;
+    tableBody.innerHTML = industryHtml;
 }
 
-// 渲染个股数据
+// 渲染个股数据为表格
 function renderStockData(stockData) {
-    const container = document.getElementById('stockContainer');
-    if (!container || !stockData) {
-        if (container) {
-            container.innerHTML = '<div class="loading">暂无个股数据</div>';
+    const tableBody = document.getElementById('stockTableBody');
+    if (!tableBody || !stockData) {
+        if (tableBody) {
+            tableBody.innerHTML = '<tr><td colspan="16" class="loading">暂无个股数据</td></tr>';
         }
         return;
     }
@@ -318,67 +310,40 @@ function renderStockData(stockData) {
     });
     
     if (allStocks.length === 0) {
-        container.innerHTML = '<div class="loading">暂无个股数据</div>';
+        tableBody.innerHTML = '<tr><td colspan="16" class="loading">暂无个股数据</td></tr>';
         return;
     }
     
     const stockHtml = allStocks.map(stock => `
-        <div class="stock-card" data-code="${stock.股票代码}" data-name="${stock.股票名称}" data-market="${stock.market}">
-            <div class="stock-header">
-                <div class="stock-basic-info">
-                    <div class="stock-code">${stock.股票代码}</div>
-                    <div class="stock-name">${stock.股票名称}</div>
-                    <div class="stock-market">🏢 ${stock.market}</div>
-                </div>
-                <div class="stock-main-data">
-                    <div class="main-balance">💰 ${formatAmount(stock['融资余额(万元)'])}万</div>
-                    <div class="main-label">融资余额</div>
-                </div>
-            </div>
-            <div class="stock-details">
-                <div class="detail-row">
-                    <div class="detail-item">
-                        <span class="detail-label">💹 融资买入:</span>
-                        <span class="detail-value">${formatAmount(stock['融资买入额(万元)'])}万</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">📈 融资净买入:</span>
-                        <span class="detail-value ${stock['融资净买入(万元)'] >= 0 ? 'positive' : 'negative'}">
-                            ${stock['融资净买入(万元)'] >= 0 ? '+' : ''}${formatAmount(stock['融资净买入(万元)'])}万
-                        </span>
-                    </div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-item">
-                        <span class="detail-label">📊 融券余量:</span>
-                        <span class="detail-value">${formatAmount(stock['融券余量(万股)'])}万股</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">📉 融券净卖出:</span>
-                        <span class="detail-value ${stock['融券净卖出(万股)'] >= 0 ? 'positive' : 'negative'}">
-                            ${stock['融券净卖出(万股)'] >= 0 ? '+' : ''}${formatAmount(stock['融券净卖出(万股)'])}万股
-                        </span>
-                    </div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-item">
-                        <span class="detail-label">💹 融资占比:</span>
-                        <span class="detail-value">${formatAmount(stock['融资占流通市值比(%)'])}%</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">🎯 融券占比:</span>
-                        <span class="detail-value">${formatAmount(stock['融券占流通市值比(%)'])}%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="stock-actions">
-                <button onclick="viewStockDetail('${stock.股票代码}')" class="action-btn-sm primary">📖 查看详情</button>
+        <tr class="stock-row" data-code="${stock.股票代码}" data-name="${stock.股票名称}" data-market="${stock.market}">
+            <td class="code-cell">${stock.股票代码}</td>
+            <td class="name-cell">${stock.股票名称}</td>
+            <td class="market-cell">${stock.market}</td>
+            <td class="amount-cell">${formatAmount(stock['融资余额(万元)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融资买入额(万元)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融资偿还额(万元)'])}</td>
+            <td class="amount-cell ${stock['融资净买入(万元)'] >= 0 ? 'positive' : 'negative'}">
+                ${stock['融资净买入(万元)'] >= 0 ? '+' : ''}${formatAmount(stock['融资净买入(万元)'])}
+            </td>
+            <td class="percent-cell">${formatAmount(stock['融资占流通市值比(%)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券余额(万元)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券余量(万股)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券卖出量(万股)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券偿还量(万股)'])}</td>
+            <td class="amount-cell ${stock['融券净卖出(万股)'] >= 0 ? 'positive' : 'negative'}">
+                ${stock['融券净卖出(万股)'] >= 0 ? '+' : ''}${formatAmount(stock['融券净卖出(万股)'])}
+            <td class="percent-cell">${formatAmount(stock['融券占流通市值比(%)'])}</td>
+            <td class="amount-cell ${stock['融资融券差值(万元)'] >= 0 ? 'positive' : 'negative'}">
+                ${stock['融资融券差值(万元)'] >= 0 ? '+' : ''}${formatAmount(stock['融资融券差值(万元)'])}
+            </td>
+            <td class="actions-cell">
+                <button onclick="viewStockDetail('${stock.股票代码}')" class="action-btn-sm primary">📖 详情</button>
                 <button onclick="copyStockData('${stock.股票代码}')" class="action-btn-sm">📋 复制</button>
-            </div>
-        </div>
+            </td>
+        </tr>
     `).join('');
     
-    container.innerHTML = stockHtml;
+    tableBody.innerHTML = stockHtml;
 }
 
 // 格式化金额
@@ -394,15 +359,46 @@ function filterIndustries() {
     if (!searchInput) return;
     
     const searchTerm = searchInput.value.toLowerCase();
-    const industryCards = document.querySelectorAll('.industry-card');
+    const industryRows = document.querySelectorAll('.industry-row');
     
-    industryCards.forEach(card => {
-        const name = card.dataset.name.toLowerCase();
+    industryRows.forEach(row => {
+        const name = row.dataset.name.toLowerCase();
         
         if (name.includes(searchTerm)) {
-            card.style.display = 'block';
+            row.style.display = 'table-row';
         } else {
-            card.style.display = 'none';
+            row.style.display = 'none';
+        }
+    });
+}
+
+// 筛选股票
+function filterStocks() {
+    const searchInput = document.getElementById('searchInput');
+    const marketFilter = document.getElementById('marketFilter');
+    const activeTab = document.querySelector('.market-tab.active');
+    
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.toLowerCase();
+    const marketValue = marketFilter ? marketFilter.value : '';
+    const tabMarket = activeTab ? activeTab.dataset.market : 'all';
+    
+    const stockRows = document.querySelectorAll('.stock-row');
+    
+    stockRows.forEach(row => {
+        const code = row.dataset.code.toLowerCase();
+        const name = row.dataset.name.toLowerCase();
+        const market = row.dataset.market;
+        
+        const matchesSearch = !searchTerm || code.includes(searchTerm) || name.includes(searchTerm);
+        const matchesMarketFilter = !marketValue || market === marketValue;
+        const matchesTab = tabMarket === 'all' || market === tabMarket;
+        
+        if (matchesSearch && matchesMarketFilter && matchesTab) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
         }
     });
 }
@@ -410,9 +406,9 @@ function filterIndustries() {
 // 排序行业
 function sortIndustries() {
     const sortSelect = document.getElementById('industrySortSelect');
-    const container = document.getElementById('industryContainer');
+    const tableBody = document.getElementById('industryTableBody');
     
-    if (!sortSelect || !container || !currentRzrqData) return;
+    if (!sortSelect || !tableBody || !currentRzrqData) return;
     
     const sortKey = sortSelect.value;
     const industryData = [...currentRzrqData.industry_data];
@@ -430,85 +426,12 @@ function sortIndustries() {
     renderIndustryDataSorted(industryData);
 }
 
-// 渲染排序后的行业数据
-function renderIndustryDataSorted(industryData) {
-    const container = document.getElementById('industryContainer');
-    if (!container) return;
-    
-    const industryHtml = industryData.map((industry, index) => `
-        <div class="industry-card" data-name="${industry.行业名称}">
-            <div class="industry-header">
-                <div class="industry-rank">${index + 1}</div>
-                <div class="industry-name">${industry.行业名称}</div>
-                <div class="industry-balance">${formatAmount(industry['融资余额(亿)'])}亿</div>
-            </div>
-            <div class="industry-details">
-                <div class="detail-item">
-                    <span class="detail-label">💹 融资买入:</span>
-                    <span class="detail-value">${formatAmount(industry['融资买入额(亿)'])}亿</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">📤 融资偿还:</span>
-                    <span class="detail-value">${formatAmount(industry['融资偿还额(亿)'])}亿</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">📊 融券余额:</span>
-                    <span class="detail-value">${formatAmount(industry['融券余额(万)'])}万</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">⚖️ 融资融券差值:</span>
-                    <span class="detail-value ${industry['融资融券差值(亿)'] >= 0 ? 'positive' : 'negative'}">
-                        ${industry['融资融券差值(亿)'] >= 0 ? '+' : ''}${formatAmount(industry['融资融券差值(亿)'])}亿
-                    </span>
-                </div>
-            </div>
-            <div class="industry-actions">
-                <button onclick="viewIndustryDetail('${industry.行业名称}')" class="action-btn-sm">📖 详情</button>
-                <button onclick="copyIndustryData('${industry.行业名称}')" class="action-btn-sm">📋 复制</button>
-            </div>
-        </div>
-    `).join('');
-    
-    container.innerHTML = industryHtml;
-}
-
-// 筛选股票
-function filterStocks() {
-    const searchInput = document.getElementById('searchInput');
-    const marketFilter = document.getElementById('marketFilter');
-    const activeTab = document.querySelector('.market-tab.active');
-    
-    if (!searchInput) return;
-    
-    const searchTerm = searchInput.value.toLowerCase();
-    const marketValue = marketFilter ? marketFilter.value : '';
-    const tabMarket = activeTab ? activeTab.dataset.market : 'all';
-    
-    const stockCards = document.querySelectorAll('.stock-card');
-    
-    stockCards.forEach(card => {
-        const code = card.dataset.code.toLowerCase();
-        const name = card.dataset.name.toLowerCase();
-        const market = card.dataset.market;
-        
-        const matchesSearch = !searchTerm || code.includes(searchTerm) || name.includes(searchTerm);
-        const matchesMarketFilter = !marketValue || market === marketValue;
-        const matchesTab = tabMarket === 'all' || market === tabMarket;
-        
-        if (matchesSearch && matchesMarketFilter && matchesTab) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
 // 排序股票
 function sortStocks() {
     const sortSelect = document.getElementById('stockSortSelect');
-    const container = document.getElementById('stockContainer');
+    const tableBody = document.getElementById('stockTableBody');
     
-    if (!sortSelect || !container || !currentRzrqData) return;
+    if (!sortSelect || !tableBody || !currentRzrqData) return;
     
     const sortKey = sortSelect.value;
     
@@ -530,68 +453,71 @@ function sortStocks() {
     renderStockDataSorted(allStocks);
 }
 
-// 渲染排序后的股票数据
-function renderStockDataSorted(stockData) {
-    const container = document.getElementById('stockContainer');
-    if (!container) return;
+// 渲染排序后的行业数据
+function renderIndustryDataSorted(industryData) {
+    const tableBody = document.getElementById('industryTableBody');
+    if (!tableBody) return;
     
-    const stockHtml = stockData.map(stock => `
-        <div class="stock-card" data-code="${stock.股票代码}" data-name="${stock.股票名称}" data-market="${stock.market}">
-            <div class="stock-header">
-                <div class="stock-basic-info">
-                    <div class="stock-code">${stock.股票代码}</div>
-                    <div class="stock-name">${stock.股票名称}</div>
-                    <div class="stock-market">🏢 ${stock.market}</div>
-                </div>
-                <div class="stock-main-data">
-                    <div class="main-balance">💰 ${formatAmount(stock['融资余额(万元)'])}万</div>
-                    <div class="main-label">融资余额</div>
-                </div>
-            </div>
-            <div class="stock-details">
-                <div class="detail-row">
-                    <div class="detail-item">
-                        <span class="detail-label">💹 融资买入:</span>
-                        <span class="detail-value">${formatAmount(stock['融资买入额(万元)'])}万</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">📈 融资净买入:</span>
-                        <span class="detail-value ${stock['融资净买入(万元)'] >= 0 ? 'positive' : 'negative'}">
-                            ${stock['融资净买入(万元)'] >= 0 ? '+' : ''}${formatAmount(stock['融资净买入(万元)'])}万
-                        </span>
-                    </div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-item">
-                        <span class="detail-label">📊 融券余量:</span>
-                        <span class="detail-value">${formatAmount(stock['融券余量(万股)'])}万股</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">📉 融券净卖出:</span>
-                        <span class="detail-value ${stock['融券净卖出(万股)'] >= 0 ? 'positive' : 'negative'}">
-                            ${stock['融券净卖出(万股)'] >= 0 ? '+' : ''}${formatAmount(stock['融券净卖出(万股)'])}万股
-                        </span>
-                    </div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-item">
-                        <span class="detail-label">💹 融资占比:</span>
-                        <span class="detail-value">${formatAmount(stock['融资占流通市值比(%)'])}%</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">🎯 融券占比:</span>
-                        <span class="detail-value">${formatAmount(stock['融券占流通市值比(%)'])}%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="stock-actions">
-                <button onclick="viewStockDetail('${stock.股票代码}')" class="action-btn-sm primary">📖 查看详情</button>
-                <button onclick="copyStockData('${stock.股票代码}')" class="action-btn-sm">📋 复制</button>
-            </div>
-        </div>
+    const industryHtml = industryData.map((industry, index) => `
+        <tr class="industry-row" data-name="${industry.行业名称}">
+            <td class="rank-cell">${index + 1}</td>
+            <td class="industry-name-cell">${industry.行业名称}</td>
+            <td class="amount-cell">${formatAmount(industry['融资余额(亿)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融资买入额(亿)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融资偿还额(亿)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券余额(万)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券余量(万)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券卖出量(万)'])}</td>
+            <td class="amount-cell">${formatAmount(industry['融券偿还量(万)'])}</td>
+            <td class="amount-cell ${industry['融资融券差值(亿)'] >= 0 ? 'positive' : 'negative'}">
+                ${industry['融资融券差值(亿)'] >= 0 ? '+' : ''}${formatAmount(industry['融资融券差值(亿)'])}
+            </td>
+            <td class="actions-cell">
+                <button onclick="viewIndustryDetail('${industry.行业名称}')" class="action-btn-sm">📖 详情</button>
+                <button onclick="copyIndustryData('${industry.行业名称}')" class="action-btn-sm">📋 复制</button>
+            </td>
+        </tr>
     `).join('');
     
-    container.innerHTML = stockHtml;
+    tableBody.innerHTML = industryHtml;
+}
+
+// 渲染排序后的股票数据
+function renderStockDataSorted(stockData) {
+    const tableBody = document.getElementById('stockTableBody');
+    if (!tableBody) return;
+    
+    const stockHtml = stockData.map(stock => `
+        <tr class="stock-row" data-code="${stock.股票代码}" data-name="${stock.股票名称}" data-market="${stock.market}">
+            <td class="code-cell">${stock.股票代码}</td>
+            <td class="name-cell">${stock.股票名称}</td>
+            <td class="market-cell">${stock.market}</td>
+            <td class="amount-cell">${formatAmount(stock['融资余额(万元)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融资买入额(万元)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融资偿还额(万元)'])}</td>
+            <td class="amount-cell ${stock['融资净买入(万元)'] >= 0 ? 'positive' : 'negative'}">
+                ${stock['融资净买入(万元)'] >= 0 ? '+' : ''}${formatAmount(stock['融资净买入(万元)'])}
+            </td>
+            <td class="percent-cell">${formatAmount(stock['融资占流通市值比(%)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券余额(万元)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券余量(万股)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券卖出量(万股)'])}</td>
+            <td class="amount-cell">${formatAmount(stock['融券偿还量(万股)'])}</td>
+            <td class="amount-cell ${stock['融券净卖出(万股)'] >= 0 ? 'positive' : 'negative'}">
+                ${stock['融券净卖出(万股)'] >= 0 ? '+' : ''}${formatAmount(stock['融券净卖出(万股)'])}
+            </td>
+            <td class="percent-cell">${formatAmount(stock['融券占流通市值比(%)'])}</td>
+            <td class="amount-cell ${stock['融资融券差值(万元)'] >= 0 ? 'positive' : 'negative'}">
+                ${stock['融资融券差值(万元)'] >= 0 ? '+' : ''}${formatAmount(stock['融资融券差值(万元)'])}
+            </td>
+            <td class="actions-cell">
+                <button onclick="viewStockDetail('${stock.股票代码}')" class="action-btn-sm primary">📖 详情</button>
+                <button onclick="copyStockData('${stock.股票代码}')" class="action-btn-sm">📋 复制</button>
+            </td>
+        </tr>
+    `).join('');
+    
+    tableBody.innerHTML = stockHtml;
 }
 
 // 查看股票详情
@@ -706,6 +632,9 @@ function generateStockDetailContent(stockData, market) {
                         ${stockData['融券净卖出(万股)'] >= 0 ? '+' : ''}${formatAmount(stockData['融券净卖出(万股)'])}万股
                     </span>
                 </div>
+                <div class="info-pair">
+                    <span>融券占流通市值比:</span>
+                    <span>${formatAmount(stockData['融券占流通市值比(%)'])}%</span>
                 <div class="info-pair">
                     <span>融券占流通市值比:</span>
                     <span>${formatAmount(stockData['融券占流通市值比(%)'])}%</span>
@@ -1033,21 +962,47 @@ function copyRzrqData() {
         textData += `${formatAmount(data.融资融券余额)}\n`;
     });
     
-    // 行业数据（前10）
-    textData += '\n=== 行业数据TOP10 ===\n';
-    textData += '排名\t行业名称\t融资余额(亿)\t融资买入额(亿)\t融券余额(万)\t融资融券差值(亿)\n';
+    // 行业数据
+    textData += '\n=== 行业数据 ===\n';
+    textData += '排名\t行业名称\t融资余额(亿)\t融资买入额(亿)\t融资偿还额(亿)\t融券余额(万)\t融券余量(万)\t融券卖出量(万)\t融券偿还量(万)\t融资融券差值(亿)\n';
     
-    const topIndustries = currentRzrqData.industry_data
-        .sort((a, b) => b['融资余额(亿)'] - a['融资余额(亿)'])
-        .slice(0, 10);
-    
-    topIndustries.forEach((industry, index) => {
+    currentRzrqData.industry_data.forEach((industry, index) => {
         textData += `${index + 1}\t`;
         textData += `${industry.行业名称}\t`;
         textData += `${formatAmount(industry['融资余额(亿)'])}\t`;
         textData += `${formatAmount(industry['融资买入额(亿)'])}\t`;
+        textData += `${formatAmount(industry['融资偿还额(亿)'])}\t`;
         textData += `${formatAmount(industry['融券余额(万)'])}\t`;
+        textData += `${formatAmount(industry['融券余量(万)'])}\t`;
+        textData += `${formatAmount(industry['融券卖出量(万)'])}\t`;
+        textData += `${formatAmount(industry['融券偿还量(万)'])}\t`;
         textData += `${formatAmount(industry['融资融券差值(亿)'])}\n`;
+    });
+    
+    // 个股数据（全部数据，按融资余额排序）
+    const allStocks = [];
+    Object.entries(currentRzrqData.stock_data).forEach(([market, stocks]) => {
+        stocks.forEach(stock => {
+            allStocks.push({...stock, market: market});
+        });
+    });
+    
+    // 移除 .slice(0, 20) 限制，显示所有数据
+    const sortedStocks = allStocks.sort((a, b) => (b['融资余额(万元)'] || 0) - (a['融资余额(万元)'] || 0));
+    
+    textData += `\n=== 个股数据（共${sortedStocks.length}只） ===\n`;
+    textData += '股票代码\t股票名称\t市场\t融资余额(万元)\t融资买入额(万元)\t融资净买入(万元)\t融券余量(万股)\t融券净卖出(万股)\t融资融券差值(万元)\n';
+    
+    sortedStocks.forEach(stock => {
+        textData += `${stock.股票代码}\t`;
+        textData += `${stock.股票名称}\t`;
+        textData += `${stock.market}\t`;
+        textData += `${formatAmount(stock['融资余额(万元)'])}\t`;
+        textData += `${formatAmount(stock['融资买入额(万元)'])}\t`;
+        textData += `${formatAmount(stock['融资净买入(万元)'])}\t`;
+        textData += `${formatAmount(stock['融券余量(万股)'])}\t`;
+        textData += `${formatAmount(stock['融券净卖出(万股)'])}\t`;
+        textData += `${formatAmount(stock['融资融券差值(万元)'])}\n`;
     });
     
     copyToClipboard(textData);
