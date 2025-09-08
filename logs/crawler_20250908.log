@@ -1,0 +1,15 @@
+ 
+============================================= 
+2025/09/08/周一 15:54:58.25 - 涨停透视爬虫任务开始 
+============================================= 
+2025/09/08/周一 15:54:59.25 - 开始执行爬虫... 
+fatal: unable to access 'https://github.com/lijiang-0920/stock_limit_up.git/': Send failure: Connection was reset
+2025/09/08/周一 15:55:00.80 - 第 1 次尝试运行爬虫... 
+Traceback (most recent call last):
+  File "D:\Microsoft VS Code\ztts_crawler\ztts_crawler_simple.py", line 786, in <module>
+    main()
+  File "D:\Microsoft VS Code\ztts_crawler\ztts_crawler_simple.py", line 707, in main
+    print(f"\U0001f680 ��ͣ͸��������������")
+UnicodeEncodeError: 'gbk' codec can't encode character '\U0001f680' in position 0: illegal multibyte sequence
+2025/09/08/周一 15:55:01.93 - 爬虫执行失败，未发现数据文件 
+2025/09/08/周一 15:55:01.93 - 等待5分钟后重试... 
