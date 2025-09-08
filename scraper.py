@@ -1437,11 +1437,9 @@ def load_archived_report_ids():
         with open(index_path, 'r', encoding='utf-8') as f:
             index_data = json.load(f)
         
-        # 兼容新旧格式
-        daily_data = index_data.get("daily_data", index_data)
-        
-        for date_info in daily_data.values():
-            if isinstance(date_info, dict) and 'files' in date_info:
+        # 过滤掉 _summary 字段，只处理日期数据
+        for key, date_info in index_data.items():
+            if key != "_summary" and isinstance(date_info, dict) and 'files' in date_info:
                 json_file = date_info['files']['json']
                 if os.path.exists(json_file):
                     try:
@@ -1457,6 +1455,8 @@ def load_archived_report_ids():
     
     return archived_ids
 
+
+
 def detect_new_reports(current_reports):
     """检测新增研报"""
     archived_ids = load_archived_report_ids()
@@ -1470,7 +1470,7 @@ def detect_new_reports(current_reports):
     return new_reports
 
 def update_tdx_reports_index(date_str, report_count, stock_count, institution_count):
-    """更新通达信研报索引文件（包含总量统计）"""
+    """更新通达信研报索引文件（保持前端兼容性）"""
     index_path = 'tdx_value/index.json'
     
     # 读取现有索引
@@ -1483,14 +1483,15 @@ def update_tdx_reports_index(date_str, report_count, stock_count, institution_co
     else:
         index_data = {}
     
-    # 兼容旧格式转换
-    if "daily_data" not in index_data:
+    # 兼容新格式：如果是新格式，提取daily_data
+    if "daily_data" in index_data:
+        daily_data = index_data["daily_data"]
+    else:
         daily_data = index_data
-        index_data = {"daily_data": daily_data}
     
     # 更新当前日期数据
     year_month = date_str[:7]
-    index_data["daily_data"][date_str] = {
+    daily_data[date_str] = {
         "date": date_str,
         "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
         "report_count": report_count,
@@ -1503,18 +1504,20 @@ def update_tdx_reports_index(date_str, report_count, stock_count, institution_co
     }
     
     # 计算总数据条数
-    total_reports = sum(info.get('report_count', 0) for info in index_data["daily_data"].values())
+    total_reports = sum(info.get('report_count', 0) for info in daily_data.values())
     
-    # 更新摘要
-    index_data["summary"] = {
+    # 保存为兼容格式：在根级别添加summary，但保持原有的日期数据结构
+    final_index_data = daily_data.copy()
+    final_index_data["_summary"] = {  # 使用 _summary 避免与日期冲突
         "total_reports": total_reports,
-        "total_dates": len(index_data["daily_data"]),
+        "total_dates": len(daily_data),
         "last_update": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S")
     }
     
     # 保存索引
     with open(index_path, 'w', encoding='utf-8') as f:
-        json.dump(index_data, f, ensure_ascii=False, indent=2)
+        json.dump(final_index_data, f, ensure_ascii=False, indent=2)
+
 
 def smart_archive_new_reports():
     """智能检测并归档新增研报"""
@@ -2082,6 +2085,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
