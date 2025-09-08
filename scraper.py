@@ -1336,40 +1336,6 @@ def save_tdx_reports_files(reports, date_str):
     
     return json_path, txt_path
 
-def update_tdx_reports_index(date_str, report_count, stock_count, institution_count):
-    """更新通达信研报索引文件"""
-    index_path = 'tdx_value/index.json'
-    
-    # 读取现有索引
-    if os.path.exists(index_path):
-        with open(index_path, 'r', encoding='utf-8') as f:
-            try:
-                index_data = json.load(f)
-                if not isinstance(index_data, dict):
-                    index_data = {}
-            except:
-                index_data = {}
-    else:
-        index_data = {}
-    
-    # 更新索引
-    year_month = date_str[:7]
-    index_data[date_str] = {
-        "date": date_str,
-        "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
-        "report_count": report_count,
-        "stock_count": stock_count,
-        "institution_count": institution_count,
-        "files": {
-            "json": f"tdx_value/{year_month}/{date_str}.json",
-            "txt": f"tdx_value/{year_month}/{date_str}.txt"
-        }
-    }
-    
-    # 保存索引
-    with open(index_path, 'w', encoding='utf-8') as f:
-        json.dump(index_data, f, ensure_ascii=False, indent=2)
-
 def is_tdx_reports_first_run():
     """检查是否第一次运行通达信研报功能"""
     if not os.path.exists("tdx_value"):
@@ -1449,6 +1415,158 @@ def crawl_tdx_reports(date_str=None):
     except Exception as e:
         print(f"获取通达信研报数据时发生错误: {e}")
         return None
+
+import hashlib
+import json
+import os
+
+def generate_report_id(report):
+    """生成研报唯一标识"""
+    key_string = f"{report['报告日期']}_{report['证券代码']}_{report['研究机构']}_{report['标题']}"
+    return hashlib.md5(key_string.encode('utf-8')).hexdigest()
+
+def load_archived_report_ids():
+    """加载所有已归档的研报ID"""
+    archived_ids = set()
+    index_path = 'tdx_value/index.json'
+    
+    if not os.path.exists(index_path):
+        return archived_ids
+    
+    try:
+        with open(index_path, 'r', encoding='utf-8') as f:
+            index_data = json.load(f)
+        
+        # 兼容新旧格式
+        daily_data = index_data.get("daily_data", index_data)
+        
+        for date_info in daily_data.values():
+            if isinstance(date_info, dict) and 'files' in date_info:
+                json_file = date_info['files']['json']
+                if os.path.exists(json_file):
+                    try:
+                        with open(json_file, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                            for report in data.get('研报数据', []):
+                                report_id = generate_report_id(report)
+                                archived_ids.add(report_id)
+                    except:
+                        continue
+    except:
+        pass
+    
+    return archived_ids
+
+def detect_new_reports(current_reports):
+    """检测新增研报"""
+    archived_ids = load_archived_report_ids()
+    new_reports = []
+    
+    for report in current_reports:
+        report_id = generate_report_id(report)
+        if report_id not in archived_ids:
+            new_reports.append(report)
+    
+    return new_reports
+
+def update_tdx_reports_index(date_str, report_count, stock_count, institution_count):
+    """更新通达信研报索引文件（包含总量统计）"""
+    index_path = 'tdx_value/index.json'
+    
+    # 读取现有索引
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            try:
+                index_data = json.load(f)
+            except:
+                index_data = {}
+    else:
+        index_data = {}
+    
+    # 兼容旧格式转换
+    if "daily_data" not in index_data:
+        daily_data = index_data
+        index_data = {"daily_data": daily_data}
+    
+    # 更新当前日期数据
+    year_month = date_str[:7]
+    index_data["daily_data"][date_str] = {
+        "date": date_str,
+        "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
+        "report_count": report_count,
+        "stock_count": stock_count,
+        "institution_count": institution_count,
+        "files": {
+            "json": f"tdx_value/{year_month}/{date_str}.json",
+            "txt": f"tdx_value/{year_month}/{date_str}.txt"
+        }
+    }
+    
+    # 计算总数据条数
+    total_reports = sum(info.get('report_count', 0) for info in index_data["daily_data"].values())
+    
+    # 更新摘要
+    index_data["summary"] = {
+        "total_reports": total_reports,
+        "total_dates": len(index_data["daily_data"]),
+        "last_update": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    # 保存索引
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, ensure_ascii=False, indent=2)
+
+def smart_archive_new_reports():
+    """智能检测并归档新增研报"""
+    print("开始智能检测新增研报...")
+    
+    # 获取当前数据
+    raw_reports = get_tdx_reports_data()
+    if not raw_reports:
+        print("未获取到研报数据")
+        return None
+    
+    current_reports = format_tdx_reports(raw_reports)
+    if not current_reports:
+        print("格式化研报数据失败")
+        return None
+    
+    # 检测新增研报
+    new_reports = detect_new_reports(current_reports)
+    if not new_reports:
+        print("没有检测到新增研报")
+        return None
+    
+    print(f"检测到新增研报: {len(new_reports)} 条")
+    
+    # 按日期分组并归档
+    grouped_new_reports = group_reports_by_date(new_reports)
+    
+    for date_str, date_reports in grouped_new_reports.items():
+        # 重新编号
+        for i, report in enumerate(date_reports, 1):
+            report["序号"] = i
+        
+        # 保存文件
+        save_tdx_reports_files(date_reports, date_str)
+        
+        # 更新索引
+        stock_count = len(set(r["证券代码"] for r in date_reports))
+        institution_count = len(set(r["研究机构"] for r in date_reports))
+        update_tdx_reports_index(date_str, len(date_reports), stock_count, institution_count)
+        
+        print(f"归档完成: {date_str}, {len(date_reports)}条研报")
+    
+    return grouped_new_reports
+
+def crawl_tdx_reports_smart(date_str=None):
+    """智能版通达信研报爬取"""
+    if is_tdx_reports_first_run():
+        print("首次运行，获取全部历史数据...")
+        return crawl_tdx_reports(date_str)
+    else:
+        print("智能检测模式...")
+        return smart_archive_new_reports()
 
 # ========== 通达信融资融券相关函数 ==========
 
@@ -1910,10 +2028,10 @@ def main():
         
         elif command == 'tdx_reports':  # 新增通达信研报命令
             if len(sys.argv) == 2:
-                crawl_tdx_reports()
+                crawl_tdx_reports_smart()
             elif len(sys.argv) == 3:
                 date_str = sys.argv[2]
-                crawl_tdx_reports(date_str)
+                crawl_tdx_reports_smart(date_str)
                 
         elif command == 'rzrq':  # 新增融资融券命令
             if len(sys.argv) == 2:
@@ -1964,6 +2082,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
