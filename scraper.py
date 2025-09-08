@@ -1794,7 +1794,7 @@ def crawl_rzrq_data(date_str=None):
     beijing_today = beijing_time.strftime("%Y-%m-%d")
     
     try:
-        # 获取全量市场数据
+        print("获取全量市场数据")
         all_market_data = get_rzrq_market_data()
         
         if not all_market_data:
@@ -1805,7 +1805,7 @@ def crawl_rzrq_data(date_str=None):
             print("首次运行融资融券功能，获取历史数据...")
             
             # 从最近180天开始获取数据，避免数据量过大
-            start_date = (beijing_time - timedelta(days=180)).strftime("%Y-%m-%d")
+            start_date = (beijing_time - timedelta(days=60)).strftime("%Y-%m-%d")
             all_dates = [date for date in sorted(all_market_data.keys()) if date >= start_date]
             
             print(f"融资融券数据日期范围: {all_dates[0]} 到 {all_dates[-1]}")
@@ -1964,6 +1964,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
