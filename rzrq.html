@@ -70,7 +70,29 @@
                     <option value="行业名称">按行业名称排序</option>
                 </select>
             </div>
-            <div class="industry-container" id="industryContainer">
+            <div class="table-container">
+                <table class="industry-table" id="industryTable">
+                    <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>行业名称</th>
+                            <th>融资余额(亿)</th>
+                            <th>融资买入额(亿)</th>
+                            <th>融资偿还额(亿)</th>
+                            <th>融券余额(万)</th>
+                            <th>融券余量(万)</th>
+                            <th>融券卖出量(万)</th>
+                            <th>融券偿还量(万)</th>
+                            <th>融资融券差值(亿)</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="industryTableBody">
+                        <tr>
+                            <td colspan="11" class="loading">请选择日期查看数据...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         
@@ -91,7 +113,34 @@
                     <option value="融资融券差值(万元)">按融资融券差值排序</option>
                 </select>
             </div>
-            <div class="stock-container" id="stockContainer">
+            <div class="table-container">
+                <table class="stock-table" id="stockTable">
+                    <thead>
+                        <tr>
+                            <th>股票代码</th>
+                            <th>股票名称</th>
+                            <th>市场</th>
+                            <th>融资余额(万元)</th>
+                            <th>融资买入额(万元)</th>
+                            <th>融资偿还额(万元)</th>
+                            <th>融资净买入(万元)</th>
+                            <th>融资占比(%)</th>
+                            <th>融券余额(万元)</th>
+                            <th>融券余量(万股)</th>
+                            <th>融券卖出量(万股)</th>
+                            <th>融券偿还量(万股)</th>
+                            <th>融券净卖出(万股)</th>
+                            <th>融券占比(%)</th>
+                            <th>融资融券差值(万元)</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stockTableBody">
+                        <tr>
+                            <td colspan="16" class="loading">请选择日期查看数据...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
