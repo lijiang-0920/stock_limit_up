@@ -3562,5 +3562,16 @@
       "json": "tdx_value/2024-09/2024-09-07.json",
       "txt": "tdx_value/2024-09/2024-09-07.txt"
     }
+  },
+  "2025-09-08": {
+    "date": "2025-09-08",
+    "update_time": "2025-09-08 12:22:28",
+    "report_count": 3,
+    "stock_count": 3,
+    "institution_count": 3,
+    "files": {
+      "json": "tdx_value/2025-09/2025-09-08.json",
+      "txt": "tdx_value/2025-09/2025-09-08.txt"
+    }
   }
 }
