@@ -1,0 +1,632 @@
+{
+  "2025-07-10": {
+    "date": "2025-07-10",
+    "update_time": "2025-09-08 12:06:01",
+    "industry_count": 30,
+    "total_stocks": 3681,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-10.json",
+      "txt": "tdx_rztq/2025-07/2025-07-10.txt"
+    }
+  },
+  "2025-07-11": {
+    "date": "2025-07-11",
+    "update_time": "2025-09-08 12:06:04",
+    "industry_count": 30,
+    "total_stocks": 3681,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-11.json",
+      "txt": "tdx_rztq/2025-07/2025-07-11.txt"
+    }
+  },
+  "2025-07-14": {
+    "date": "2025-07-14",
+    "update_time": "2025-09-08 12:06:07",
+    "industry_count": 30,
+    "total_stocks": 3709,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-14.json",
+      "txt": "tdx_rztq/2025-07/2025-07-14.txt"
+    }
+  },
+  "2025-07-15": {
+    "date": "2025-07-15",
+    "update_time": "2025-09-08 12:06:09",
+    "industry_count": 30,
+    "total_stocks": 3709,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-15.json",
+      "txt": "tdx_rztq/2025-07/2025-07-15.txt"
+    }
+  },
+  "2025-07-16": {
+    "date": "2025-07-16",
+    "update_time": "2025-09-08 12:06:12",
+    "industry_count": 30,
+    "total_stocks": 3710,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-16.json",
+      "txt": "tdx_rztq/2025-07/2025-07-16.txt"
+    }
+  },
+  "2025-07-17": {
+    "date": "2025-07-17",
+    "update_time": "2025-09-08 12:06:15",
+    "industry_count": 30,
+    "total_stocks": 3710,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-17.json",
+      "txt": "tdx_rztq/2025-07/2025-07-17.txt"
+    }
+  },
+  "2025-07-18": {
+    "date": "2025-07-18",
+    "update_time": "2025-09-08 12:06:18",
+    "industry_count": 30,
+    "total_stocks": 3710,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-18.json",
+      "txt": "tdx_rztq/2025-07/2025-07-18.txt"
+    }
+  },
+  "2025-07-21": {
+    "date": "2025-07-21",
+    "update_time": "2025-09-08 12:06:21",
+    "industry_count": 30,
+    "total_stocks": 3710,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-21.json",
+      "txt": "tdx_rztq/2025-07/2025-07-21.txt"
+    }
+  },
+  "2025-07-22": {
+    "date": "2025-07-22",
+    "update_time": "2025-09-08 12:06:24",
+    "industry_count": 30,
+    "total_stocks": 3709,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-22.json",
+      "txt": "tdx_rztq/2025-07/2025-07-22.txt"
+    }
+  },
+  "2025-07-23": {
+    "date": "2025-07-23",
+    "update_time": "2025-09-08 12:06:28",
+    "industry_count": 30,
+    "total_stocks": 3711,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-23.json",
+      "txt": "tdx_rztq/2025-07/2025-07-23.txt"
+    }
+  },
+  "2025-07-24": {
+    "date": "2025-07-24",
+    "update_time": "2025-09-08 12:06:31",
+    "industry_count": 30,
+    "total_stocks": 3711,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-24.json",
+      "txt": "tdx_rztq/2025-07/2025-07-24.txt"
+    }
+  },
+  "2025-07-25": {
+    "date": "2025-07-25",
+    "update_time": "2025-09-08 12:06:34",
+    "industry_count": 30,
+    "total_stocks": 3711,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-25.json",
+      "txt": "tdx_rztq/2025-07/2025-07-25.txt"
+    }
+  },
+  "2025-07-28": {
+    "date": "2025-07-28",
+    "update_time": "2025-09-08 12:06:37",
+    "industry_count": 30,
+    "total_stocks": 3711,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-28.json",
+      "txt": "tdx_rztq/2025-07/2025-07-28.txt"
+    }
+  },
+  "2025-07-29": {
+    "date": "2025-07-29",
+    "update_time": "2025-09-08 12:06:39",
+    "industry_count": 30,
+    "total_stocks": 3711,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-29.json",
+      "txt": "tdx_rztq/2025-07/2025-07-29.txt"
+    }
+  },
+  "2025-07-30": {
+    "date": "2025-07-30",
+    "update_time": "2025-09-08 12:06:42",
+    "industry_count": 30,
+    "total_stocks": 3712,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-30.json",
+      "txt": "tdx_rztq/2025-07/2025-07-30.txt"
+    }
+  },
+  "2025-07-31": {
+    "date": "2025-07-31",
+    "update_time": "2025-09-08 12:06:46",
+    "industry_count": 30,
+    "total_stocks": 3713,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-07/2025-07-31.json",
+      "txt": "tdx_rztq/2025-07/2025-07-31.txt"
+    }
+  },
+  "2025-08-01": {
+    "date": "2025-08-01",
+    "update_time": "2025-09-08 12:06:49",
+    "industry_count": 30,
+    "total_stocks": 3712,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-01.json",
+      "txt": "tdx_rztq/2025-08/2025-08-01.txt"
+    }
+  },
+  "2025-08-04": {
+    "date": "2025-08-04",
+    "update_time": "2025-09-08 12:06:52",
+    "industry_count": 30,
+    "total_stocks": 3712,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-04.json",
+      "txt": "tdx_rztq/2025-08/2025-08-04.txt"
+    }
+  },
+  "2025-08-05": {
+    "date": "2025-08-05",
+    "update_time": "2025-09-08 12:06:54",
+    "industry_count": 30,
+    "total_stocks": 3712,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-05.json",
+      "txt": "tdx_rztq/2025-08/2025-08-05.txt"
+    }
+  },
+  "2025-08-06": {
+    "date": "2025-08-06",
+    "update_time": "2025-09-08 12:06:57",
+    "industry_count": 30,
+    "total_stocks": 3712,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-06.json",
+      "txt": "tdx_rztq/2025-08/2025-08-06.txt"
+    }
+  },
+  "2025-08-07": {
+    "date": "2025-08-07",
+    "update_time": "2025-09-08 12:06:59",
+    "industry_count": 30,
+    "total_stocks": 3712,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-07.json",
+      "txt": "tdx_rztq/2025-08/2025-08-07.txt"
+    }
+  },
+  "2025-08-08": {
+    "date": "2025-08-08",
+    "update_time": "2025-09-08 12:07:02",
+    "industry_count": 30,
+    "total_stocks": 3714,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-08.json",
+      "txt": "tdx_rztq/2025-08/2025-08-08.txt"
+    }
+  },
+  "2025-08-11": {
+    "date": "2025-08-11",
+    "update_time": "2025-09-08 12:07:05",
+    "industry_count": 30,
+    "total_stocks": 3714,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-11.json",
+      "txt": "tdx_rztq/2025-08/2025-08-11.txt"
+    }
+  },
+  "2025-08-12": {
+    "date": "2025-08-12",
+    "update_time": "2025-09-08 12:07:07",
+    "industry_count": 30,
+    "total_stocks": 3715,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-12.json",
+      "txt": "tdx_rztq/2025-08/2025-08-12.txt"
+    }
+  },
+  "2025-08-13": {
+    "date": "2025-08-13",
+    "update_time": "2025-09-08 12:07:10",
+    "industry_count": 30,
+    "total_stocks": 3715,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-13.json",
+      "txt": "tdx_rztq/2025-08/2025-08-13.txt"
+    }
+  },
+  "2025-08-14": {
+    "date": "2025-08-14",
+    "update_time": "2025-09-08 12:07:13",
+    "industry_count": 30,
+    "total_stocks": 3716,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-14.json",
+      "txt": "tdx_rztq/2025-08/2025-08-14.txt"
+    }
+  },
+  "2025-08-15": {
+    "date": "2025-08-15",
+    "update_time": "2025-09-08 12:07:16",
+    "industry_count": 30,
+    "total_stocks": 3716,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-15.json",
+      "txt": "tdx_rztq/2025-08/2025-08-15.txt"
+    }
+  },
+  "2025-08-18": {
+    "date": "2025-08-18",
+    "update_time": "2025-09-08 12:07:18",
+    "industry_count": 30,
+    "total_stocks": 3716,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-18.json",
+      "txt": "tdx_rztq/2025-08/2025-08-18.txt"
+    }
+  },
+  "2025-08-19": {
+    "date": "2025-08-19",
+    "update_time": "2025-09-08 12:07:21",
+    "industry_count": 30,
+    "total_stocks": 3716,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-19.json",
+      "txt": "tdx_rztq/2025-08/2025-08-19.txt"
+    }
+  },
+  "2025-08-20": {
+    "date": "2025-08-20",
+    "update_time": "2025-09-08 12:07:24",
+    "industry_count": 30,
+    "total_stocks": 3717,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-20.json",
+      "txt": "tdx_rztq/2025-08/2025-08-20.txt"
+    }
+  },
+  "2025-08-21": {
+    "date": "2025-08-21",
+    "update_time": "2025-09-08 12:07:27",
+    "industry_count": 30,
+    "total_stocks": 3717,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-21.json",
+      "txt": "tdx_rztq/2025-08/2025-08-21.txt"
+    }
+  },
+  "2025-08-22": {
+    "date": "2025-08-22",
+    "update_time": "2025-09-08 12:07:30",
+    "industry_count": 30,
+    "total_stocks": 3718,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-22.json",
+      "txt": "tdx_rztq/2025-08/2025-08-22.txt"
+    }
+  },
+  "2025-08-25": {
+    "date": "2025-08-25",
+    "update_time": "2025-09-08 12:07:32",
+    "industry_count": 30,
+    "total_stocks": 3718,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-25.json",
+      "txt": "tdx_rztq/2025-08/2025-08-25.txt"
+    }
+  },
+  "2025-08-26": {
+    "date": "2025-08-26",
+    "update_time": "2025-09-08 12:07:35",
+    "industry_count": 30,
+    "total_stocks": 3718,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-26.json",
+      "txt": "tdx_rztq/2025-08/2025-08-26.txt"
+    }
+  },
+  "2025-08-27": {
+    "date": "2025-08-27",
+    "update_time": "2025-09-08 12:07:39",
+    "industry_count": 30,
+    "total_stocks": 3718,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-27.json",
+      "txt": "tdx_rztq/2025-08/2025-08-27.txt"
+    }
+  },
+  "2025-08-28": {
+    "date": "2025-08-28",
+    "update_time": "2025-09-08 12:07:43",
+    "industry_count": 30,
+    "total_stocks": 3719,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-28.json",
+      "txt": "tdx_rztq/2025-08/2025-08-28.txt"
+    }
+  },
+  "2025-08-29": {
+    "date": "2025-08-29",
+    "update_time": "2025-09-08 12:07:46",
+    "industry_count": 30,
+    "total_stocks": 3719,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-08/2025-08-29.json",
+      "txt": "tdx_rztq/2025-08/2025-08-29.txt"
+    }
+  },
+  "2025-09-01": {
+    "date": "2025-09-01",
+    "update_time": "2025-09-08 12:07:48",
+    "industry_count": 30,
+    "total_stocks": 3719,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-01.json",
+      "txt": "tdx_rztq/2025-09/2025-09-01.txt"
+    }
+  },
+  "2025-09-02": {
+    "date": "2025-09-02",
+    "update_time": "2025-09-08 12:07:52",
+    "industry_count": 30,
+    "total_stocks": 3719,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-02.json",
+      "txt": "tdx_rztq/2025-09/2025-09-02.txt"
+    }
+  },
+  "2025-09-03": {
+    "date": "2025-09-03",
+    "update_time": "2025-09-08 12:07:55",
+    "industry_count": 30,
+    "total_stocks": 3719,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-03.json",
+      "txt": "tdx_rztq/2025-09/2025-09-03.txt"
+    }
+  },
+  "2025-09-04": {
+    "date": "2025-09-04",
+    "update_time": "2025-09-08 12:07:58",
+    "industry_count": 30,
+    "total_stocks": 3719,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-04.json",
+      "txt": "tdx_rztq/2025-09/2025-09-04.txt"
+    }
+  },
+  "2025-09-05": {
+    "date": "2025-09-05",
+    "update_time": "2025-09-08 12:08:00",
+    "industry_count": 30,
+    "total_stocks": 3720,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-05.json",
+      "txt": "tdx_rztq/2025-09/2025-09-05.txt"
+    }
+  }
+}
