@@ -13,7 +13,6 @@ async function initTdxReportsPage() {
 }
 
 // 加载日期选项
-// 加载日期选项
 async function loadTdxReportsDateOptions() {
     try {
         const response = await fetch('tdx_value/index.json');
@@ -21,11 +20,18 @@ async function loadTdxReportsDateOptions() {
         
         const indexData = await response.json();
         
-        // 过滤掉 _summary 字段，只保留日期键
+        // 调试信息
+        console.log('索引文件内容:', indexData);
+        console.log('所有键:', Object.keys(indexData));
+        
+        // 严格过滤：只保留YYYY-MM-DD格式的键
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
         const dates = Object.keys(indexData)
-            .filter(key => key !== '_summary')  // 过滤掉 _summary
+            .filter(key => datePattern.test(key))  // 只保留日期格式的键
             .sort()
             .reverse();
+            
+        console.log('过滤后的日期列表:', dates);
             
         const dateFilter = document.getElementById('dateFilter');
         
