@@ -1771,7 +1771,20 @@ def update_rzrq_index(date_str, data):
 
 def is_rzrq_first_run():
     """检查是否首次运行融资融券功能"""
-    return not os.path.exists('./tdx_rztq')
+    # 检查目录是否存在
+    if not os.path.exists('tdx_rztq'):
+        return True
+    
+    # 检查目录是否为空
+    try:
+        # 检查是否有任何JSON文件
+        for root, dirs, files in os.walk('tdx_rztq'):
+            if any(f.endswith('.json') for f in files):
+                return False
+        return True
+    except:
+        return True
+
 
 def crawl_rzrq_data(date_str=None):
     """爬取融资融券数据"""
@@ -1951,6 +1964,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
