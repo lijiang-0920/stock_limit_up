@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏦 通达信融资融券数据</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <h1>🏦 通达信融资融券数据</h1>
+            </div>
+        </header>
+        
+        <div class="controls-panel">
+            <div class="filter-section">
+                <select id="dateFilter" class="filter-select">
+                    <option value="">选择日期</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="搜索股票代码或名称..." class="search-input">
+                <select id="marketFilter" class="filter-select">
+                    <option value="">全部市场</option>
+                    <option value="沪市">沪市</option>
+                    <option value="深市">深市</option>
+                    <option value="京市">京市</option>
+                </select>
+                <button id="copyDataBtn" class="action-btn">📋 复制数据</button>
+                <button id="viewJsonBtn" class="action-btn">📄 查看JSON</button>
+                <button id="refreshBtn" class="action-btn">🔄 刷新</button>
+            </div>
+        </div>
+        
+        <div class="data-info" id="dataInfo" style="display: none;">
+            <div class="info-item">
+                <span class="info-label">更新时间:</span>
+                <span id="updateTime">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">行业数量:</span>
+                <span id="industryCount">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">个股数量:</span>
+                <span id="stockCount">--</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">数据状态:</span>
+                <span id="dataStatus">--</span>
+            </div>
+        </div>
+        
+        <div class="market-overview" id="marketOverview" style="display: none;">
+            <h3>💰 市场总览</h3>
+            <div class="market-stats-grid" id="marketStatsGrid">
+            </div>
+        </div>
+        
+        <div class="industry-section" id="industrySection" style="display: none;">
+            <h3>🏭 行业数据</h3>
+            <div class="industry-controls">
+                <input type="text" id="industrySearchInput" placeholder="搜索行业名称..." class="search-input">
+                <select id="industrySortSelect" class="filter-select">
+                    <option value="融资余额(亿)">按融资余额排序</option>
+                    <option value="融资买入额(亿)">按融资买入额排序</option>
+                    <option value="融券余额(万)">按融券余额排序</option>
+                    <option value="融资融券差值(亿)">按融资融券差值排序</option>
+                    <option value="行业名称">按行业名称排序</option>
+                </select>
+            </div>
+            <div class="industry-container" id="industryContainer">
+            </div>
+        </div>
+        
+        <div class="stock-section" id="stockSection" style="display: none;">
+            <h3>🔥 个股数据</h3>
+            <div class="stock-controls">
+                <div class="market-tabs" id="marketTabs">
+                    <button class="market-tab active" data-market="all">全部</button>
+                    <button class="market-tab" data-market="沪市">沪市</button>
+                    <button class="market-tab" data-market="深市">深市</button>
+                    <button class="market-tab" data-market="京市">京市</button>
+                </div>
+                <select id="stockSortSelect" class="filter-select">
+                    <option value="融资余额(万元)">按融资余额排序</option>
+                    <option value="融资买入额(万元)">按融资买入额排序</option>
+                    <option value="融资净买入(万元)">按融资净买入排序</option>
+                    <option value="融券余额(万元)">按融券余额排序</option>
+                    <option value="融资融券差值(万元)">按融资融券差值排序</option>
+                </select>
+            </div>
+            <div class="stock-container" id="stockContainer">
+            </div>
+        </div>
+    </div>
+    
+    <!-- 详情模态框 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeDetailModal()">&times;</span>
+                <h2 id="modalTitle">详情</h2>
+                <div class="modal-actions">
+                    <button onclick="copyDetailContent('full')" class="action-btn">📋 复制全部</button>
+                    <button onclick="copyDetailContent('basic')" class="action-btn">📋 基本信息</button>
+                    <button onclick="downloadDetail()" class="action-btn">💾 下载详情</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="detailContent"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/rzrq.js"></script>
+</body>
+</html>
