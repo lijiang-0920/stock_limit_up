@@ -1184,6 +1184,789 @@ def generate_dragon_tiger_text_content(data):
     
     return content
 
+# ========== 通达信价值分析相关函数 ==========
+
+def get_tdx_reports_data():
+    """获取通达信研报数据（固定365天）"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_jzfx_ggtzpj"
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+        "Host": "fk.tdx.com.cn",
+        "Origin": "https://fk.tdx.com.cn",
+        "Referer": "https://fk.tdx.com.cn/site/tdxsj/html/tdxsj_jzfx.html",
+        "Accept": "text/plain, */*; q=0.01",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "zh-CN,zh;q=0.9"
+    }
+    data = '{"Params":["-1","-1","365","","1","1","30000"]}'
+    
+    try:
+        response = requests.post(url, headers=headers, data=data, timeout=15)
+        response.raise_for_status()
+        result = response.json()
+        if result.get("ErrorCode") == 0:
+            return result["ResultSets"][0]["Content"]
+        else:
+            print(f"通达信API返回错误: {result.get('ErrorCode')}")
+            return []
+    except Exception as e:
+        print(f"获取通达信研报数据失败: {e}")
+        return []
+
+def format_tdx_reports(raw_reports):
+    """格式化通达信研报数据"""
+    formatted_reports = []
+    for i, report in enumerate(raw_reports, 1):
+        try:
+            # 解析字段
+            code = report[1]
+            name = report[2]
+            report_date = report[3]
+            rating = report[4]
+            rating_change = report[5]
+            target_price = report[6]
+            eps_actual = report[7]
+            eps_t = report[8]
+            eps_t1 = report[9]
+            eps_t2 = report[10]
+            title = report[11]
+            institution = report[13]
+            year = report[14]
+            
+            # 格式化日期
+            formatted_date = "{}-{}-{}".format(str(report_date)[:4], str(report_date)[4:6], str(report_date)[6:8])
+            
+            # 格式化数据
+            eps_actual_year = int(year) - 1 if year else 2023
+            eps_actual_str = "{}({})".format(eps_actual, eps_actual_year) if eps_actual else "--"
+            target_price_str = "{:.2f}".format(float(target_price)) if target_price else "--"
+            
+            def format_eps(value):
+                return "{:.2f}".format(float(value)) if value else "--"
+            
+            formatted_report = {
+                "序号": i,
+                "报告日期": formatted_date,
+                "证券代码": str(code),
+                "证券简称": str(name),
+                "评级": str(rating) if rating else "--",
+                "评级变化": str(rating_change) if rating_change else "--",
+                "目标价": target_price_str,
+                "EPS实际值(元)": eps_actual_str,
+                "T年度": str(year) if year else "2024",
+                "EPS预测": {
+                    "T年": format_eps(eps_t),
+                    "T+1年": format_eps(eps_t1),
+                    "T+2年": format_eps(eps_t2)
+                },
+                "标题": str(title) if title else "--",
+                "研究机构": str(institution) if institution else "--"
+            }
+            formatted_reports.append(formatted_report)
+        except Exception as e:
+            print(f"格式化研报数据第{i}条时出错: {e}")
+            continue
+    
+    return formatted_reports
+
+def group_reports_by_date(reports):
+    """按日期分组研报数据"""
+    grouped = {}
+    for report in reports:
+        date = report["报告日期"]
+        if date not in grouped:
+            grouped[date] = []
+        grouped[date].append(report)
+    
+    # 重新编号
+    for date_reports in grouped.values():
+        for i, report in enumerate(date_reports, 1):
+            report["序号"] = i
+    
+    return grouped
+
+def save_tdx_reports_files(reports, date_str):
+    """保存通达信研报JSON和TXT文件"""
+    # 创建目录
+    year_month = date_str[:7]
+    dir_path = os.path.join("tdx_value", year_month)
+    os.makedirs(dir_path, exist_ok=True)
+    
+    # 保存JSON
+    beijing_time = get_beijing_time()
+    json_data = {
+        "获取时间": beijing_time.strftime("%Y-%m-%d %H:%M:%S"),
+        "数据日期": date_str,
+        "数据条数": len(reports),
+        "研报数据": reports
+    }
+    
+    json_path = os.path.join(dir_path, "{}.json".format(date_str))
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(json_data, f, ensure_ascii=False, indent=2)
+    
+    # 保存TXT
+    txt_path = os.path.join(dir_path, "{}.txt".format(date_str))
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write("===============================\n")
+        f.write("通达信价值分析_个股投资评级 - {}\n".format(date_str))
+        f.write("===============================\n")
+        f.write("获取时间：{}\n".format(beijing_time.strftime("%Y-%m-%d %H:%M:%S")))
+        f.write("数据条数：{}条\n\n".format(len(reports)))
+        f.write("===============================\n")
+        f.write("详细数据\n")
+        f.write("===============================\n\n")
+        
+        for report in reports:
+            f.write("[{}] {} ({}) - {}\n".format(
+                report["序号"], report["证券简称"], report["证券代码"], report["研究机构"]
+            ))
+            f.write("    报告日期：{}\n".format(report["报告日期"]))
+            f.write("    评级：{} ({})  目标价：{}\n".format(
+                report["评级"], report["评级变化"], report["目标价"]
+            ))
+            f.write("    EPS：{}  预测：{}({}) {}({}) {}({})\n".format(
+                report["EPS实际值(元)"],
+                report["EPS预测"]["T年"], report["T年度"],
+                report["EPS预测"]["T+1年"], int(report["T年度"]) + 1,
+                report["EPS预测"]["T+2年"], int(report["T年度"]) + 2
+            ))
+            f.write("    标题：{}\n\n".format(report["标题"]))
+    
+    return json_path, txt_path
+
+def is_tdx_reports_first_run():
+    """检查是否第一次运行通达信研报功能"""
+    if not os.path.exists("tdx_value"):
+        return True
+    for root, dirs, files in os.walk("tdx_value"):
+        if any(f.endswith('.json') for f in files):
+            return False
+    return True
+
+def crawl_tdx_reports(date_str=None):
+    """爬取通达信研报数据"""
+    print("开始获取通达信价值分析数据...")
+    
+    beijing_time = get_beijing_time()
+    beijing_today = beijing_time.strftime("%Y-%m-%d")
+    
+    try:
+        # 获取原始数据
+        raw_reports = get_tdx_reports_data()
+        if not raw_reports:
+            print("未获取到通达信研报数据")
+            return None
+        
+        # 格式化数据
+        formatted_reports = format_tdx_reports(raw_reports)
+        if not formatted_reports:
+            print("格式化通达信研报数据失败")
+            return None
+        
+        # 按日期分组
+        grouped_reports = group_reports_by_date(formatted_reports)
+        
+        if is_tdx_reports_first_run():
+            print(f"第一次运行，获取历史数据...")
+            print(f"获取到 {len(grouped_reports)} 天数据，共 {len(formatted_reports)} 条研报")
+            
+            # 保存所有历史数据
+            for date_str, date_reports in grouped_reports.items():
+                save_tdx_reports_files(date_reports, date_str)
+                
+                # 计算统计数据
+                stock_count = len(set(r["证券代码"] for r in date_reports))
+                institution_count = len(set(r["研究机构"] for r in date_reports))
+                
+                # 更新索引
+                update_tdx_reports_index(date_str, len(date_reports), stock_count, institution_count)
+            
+            print("通达信研报历史数据保存完成")
+            return grouped_reports
+        else:
+            print("获取今日数据...")
+            # 过滤当天数据
+            target_date = date_str if date_str else beijing_today
+            today_reports = grouped_reports.get(target_date, [])
+            
+            if today_reports:
+                # 重新编号
+                for i, report in enumerate(today_reports, 1):
+                    report["序号"] = i
+                
+                # 保存当天数据
+                save_tdx_reports_files(today_reports, target_date)
+                
+                # 计算统计数据
+                stock_count = len(set(r["证券代码"] for r in today_reports))
+                institution_count = len(set(r["研究机构"] for r in today_reports))
+                
+                # 更新索引
+                update_tdx_reports_index(target_date, len(today_reports), stock_count, institution_count)
+                
+                print(f"通达信研报数据保存完成: {target_date}, 共{len(today_reports)}条研报")
+                return {target_date: today_reports}
+            else:
+                print(f"{target_date} 无新的通达信研报数据")
+                return None
+                
+    except Exception as e:
+        print(f"获取通达信研报数据时发生错误: {e}")
+        return None
+
+import hashlib
+import json
+import os
+
+def generate_report_id(report):
+    """生成研报唯一标识"""
+    key_string = f"{report['报告日期']}_{report['证券代码']}_{report['研究机构']}_{report['标题']}"
+    return hashlib.md5(key_string.encode('utf-8')).hexdigest()
+
+def load_archived_report_ids():
+    """加载所有已归档的研报ID"""
+    archived_ids = set()
+    index_path = 'tdx_value/index.json'
+    
+    if not os.path.exists(index_path):
+        return archived_ids
+    
+    try:
+        with open(index_path, 'r', encoding='utf-8') as f:
+            index_data = json.load(f)
+        
+        # 过滤掉 _summary 字段，只处理日期数据
+        for key, date_info in index_data.items():
+            if key != "_summary" and isinstance(date_info, dict) and 'files' in date_info:
+                json_file = date_info['files']['json']
+                if os.path.exists(json_file):
+                    try:
+                        with open(json_file, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                            for report in data.get('研报数据', []):
+                                report_id = generate_report_id(report)
+                                archived_ids.add(report_id)
+                    except:
+                        continue
+    except:
+        pass
+    
+    return archived_ids
+
+
+
+def detect_new_reports(current_reports):
+    """检测新增研报"""
+    archived_ids = load_archived_report_ids()
+    new_reports = []
+    
+    for report in current_reports:
+        report_id = generate_report_id(report)
+        if report_id not in archived_ids:
+            new_reports.append(report)
+    
+    return new_reports
+
+def update_tdx_reports_index(date_str, report_count, stock_count, institution_count):
+    """更新通达信研报索引文件（保持前端兼容性）"""
+    index_path = 'tdx_value/index.json'
+    
+    # 读取现有索引
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            try:
+                index_data = json.load(f)
+            except:
+                index_data = {}
+    else:
+        index_data = {}
+    
+    # 兼容新格式：如果是新格式，提取daily_data
+    if "daily_data" in index_data:
+        daily_data = index_data["daily_data"]
+    else:
+        daily_data = index_data
+    
+    # 更新当前日期数据
+    year_month = date_str[:7]
+    daily_data[date_str] = {
+        "date": date_str,
+        "update_time": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S"),
+        "report_count": report_count,
+        "stock_count": stock_count,
+        "institution_count": institution_count,
+        "files": {
+            "json": f"tdx_value/{year_month}/{date_str}.json",
+            "txt": f"tdx_value/{year_month}/{date_str}.txt"
+        }
+    }
+    
+    # 计算总数据条数
+    total_reports = sum(info.get('report_count', 0) for info in daily_data.values())
+    
+    # 保存为兼容格式：在根级别添加summary，但保持原有的日期数据结构
+    final_index_data = daily_data.copy()
+    final_index_data["_summary"] = {  # 使用 _summary 避免与日期冲突
+        "total_reports": total_reports,
+        "total_dates": len(daily_data),
+        "last_update": get_beijing_time().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    # 保存索引
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(final_index_data, f, ensure_ascii=False, indent=2)
+
+
+def smart_archive_new_reports():
+    """智能检测并归档新增研报"""
+    print("开始智能检测新增研报...")
+    
+    # 获取当前数据
+    raw_reports = get_tdx_reports_data()
+    if not raw_reports:
+        print("未获取到研报数据")
+        return None
+    
+    current_reports = format_tdx_reports(raw_reports)
+    if not current_reports:
+        print("格式化研报数据失败")
+        return None
+    
+    # 检测新增研报
+    new_reports = detect_new_reports(current_reports)
+    if not new_reports:
+        print("没有检测到新增研报")
+        return None
+    
+    print(f"检测到新增研报: {len(new_reports)} 条")
+    
+    # 按日期分组并归档
+    grouped_new_reports = group_reports_by_date(new_reports)
+    
+    for date_str, date_reports in grouped_new_reports.items():
+        # 重新编号
+        for i, report in enumerate(date_reports, 1):
+            report["序号"] = i
+        
+        # 保存文件
+        save_tdx_reports_files(date_reports, date_str)
+        
+        # 更新索引
+        stock_count = len(set(r["证券代码"] for r in date_reports))
+        institution_count = len(set(r["研究机构"] for r in date_reports))
+        update_tdx_reports_index(date_str, len(date_reports), stock_count, institution_count)
+        
+        print(f"归档完成: {date_str}, {len(date_reports)}条研报")
+    
+    return grouped_new_reports
+
+def crawl_tdx_reports_smart(date_str=None):
+    """智能版通达信研报爬取"""
+    if is_tdx_reports_first_run():
+        print("首次运行，获取全部历史数据...")
+        return crawl_tdx_reports(date_str)
+    else:
+        print("智能检测模式...")
+        return smart_archive_new_reports()
+
+# ========== 通达信融资融券相关函数 ==========
+
+def get_beijing_time_rzrq():
+    """获取北京时间 (UTC+8)"""
+    return datetime.utcnow() + timedelta(hours=8)
+
+def create_rzrq_directories(date_str):
+    """创建融资融券目录"""
+    year_month = date_str[:7]
+    month_dir = f"tdx_rztq/{year_month}"
+    os.makedirs(month_dir, exist_ok=True)
+    return month_dir
+
+def get_rzrq_market_data():
+    """获取融资融券市场数据"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_rzrq_sc"
+    headers = {
+        'Host': 'fk.tdx.com.cn',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Requested-With': 'XMLHttpRequest',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+        'Origin': 'https://fk.tdx.com.cn',
+        'Referer': 'https://fk.tdx.com.cn/site/tdxsj/html/tdxsj_rzrq_rzrqsc.html',
+        'Accept': 'text/plain, */*; q=0.01',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br, zstd'
+    }
+    data = '{"Params":[]}'
+    
+    try:
+        print("正在请求融资融券市场数据...")
+        response = requests.post(url, headers=headers, data=data, timeout=30)
+        
+        if response.status_code != 200:
+            print(f"请求失败，状态码: {response.status_code}")
+            return {}
+            
+        json_data = response.json()
+        
+        if json_data['ErrorCode'] != 0:
+            print(f"API返回错误: {json_data['ErrorCode']}")
+            return {}
+            
+        raw_data = json_data['ResultSets'][0]['Content']
+        return process_rzrq_market_data(raw_data)
+        
+    except Exception as e:
+        print(f"获取融资融券市场数据失败: {e}")
+        return {}
+
+def process_rzrq_market_data(raw_data):
+    """处理融资融券市场数据"""
+    market_map = {'012001': '沪市', '012002': '深市', '012046': '京市'}
+    daily_data = {}
+    
+    for record in raw_data:
+        try:
+            date_str = record[0]
+            
+            if not isinstance(date_str, str):
+                continue
+            
+            try:
+                datetime.strptime(date_str, '%Y-%m-%d')
+            except ValueError:
+                continue
+            
+            market_code = record[1]
+            
+            if date_str not in daily_data:
+                daily_data[date_str] = {}
+            
+            market_name = market_map.get(market_code, market_code)
+            daily_data[date_str][market_name] = {
+                '融资余额': round(record[2], 2) if record[2] is not None else "--",
+                '融资买入额': round(record[3], 2) if record[3] is not None else "--",
+                '融券余量金额': round(record[4], 2) if record[4] is not None else "--",
+                '融资融券余额': round(record[5], 2) if record[5] is not None else "--"
+            }
+            
+        except Exception as e:
+            continue
+    
+    return daily_data
+
+def get_rzrq_industry_data(query_date):
+    """获取融资融券行业数据"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_rzrq_hy"
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    }
+    data = f'{{"Params":["1","{query_date.replace("-", "")}"]}}'
+    
+    try:
+        response = requests.post(url, headers=headers, data=data, timeout=15)
+        json_data = response.json()
+        if json_data['ErrorCode'] == 0:
+            return json_data['ResultSets'][0]['Content']
+    except Exception as e:
+        print(f"获取融资融券行业数据失败: {e}")
+    return None
+
+def get_rzrq_stock_data(market_code, query_date):
+    """获取融资融券个股数据"""
+    url = "https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_rzrq_gg"
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    }
+    data = f'{{"Params":["1","{market_code}","{query_date.replace("-", "")}","040","1","1","2000"]}}'
+    
+    try:
+        response = requests.post(url, headers=headers, data=data, timeout=15)
+        json_data = response.json()
+        if json_data['ErrorCode'] == 0:
+            return json_data['ResultSets'][0]['Content']
+    except Exception as e:
+        print(f"获取融资融券个股数据失败: {e}")
+    return None
+
+def process_rzrq_data_for_date(date_str, all_market_data=None):
+    """处理单个日期的融资融券数据"""
+    print(f"正在处理 {date_str} 的融资融券数据...")
+    
+    # 从全量市场数据中获取当日数据
+    market_data = {}
+    if all_market_data and date_str in all_market_data:
+        market_data = all_market_data[date_str]
+    
+    # 获取行业数据
+    industry_raw = get_rzrq_industry_data(date_str)
+    industry_data = []
+    if industry_raw:
+        for record in industry_raw:
+            industry_data.append({
+                '行业名称': record[7],
+                '融资余额(亿)': round(record[1], 2),
+                '融资买入额(亿)': round(record[2], 2),
+                '融资偿还额(亿)': round(record[3], 2),
+                '融券余额(万)': round(record[0], 2),
+                '融券余量(万)': round(record[6], 2),
+                '融券卖出量(万)': round(record[4], 2),
+                '融券偿还量(万)': round(record[5], 2),
+                '融资融券差值(亿)': round(record[1] - record[0]/10000, 2)
+            })
+    
+    # 获取个股数据
+    stock_data = {'沪市': [], '深市': [], '京市': []}
+    market_codes = {'1': '沪市', '0': '深市', '2': '京市'}
+    
+    for code, name in market_codes.items():
+        stock_raw = get_rzrq_stock_data(code, date_str)
+        if stock_raw:
+            for record in stock_raw:
+                if len(record) >= 15 and record[1] and record[2]:
+                    stock_data[name].append({
+                        '股票代码': record[1],
+                        '股票名称': record[2],
+                        '融资偿还额(万元)': round(record[3]/10000, 2) if record[3] else 0,
+                        '融券偿还量(万股)': round(record[4]/10000, 2) if record[4] else 0,
+                        '融资占流通市值比(%)': round(record[5], 2) if record[5] else 0,
+                        '融券占流通市值比(%)': round(record[6], 2) if record[6] else 0,
+                        '融资余额(万元)': round(record[7]/10000, 2) if record[7] else 0,
+                        '融资买入额(万元)': round(record[8]/10000, 2) if record[8] else 0,
+                        '融资净买入(万元)': round(record[9]/10000, 2) if record[9] else 0,
+                        '融券余量(万股)': round(record[10]/10000, 2) if record[10] else 0,
+                        '融券卖出量(万股)': round(record[11]/10000, 2) if record[11] else 0,
+                        '融券余额(万元)': round(record[12]/10000, 2) if record[12] else 0,
+                        '融券净卖出(万股)': round(record[13]/10000, 2) if record[13] else 0,
+                        '融资融券差值(万元)': round(record[14]/10000, 2) if record[14] else 0
+                    })
+    
+    # 检查是否有有效数据
+    if not market_data and not industry_data and not any(stock_data.values()):
+        print(f"  {date_str} 无有效融资融券数据，跳过保存")
+        return None
+    
+    return {
+        'date': date_str,
+        'update_time': get_beijing_time_rzrq().strftime('%Y-%m-%d %H:%M:%S'),
+        'data_status': {
+            'market_data': bool(market_data),
+            'industry_data': bool(industry_data),
+            'stock_data': any(stock_data.values())
+        },
+        'market_data': market_data,
+        'industry_data': industry_data,
+        'stock_data': stock_data
+    }
+
+def save_rzrq_data(data):
+    """保存融资融券数据"""
+    if not data:
+        return
+    
+    date_str = data['date']
+    month_dir = create_rzrq_directories(date_str)
+    
+    # 保存JSON文件
+    json_file = f"{month_dir}/{date_str}.json"
+    with open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    # 保存TXT文件
+    txt_file = f"{month_dir}/{date_str}.txt"
+    with open(txt_file, 'w', encoding='utf-8') as f:
+        f.write(f"融资融券数据详细记录\n")
+        f.write(f"日期：{data['date']}\n")
+        f.write(f"更新时间：{data['update_time']}\n\n")
+        
+        f.write("=" * 50 + "\n")
+        f.write("一、市场数据详情\n")
+        f.write("=" * 50 + "\n\n")
+        
+        if data['market_data']:
+            for market, info in data['market_data'].items():
+                f.write(f"{market}\n")
+                f.write("-" * 30 + "\n")
+                if isinstance(info['融资余额'], str):
+                    f.write(f"融资余额：数据未公布\n")
+                    f.write(f"融资买入额：数据未公布\n")
+                    f.write(f"融券余量金额：数据未公布\n")
+                    f.write(f"融资融券余额：数据未公布\n\n")
+                else:
+                    f.write(f"融资余额：{info['融资余额']:,.2f} 亿元\n")
+                    f.write(f"融资买入额：{info['融资买入额']:,.2f} 亿元\n")
+                    f.write(f"融券余量金额：{info['融券余量金额']:,.2f} 亿元\n")
+                    f.write(f"融资融券余额：{info['融资融券余额']:,.2f} 亿元\n\n")
+        else:
+            f.write("暂无市场数据\n\n")
+        
+        f.write("=" * 50 + "\n")
+        f.write(f"二、行业数据详情（共{len(data['industry_data'])}个行业）\n")
+        f.write("=" * 50 + "\n\n")
+        
+        if data['industry_data']:
+            for i, industry in enumerate(data['industry_data'], 1):
+                f.write(f"{i}. {industry['行业名称']}\n")
+                f.write("-" * 30 + "\n")
+                f.write(f"融资余额：{industry['融资余额(亿)']:,.2f} 亿元    ")
+                f.write(f"融资买入额：{industry['融资买入额(亿)']:,.2f} 亿元\n")
+                f.write(f"融资偿还额：{industry['融资偿还额(亿)']:,.2f} 亿元     ")
+                f.write(f"融券余额：{industry['融券余额(万)']:,.2f} 万元\n")
+                f.write(f"融券余量：{industry['融券余量(万)']:,.2f} 万元    ")
+                f.write(f"融券卖出量：{industry['融券卖出量(万)']:,.2f} 万元\n")
+                f.write(f"融券偿还量：{industry['融券偿还量(万)']:,.2f} 万元    ")
+                f.write(f"融资融券差值：{industry['融资融券差值(亿)']:,.2f} 亿元\n\n")
+        else:
+            f.write("暂无行业数据\n\n")
+        
+        f.write("=" * 50 + "\n")
+        f.write("三、个股数据详情\n")
+        f.write("=" * 50 + "\n\n")
+        
+        has_stock_data = False
+        for market, stocks in data['stock_data'].items():
+            if stocks:
+                has_stock_data = True
+                f.write(f"【{market}个股】（共{len(stocks)}只）\n")
+                f.write("-" * 30 + "\n\n")
+                
+                for stock in stocks:
+                    f.write(f"{stock['股票代码']} {stock['股票名称']}\n")
+                    f.write(f"融资偿还额：{stock['融资偿还额(万元)']:,.2f}万元   ")
+                    f.write(f"融券偿还量：{stock['融券偿还量(万股)']:,.2f}万股\n")
+                    f.write(f"融资占流通市值比：{stock['融资占流通市值比(%)']:,.2f}%    ")
+                    f.write(f"融券占流通市值比：{stock['融券占流通市值比(%)']:,.2f}%\n")
+                    f.write(f"融资余额：{stock['融资余额(万元)']:,.2f}万元   ")
+                    f.write(f"融资买入额：{stock['融资买入额(万元)']:,.2f}万元\n")
+                    f.write(f"融资净买入：{stock['融资净买入(万元)']:,.2f}万元   ")
+                    f.write(f"融券余量：{stock['融券余量(万股)']:,.2f}万股\n")
+                    f.write(f"融券卖出量：{stock['融券卖出量(万股)']:,.2f}万股      ")
+                    f.write(f"融券余额：{stock['融券余额(万元)']:,.2f}万元\n")
+                    f.write(f"融券净卖出：{stock['融券净卖出(万股)']:,.2f}万股      ")
+                    f.write(f"融资融券差值：{stock['融资融券差值(万元)']:,.2f}万元\n\n")
+        
+        if not has_stock_data:
+            f.write("暂无个股数据\n\n")
+
+def update_rzrq_index(date_str, data):
+    """更新融资融券索引文件"""
+    index_path = 'tdx_rztq/index.json'
+    
+    # 读取现有索引
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            try:
+                index_data = json.load(f)
+                if not isinstance(index_data, dict):
+                    index_data = {}
+            except:
+                index_data = {}
+    else:
+        index_data = {}
+    
+    # 计算统计数据
+    industry_count = len(data.get('industry_data', []))
+    total_stocks = sum(len(stocks) for stocks in data.get('stock_data', {}).values())
+    
+    # 更新索引
+    year_month = date_str[:7]
+    index_data[date_str] = {
+        "date": date_str,
+        "update_time": data['update_time'],
+        "industry_count": industry_count,
+        "total_stocks": total_stocks,
+        "data_status": data['data_status'],
+        "files": {
+            "json": f"tdx_rztq/{year_month}/{date_str}.json",
+            "txt": f"tdx_rztq/{year_month}/{date_str}.txt"
+        }
+    }
+    
+    # 保存索引
+    with open(index_path, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, ensure_ascii=False, indent=2)
+
+def is_rzrq_first_run():
+    """检查是否首次运行融资融券功能"""
+    # 检查目录是否存在
+    if not os.path.exists('tdx_rztq'):
+        return True
+    
+    # 检查目录是否为空
+    try:
+        # 检查是否有任何JSON文件
+        for root, dirs, files in os.walk('tdx_rztq'):
+            if any(f.endswith('.json') for f in files):
+                return False
+        return True
+    except:
+        return True
+
+
+def crawl_rzrq_data(date_str=None):
+    """爬取融资融券数据"""
+    print("开始获取融资融券数据...")
+    
+    beijing_time = get_beijing_time_rzrq()
+    beijing_today = beijing_time.strftime("%Y-%m-%d")
+    
+    try:
+        print("获取全量市场数据")
+        all_market_data = get_rzrq_market_data()
+        
+        if not all_market_data:
+            print("获取融资融券市场数据失败")
+            return None
+        
+        if is_rzrq_first_run():
+            print("首次运行融资融券功能，获取历史数据...")
+            
+            # 从最近180天开始获取数据，避免数据量过大
+            start_date = (beijing_time - timedelta(days=60)).strftime("%Y-%m-%d")
+            all_dates = [date for date in sorted(all_market_data.keys()) if date >= start_date]
+            
+            print(f"融资融券数据日期范围: {all_dates[0]} 到 {all_dates[-1]}")
+            print(f"共 {len(all_dates)} 个交易日")
+            
+            processed_count = 0
+            
+            for date_str in all_dates:
+                data = process_rzrq_data_for_date(date_str, all_market_data)
+                if data:
+                    save_rzrq_data(data)
+                    update_rzrq_index(date_str, data)
+                    processed_count += 1
+                    print(f"✓ {date_str} 融资融券数据保存完成")
+            
+            print(f"融资融券历史数据获取完成: 处理 {processed_count} 天")
+            return {"processed_count": processed_count, "total_days": len(all_dates)}
+        else:
+            print("获取今日融资融券数据...")
+            target_date = date_str if date_str else beijing_today
+            
+            if target_date not in all_market_data:
+                print(f"{target_date} 暂无融资融券市场数据")
+                return None
+            
+            data = process_rzrq_data_for_date(target_date, all_market_data)
+            if data:
+                save_rzrq_data(data)
+                update_rzrq_index(target_date, data)
+                print(f"融资融券数据保存完成: {target_date}")
+                return data
+            else:
+                print(f"{target_date} 无有效融资融券数据")
+                return None
+                
+    except Exception as e:
+        print(f"获取融资融券数据时发生错误: {e}")
+        return None
+
+
 
 # ========== 主函数和统一接口 ==========
 
@@ -1232,13 +2015,34 @@ def main():
                 date_str = sys.argv[2]
                 crawl_stock_analysis(date_str)
         
-        elif command == 'dragon_tiger':  # 添加龙虎榜命令
+        elif command == 'dragon_tiger':
             if len(sys.argv) == 2:
                 crawl_dragon_tiger_data()
             elif len(sys.argv) == 3:
                 date_str = sys.argv[2]
                 crawl_dragon_tiger_data(date_str)
+        
+        elif command == 'ztts':
+            if len(sys.argv) == 2:
+                crawl_ztts_data()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_ztts_data(date_str)
+        
+        elif command == 'tdx_reports':  # 新增通达信研报命令
+            if len(sys.argv) == 2:
+                crawl_tdx_reports_smart()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_tdx_reports_smart(date_str)
                 
+        elif command == 'rzrq':  # 新增融资融券命令
+            if len(sys.argv) == 2:
+                crawl_rzrq_data()
+            elif len(sys.argv) == 3:
+                date_str = sys.argv[2]
+                crawl_rzrq_data(date_str)
+        
         elif command == 'all':
             print("执行所有功能...")
             main_limit_up()
@@ -1247,7 +2051,14 @@ def main():
             print("\n" + "="*60 + "\n")
             crawl_stock_analysis()
             print("\n" + "="*60 + "\n")
-            crawl_dragon_tiger_data()  # 添加龙虎榜
+            crawl_dragon_tiger_data()
+            print("\n" + "="*60 + "\n")
+            crawl_ztts_data()  # 如果你有这个函数
+            print("\n" + "="*60 + "\n")
+            crawl_tdx_reports()  # 新增通达信研报
+            print("\n" + "="*60 + "\n")
+            crawl_rzrq_data()  # 新增融资融券
+
             
         else:
             print("使用说明:")
@@ -1260,13 +2071,26 @@ def main():
             print("  python script.py analysis 2025-01-21       # 获取指定日期异动解析数据")
             print("  python script.py dragon_tiger              # 获取龙虎榜数据")
             print("  python script.py dragon_tiger 2025-01-21   # 获取指定日期龙虎榜数据")
+            print("  python script.py ztts                      # 获取涨停透视数据")
+            print("  python script.py ztts 2025-01-21           # 获取指定日期涨停透视数据")
+            print("  python script.py tdx_reports               # 获取通达信研报数据")  # 新增
+            print("  python script.py tdx_reports 2025-01-21    # 获取指定日期通达信研报数据")  # 新增
+            print("  python script.py rzrq                      # 获取融资融券数据")
+            print("  python script.py rzrq 2025-01-21           # 获取指定日期融资融券数据")            
             print("  python script.py all                       # 执行所有功能")
             print("\n可用的韭研公社用户:")
             for key, info in JIUYAN_USERS.items():
                 print(f"  {key} - {info['user_name']}")
 
+
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
 
 
 

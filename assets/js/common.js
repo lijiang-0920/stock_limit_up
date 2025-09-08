@@ -93,6 +93,12 @@ async function loadMainPageStats() {
         // 加载涨停透视数据状态
         await loadZTTSStatus();    
         
+        // 新增：加载通达信研报状态
+        await loadTdxReportsStatus();       
+
+        // 新增：加载融资融券状态
+        await loadRzrqStatus();        
+        
     } catch (error) {
         console.error('加载统计数据失败:', error);
         const dataStatusEl = document.getElementById('dataStatus');
@@ -267,6 +273,60 @@ async function loadZTTSStatus() {
     }
 }
 
+// 新增：加载融资融券状态函数
+async function loadRzrqStatus() {
+    try {
+        const response = await fetch('tdx_rztq/index.json');
+        if (response.ok) {
+            const indexData = await response.json();
+            const dates = Object.keys(indexData).sort().reverse();
+            if (dates.length > 0) {
+                const latestDate = dates[0];
+                const rzrqStatusEl = document.getElementById('rzrqStatus');
+                if (rzrqStatusEl) {
+                    rzrqStatusEl.textContent = '最新更新: ' + latestDate;
+                }
+            }
+        }
+    } catch (error) {
+        console.error('加载融资融券状态失败:', error);
+        const rzrqStatusEl = document.getElementById('rzrqStatus');
+        if (rzrqStatusEl) {
+            rzrqStatusEl.textContent = '最新更新: 加载失败';
+        }
+    }
+}
+
+// 新增：加载通达信研报状态函数
+async function loadTdxReportsStatus() {
+    try {
+        const response = await fetch('tdx_value/index.json');
+        if (response.ok) {
+            const indexData = await response.json();
+            
+            // 过滤掉非日期键，只保留YYYY-MM-DD格式的键
+            const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+            const dates = Object.keys(indexData)
+                .filter(key => datePattern.test(key))
+                .sort()
+                .reverse();
+                
+            if (dates.length > 0) {
+                const latestDate = dates[0];
+                const tdxReportsStatusEl = document.getElementById('tdxReportsStatus');
+                if (tdxReportsStatusEl) {
+                    tdxReportsStatusEl.textContent = '最新更新: ' + latestDate;
+                }
+            }
+        }
+    } catch (error) {
+        console.error('加载通达信研报状态失败:', error);
+        const tdxReportsStatusEl = document.getElementById('tdxReportsStatus');
+        if (tdxReportsStatusEl) {
+            tdxReportsStatusEl.textContent = '最新更新: 加载失败';
+        }
+    }
+}
 
 // 显示关于信息
 function showAbout() {
@@ -335,6 +395,24 @@ async function loadJsonViewer() {
                     const zttsData = await response.json();
                     dates = Object.keys(zttsData).sort().reverse();
                 }
+            } else if (dataType === 'tdx_reports') {  // 新增通达信研报
+                const response = await fetch('tdx_value/index.json');
+                if (response.ok) {
+                    const tdxReportsData = await response.json();
+                    // 过滤掉非日期键
+                    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+                    dates = Object.keys(tdxReportsData)
+                        .filter(key => datePattern.test(key))
+                        .sort()
+                        .reverse();
+                }
+
+            } else if (dataType === 'rzrq') {  // 新增融资融券
+                const response = await fetch('tdx_rztq/index.json');
+                if (response.ok) {
+                    const rzrqData = await response.json();
+                    dates = Object.keys(rzrqData).sort().reverse();
+                }
             }
             
             dates.forEach(date => {
@@ -376,6 +454,12 @@ async function loadJsonViewer() {
             } else if (dataType === 'ztts') {  // 添加涨停透视数据加载
                 const yearMonth = date.substring(0, 7); // 2025-01
                 response = await fetch('dzh_ztts/' + yearMonth + '/' + date + '.json');
+            } else if (dataType === 'tdx_reports') {  // 新增
+                const yearMonth = date.substring(0, 7); // 2025-01
+                response = await fetch('tdx_value/' + yearMonth + '/' + date + '.json');
+            } else if (dataType === 'rzrq') {  // 新增融资融券
+                const yearMonth = date.substring(0, 7); // 2025-01
+                response = await fetch('tdx_rztq/' + yearMonth + '/' + date + '.json');
             }
             
             if (response && response.ok) {

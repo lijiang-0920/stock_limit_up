@@ -417,6 +417,277 @@ body {
     background: #5a67d8;
 }
 
+/* 通达信研报样式 */
+.tdx-reports-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+.reports-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    min-width: 1200px;
+}
+
+.reports-table th,
+.reports-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.9rem;
+}
+
+.reports-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-row-1 th {
+    border-bottom: 1px solid #cbd5e0;
+}
+
+.header-row-2 th {
+    background: #edf2f7;
+    font-size: 0.85rem;
+}
+
+.report-row:hover {
+    background: #f7fafc;
+}
+
+.report-row:nth-child(even) {
+    background: #fafafa;
+}
+
+.report-row:nth-child(even):hover {
+    background: #f0f4f8;
+}
+
+.stock-code {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stock-name {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.institution {
+    color: #4a5568;
+}
+
+.rating {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.rating-buy {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.rating-hold {
+    background: #bee3f8;
+    color: #2a4365;
+}
+
+.rating-neutral {
+    background: #fef5e7;
+    color: #744210;
+}
+
+.rating-sell {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.target-price {
+    font-weight: 600;
+    color: #e53e3e;
+    text-align: right;
+}
+
+.eps-actual,
+.eps-t,
+.eps-t1,
+.eps-t2 {
+    text-align: right;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.actions {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.action-btn-sm {
+    padding: 4px 8px;
+    margin: 0 2px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.action-btn-sm:hover {
+    background: #667eea;
+    color: white;
+}
+    
+
+/* 研报详情模态框样式 */
+.report-detail-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.report-detail-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-pair:last-child {
+    border-bottom: none;
+}
+
+.eps-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.eps-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.eps-label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.eps-value {
+    font-weight: 600;
+    color: #2d3748;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.report-title-content {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #38a169;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+/* 统计面板样式 */
+.stat-item.rating-buy {
+    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+    color: #22543d;
+}
+
+.stat-item.rating-hold {
+    background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+    color: #2a4365;
+}
+
+.stat-item.rating-neutral {
+    background: linear-gradient(135deg, #fef5e7 0%, #fbd38d 100%);
+    color: #744210;
+}
+
+.stat-item.rating-sell {
+    background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%);
+    color: #742a2a;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .reports-table {
+        min-width: 1000px;
+    }
+    
+    .reports-table th,
+    .reports-table td {
+        padding: 10px 6px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tdx-reports-container {
+        padding: 15px;
+    }
+    
+    .reports-table {
+        min-width: 800px;
+    }
+    
+    .reports-table th,
+    .reports-table td {
+        padding: 8px 4px;
+        font-size: 0.8rem;
+    }
+    
+    .action-btn-sm {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .detail-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .eps-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+    
+
+
+
+
 /* 涨停透视页面样式 */
 .core-indicators {
     display: grid;
@@ -1003,6 +1274,583 @@ body {
     
     .stock-item {
         padding: 10px;
+    }
+}
+
+/* 融资融券页面样式 */
+
+/* 数据信息区域 - 单行紧凑布局 */
+.data-info {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+.info-item span:last-child {
+    font-weight: bold;
+    color: #2d3748;
+    font-size: 0.95rem;
+}
+
+/* 数据状态特殊处理 */
+.info-item span:last-child.status-text {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.85rem;
+}
+
+/* 市场总览保持卡片样式 */
+.market-overview {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.market-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.market-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.market-card:hover {
+    background: #e3f2fd;
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.market-card.total-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.market-name {
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.total-card .market-name {
+    color: white;
+}
+
+.market-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.total-card .market-value {
+    color: white;
+}
+
+.market-label {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.total-card .market-label {
+    color: rgba(255,255,255,0.9);
+}
+
+.market-details {
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.total-card .market-details {
+    color: rgba(255,255,255,0.8);
+}
+
+/* 控制区域样式 */
+.industry-section, .stock-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.industry-controls, .stock-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.market-tabs {
+    display: flex;
+    gap: 10px;
+    margin-right: 15px;
+}
+
+.market-tab {
+    padding: 8px 16px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.market-tab:hover {
+    background: #667eea;
+    color: white;
+}
+
+.market-tab.active {
+    background: #667eea;
+    color: white;
+}
+
+/* 融资融券表格样式 */
+.table-container {
+    background: white;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-top: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.industry-table, .stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+    border: none;
+}
+
+.industry-table th,
+.industry-table td,
+.stock-table th,
+.stock-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.industry-table th,
+.stock-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid #cbd5e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.industry-row:hover,
+.stock-row:hover {
+    background: #f7fafc;
+}
+
+.industry-table tbody tr:nth-child(odd),
+.stock-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.industry-table tbody tr:nth-child(even),
+.stock-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.industry-row:nth-child(even):hover,
+.stock-row:nth-child(even):hover {
+    background: #f0f4f8;
+}
+
+/* 表格单元格样式 */
+.rank-cell {
+    text-align: center;
+    font-weight: bold;
+    color: #667eea;
+    width: 60px;
+}
+
+.code-cell {
+    font-weight: bold;
+    color: #667eea;
+    width: 100px;
+}
+
+.name-cell, .industry-name-cell {
+    font-weight: 600;
+    color: #2d3748;
+    min-width: 120px;
+}
+
+.market-cell {
+    color: #4a5568;
+    width: 60px;
+    text-align: center;
+}
+
+.amount-cell {
+    text-align: right;
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #2d3748;
+    font-variant-numeric: tabular-nums;
+}
+
+.percent-cell {
+    text-align: right;
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #4a5568;
+    font-variant-numeric: tabular-nums;
+}
+
+.amount-cell.positive {
+    color: #e53e3e;
+    font-weight: 600;
+}
+
+.amount-cell.negative {
+    color: #38a169;
+    font-weight: 600;
+}
+
+.actions-cell {
+    text-align: center;
+    white-space: nowrap;
+    width: 120px;
+}
+
+.action-btn-sm {
+    padding: 4px 8px;
+    margin: 0 2px;
+    border: 1px solid #667eea;
+    background: transparent;
+    color: #667eea;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.action-btn-sm:hover {
+    background: #667eea;
+    color: white;
+}
+
+.action-btn-sm.primary {
+    background: #667eea;
+    color: white;
+}
+
+.action-btn-sm.primary:hover {
+    background: #5a67d8;
+}
+
+/* 表格加载状态 */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #718096;
+    font-style: italic;
+}
+
+/* 数据高亮样式 */
+.amount-cell:hover,
+.percent-cell:hover {
+    background: #edf2f7;
+    font-weight: bold;
+}
+
+/* 表格滚动条样式 */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 表格排序指示器 */
+.industry-table th:hover,
+.stock-table th:hover {
+    background: #edf2f7;
+    cursor: pointer;
+}
+
+.industry-table th.sortable::after,
+.stock-table th.sortable::after {
+    content: " ↕";
+    color: #cbd5e0;
+}
+
+.industry-table th.sort-asc::after,
+.stock-table th.sort-asc::after {
+    content: " ↑";
+    color: #667eea;
+}
+
+.industry-table th.sort-desc::after,
+.stock-table th.sort-desc::after {
+    content: " ↓";
+    color: #667eea;
+}
+
+/* 详情模态框融资融券样式 */
+.detail-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.detail-section h4 {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.info-pair:last-child {
+    border-bottom: none;
+}
+
+.info-pair span:first-child {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.info-pair span:last-child {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.info-pair .highlight {
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.info-pair .positive {
+    color: #e53e3e;
+}
+
+.info-pair .negative {
+    color: #38a169;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .data-info {
+        justify-content: flex-start;
+        gap: 15px;
+    }
+    
+    .market-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .industry-controls, .stock-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .market-tabs {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .industry-table, .stock-table {
+        min-width: 1000px;
+    }
+    
+    .industry-table th,
+    .industry-table td,
+    .stock-table th,
+    .stock-table td {
+        padding: 10px 6px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-info {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 15px;
+    }
+    
+    .info-item {
+        justify-content: space-between;
+        padding: 4px 0;
+    }
+    
+    .market-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .market-card {
+        padding: 15px;
+    }
+    
+    .market-value {
+        font-size: 1.5rem;
+    }
+    
+    .industry-section, .stock-section, .market-overview {
+        padding: 20px 15px;
+    }
+    
+    .industry-table, .stock-table {
+        min-width: 800px;
+    }
+    
+    .industry-table th,
+    .industry-table td,
+    .stock-table th,
+    .stock-table td {
+        padding: 8px 4px;
+        font-size: 0.8rem;
+    }
+    
+    .action-btn-sm {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .market-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .market-tab {
+        flex: 1;
+        min-width: 60px;
+        text-align: center;
+    }
+    
+    .rank-cell {
+        width: 40px;
+    }
+    
+    .code-cell {
+        width: 80px;
+    }
+    
+    .name-cell, .industry-name-cell {
+        min-width: 100px;
+    }
+    
+    .market-cell {
+        width: 50px;
+    }
+    
+    .actions-cell {
+        width: 100px;
+    }
+    
+    .detail-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .data-info {
+        padding: 8px 12px;
+    }
+    
+    .info-item {
+        gap: 5px;
+    }
+    
+    .info-label {
+        font-size: 0.8rem;
+    }
+    
+    .info-item span:last-child {
+        font-size: 0.85rem;
+    }
+    
+    .industry-table, .stock-table {
+        min-width: 600px;
+    }
+    
+    .industry-table th,
+    .industry-table td,
+    .stock-table th,
+    .stock-table td {
+        padding: 6px 3px;
+        font-size: 0.75rem;
+    }
+    
+    .action-btn-sm {
+        padding: 2px 4px;
+        font-size: 0.7rem;
+        margin: 0 1px;
     }
 }
 

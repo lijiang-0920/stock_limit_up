@@ -8,6 +8,10 @@ on:
     - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
     # 下午18:00 (北京时间) - 获取龙虎榜数据
     - cron: '00 10 * * 1-5'  # UTC 10:00 = 北京时间 18:00
+    # 晚上19:00 (北京时间) - 获取通达信研报数据
+    - cron: '00 11 * * 1-5'  # UTC 11:00 = 北京时间 19:00
+    # 晚上20:00 (北京时间) - 获取融资融券数据 (新增)
+    - cron: '00 12 * * 1-5'  # UTC 12:00 = 北京时间 20:00
     # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
     - cron: '30 15 * * 1-5'  # UTC 15:30 = 北京时间 23:30
   workflow_dispatch:
@@ -23,6 +27,8 @@ on:
         - 'jiuyan'
         - 'analysis'
         - 'dragon_tiger'
+        - 'tdx_reports'
+        - 'rzrq'  # 新增融资融券选项
 
 permissions:
   contents: write
@@ -61,7 +67,7 @@ jobs:
 
       - name: 确保目录存在
         run: |
-          mkdir -p data articles analysis dragon_tiger assets .github/locks
+          mkdir -p data articles analysis dragon_tiger tdx_value tdx_rztq assets .github/locks
 
       - name: 确定脚本文件名
         id: script-name
@@ -135,7 +141,7 @@ jobs:
                 fi
               }
               
-              # 检查时间窗口（简化为4个时间点）
+              # 检查时间窗口（新增融资融券时间点）
               
               # 北京时间8:30 (UTC 00:30) - 韭研公社盘前数据
               if check_time_window 0 30 30; then
@@ -151,6 +157,16 @@ jobs:
               elif check_time_window 10 0 30; then
                 task_type="dragon_tiger"
                 echo "匹配时间窗口: 龙虎榜数据 (北京时间18:00±30分钟)"
+              
+              # 北京时间19:00 (UTC 11:00) - 通达信研报数据
+              elif check_time_window 11 0 30; then
+                task_type="tdx_reports"
+                echo "匹配时间窗口: 通达信研报数据 (北京时间19:00±30分钟)"
+              
+              # 北京时间20:00 (UTC 12:00) - 融资融券数据 (新增)
+              elif check_time_window 12 0 30; then
+                task_type="rzrq"
+                echo "匹配时间窗口: 融资融券数据 (北京时间20:00±30分钟)"
               
               # 北京时间23:30 (UTC 15:30) - 韭研公社优秀阿呆
               elif check_time_window 15 30 30; then
@@ -218,13 +234,26 @@ jobs:
           echo "执行龙虎榜数据获取..."
           python ${{ steps.script-name.outputs.script_file }} dragon_tiger
 
+      - name: 执行通达信研报数据获取
+        if: steps.determine-task.outputs.task == 'tdx_reports' && steps.determine-task.outputs.should_execute == 'true'
+        run: |
+          echo "执行通达信研报数据获取..."
+          python ${{ steps.script-name.outputs.script_file }} tdx_reports
+
+      # 新增：执行融资融券数据获取
+      - name: 执行融资融券数据获取
+        if: steps.determine-task.outputs.task == 'rzrq' && steps.determine-task.outputs.should_execute == 'true'
+        run: |
+          echo "执行融资融券数据获取..."
+          python ${{ steps.script-name.outputs.script_file }} rzrq
+
       - name: 执行韭研公社优秀阿呆文章爬取
         if: steps.determine-task.outputs.task == 'jiuyan_evening' && steps.determine-task.outputs.should_execute == 'true'
         run: |
           echo "执行韭研公社优秀阿呆文章爬取..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 优秀阿呆
 
-      # 手动触发的任务执行（删除generate选项）
+      # 手动触发的任务执行
       - name: 执行所有任务
         if: steps.determine-task.outputs.task == 'all' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
@@ -255,6 +284,19 @@ jobs:
           echo "手动执行龙虎榜任务..."
           python ${{ steps.script-name.outputs.script_file }} dragon_tiger
 
+      - name: 手动执行通达信研报任务
+        if: steps.determine-task.outputs.task == 'tdx_reports' && steps.determine-task.outputs.manual_trigger == 'true'
+        run: |
+          echo "手动执行通达信研报任务..."
+          python ${{ steps.script-name.outputs.script_file }} tdx_reports
+
+      # 新增：手动执行融资融券任务
+      - name: 手动执行融资融券任务
+        if: steps.determine-task.outputs.task == 'rzrq' && steps.determine-task.outputs.manual_trigger == 'true'
+        run: |
+          echo "手动执行融资融券任务..."
+          python ${{ steps.script-name.outputs.script_file }} rzrq
+
       - name: 检查文件变化
         id: check-changes
         run: |
@@ -276,8 +318,8 @@ jobs:
       - name: 提交更改
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
-          # 添加所有相关文件
-          git add data/ articles/ analysis/ dragon_tiger/ assets/ .github/locks/ *.html
+          # 添加所有相关文件（包含融资融券目录）
+          git add data/ articles/ analysis/ dragon_tiger/ tdx_value/ tdx_rztq/ assets/ .github/locks/ *.html
           
           # 生成提交信息
           task_name="${{ steps.determine-task.outputs.task }}"
@@ -301,6 +343,12 @@ jobs:
               "dragon_tiger")
                 commit_msg="手动更新: 龙虎榜数据"
                 ;;
+              "tdx_reports")
+                commit_msg="手动更新: 通达信研报数据"
+                ;;
+              "rzrq")  # 新增
+                commit_msg="手动更新: 融资融券数据"
+                ;;
               *)
                 commit_msg="手动更新: $task_name"
                 ;;
@@ -316,6 +364,12 @@ jobs:
                 ;;
               "dragon_tiger")
                 commit_msg="自动更新: 龙虎榜数据 (北京时间18:00)"
+                ;;
+              "tdx_reports")
+                commit_msg="自动更新: 通达信研报数据 (北京时间19:00)"
+                ;;
+              "rzrq")  # 新增
+                commit_msg="自动更新: 融资融券数据 (北京时间20:00)"
                 ;;
               "jiuyan_evening")
                 commit_msg="自动更新: 韭研公社优秀阿呆文章 (北京时间23:30)"
