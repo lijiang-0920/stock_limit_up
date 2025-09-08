@@ -303,7 +303,14 @@ async function loadTdxReportsStatus() {
         const response = await fetch('tdx_value/index.json');
         if (response.ok) {
             const indexData = await response.json();
-            const dates = Object.keys(indexData).sort().reverse();
+            
+            // 过滤掉非日期键，只保留YYYY-MM-DD格式的键
+            const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+            const dates = Object.keys(indexData)
+                .filter(key => datePattern.test(key))
+                .sort()
+                .reverse();
+                
             if (dates.length > 0) {
                 const latestDate = dates[0];
                 const tdxReportsStatusEl = document.getElementById('tdxReportsStatus');
@@ -392,8 +399,14 @@ async function loadJsonViewer() {
                 const response = await fetch('tdx_value/index.json');
                 if (response.ok) {
                     const tdxReportsData = await response.json();
-                    dates = Object.keys(tdxReportsData).sort().reverse();
+                    // 过滤掉非日期键
+                    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+                    dates = Object.keys(tdxReportsData)
+                        .filter(key => datePattern.test(key))
+                        .sort()
+                        .reverse();
                 }
+
             } else if (dataType === 'rzrq') {  // 新增融资融券
                 const response = await fetch('tdx_rztq/index.json');
                 if (response.ok) {
