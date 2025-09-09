@@ -161,14 +161,14 @@ JIUYAN_USERS = {
 JIUYAN_HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
 }
-
 def get_target_article_url(user_url, date_str):
-    """从用户主页获取指定日期的文章链接"""
+    """从用户主页获取指定日期的文章链接，返回所有匹配文章按时间倒序排列"""
     try:
         resp = requests.get(user_url, headers=JIUYAN_HEADERS, timeout=15)
         resp.encoding = resp.apparent_encoding
         soup = BeautifulSoup(resp.text, "html.parser")
         
+        articles = []
         for li in soup.find_all('li'):
             title_tag = li.select_one('.book-title span')
             time_tag = li.select_one('.fs13-ash')
@@ -180,11 +180,22 @@ def get_target_article_url(user_url, date_str):
                 a_tag = li.select_one('a[href^="/a/"]')
                 if a_tag:
                     article_url = urljoin(user_url, a_tag['href'])
-                    return title, article_url
+                    articles.append({
+                        'title': title,
+                        'url': article_url,
+                        'pub_time': pub_time
+                    })
+        
+        # 按发布时间倒序排列（最新的在前面）
+        # 假设时间格式为 "2024-01-01 14:30"
+        articles.sort(key=lambda x: x['pub_time'], reverse=True)
+        return articles
+        
     except Exception as e:
         print(f"获取文章列表失败: {e}")
     
-    return None, None
+    return []
+
 
 def fetch_article_content(article_url):
     """获取文章详细内容"""
@@ -419,7 +430,7 @@ def save_article_and_generate_json(soup, article_url, save_dir, base_fname, user
     }
 
 def crawl_jiuyan_article(user_key, date_str=None):
-    """爬取单个用户的文章 - 移除重试逻辑，由GitHub Actions控制"""
+    """爬取单个用户的文章 - 优先处理最新文章，失败则尝试次新文章"""
     if user_key not in JIUYAN_USERS:
         print(f"未找到用户配置: {user_key}")
         return None
@@ -439,42 +450,62 @@ def crawl_jiuyan_article(user_key, date_str=None):
     date_str = target_date.strftime('%Y-%m-%d')
     
     try:
-        title, article_url = get_target_article_url(user_info['user_url'], date_str)
+        # 获取当天所有文章，按时间倒序排列
+        articles = get_target_article_url(user_info['user_url'], date_str)
         
-        if not title:
+        if not articles:
             print(f"未找到{user_info['user_name']} {date_str}的文章")
             return None
 
-        print(f"找到文章：{title}")
+        print(f"找到{user_info['user_name']} {date_str}的文章 {len(articles)} 篇")
         
-        safe_title = re.sub(r'[\\/:*?"<>|]', '_', title)
-        
-        # 确定保存路径
-        if user_key == '优秀阿呆':
-            save_dir = os.path.join('articles', user_info['save_dir_prefix'])
-        else:
-            save_dir = os.path.join('articles', user_info['save_dir_prefix'], date_str)
+        # 按优先级尝试处理文章（从最新开始）
+        for i, article_info in enumerate(articles):
+            title = article_info['title']
+            article_url = article_info['url']
+            pub_time = article_info['pub_time']
+            
+            print(f"尝试处理第 {i+1} 篇文章：{title} ({pub_time})")
+            
+            try:
+                soup, article_url, _ = fetch_article_content(article_url)
+                if soup is None:
+                    print(f"获取文章内容失败，尝试下一篇...")
+                    continue
 
-        soup, article_url, _ = fetch_article_content(article_url)
-        if soup is None:
-            print("获取文章内容失败")
-            return None
+                safe_title = re.sub(r'[\\/:*?"<>|]', '_', title)
+                
+                # 确定保存路径
+                if user_key == '优秀阿呆':
+                    save_dir = os.path.join('articles', user_info['save_dir_prefix'])
+                else:
+                    save_dir = os.path.join('articles', user_info['save_dir_prefix'], date_str)
 
-        # 保存文章并获取数据
-        article_data = save_article_and_generate_json(soup, article_url, save_dir, safe_title, user_info, date_str)
+                # 保存文章并获取数据
+                article_data = save_article_and_generate_json(soup, article_url, save_dir, safe_title, user_info, date_str)
+                
+                # 构建完整的文章信息
+                result = {
+                    "author": user_info['user_name'],
+                    "title": title,
+                    "publish_time": pub_time.split(' ')[-1] if ' ' in pub_time else get_beijing_time().strftime("%H:%M"),
+                    "date": date_str,
+                    "url": article_url,
+                    **article_data
+                }
+                
+                print(f"成功保存 {user_info['user_name']} 的文章: {title}")
+                if len(articles) > 1:
+                    print(f"注意：当天共有 {len(articles)} 篇文章，已处理最新可用的文章")
+                return result
+                
+            except Exception as e:
+                print(f"处理文章失败: {e}，尝试下一篇...")
+                continue
         
-        # 构建完整的文章信息
-        result = {
-            "author": user_info['user_name'],
-            "title": title,
-            "publish_time": get_beijing_time().strftime("%H:%M"),
-            "date": date_str,
-            "url": article_url,
-            **article_data
-        }
-        
-        print(f"成功保存 {user_info['user_name']} 的文章: {title}")
-        return result
+        # 如果所有文章都处理失败
+        print(f"所有文章都处理失败，共尝试了 {len(articles)} 篇文章")
+        return None
         
     except Exception as e:
         print(f"爬取 {user_info['user_name']} 文章时发生错误: {e}")
@@ -2085,6 +2116,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
