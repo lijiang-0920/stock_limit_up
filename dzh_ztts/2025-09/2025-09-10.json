@@ -1,0 +1,1534 @@
+{
+  "报告信息": {
+    "生成时间": "2025-09-10T16:06:36.700462",
+    "数据日期": "2025-09-10",
+    "数据来源": "大智慧涨停透视"
+  },
+  "市场分析": {
+    "完整解读": "解读：今日涨停数量63，在过去100个交易日中排名41位，涨停数量连续0个交易日下降；\n\n市场中线赚钱效应一般，赚钱效应有下降趋势。",
+    "分析来源": "页面DOM提取"
+  },
+  "核心指标": {
+    "活跃资金情绪": "80",
+    "封板率": 0.6495,
+    "涨停数量": 63,
+    "最高板数": 11,
+    "连板家数": 13,
+    "自然板家数": 44,
+    "触及涨停": 70
+  },
+  "趋势分析": {
+    "百日排名": 41,
+    "五日平均": 72.2,
+    "连续天数": 0,
+    "趋势类型": 0,
+    "趋势描述": "下降"
+  },
+  "今日数据": {
+    "涨停数量": 63,
+    "封板率": 0.6495,
+    "涨停打开": 34,
+    "跌停数量": 5,
+    "跌停封板率": 0.7143,
+    "跌停打开": 2,
+    "活跃资金情绪": "80"
+  },
+  "前日数据": {
+    "涨停数量": 63,
+    "封板率": 0.6562,
+    "涨停打开": 33,
+    "跌停数量": 7,
+    "跌停封板率": 0.7,
+    "跌停打开": 3
+  },
+  "连板统计": {
+    "最高板数": 11,
+    "连板家数": 13,
+    "自然板家数": 44,
+    "触及涨停": 70
+  },
+  "市场表现": {
+    "昨日涨停今日表现": "2.17",
+    "上证指数表现": "0.13"
+  },
+  "涨停梯队": {
+    "11板": [
+      {
+        "code": "SH605255",
+        "name": "天普股份",
+        "close_price": 76,
+        "change_rate": 10.0,
+        "turnover_rate": 100,
+        "dnum": 11,
+        "bnum": 11,
+        "board_label": "11天11板",
+        "market": "沪市主板"
+      }
+    ],
+    "6板": [
+      {
+        "code": "SH600376",
+        "name": "首开股份",
+        "close_price": 4.68,
+        "change_rate": 10.12,
+        "turnover_rate": 87.5,
+        "dnum": 6,
+        "bnum": 6,
+        "board_label": "6天6板",
+        "market": "沪市主板"
+      }
+    ],
+    "4板": [
+      {
+        "code": "SZ002058",
+        "name": "*ST威尔",
+        "close_price": 21.66,
+        "change_rate": 4.99,
+        "turnover_rate": 76.19,
+        "dnum": 4,
+        "bnum": 4,
+        "board_label": "4天4板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603285",
+        "name": "键邦股份",
+        "close_price": 31.14,
+        "change_rate": 10.0,
+        "turnover_rate": 80.0,
+        "dnum": 5,
+        "bnum": 4,
+        "board_label": "5天4板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH603163",
+        "name": "圣晖集成",
+        "close_price": 50.82,
+        "change_rate": 10.0,
+        "turnover_rate": 75.0,
+        "dnum": 6,
+        "bnum": 4,
+        "board_label": "6天4板",
+        "market": "沪市主板"
+      }
+    ],
+    "3板": [
+      {
+        "code": "SZ002289",
+        "name": "*ST宇顺",
+        "close_price": 32.1,
+        "change_rate": 5.0,
+        "turnover_rate": 70.33,
+        "dnum": 3,
+        "bnum": 3,
+        "board_label": "3天3板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ000691",
+        "name": "*ST亚太",
+        "close_price": 6.75,
+        "change_rate": 4.98,
+        "turnover_rate": 80.43,
+        "dnum": 3,
+        "bnum": 3,
+        "board_label": "3天3板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH600103",
+        "name": "青山纸业",
+        "close_price": 3.45,
+        "change_rate": 9.87,
+        "turnover_rate": 45.45,
+        "dnum": 4,
+        "bnum": 3,
+        "board_label": "4天3板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH600173",
+        "name": "卧龙新能",
+        "close_price": 8.39,
+        "change_rate": 9.96,
+        "turnover_rate": 71.43,
+        "dnum": 3,
+        "bnum": 3,
+        "board_label": "3天3板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ000972",
+        "name": "*ST中基",
+        "close_price": 5.17,
+        "change_rate": 5.08,
+        "turnover_rate": 53.33,
+        "dnum": 4,
+        "bnum": 3,
+        "board_label": "4天3板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603813",
+        "name": "*ST原尚",
+        "close_price": 21.03,
+        "change_rate": 4.99,
+        "turnover_rate": 80.0,
+        "dnum": 4,
+        "bnum": 3,
+        "board_label": "4天3板",
+        "market": "沪市主板"
+      }
+    ],
+    "2板": [
+      {
+        "code": "SZ002516",
+        "name": "旷达科技",
+        "close_price": 6.45,
+        "change_rate": 10.07,
+        "turnover_rate": 55.56,
+        "dnum": 3,
+        "bnum": 2,
+        "board_label": "3天2板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603101",
+        "name": "汇嘉时代",
+        "close_price": 13.44,
+        "change_rate": 9.98,
+        "turnover_rate": 66.67,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002115",
+        "name": "三维通信",
+        "close_price": 13.81,
+        "change_rate": 10.04,
+        "turnover_rate": 71.43,
+        "dnum": 3,
+        "bnum": 2,
+        "board_label": "3天2板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ000718",
+        "name": "苏宁环球",
+        "close_price": 2.74,
+        "change_rate": 10.04,
+        "turnover_rate": 83.33,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002181",
+        "name": "粤 传 媒",
+        "close_price": 9.58,
+        "change_rate": 9.99,
+        "turnover_rate": 82.61,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH601116",
+        "name": "三江购物",
+        "close_price": 14.76,
+        "change_rate": 9.99,
+        "turnover_rate": 50.0,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH603389",
+        "name": "*ST亚振",
+        "close_price": 25.95,
+        "change_rate": 5.02,
+        "turnover_rate": 79.03,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH603516",
+        "name": "淳中科技",
+        "close_price": 124.63,
+        "change_rate": 10.0,
+        "turnover_rate": 72.0,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002630",
+        "name": "ST华西",
+        "close_price": 3.44,
+        "change_rate": 4.88,
+        "turnover_rate": 78.79,
+        "dnum": 3,
+        "bnum": 2,
+        "board_label": "3天2板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603828",
+        "name": "ST柯利达",
+        "close_price": 5.13,
+        "change_rate": 4.91,
+        "turnover_rate": 71.01,
+        "dnum": 2,
+        "bnum": 2,
+        "board_label": "2天2板",
+        "market": "沪市主板"
+      }
+    ],
+    "1板": [
+      {
+        "code": "SZ000558",
+        "name": "天府文旅",
+        "close_price": 7.28,
+        "change_rate": 9.97,
+        "turnover_rate": 60.87,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH600776",
+        "name": "东方通信",
+        "close_price": 12.67,
+        "change_rate": 9.98,
+        "turnover_rate": 70.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH605028",
+        "name": "世茂能源",
+        "close_price": 25.55,
+        "change_rate": 9.99,
+        "turnover_rate": 76.92,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH605099",
+        "name": "共创草坪",
+        "close_price": 36.07,
+        "change_rate": 10.0,
+        "turnover_rate": 100,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH603559",
+        "name": "ST通脉",
+        "close_price": 9.01,
+        "change_rate": 5.01,
+        "turnover_rate": 76.79,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH605398",
+        "name": "新炬网络",
+        "close_price": 32.56,
+        "change_rate": 10.0,
+        "turnover_rate": 74.07,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH688388",
+        "name": "嘉元科技",
+        "close_price": 34.2,
+        "change_rate": 20.0,
+        "turnover_rate": 50.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "科创板"
+      },
+      {
+        "code": "SZ000061",
+        "name": "农 产 品",
+        "close_price": 9.28,
+        "change_rate": 9.95,
+        "turnover_rate": 66.67,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603359",
+        "name": "东珠生态",
+        "close_price": 9.22,
+        "change_rate": 10.02,
+        "turnover_rate": 65.52,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ000668",
+        "name": "*ST荣控",
+        "close_price": 9.77,
+        "change_rate": 5.05,
+        "turnover_rate": 80.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603328",
+        "name": "依顿电子",
+        "close_price": 11.9,
+        "change_rate": 9.98,
+        "turnover_rate": 60.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH603316",
+        "name": "诚邦股份",
+        "close_price": 10.02,
+        "change_rate": 9.99,
+        "turnover_rate": 77.27,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ000796",
+        "name": "凯撒旅业",
+        "close_price": 6.35,
+        "change_rate": 10.05,
+        "turnover_rate": 71.43,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603228",
+        "name": "景旺电子",
+        "close_price": 57,
+        "change_rate": 10.0,
+        "turnover_rate": 66.67,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002052",
+        "name": "同洲电子",
+        "close_price": 15.63,
+        "change_rate": 9.99,
+        "turnover_rate": 77.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002053",
+        "name": "云南能投",
+        "close_price": 14.74,
+        "change_rate": 10.0,
+        "turnover_rate": 83.33,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603127",
+        "name": "昭衍新药",
+        "close_price": 35.44,
+        "change_rate": 9.99,
+        "turnover_rate": 60.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002077",
+        "name": "大港股份",
+        "close_price": 17.62,
+        "change_rate": 9.99,
+        "turnover_rate": 72.73,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002101",
+        "name": "广东鸿图",
+        "close_price": 14.43,
+        "change_rate": 9.98,
+        "turnover_rate": 83.33,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH601138",
+        "name": "工业富联",
+        "close_price": 53.67,
+        "change_rate": 10.0,
+        "turnover_rate": 91.67,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002131",
+        "name": "利欧股份",
+        "close_price": 5.96,
+        "change_rate": 9.96,
+        "turnover_rate": 75.76,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH603790",
+        "name": "雅运股份",
+        "close_price": 19.79,
+        "change_rate": 10.01,
+        "turnover_rate": 50.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002197",
+        "name": "ST证通",
+        "close_price": 9.62,
+        "change_rate": 5.02,
+        "turnover_rate": 68.63,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002199",
+        "name": "*ST东晶",
+        "close_price": 10.41,
+        "change_rate": 5.05,
+        "turnover_rate": 76.36,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002207",
+        "name": "准油股份",
+        "close_price": 8.46,
+        "change_rate": 10.01,
+        "turnover_rate": 93.75,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002264",
+        "name": "新 华 都",
+        "close_price": 8.1,
+        "change_rate": 10.05,
+        "turnover_rate": 36.36,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH600568",
+        "name": "ST中珠",
+        "close_price": 2.03,
+        "change_rate": 5.18,
+        "turnover_rate": 50.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002313",
+        "name": "日海智能",
+        "close_price": 12.42,
+        "change_rate": 10.01,
+        "turnover_rate": 79.31,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002333",
+        "name": "罗普斯金",
+        "close_price": 5.86,
+        "change_rate": 9.94,
+        "turnover_rate": 66.67,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002384",
+        "name": "东山精密",
+        "close_price": 72.22,
+        "change_rate": 10.01,
+        "turnover_rate": 50.0,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002425",
+        "name": "ST凯文",
+        "close_price": 4.27,
+        "change_rate": 4.91,
+        "turnover_rate": 44.83,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002467",
+        "name": "二六三",
+        "close_price": 7.32,
+        "change_rate": 10.08,
+        "turnover_rate": 81.25,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002490",
+        "name": "山东墨龙",
+        "close_price": 6.17,
+        "change_rate": 9.98,
+        "turnover_rate": 68.63,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SH600545",
+        "name": "卓郎智能",
+        "close_price": 3.05,
+        "change_rate": 10.11,
+        "turnover_rate": 73.91,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SH600107",
+        "name": "ST尔雅",
+        "close_price": 6.74,
+        "change_rate": 4.98,
+        "turnover_rate": 70.59,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "沪市主板"
+      },
+      {
+        "code": "SZ002679",
+        "name": "福建金森",
+        "close_price": 10.98,
+        "change_rate": 10.02,
+        "turnover_rate": 66.67,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002717",
+        "name": "ST岭南",
+        "close_price": 1.6,
+        "change_rate": 5.26,
+        "turnover_rate": 80.77,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002812",
+        "name": "恩捷股份",
+        "close_price": 43.56,
+        "change_rate": 10.0,
+        "turnover_rate": 71.43,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002905",
+        "name": "金逸影视",
+        "close_price": 11.34,
+        "change_rate": 9.99,
+        "turnover_rate": 73.33,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ002975",
+        "name": "博杰股份",
+        "close_price": 61.6,
+        "change_rate": 10.0,
+        "turnover_rate": 76.47,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "深市主板"
+      },
+      {
+        "code": "SZ301139",
+        "name": "元道通信",
+        "close_price": 22.97,
+        "change_rate": 20.01,
+        "turnover_rate": 100,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "创业板"
+      },
+      {
+        "code": "SZ301489",
+        "name": "思泉新材",
+        "close_price": 229.26,
+        "change_rate": 20.0,
+        "turnover_rate": 100,
+        "dnum": 1,
+        "bnum": 1,
+        "board_label": "1天1板",
+        "market": "创业板"
+      }
+    ]
+  },
+  "市场分布": {
+    "沪市主板": 27,
+    "深市主板": 33,
+    "科创板": 1,
+    "创业板": 2
+  },
+  "板数分布": {
+    "11板": 1,
+    "6板": 1,
+    "4板": 3,
+    "3板": 6,
+    "2板": 10,
+    "1板": 42
+  },
+  "原始数据": {
+    "todayWad完整数据": {
+      "avg5": 72.2,
+      "days": 0,
+      "num": 63,
+      "rank100": 41,
+      "type": 0
+    },
+    "上证指数表现": "0.13",
+    "五日平均": 72.2,
+    "今日涨停数量": 63,
+    "完整解读文本": "解读：今日涨停数量63，在过去100个交易日中排名41位，涨停数量连续0个交易日下降；\n\n市场中线赚钱效应一般，赚钱效应有下降趋势。",
+    "实际数据日期": "20250910",
+    "封板率": 0.6495,
+    "昨日封板率": 0.6562,
+    "昨日涨停今日表现": "2.17",
+    "昨日涨停打开数量": 33,
+    "昨日涨停数量": 63,
+    "昨日跌停封板率": 0.7,
+    "昨日跌停打开数量": 3,
+    "昨日跌停数量": 7,
+    "最高板数": 11,
+    "活跃资金情绪": "80",
+    "涨停打开数量": 34,
+    "涨停数量": 63,
+    "爬取时间": "2025-09-10T08:06:34.407Z",
+    "百日排名": 41,
+    "自然板家数": 44,
+    "触及涨停": 70,
+    "趋势类型": 0,
+    "跌停封板率": 0.7143,
+    "跌停打开数量": 2,
+    "跌停数量": 5,
+    "连板家数": 13,
+    "连续天数": 0,
+    "涨停梯队数据": {
+      "ladder_stocks": {
+        "11板": [
+          {
+            "code": "SH605255",
+            "name": "天普股份",
+            "close_price": 76,
+            "change_rate": 10.0,
+            "turnover_rate": 100,
+            "dnum": 11,
+            "bnum": 11,
+            "board_label": "11天11板",
+            "market": "沪市主板"
+          }
+        ],
+        "6板": [
+          {
+            "code": "SH600376",
+            "name": "首开股份",
+            "close_price": 4.68,
+            "change_rate": 10.12,
+            "turnover_rate": 87.5,
+            "dnum": 6,
+            "bnum": 6,
+            "board_label": "6天6板",
+            "market": "沪市主板"
+          }
+        ],
+        "4板": [
+          {
+            "code": "SZ002058",
+            "name": "*ST威尔",
+            "close_price": 21.66,
+            "change_rate": 4.99,
+            "turnover_rate": 76.19,
+            "dnum": 4,
+            "bnum": 4,
+            "board_label": "4天4板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603285",
+            "name": "键邦股份",
+            "close_price": 31.14,
+            "change_rate": 10.0,
+            "turnover_rate": 80.0,
+            "dnum": 5,
+            "bnum": 4,
+            "board_label": "5天4板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH603163",
+            "name": "圣晖集成",
+            "close_price": 50.82,
+            "change_rate": 10.0,
+            "turnover_rate": 75.0,
+            "dnum": 6,
+            "bnum": 4,
+            "board_label": "6天4板",
+            "market": "沪市主板"
+          }
+        ],
+        "3板": [
+          {
+            "code": "SZ002289",
+            "name": "*ST宇顺",
+            "close_price": 32.1,
+            "change_rate": 5.0,
+            "turnover_rate": 70.33,
+            "dnum": 3,
+            "bnum": 3,
+            "board_label": "3天3板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ000691",
+            "name": "*ST亚太",
+            "close_price": 6.75,
+            "change_rate": 4.98,
+            "turnover_rate": 80.43,
+            "dnum": 3,
+            "bnum": 3,
+            "board_label": "3天3板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH600103",
+            "name": "青山纸业",
+            "close_price": 3.45,
+            "change_rate": 9.87,
+            "turnover_rate": 45.45,
+            "dnum": 4,
+            "bnum": 3,
+            "board_label": "4天3板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH600173",
+            "name": "卧龙新能",
+            "close_price": 8.39,
+            "change_rate": 9.96,
+            "turnover_rate": 71.43,
+            "dnum": 3,
+            "bnum": 3,
+            "board_label": "3天3板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ000972",
+            "name": "*ST中基",
+            "close_price": 5.17,
+            "change_rate": 5.08,
+            "turnover_rate": 53.33,
+            "dnum": 4,
+            "bnum": 3,
+            "board_label": "4天3板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603813",
+            "name": "*ST原尚",
+            "close_price": 21.03,
+            "change_rate": 4.99,
+            "turnover_rate": 80.0,
+            "dnum": 4,
+            "bnum": 3,
+            "board_label": "4天3板",
+            "market": "沪市主板"
+          }
+        ],
+        "2板": [
+          {
+            "code": "SZ002516",
+            "name": "旷达科技",
+            "close_price": 6.45,
+            "change_rate": 10.07,
+            "turnover_rate": 55.56,
+            "dnum": 3,
+            "bnum": 2,
+            "board_label": "3天2板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603101",
+            "name": "汇嘉时代",
+            "close_price": 13.44,
+            "change_rate": 9.98,
+            "turnover_rate": 66.67,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002115",
+            "name": "三维通信",
+            "close_price": 13.81,
+            "change_rate": 10.04,
+            "turnover_rate": 71.43,
+            "dnum": 3,
+            "bnum": 2,
+            "board_label": "3天2板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ000718",
+            "name": "苏宁环球",
+            "close_price": 2.74,
+            "change_rate": 10.04,
+            "turnover_rate": 83.33,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002181",
+            "name": "粤 传 媒",
+            "close_price": 9.58,
+            "change_rate": 9.99,
+            "turnover_rate": 82.61,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH601116",
+            "name": "三江购物",
+            "close_price": 14.76,
+            "change_rate": 9.99,
+            "turnover_rate": 50.0,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH603389",
+            "name": "*ST亚振",
+            "close_price": 25.95,
+            "change_rate": 5.02,
+            "turnover_rate": 79.03,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH603516",
+            "name": "淳中科技",
+            "close_price": 124.63,
+            "change_rate": 10.0,
+            "turnover_rate": 72.0,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002630",
+            "name": "ST华西",
+            "close_price": 3.44,
+            "change_rate": 4.88,
+            "turnover_rate": 78.79,
+            "dnum": 3,
+            "bnum": 2,
+            "board_label": "3天2板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603828",
+            "name": "ST柯利达",
+            "close_price": 5.13,
+            "change_rate": 4.91,
+            "turnover_rate": 71.01,
+            "dnum": 2,
+            "bnum": 2,
+            "board_label": "2天2板",
+            "market": "沪市主板"
+          }
+        ],
+        "1板": [
+          {
+            "code": "SZ000558",
+            "name": "天府文旅",
+            "close_price": 7.28,
+            "change_rate": 9.97,
+            "turnover_rate": 60.87,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH600776",
+            "name": "东方通信",
+            "close_price": 12.67,
+            "change_rate": 9.98,
+            "turnover_rate": 70.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH605028",
+            "name": "世茂能源",
+            "close_price": 25.55,
+            "change_rate": 9.99,
+            "turnover_rate": 76.92,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH605099",
+            "name": "共创草坪",
+            "close_price": 36.07,
+            "change_rate": 10.0,
+            "turnover_rate": 100,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH603559",
+            "name": "ST通脉",
+            "close_price": 9.01,
+            "change_rate": 5.01,
+            "turnover_rate": 76.79,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH605398",
+            "name": "新炬网络",
+            "close_price": 32.56,
+            "change_rate": 10.0,
+            "turnover_rate": 74.07,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH688388",
+            "name": "嘉元科技",
+            "close_price": 34.2,
+            "change_rate": 20.0,
+            "turnover_rate": 50.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "科创板"
+          },
+          {
+            "code": "SZ000061",
+            "name": "农 产 品",
+            "close_price": 9.28,
+            "change_rate": 9.95,
+            "turnover_rate": 66.67,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603359",
+            "name": "东珠生态",
+            "close_price": 9.22,
+            "change_rate": 10.02,
+            "turnover_rate": 65.52,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ000668",
+            "name": "*ST荣控",
+            "close_price": 9.77,
+            "change_rate": 5.05,
+            "turnover_rate": 80.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603328",
+            "name": "依顿电子",
+            "close_price": 11.9,
+            "change_rate": 9.98,
+            "turnover_rate": 60.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH603316",
+            "name": "诚邦股份",
+            "close_price": 10.02,
+            "change_rate": 9.99,
+            "turnover_rate": 77.27,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ000796",
+            "name": "凯撒旅业",
+            "close_price": 6.35,
+            "change_rate": 10.05,
+            "turnover_rate": 71.43,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603228",
+            "name": "景旺电子",
+            "close_price": 57,
+            "change_rate": 10.0,
+            "turnover_rate": 66.67,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002052",
+            "name": "同洲电子",
+            "close_price": 15.63,
+            "change_rate": 9.99,
+            "turnover_rate": 77.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002053",
+            "name": "云南能投",
+            "close_price": 14.74,
+            "change_rate": 10.0,
+            "turnover_rate": 83.33,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603127",
+            "name": "昭衍新药",
+            "close_price": 35.44,
+            "change_rate": 9.99,
+            "turnover_rate": 60.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002077",
+            "name": "大港股份",
+            "close_price": 17.62,
+            "change_rate": 9.99,
+            "turnover_rate": 72.73,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002101",
+            "name": "广东鸿图",
+            "close_price": 14.43,
+            "change_rate": 9.98,
+            "turnover_rate": 83.33,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH601138",
+            "name": "工业富联",
+            "close_price": 53.67,
+            "change_rate": 10.0,
+            "turnover_rate": 91.67,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002131",
+            "name": "利欧股份",
+            "close_price": 5.96,
+            "change_rate": 9.96,
+            "turnover_rate": 75.76,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH603790",
+            "name": "雅运股份",
+            "close_price": 19.79,
+            "change_rate": 10.01,
+            "turnover_rate": 50.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002197",
+            "name": "ST证通",
+            "close_price": 9.62,
+            "change_rate": 5.02,
+            "turnover_rate": 68.63,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002199",
+            "name": "*ST东晶",
+            "close_price": 10.41,
+            "change_rate": 5.05,
+            "turnover_rate": 76.36,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002207",
+            "name": "准油股份",
+            "close_price": 8.46,
+            "change_rate": 10.01,
+            "turnover_rate": 93.75,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002264",
+            "name": "新 华 都",
+            "close_price": 8.1,
+            "change_rate": 10.05,
+            "turnover_rate": 36.36,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH600568",
+            "name": "ST中珠",
+            "close_price": 2.03,
+            "change_rate": 5.18,
+            "turnover_rate": 50.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002313",
+            "name": "日海智能",
+            "close_price": 12.42,
+            "change_rate": 10.01,
+            "turnover_rate": 79.31,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002333",
+            "name": "罗普斯金",
+            "close_price": 5.86,
+            "change_rate": 9.94,
+            "turnover_rate": 66.67,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002384",
+            "name": "东山精密",
+            "close_price": 72.22,
+            "change_rate": 10.01,
+            "turnover_rate": 50.0,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002425",
+            "name": "ST凯文",
+            "close_price": 4.27,
+            "change_rate": 4.91,
+            "turnover_rate": 44.83,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002467",
+            "name": "二六三",
+            "close_price": 7.32,
+            "change_rate": 10.08,
+            "turnover_rate": 81.25,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002490",
+            "name": "山东墨龙",
+            "close_price": 6.17,
+            "change_rate": 9.98,
+            "turnover_rate": 68.63,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SH600545",
+            "name": "卓郎智能",
+            "close_price": 3.05,
+            "change_rate": 10.11,
+            "turnover_rate": 73.91,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SH600107",
+            "name": "ST尔雅",
+            "close_price": 6.74,
+            "change_rate": 4.98,
+            "turnover_rate": 70.59,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "沪市主板"
+          },
+          {
+            "code": "SZ002679",
+            "name": "福建金森",
+            "close_price": 10.98,
+            "change_rate": 10.02,
+            "turnover_rate": 66.67,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002717",
+            "name": "ST岭南",
+            "close_price": 1.6,
+            "change_rate": 5.26,
+            "turnover_rate": 80.77,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002812",
+            "name": "恩捷股份",
+            "close_price": 43.56,
+            "change_rate": 10.0,
+            "turnover_rate": 71.43,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002905",
+            "name": "金逸影视",
+            "close_price": 11.34,
+            "change_rate": 9.99,
+            "turnover_rate": 73.33,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ002975",
+            "name": "博杰股份",
+            "close_price": 61.6,
+            "change_rate": 10.0,
+            "turnover_rate": 76.47,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "深市主板"
+          },
+          {
+            "code": "SZ301139",
+            "name": "元道通信",
+            "close_price": 22.97,
+            "change_rate": 20.01,
+            "turnover_rate": 100,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "创业板"
+          },
+          {
+            "code": "SZ301489",
+            "name": "思泉新材",
+            "close_price": 229.26,
+            "change_rate": 20.0,
+            "turnover_rate": 100,
+            "dnum": 1,
+            "bnum": 1,
+            "board_label": "1天1板",
+            "market": "创业板"
+          }
+        ]
+      },
+      "market_distribution": {
+        "沪市主板": 27,
+        "深市主板": 33,
+        "科创板": 1,
+        "创业板": 2
+      },
+      "board_distribution": {
+        "11板": 1,
+        "6板": 1,
+        "4板": 3,
+        "3板": 6,
+        "2板": 10,
+        "1板": 42
+      }
+    }
+  }
+}
