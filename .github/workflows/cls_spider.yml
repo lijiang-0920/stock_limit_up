@@ -4,14 +4,14 @@ on:
   schedule:
     # 上午8:30 (北京时间) - 获取韭研公社盘前数据
     - cron: '30 0 * * 1-5'   # UTC 00:30 = 北京时间 08:30
+    # 上午9:20 (北京时间) - 获取前一天融资融券数据 (修改)
+    - cron: '20 1 * * 1-5'   # UTC 01:20 = 北京时间 09:20
     # 下午15:30 (北京时间) - 获取涨停池和异动解析数据
     - cron: '30 7 * * 1-5'   # UTC 07:30 = 北京时间 15:30
     # 下午18:00 (北京时间) - 获取龙虎榜数据
     - cron: '00 10 * * 1-5'  # UTC 10:00 = 北京时间 18:00
     # 晚上19:00 (北京时间) - 获取通达信研报数据
     - cron: '00 11 * * 1-5'  # UTC 11:00 = 北京时间 19:00
-    # 晚上20:00 (北京时间) - 获取融资融券数据 (新增)
-    - cron: '00 12 * * 1-5'  # UTC 12:00 = 北京时间 20:00
     # 晚上23:30 (北京时间) - 获取韭研公社优秀阿呆文章
     - cron: '30 15 * * 1-5'  # UTC 15:30 = 北京时间 23:30
   workflow_dispatch:
@@ -28,7 +28,7 @@ on:
         - 'analysis'
         - 'dragon_tiger'
         - 'tdx_reports'
-        - 'rzrq'  # 新增融资融券选项
+        - 'rzrq'  # 融资融券选项
 
 permissions:
   contents: write
@@ -141,12 +141,17 @@ jobs:
                 fi
               }
               
-              # 检查时间窗口（新增融资融券时间点）
+              # 检查时间窗口
               
               # 北京时间8:30 (UTC 00:30) - 韭研公社盘前数据
               if check_time_window 0 30 30; then
                 task_type="jiuyan_morning"
                 echo "匹配时间窗口: 韭研公社盘前数据 (北京时间8:30±30分钟)"              
+              
+              # 北京时间9:20 (UTC 01:20) - 融资融券数据 (获取前一天数据) - 修改
+              elif check_time_window 1 20 30; then
+                task_type="rzrq"
+                echo "匹配时间窗口: 融资融券数据 (北京时间9:20±30分钟)"
               
               # 北京时间15:30 (UTC 07:30) - 涨停池和异动解析数据
               elif check_time_window 7 30 30; then
@@ -162,11 +167,6 @@ jobs:
               elif check_time_window 11 0 30; then
                 task_type="tdx_reports"
                 echo "匹配时间窗口: 通达信研报数据 (北京时间19:00±30分钟)"
-              
-              # 北京时间20:00 (UTC 12:00) - 融资融券数据 (新增)
-              elif check_time_window 12 0 30; then
-                task_type="rzrq"
-                echo "匹配时间窗口: 融资融券数据 (北京时间20:00±30分钟)"
               
               # 北京时间23:30 (UTC 15:30) - 韭研公社优秀阿呆
               elif check_time_window 15 30 30; then
@@ -213,13 +213,20 @@ jobs:
             echo "已清理7天前的锁文件"
           fi
 
-      # 简化后的自动触发任务执行
+      # 自动触发任务执行
       - name: 执行韭研公社盘前数据
         if: steps.determine-task.outputs.task == 'jiuyan_morning' && steps.determine-task.outputs.should_execute == 'true'
         run: |
           echo "执行韭研公社盘前数据爬取..."
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前纪要
           python ${{ steps.script-name.outputs.script_file }} jiuyan 盘前解读
+
+      # 修改：执行融资融券数据获取 (早上9:20获取前一天数据)
+      - name: 执行融资融券数据获取
+        if: steps.determine-task.outputs.task == 'rzrq' && steps.determine-task.outputs.should_execute == 'true'
+        run: |
+          echo "执行融资融券数据获取 (前一交易日数据)..."
+          python ${{ steps.script-name.outputs.script_file }} rzrq
 
       - name: 执行下午数据获取
         if: steps.determine-task.outputs.task == 'afternoon_data' && steps.determine-task.outputs.should_execute == 'true'
@@ -239,13 +246,6 @@ jobs:
         run: |
           echo "执行通达信研报数据获取..."
           python ${{ steps.script-name.outputs.script_file }} tdx_reports
-
-      # 新增：执行融资融券数据获取
-      - name: 执行融资融券数据获取
-        if: steps.determine-task.outputs.task == 'rzrq' && steps.determine-task.outputs.should_execute == 'true'
-        run: |
-          echo "执行融资融券数据获取..."
-          python ${{ steps.script-name.outputs.script_file }} rzrq
 
       - name: 执行韭研公社优秀阿呆文章爬取
         if: steps.determine-task.outputs.task == 'jiuyan_evening' && steps.determine-task.outputs.should_execute == 'true'
@@ -290,7 +290,7 @@ jobs:
           echo "手动执行通达信研报任务..."
           python ${{ steps.script-name.outputs.script_file }} tdx_reports
 
-      # 新增：手动执行融资融券任务
+      # 手动执行融资融券任务
       - name: 手动执行融资融券任务
         if: steps.determine-task.outputs.task == 'rzrq' && steps.determine-task.outputs.manual_trigger == 'true'
         run: |
@@ -346,7 +346,7 @@ jobs:
               "tdx_reports")
                 commit_msg="手动更新: 通达信研报数据"
                 ;;
-              "rzrq")  # 新增
+              "rzrq")  # 修改提交信息
                 commit_msg="手动更新: 融资融券数据"
                 ;;
               *)
@@ -359,6 +359,9 @@ jobs:
               "jiuyan_morning")
                 commit_msg="自动更新: 韭研公社盘前数据 (北京时间8:30)"
                 ;;
+              "rzrq")  # 修改自动触发的提交信息
+                commit_msg="自动更新: 融资融券数据 (北京时间9:20)"
+                ;;
               "afternoon_data")
                 commit_msg="自动更新: 涨停池和异动解析数据 (北京时间15:30)"
                 ;;
@@ -367,9 +370,6 @@ jobs:
                 ;;
               "tdx_reports")
                 commit_msg="自动更新: 通达信研报数据 (北京时间19:00)"
-                ;;
-              "rzrq")  # 新增
-                commit_msg="自动更新: 融资融券数据 (北京时间20:00)"
                 ;;
               "jiuyan_evening")
                 commit_msg="自动更新: 韭研公社优秀阿呆文章 (北京时间23:30)"
