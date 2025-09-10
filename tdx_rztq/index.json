@@ -628,5 +628,35 @@
       "json": "tdx_rztq/2025-09/2025-09-05.json",
       "txt": "tdx_rztq/2025-09/2025-09-05.txt"
     }
+  },
+  "2025-09-08": {
+    "date": "2025-09-08",
+    "update_time": "2025-09-10 10:35:29",
+    "industry_count": 30,
+    "total_stocks": 3721,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-08.json",
+      "txt": "tdx_rztq/2025-09/2025-09-08.txt"
+    }
+  },
+  "2025-09-09": {
+    "date": "2025-09-09",
+    "update_time": "2025-09-10 10:36:25",
+    "industry_count": 30,
+    "total_stocks": 3721,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-09.json",
+      "txt": "tdx_rztq/2025-09/2025-09-09.txt"
+    }
   }
 }
