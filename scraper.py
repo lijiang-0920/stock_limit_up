@@ -1938,12 +1938,25 @@ def is_rzrq_first_run():
         return True
 
 
+def get_previous_trading_day(current_date):
+    """获取前一个交易日（跳过周末）"""
+    target_date = current_date - timedelta(days=1)
+    
+    # 如果是周六，往前推到周五
+    if target_date.weekday() == 5:  # Saturday
+        target_date = target_date - timedelta(days=1)
+    # 如果是周日，往前推到周五  
+    elif target_date.weekday() == 6:  # Sunday
+        target_date = target_date - timedelta(days=2)
+    
+    return target_date
+
+
 def crawl_rzrq_data(date_str=None):
     """爬取融资融券数据"""
     print("开始获取融资融券数据...")
     
     beijing_time = get_beijing_time_rzrq()
-    beijing_today = beijing_time.strftime("%Y-%m-%d")
     
     try:
         print("获取全量市场数据")
@@ -1953,10 +1966,21 @@ def crawl_rzrq_data(date_str=None):
             print("获取融资融券市场数据失败")
             return None
         
+        # 确定目标日期
+        if date_str is None:
+            # 自动执行时，获取前一个交易日的数据
+            target_date = get_previous_trading_day(beijing_time)
+            target_date_str = target_date.strftime("%Y-%m-%d")
+            print(f"自动获取前一交易日数据: {target_date_str}")
+        else:
+            # 手动指定日期
+            target_date_str = date_str
+            print(f"获取指定日期数据: {target_date_str}")
+        
         if is_rzrq_first_run():
             print("首次运行融资融券功能，获取历史数据...")
             
-            # 从最近180天开始获取数据，避免数据量过大
+            # 从最近60天开始获取数据，避免数据量过大
             start_date = (beijing_time - timedelta(days=60)).strftime("%Y-%m-%d")
             all_dates = [date for date in sorted(all_market_data.keys()) if date >= start_date]
             
@@ -1976,26 +2000,26 @@ def crawl_rzrq_data(date_str=None):
             print(f"融资融券历史数据获取完成: 处理 {processed_count} 天")
             return {"processed_count": processed_count, "total_days": len(all_dates)}
         else:
-            print("获取今日融资融券数据...")
-            target_date = date_str if date_str else beijing_today
+            print(f"获取 {target_date_str} 融资融券数据...")
             
-            if target_date not in all_market_data:
-                print(f"{target_date} 暂无融资融券市场数据")
+            if target_date_str not in all_market_data:
+                print(f"{target_date_str} 暂无融资融券市场数据")
                 return None
             
-            data = process_rzrq_data_for_date(target_date, all_market_data)
+            data = process_rzrq_data_for_date(target_date_str, all_market_data)
             if data:
                 save_rzrq_data(data)
-                update_rzrq_index(target_date, data)
-                print(f"融资融券数据保存完成: {target_date}")
+                update_rzrq_index(target_date_str, data)
+                print(f"融资融券数据保存完成: {target_date_str}")
                 return data
             else:
-                print(f"{target_date} 无有效融资融券数据")
+                print(f"{target_date_str} 无有效融资融券数据")
                 return None
                 
     except Exception as e:
         print(f"获取融资融券数据时发生错误: {e}")
         return None
+
 
 
 
@@ -2116,6 +2140,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
