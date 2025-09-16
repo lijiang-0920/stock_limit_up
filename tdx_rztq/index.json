@@ -703,5 +703,20 @@
       "json": "tdx_rztq/2025-09/2025-09-12.json",
       "txt": "tdx_rztq/2025-09/2025-09-12.txt"
     }
+  },
+  "2025-09-15": {
+    "date": "2025-09-15",
+    "update_time": "2025-09-16 09:22:42",
+    "industry_count": 30,
+    "total_stocks": 3722,
+    "data_status": {
+      "market_data": true,
+      "industry_data": true,
+      "stock_data": true
+    },
+    "files": {
+      "json": "tdx_rztq/2025-09/2025-09-15.json",
+      "txt": "tdx_rztq/2025-09/2025-09-15.txt"
+    }
   }
 }
