@@ -1,10 +1,10 @@
 {
   "2025-09-05": {
     "date": "2025-09-05",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 182,
-    "stock_count": 173,
-    "institution_count": 49,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 68,
+    "stock_count": 66,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-09/2025-09-05.json",
       "txt": "tdx_value/2025-09/2025-09-05.txt"
@@ -12,10 +12,10 @@
   },
   "2025-09-04": {
     "date": "2025-09-04",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 67,
-    "stock_count": 65,
-    "institution_count": 20,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 186,
+    "stock_count": 173,
+    "institution_count": 46,
     "files": {
       "json": "tdx_value/2025-09/2025-09-04.json",
       "txt": "tdx_value/2025-09/2025-09-04.txt"
@@ -23,10 +23,10 @@
   },
   "2025-09-03": {
     "date": "2025-09-03",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 106,
-    "stock_count": 102,
-    "institution_count": 35,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 270,
+    "stock_count": 241,
+    "institution_count": 48,
     "files": {
       "json": "tdx_value/2025-09/2025-09-03.json",
       "txt": "tdx_value/2025-09/2025-09-03.txt"
@@ -34,10 +34,10 @@
   },
   "2025-09-02": {
     "date": "2025-09-02",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 22,
-    "stock_count": 22,
-    "institution_count": 11,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 258,
+    "stock_count": 230,
+    "institution_count": 45,
     "files": {
       "json": "tdx_value/2025-09/2025-09-02.json",
       "txt": "tdx_value/2025-09/2025-09-02.txt"
@@ -45,10 +45,10 @@
   },
   "2025-09-01": {
     "date": "2025-09-01",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 9,
-    "stock_count": 9,
-    "institution_count": 6,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 248,
+    "stock_count": 220,
+    "institution_count": 40,
     "files": {
       "json": "tdx_value/2025-09/2025-09-01.json",
       "txt": "tdx_value/2025-09/2025-09-01.txt"
@@ -56,10 +56,10 @@
   },
   "2025-08-31": {
     "date": "2025-08-31",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 223,
+    "stock_count": 197,
+    "institution_count": 32,
     "files": {
       "json": "tdx_value/2025-08/2025-08-31.json",
       "txt": "tdx_value/2025-08/2025-08-31.txt"
@@ -67,10 +67,10 @@
   },
   "2025-08-30": {
     "date": "2025-08-30",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 168,
+    "stock_count": 151,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-08/2025-08-30.json",
       "txt": "tdx_value/2025-08/2025-08-30.txt"
@@ -78,10 +78,10 @@
   },
   "2025-08-29": {
     "date": "2025-08-29",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 265,
+    "stock_count": 193,
+    "institution_count": 37,
     "files": {
       "json": "tdx_value/2025-08/2025-08-29.json",
       "txt": "tdx_value/2025-08/2025-08-29.txt"
@@ -89,10 +89,10 @@
   },
   "2025-08-28": {
     "date": "2025-08-28",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 1,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 419,
+    "stock_count": 329,
+    "institution_count": 43,
     "files": {
       "json": "tdx_value/2025-08/2025-08-28.json",
       "txt": "tdx_value/2025-08/2025-08-28.txt"
@@ -111,10 +111,10 @@
   },
   "2025-08-26": {
     "date": "2025-08-26",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 294,
+    "stock_count": 222,
+    "institution_count": 42,
     "files": {
       "json": "tdx_value/2025-08/2025-08-26.json",
       "txt": "tdx_value/2025-08/2025-08-26.txt"
@@ -155,10 +155,10 @@
   },
   "2025-08-22": {
     "date": "2025-08-22",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 114,
+    "stock_count": 98,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-08/2025-08-22.json",
       "txt": "tdx_value/2025-08/2025-08-22.txt"
@@ -3565,10 +3565,10 @@
   },
   "2025-09-08": {
     "date": "2025-09-08",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 149,
-    "stock_count": 138,
-    "institution_count": 39,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 82,
+    "stock_count": 80,
+    "institution_count": 28,
     "files": {
       "json": "tdx_value/2025-09/2025-09-08.json",
       "txt": "tdx_value/2025-09/2025-09-08.txt"
@@ -3576,10 +3576,10 @@
   },
   "2025-09-07": {
     "date": "2025-09-07",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 91,
-    "stock_count": 87,
-    "institution_count": 23,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 32,
+    "stock_count": 32,
+    "institution_count": 14,
     "files": {
       "json": "tdx_value/2025-09/2025-09-07.json",
       "txt": "tdx_value/2025-09/2025-09-07.txt"
@@ -3587,26 +3587,26 @@
   },
   "2025-09-06": {
     "date": "2025-09-06",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 49,
-    "stock_count": 49,
-    "institution_count": 21,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 20,
+    "stock_count": 20,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-09/2025-09-06.json",
       "txt": "tdx_value/2025-09/2025-09-06.txt"
     }
   },
   "_summary": {
-    "total_reports": 25574,
+    "total_reports": 27420,
     "total_dates": 335,
-    "last_update": "2025-09-16 09:20:12"
+    "last_update": "2025-09-16 19:19:36"
   },
   "2025-09-09": {
     "date": "2025-09-09",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 91,
-    "stock_count": 88,
-    "institution_count": 32,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 96,
+    "stock_count": 94,
+    "institution_count": 26,
     "files": {
       "json": "tdx_value/2025-09/2025-09-09.json",
       "txt": "tdx_value/2025-09/2025-09-09.txt"
@@ -3614,10 +3614,10 @@
   },
   "2025-09-10": {
     "date": "2025-09-10",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 78,
-    "stock_count": 78,
-    "institution_count": 30,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 17,
+    "stock_count": 16,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-09/2025-09-10.json",
       "txt": "tdx_value/2025-09/2025-09-10.txt"
@@ -3625,10 +3625,10 @@
   },
   "2025-09-11": {
     "date": "2025-09-11",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 55,
-    "stock_count": 52,
-    "institution_count": 22,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 60,
+    "stock_count": 59,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-09/2025-09-11.json",
       "txt": "tdx_value/2025-09/2025-09-11.txt"
@@ -3636,10 +3636,10 @@
   },
   "2025-09-12": {
     "date": "2025-09-12",
-    "update_time": "2025-09-16 09:20:12",
-    "report_count": 80,
-    "stock_count": 75,
-    "institution_count": 32,
+    "update_time": "2025-09-16 19:19:36",
+    "report_count": 16,
+    "stock_count": 16,
+    "institution_count": 7,
     "files": {
       "json": "tdx_value/2025-09/2025-09-12.json",
       "txt": "tdx_value/2025-09/2025-09-12.txt"
