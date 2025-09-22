@@ -1,10 +1,10 @@
 {
   "2025-09-05": {
     "date": "2025-09-05",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 183,
-    "stock_count": 174,
-    "institution_count": 49,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 68,
+    "stock_count": 66,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-09/2025-09-05.json",
       "txt": "tdx_value/2025-09/2025-09-05.txt"
@@ -12,10 +12,10 @@
   },
   "2025-09-04": {
     "date": "2025-09-04",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 67,
-    "stock_count": 65,
-    "institution_count": 20,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 186,
+    "stock_count": 173,
+    "institution_count": 46,
     "files": {
       "json": "tdx_value/2025-09/2025-09-04.json",
       "txt": "tdx_value/2025-09/2025-09-04.txt"
@@ -23,10 +23,10 @@
   },
   "2025-09-03": {
     "date": "2025-09-03",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 114,
-    "stock_count": 110,
-    "institution_count": 35,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 270,
+    "stock_count": 241,
+    "institution_count": 48,
     "files": {
       "json": "tdx_value/2025-09/2025-09-03.json",
       "txt": "tdx_value/2025-09/2025-09-03.txt"
@@ -34,9 +34,9 @@
   },
   "2025-09-02": {
     "date": "2025-09-02",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 273,
-    "stock_count": 233,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 259,
+    "stock_count": 230,
     "institution_count": 46,
     "files": {
       "json": "tdx_value/2025-09/2025-09-02.json",
@@ -45,10 +45,10 @@
   },
   "2025-09-01": {
     "date": "2025-09-01",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 238,
-    "stock_count": 208,
-    "institution_count": 38,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 393,
+    "stock_count": 319,
+    "institution_count": 45,
     "files": {
       "json": "tdx_value/2025-09/2025-09-01.json",
       "txt": "tdx_value/2025-09/2025-09-01.txt"
@@ -56,10 +56,10 @@
   },
   "2025-08-31": {
     "date": "2025-08-31",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 90,
-    "stock_count": 85,
-    "institution_count": 22,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 279,
+    "stock_count": 236,
+    "institution_count": 34,
     "files": {
       "json": "tdx_value/2025-08/2025-08-31.json",
       "txt": "tdx_value/2025-08/2025-08-31.txt"
@@ -67,10 +67,10 @@
   },
   "2025-08-30": {
     "date": "2025-08-30",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 17,
-    "stock_count": 17,
-    "institution_count": 7,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 188,
+    "stock_count": 166,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-08/2025-08-30.json",
       "txt": "tdx_value/2025-08/2025-08-30.txt"
@@ -78,10 +78,10 @@
   },
   "2025-08-29": {
     "date": "2025-08-29",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 15,
-    "stock_count": 15,
-    "institution_count": 6,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 275,
+    "stock_count": 203,
+    "institution_count": 37,
     "files": {
       "json": "tdx_value/2025-08/2025-08-29.json",
       "txt": "tdx_value/2025-08/2025-08-29.txt"
@@ -89,10 +89,10 @@
   },
   "2025-08-28": {
     "date": "2025-08-28",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 7,
-    "stock_count": 7,
-    "institution_count": 4,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 422,
+    "stock_count": 330,
+    "institution_count": 43,
     "files": {
       "json": "tdx_value/2025-08/2025-08-28.json",
       "txt": "tdx_value/2025-08/2025-08-28.txt"
@@ -100,10 +100,10 @@
   },
   "2025-08-27": {
     "date": "2025-08-27",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 5,
-    "stock_count": 5,
-    "institution_count": 2,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 310,
+    "stock_count": 258,
+    "institution_count": 39,
     "files": {
       "json": "tdx_value/2025-08/2025-08-27.json",
       "txt": "tdx_value/2025-08/2025-08-27.txt"
@@ -111,10 +111,10 @@
   },
   "2025-08-26": {
     "date": "2025-08-26",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 2,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 294,
+    "stock_count": 222,
+    "institution_count": 42,
     "files": {
       "json": "tdx_value/2025-08/2025-08-26.json",
       "txt": "tdx_value/2025-08/2025-08-26.txt"
@@ -155,10 +155,10 @@
   },
   "2025-08-22": {
     "date": "2025-08-22",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 114,
+    "stock_count": 98,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-08/2025-08-22.json",
       "txt": "tdx_value/2025-08/2025-08-22.txt"
@@ -342,10 +342,10 @@
   },
   "2025-08-05": {
     "date": "2025-08-05",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2025-09-22 19:21:21",
+    "report_count": 63,
+    "stock_count": 49,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-08/2025-08-05.json",
       "txt": "tdx_value/2025-08/2025-08-05.txt"
@@ -3565,10 +3565,10 @@
   },
   "2025-09-08": {
     "date": "2025-09-08",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 154,
-    "stock_count": 143,
-    "institution_count": 39,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 82,
+    "stock_count": 80,
+    "institution_count": 28,
     "files": {
       "json": "tdx_value/2025-09/2025-09-08.json",
       "txt": "tdx_value/2025-09/2025-09-08.txt"
@@ -3576,10 +3576,10 @@
   },
   "2025-09-07": {
     "date": "2025-09-07",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 91,
-    "stock_count": 87,
-    "institution_count": 23,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 32,
+    "stock_count": 32,
+    "institution_count": 14,
     "files": {
       "json": "tdx_value/2025-09/2025-09-07.json",
       "txt": "tdx_value/2025-09/2025-09-07.txt"
@@ -3587,26 +3587,26 @@
   },
   "2025-09-06": {
     "date": "2025-09-06",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 50,
-    "stock_count": 50,
-    "institution_count": 22,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 20,
+    "stock_count": 20,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-09/2025-09-06.json",
       "txt": "tdx_value/2025-09/2025-09-06.txt"
     }
   },
   "_summary": {
-    "total_reports": 26055,
-    "total_dates": 339,
-    "last_update": "2025-09-19 19:20:49"
+    "total_reports": 27903,
+    "total_dates": 342,
+    "last_update": "2025-09-22 19:21:21"
   },
   "2025-09-09": {
     "date": "2025-09-09",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 97,
-    "stock_count": 92,
-    "institution_count": 32,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 96,
+    "stock_count": 94,
+    "institution_count": 26,
     "files": {
       "json": "tdx_value/2025-09/2025-09-09.json",
       "txt": "tdx_value/2025-09/2025-09-09.txt"
@@ -3614,10 +3614,10 @@
   },
   "2025-09-10": {
     "date": "2025-09-10",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 86,
-    "stock_count": 86,
-    "institution_count": 32,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 19,
+    "stock_count": 18,
+    "institution_count": 13,
     "files": {
       "json": "tdx_value/2025-09/2025-09-10.json",
       "txt": "tdx_value/2025-09/2025-09-10.txt"
@@ -3625,10 +3625,10 @@
   },
   "2025-09-11": {
     "date": "2025-09-11",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 57,
-    "stock_count": 54,
-    "institution_count": 22,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 60,
+    "stock_count": 59,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-09/2025-09-11.json",
       "txt": "tdx_value/2025-09/2025-09-11.txt"
@@ -3636,10 +3636,10 @@
   },
   "2025-09-12": {
     "date": "2025-09-12",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 94,
-    "stock_count": 88,
-    "institution_count": 35,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 17,
+    "stock_count": 17,
+    "institution_count": 8,
     "files": {
       "json": "tdx_value/2025-09/2025-09-12.json",
       "txt": "tdx_value/2025-09/2025-09-12.txt"
@@ -3647,10 +3647,10 @@
   },
   "2025-09-15": {
     "date": "2025-09-15",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 122,
-    "stock_count": 114,
-    "institution_count": 33,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 7,
+    "stock_count": 7,
+    "institution_count": 3,
     "files": {
       "json": "tdx_value/2025-09/2025-09-15.json",
       "txt": "tdx_value/2025-09/2025-09-15.txt"
@@ -3658,10 +3658,10 @@
   },
   "2025-09-14": {
     "date": "2025-09-14",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 23,
-    "stock_count": 23,
-    "institution_count": 14,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 44,
+    "stock_count": 42,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-09/2025-09-14.json",
       "txt": "tdx_value/2025-09/2025-09-14.txt"
@@ -3669,10 +3669,10 @@
   },
   "2025-09-13": {
     "date": "2025-09-13",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 10,
-    "stock_count": 10,
-    "institution_count": 9,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 39,
+    "stock_count": 39,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-09/2025-09-13.json",
       "txt": "tdx_value/2025-09/2025-09-13.txt"
@@ -3680,10 +3680,10 @@
   },
   "2025-09-17": {
     "date": "2025-09-17",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 56,
-    "stock_count": 54,
-    "institution_count": 23,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 16,
+    "stock_count": 16,
+    "institution_count": 9,
     "files": {
       "json": "tdx_value/2025-09/2025-09-17.json",
       "txt": "tdx_value/2025-09/2025-09-17.txt"
@@ -3691,10 +3691,10 @@
   },
   "2025-09-16": {
     "date": "2025-09-16",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 9,
-    "stock_count": 9,
-    "institution_count": 7,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 98,
+    "stock_count": 97,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-09/2025-09-16.json",
       "txt": "tdx_value/2025-09/2025-09-16.txt"
@@ -3702,10 +3702,10 @@
   },
   "2025-09-19": {
     "date": "2025-09-19",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 13,
-    "stock_count": 13,
-    "institution_count": 7,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 53,
+    "stock_count": 53,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-09/2025-09-19.json",
       "txt": "tdx_value/2025-09/2025-09-19.txt"
@@ -3713,13 +3713,46 @@
   },
   "2025-09-18": {
     "date": "2025-09-18",
-    "update_time": "2025-09-19 19:20:49",
-    "report_count": 53,
-    "stock_count": 52,
-    "institution_count": 26,
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 3,
+    "stock_count": 3,
+    "institution_count": 2,
     "files": {
       "json": "tdx_value/2025-09/2025-09-18.json",
       "txt": "tdx_value/2025-09/2025-09-18.txt"
+    }
+  },
+  "2025-09-22": {
+    "date": "2025-09-22",
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 11,
+    "stock_count": 11,
+    "institution_count": 10,
+    "files": {
+      "json": "tdx_value/2025-09/2025-09-22.json",
+      "txt": "tdx_value/2025-09/2025-09-22.txt"
+    }
+  },
+  "2025-09-21": {
+    "date": "2025-09-21",
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 37,
+    "stock_count": 37,
+    "institution_count": 16,
+    "files": {
+      "json": "tdx_value/2025-09/2025-09-21.json",
+      "txt": "tdx_value/2025-09/2025-09-21.txt"
+    }
+  },
+  "2025-09-20": {
+    "date": "2025-09-20",
+    "update_time": "2025-09-22 19:21:20",
+    "report_count": 23,
+    "stock_count": 23,
+    "institution_count": 12,
+    "files": {
+      "json": "tdx_value/2025-09/2025-09-20.json",
+      "txt": "tdx_value/2025-09/2025-09-20.txt"
     }
   }
 }
