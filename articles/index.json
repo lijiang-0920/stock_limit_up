@@ -3972,5 +3972,26 @@
         "image_count": 0
       }
     ]
+  },
+  "2025-09-26": {
+    "date": "2025-09-26",
+    "update_time": "2025-09-26 23:40:59",
+    "articles": [
+      {
+        "author": "优秀阿呆",
+        "title": "",
+        "publish_time": "15:00:53",
+        "date": "2025-09-26",
+        "url": "https://www.jiuyangongshe.com/a/4e5t4y3w1zk",
+        "content": "",
+        "images": [],
+        "files": {
+          "txt": "articles/韭研公社_优秀阿呆/2025-09-26/.txt",
+          "docx": null
+        },
+        "word_count": 0,
+        "image_count": 0
+      }
+    ]
   }
 }
