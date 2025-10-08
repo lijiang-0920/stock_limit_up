@@ -308,5 +308,15 @@
       "json": "analysis/2025-10-07.json",
       "txt": "analysis/2025-10-07.txt"
     }
+  },
+  "2025-10-08": {
+    "date": "2025-10-08",
+    "update_time": "2025-10-08 15:39:24",
+    "category_count": 0,
+    "total_stocks": 0,
+    "files": {
+      "json": "analysis/2025-10-08.json",
+      "txt": "analysis/2025-10-08.txt"
+    }
   }
 }
