@@ -405,5 +405,16 @@
       "json": "dragon_tiger/2025-10-28.json",
       "txt": "dragon_tiger/2025-10-28.txt"
     }
+  },
+  "2025-10-29": {
+    "date": "2025-10-29",
+    "update_time": "2025-10-29 18:19:42",
+    "total_count": 62,
+    "success_count": 62,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-10-29.json",
+      "txt": "dragon_tiger/2025-10-29.txt"
+    }
   }
 }
