@@ -528,5 +528,15 @@
       "json": "analysis/2025-11-06.json",
       "txt": "analysis/2025-11-06.txt"
     }
+  },
+  "2025-11-07": {
+    "date": "2025-11-07",
+    "update_time": "2025-11-07 15:40:08",
+    "category_count": 19,
+    "total_stocks": 79,
+    "files": {
+      "json": "analysis/2025-11-07.json",
+      "txt": "analysis/2025-11-07.txt"
+    }
   }
 }
