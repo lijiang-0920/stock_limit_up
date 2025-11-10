@@ -538,5 +538,15 @@
       "json": "analysis/2025-11-07.json",
       "txt": "analysis/2025-11-07.txt"
     }
+  },
+  "2025-11-10": {
+    "date": "2025-11-10",
+    "update_time": "2025-11-10 15:40:26",
+    "category_count": 15,
+    "total_stocks": 109,
+    "files": {
+      "json": "analysis/2025-11-10.json",
+      "txt": "analysis/2025-11-10.txt"
+    }
   }
 }
