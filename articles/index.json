@@ -4350,5 +4350,26 @@
         "image_count": 0
       }
     ]
+  },
+  "2025-11-10": {
+    "date": "2025-11-10",
+    "update_time": "2025-11-10 23:44:03",
+    "articles": [
+      {
+        "author": "优秀阿呆",
+        "title": "",
+        "publish_time": "19:00:15",
+        "date": "2025-11-10",
+        "url": "https://www.jiuyangongshe.com/a/1zw3pctt9gu",
+        "content": "",
+        "images": [],
+        "files": {
+          "txt": "articles/韭研公社_优秀阿呆/2025-11-10/.txt",
+          "docx": null
+        },
+        "word_count": 0,
+        "image_count": 0
+      }
+    ]
   }
 }
