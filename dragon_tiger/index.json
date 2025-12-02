@@ -669,5 +669,16 @@
       "json": "dragon_tiger/2025-12-01.json",
       "txt": "dragon_tiger/2025-12-01.txt"
     }
+  },
+  "2025-12-02": {
+    "date": "2025-12-02",
+    "update_time": "2025-12-02 18:20:46",
+    "total_count": 62,
+    "success_count": 62,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2025-12-02.json",
+      "txt": "dragon_tiger/2025-12-02.txt"
+    }
   }
 }
