@@ -818,5 +818,15 @@
       "json": "analysis/2025-12-17.json",
       "txt": "analysis/2025-12-17.txt"
     }
+  },
+  "2025-12-18": {
+    "date": "2025-12-18",
+    "update_time": "2025-12-18 15:43:01",
+    "category_count": 11,
+    "total_stocks": 88,
+    "files": {
+      "json": "analysis/2025-12-18.json",
+      "txt": "analysis/2025-12-18.txt"
+    }
   }
 }
