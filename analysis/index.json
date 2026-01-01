@@ -908,5 +908,15 @@
       "json": "analysis/2025-12-31.json",
       "txt": "analysis/2025-12-31.txt"
     }
+  },
+  "2026-01-01": {
+    "date": "2026-01-01",
+    "update_time": "2026-01-01 15:43:41",
+    "category_count": 0,
+    "total_stocks": 0,
+    "files": {
+      "json": "analysis/2026-01-01.json",
+      "txt": "analysis/2026-01-01.txt"
+    }
   }
 }
