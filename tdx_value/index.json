@@ -1,10 +1,10 @@
 {
   "2025-09-05": {
     "date": "2025-09-05",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 185,
-    "stock_count": 176,
-    "institution_count": 49,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 66,
+    "stock_count": 64,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-09/2025-09-05.json",
       "txt": "tdx_value/2025-09/2025-09-05.txt"
@@ -12,10 +12,10 @@
   },
   "2025-09-04": {
     "date": "2025-09-04",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 73,
-    "stock_count": 71,
-    "institution_count": 23,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 180,
+    "stock_count": 167,
+    "institution_count": 45,
     "files": {
       "json": "tdx_value/2025-09/2025-09-04.json",
       "txt": "tdx_value/2025-09/2025-09-04.txt"
@@ -23,10 +23,10 @@
   },
   "2025-09-03": {
     "date": "2025-09-03",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 125,
-    "stock_count": 121,
-    "institution_count": 36,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 259,
+    "stock_count": 230,
+    "institution_count": 48,
     "files": {
       "json": "tdx_value/2025-09/2025-09-03.json",
       "txt": "tdx_value/2025-09/2025-09-03.txt"
@@ -34,9 +34,9 @@
   },
   "2025-09-02": {
     "date": "2025-09-02",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 281,
-    "stock_count": 241,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 251,
+    "stock_count": 222,
     "institution_count": 46,
     "files": {
       "json": "tdx_value/2025-09/2025-09-02.json",
@@ -45,10 +45,10 @@
   },
   "2025-09-01": {
     "date": "2025-09-01",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 322,
-    "stock_count": 270,
-    "institution_count": 45,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 437,
+    "stock_count": 350,
+    "institution_count": 54,
     "files": {
       "json": "tdx_value/2025-09/2025-09-01.json",
       "txt": "tdx_value/2025-09/2025-09-01.txt"
@@ -56,10 +56,10 @@
   },
   "2025-08-31": {
     "date": "2025-08-31",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 259,
-    "stock_count": 229,
-    "institution_count": 32,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 466,
+    "stock_count": 370,
+    "institution_count": 40,
     "files": {
       "json": "tdx_value/2025-08/2025-08-31.json",
       "txt": "tdx_value/2025-08/2025-08-31.txt"
@@ -67,10 +67,10 @@
   },
   "2025-08-30": {
     "date": "2025-08-30",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 215,
-    "stock_count": 185,
-    "institution_count": 33,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 356,
+    "stock_count": 272,
+    "institution_count": 37,
     "files": {
       "json": "tdx_value/2025-08/2025-08-30.json",
       "txt": "tdx_value/2025-08/2025-08-30.txt"
@@ -78,10 +78,10 @@
   },
   "2025-08-29": {
     "date": "2025-08-29",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 497,
-    "stock_count": 388,
-    "institution_count": 51,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 495,
+    "stock_count": 336,
+    "institution_count": 50,
     "files": {
       "json": "tdx_value/2025-08/2025-08-29.json",
       "txt": "tdx_value/2025-08/2025-08-29.txt"
@@ -89,10 +89,10 @@
   },
   "2025-08-28": {
     "date": "2025-08-28",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 406,
-    "stock_count": 300,
-    "institution_count": 50,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 653,
+    "stock_count": 448,
+    "institution_count": 51,
     "files": {
       "json": "tdx_value/2025-08/2025-08-28.json",
       "txt": "tdx_value/2025-08/2025-08-28.txt"
@@ -100,10 +100,10 @@
   },
   "2025-08-27": {
     "date": "2025-08-27",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 81,
-    "stock_count": 77,
-    "institution_count": 19,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 346,
+    "stock_count": 276,
+    "institution_count": 41,
     "files": {
       "json": "tdx_value/2025-08/2025-08-27.json",
       "txt": "tdx_value/2025-08/2025-08-27.txt"
@@ -111,10 +111,10 @@
   },
   "2025-08-26": {
     "date": "2025-08-26",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 217,
-    "stock_count": 166,
-    "institution_count": 44,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 474,
+    "stock_count": 314,
+    "institution_count": 52,
     "files": {
       "json": "tdx_value/2025-08/2025-08-26.json",
       "txt": "tdx_value/2025-08/2025-08-26.txt"
@@ -122,10 +122,10 @@
   },
   "2025-08-25": {
     "date": "2025-08-25",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 110,
-    "stock_count": 100,
-    "institution_count": 33,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 415,
+    "stock_count": 299,
+    "institution_count": 53,
     "files": {
       "json": "tdx_value/2025-08/2025-08-25.json",
       "txt": "tdx_value/2025-08/2025-08-25.txt"
@@ -133,10 +133,10 @@
   },
   "2025-08-24": {
     "date": "2025-08-24",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 160,
-    "stock_count": 121,
-    "institution_count": 31,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 202,
+    "stock_count": 146,
+    "institution_count": 36,
     "files": {
       "json": "tdx_value/2025-08/2025-08-24.json",
       "txt": "tdx_value/2025-08/2025-08-24.txt"
@@ -144,10 +144,10 @@
   },
   "2025-08-23": {
     "date": "2025-08-23",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 125,
-    "stock_count": 107,
-    "institution_count": 33,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 136,
+    "stock_count": 102,
+    "institution_count": 30,
     "files": {
       "json": "tdx_value/2025-08/2025-08-23.json",
       "txt": "tdx_value/2025-08/2025-08-23.txt"
@@ -155,10 +155,10 @@
   },
   "2025-08-22": {
     "date": "2025-08-22",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 138,
-    "stock_count": 117,
-    "institution_count": 39,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 301,
+    "stock_count": 202,
+    "institution_count": 49,
     "files": {
       "json": "tdx_value/2025-08/2025-08-22.json",
       "txt": "tdx_value/2025-08/2025-08-22.txt"
@@ -166,10 +166,10 @@
   },
   "2025-08-21": {
     "date": "2025-08-21",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 41,
-    "stock_count": 37,
-    "institution_count": 14,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 308,
+    "stock_count": 200,
+    "institution_count": 51,
     "files": {
       "json": "tdx_value/2025-08/2025-08-21.json",
       "txt": "tdx_value/2025-08/2025-08-21.txt"
@@ -177,10 +177,10 @@
   },
   "2025-08-20": {
     "date": "2025-08-20",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 14,
-    "stock_count": 13,
-    "institution_count": 9,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 326,
+    "stock_count": 174,
+    "institution_count": 52,
     "files": {
       "json": "tdx_value/2025-08/2025-08-20.json",
       "txt": "tdx_value/2025-08/2025-08-20.txt"
@@ -188,10 +188,10 @@
   },
   "2025-08-19": {
     "date": "2025-08-19",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 11,
-    "stock_count": 8,
-    "institution_count": 7,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 257,
+    "stock_count": 146,
+    "institution_count": 49,
     "files": {
       "json": "tdx_value/2025-08/2025-08-19.json",
       "txt": "tdx_value/2025-08/2025-08-19.txt"
@@ -199,10 +199,10 @@
   },
   "2025-08-18": {
     "date": "2025-08-18",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 7,
-    "stock_count": 5,
-    "institution_count": 7,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 200,
+    "stock_count": 134,
+    "institution_count": 44,
     "files": {
       "json": "tdx_value/2025-08/2025-08-18.json",
       "txt": "tdx_value/2025-08/2025-08-18.txt"
@@ -210,10 +210,10 @@
   },
   "2025-08-17": {
     "date": "2025-08-17",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 114,
+    "stock_count": 80,
+    "institution_count": 32,
     "files": {
       "json": "tdx_value/2025-08/2025-08-17.json",
       "txt": "tdx_value/2025-08/2025-08-17.txt"
@@ -232,10 +232,10 @@
   },
   "2025-08-15": {
     "date": "2025-08-15",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 7,
-    "stock_count": 6,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 139,
+    "stock_count": 93,
+    "institution_count": 39,
     "files": {
       "json": "tdx_value/2025-08/2025-08-15.json",
       "txt": "tdx_value/2025-08/2025-08-15.txt"
@@ -243,10 +243,10 @@
   },
   "2025-08-14": {
     "date": "2025-08-14",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 107,
+    "stock_count": 80,
+    "institution_count": 40,
     "files": {
       "json": "tdx_value/2025-08/2025-08-14.json",
       "txt": "tdx_value/2025-08/2025-08-14.txt"
@@ -254,10 +254,10 @@
   },
   "2025-08-13": {
     "date": "2025-08-13",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 9,
-    "stock_count": 5,
-    "institution_count": 8,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 148,
+    "stock_count": 84,
+    "institution_count": 45,
     "files": {
       "json": "tdx_value/2025-08/2025-08-13.json",
       "txt": "tdx_value/2025-08/2025-08-13.txt"
@@ -265,10 +265,10 @@
   },
   "2025-08-12": {
     "date": "2025-08-12",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 2,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 126,
+    "stock_count": 75,
+    "institution_count": 40,
     "files": {
       "json": "tdx_value/2025-08/2025-08-12.json",
       "txt": "tdx_value/2025-08/2025-08-12.txt"
@@ -276,10 +276,10 @@
   },
   "2025-08-11": {
     "date": "2025-08-11",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 108,
+    "stock_count": 80,
+    "institution_count": 38,
     "files": {
       "json": "tdx_value/2025-08/2025-08-11.json",
       "txt": "tdx_value/2025-08/2025-08-11.txt"
@@ -309,10 +309,10 @@
   },
   "2025-08-08": {
     "date": "2025-08-08",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 5,
-    "stock_count": 4,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 89,
+    "stock_count": 57,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-08/2025-08-08.json",
       "txt": "tdx_value/2025-08/2025-08-08.txt"
@@ -320,10 +320,10 @@
   },
   "2025-08-07": {
     "date": "2025-08-07",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 68,
+    "stock_count": 53,
+    "institution_count": 34,
     "files": {
       "json": "tdx_value/2025-08/2025-08-07.json",
       "txt": "tdx_value/2025-08/2025-08-07.txt"
@@ -331,10 +331,10 @@
   },
   "2025-08-06": {
     "date": "2025-08-06",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 64,
+    "stock_count": 39,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-08/2025-08-06.json",
       "txt": "tdx_value/2025-08/2025-08-06.txt"
@@ -342,10 +342,10 @@
   },
   "2025-08-05": {
     "date": "2025-08-05",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 63,
+    "stock_count": 49,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-08/2025-08-05.json",
       "txt": "tdx_value/2025-08/2025-08-05.txt"
@@ -353,10 +353,10 @@
   },
   "2025-08-04": {
     "date": "2025-08-04",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 2,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 60,
+    "stock_count": 43,
+    "institution_count": 32,
     "files": {
       "json": "tdx_value/2025-08/2025-08-04.json",
       "txt": "tdx_value/2025-08/2025-08-04.txt"
@@ -375,10 +375,10 @@
   },
   "2025-08-02": {
     "date": "2025-08-02",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 20,
+    "stock_count": 17,
+    "institution_count": 13,
     "files": {
       "json": "tdx_value/2025-08/2025-08-02.json",
       "txt": "tdx_value/2025-08/2025-08-02.txt"
@@ -386,10 +386,10 @@
   },
   "2025-08-01": {
     "date": "2025-08-01",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 73,
+    "stock_count": 47,
+    "institution_count": 32,
     "files": {
       "json": "tdx_value/2025-08/2025-08-01.json",
       "txt": "tdx_value/2025-08/2025-08-01.txt"
@@ -408,10 +408,10 @@
   },
   "2025-07-30": {
     "date": "2025-07-30",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 67,
+    "stock_count": 45,
+    "institution_count": 35,
     "files": {
       "json": "tdx_value/2025-07/2025-07-30.json",
       "txt": "tdx_value/2025-07/2025-07-30.txt"
@@ -419,10 +419,10 @@
   },
   "2025-07-29": {
     "date": "2025-07-29",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 2,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 63,
+    "stock_count": 41,
+    "institution_count": 35,
     "files": {
       "json": "tdx_value/2025-07/2025-07-29.json",
       "txt": "tdx_value/2025-07/2025-07-29.txt"
@@ -430,10 +430,10 @@
   },
   "2025-07-28": {
     "date": "2025-07-28",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 56,
+    "stock_count": 43,
+    "institution_count": 30,
     "files": {
       "json": "tdx_value/2025-07/2025-07-28.json",
       "txt": "tdx_value/2025-07/2025-07-28.txt"
@@ -441,10 +441,10 @@
   },
   "2025-07-27": {
     "date": "2025-07-27",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 36,
+    "stock_count": 30,
+    "institution_count": 22,
     "files": {
       "json": "tdx_value/2025-07/2025-07-27.json",
       "txt": "tdx_value/2025-07/2025-07-27.txt"
@@ -452,10 +452,10 @@
   },
   "2025-07-26": {
     "date": "2025-07-26",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 1,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 22,
+    "stock_count": 18,
+    "institution_count": 14,
     "files": {
       "json": "tdx_value/2025-07/2025-07-26.json",
       "txt": "tdx_value/2025-07/2025-07-26.txt"
@@ -463,10 +463,10 @@
   },
   "2025-07-25": {
     "date": "2025-07-25",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 44,
+    "stock_count": 38,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-07/2025-07-25.json",
       "txt": "tdx_value/2025-07/2025-07-25.txt"
@@ -474,10 +474,10 @@
   },
   "2025-07-24": {
     "date": "2025-07-24",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 5,
-    "stock_count": 3,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 38,
+    "stock_count": 32,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-07/2025-07-24.json",
       "txt": "tdx_value/2025-07/2025-07-24.txt"
@@ -485,10 +485,10 @@
   },
   "2025-07-23": {
     "date": "2025-07-23",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 49,
+    "stock_count": 43,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-07/2025-07-23.json",
       "txt": "tdx_value/2025-07/2025-07-23.txt"
@@ -496,10 +496,10 @@
   },
   "2025-07-22": {
     "date": "2025-07-22",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 56,
+    "stock_count": 50,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-07/2025-07-22.json",
       "txt": "tdx_value/2025-07/2025-07-22.txt"
@@ -507,10 +507,10 @@
   },
   "2025-07-21": {
     "date": "2025-07-21",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 50,
+    "stock_count": 47,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-07/2025-07-21.json",
       "txt": "tdx_value/2025-07/2025-07-21.txt"
@@ -518,10 +518,10 @@
   },
   "2025-07-20": {
     "date": "2025-07-20",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 29,
+    "stock_count": 27,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-07/2025-07-20.json",
       "txt": "tdx_value/2025-07/2025-07-20.txt"
@@ -529,10 +529,10 @@
   },
   "2025-07-19": {
     "date": "2025-07-19",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 17,
+    "stock_count": 15,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-07/2025-07-19.json",
       "txt": "tdx_value/2025-07/2025-07-19.txt"
@@ -551,10 +551,10 @@
   },
   "2025-07-17": {
     "date": "2025-07-17",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 59,
+    "stock_count": 55,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-07/2025-07-17.json",
       "txt": "tdx_value/2025-07/2025-07-17.txt"
@@ -573,10 +573,10 @@
   },
   "2025-07-15": {
     "date": "2025-07-15",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 99,
+    "stock_count": 76,
+    "institution_count": 36,
     "files": {
       "json": "tdx_value/2025-07/2025-07-15.json",
       "txt": "tdx_value/2025-07/2025-07-15.txt"
@@ -584,10 +584,10 @@
   },
   "2025-07-14": {
     "date": "2025-07-14",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 91,
+    "stock_count": 72,
+    "institution_count": 32,
     "files": {
       "json": "tdx_value/2025-07/2025-07-14.json",
       "txt": "tdx_value/2025-07/2025-07-14.txt"
@@ -628,10 +628,10 @@
   },
   "2025-07-10": {
     "date": "2025-07-10",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 52,
+    "stock_count": 44,
+    "institution_count": 34,
     "files": {
       "json": "tdx_value/2025-07/2025-07-10.json",
       "txt": "tdx_value/2025-07/2025-07-10.txt"
@@ -639,10 +639,10 @@
   },
   "2025-07-09": {
     "date": "2025-07-09",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 52,
+    "stock_count": 39,
+    "institution_count": 32,
     "files": {
       "json": "tdx_value/2025-07/2025-07-09.json",
       "txt": "tdx_value/2025-07/2025-07-09.txt"
@@ -650,10 +650,10 @@
   },
   "2025-07-08": {
     "date": "2025-07-08",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 49,
+    "stock_count": 33,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-07/2025-07-08.json",
       "txt": "tdx_value/2025-07/2025-07-08.txt"
@@ -661,10 +661,10 @@
   },
   "2025-07-07": {
     "date": "2025-07-07",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 41,
+    "stock_count": 35,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-07/2025-07-07.json",
       "txt": "tdx_value/2025-07/2025-07-07.txt"
@@ -694,10 +694,10 @@
   },
   "2025-07-04": {
     "date": "2025-07-04",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 38,
+    "stock_count": 36,
+    "institution_count": 21,
     "files": {
       "json": "tdx_value/2025-07/2025-07-04.json",
       "txt": "tdx_value/2025-07/2025-07-04.txt"
@@ -705,10 +705,10 @@
   },
   "2025-07-03": {
     "date": "2025-07-03",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 45,
+    "stock_count": 45,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-07/2025-07-03.json",
       "txt": "tdx_value/2025-07/2025-07-03.txt"
@@ -716,10 +716,10 @@
   },
   "2025-07-02": {
     "date": "2025-07-02",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 49,
+    "stock_count": 45,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-07/2025-07-02.json",
       "txt": "tdx_value/2025-07/2025-07-02.txt"
@@ -727,10 +727,10 @@
   },
   "2025-07-01": {
     "date": "2025-07-01",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 45,
+    "stock_count": 42,
+    "institution_count": 21,
     "files": {
       "json": "tdx_value/2025-07/2025-07-01.json",
       "txt": "tdx_value/2025-07/2025-07-01.txt"
@@ -749,10 +749,10 @@
   },
   "2025-06-29": {
     "date": "2025-06-29",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 28,
+    "stock_count": 27,
+    "institution_count": 14,
     "files": {
       "json": "tdx_value/2025-06/2025-06-29.json",
       "txt": "tdx_value/2025-06/2025-06-29.txt"
@@ -760,10 +760,10 @@
   },
   "2025-06-28": {
     "date": "2025-06-28",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 14,
+    "stock_count": 14,
+    "institution_count": 8,
     "files": {
       "json": "tdx_value/2025-06/2025-06-28.json",
       "txt": "tdx_value/2025-06/2025-06-28.txt"
@@ -771,10 +771,10 @@
   },
   "2025-06-27": {
     "date": "2025-06-27",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 45,
+    "stock_count": 43,
+    "institution_count": 23,
     "files": {
       "json": "tdx_value/2025-06/2025-06-27.json",
       "txt": "tdx_value/2025-06/2025-06-27.txt"
@@ -782,10 +782,10 @@
   },
   "2025-06-26": {
     "date": "2025-06-26",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 43,
+    "stock_count": 40,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-06/2025-06-26.json",
       "txt": "tdx_value/2025-06/2025-06-26.txt"
@@ -793,10 +793,10 @@
   },
   "2025-06-25": {
     "date": "2025-06-25",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 49,
+    "stock_count": 47,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-06/2025-06-25.json",
       "txt": "tdx_value/2025-06/2025-06-25.txt"
@@ -815,10 +815,10 @@
   },
   "2025-06-23": {
     "date": "2025-06-23",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 32,
+    "stock_count": 30,
+    "institution_count": 22,
     "files": {
       "json": "tdx_value/2025-06/2025-06-23.json",
       "txt": "tdx_value/2025-06/2025-06-23.txt"
@@ -826,10 +826,10 @@
   },
   "2025-06-22": {
     "date": "2025-06-22",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 25,
+    "stock_count": 24,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-06/2025-06-22.json",
       "txt": "tdx_value/2025-06/2025-06-22.txt"
@@ -837,10 +837,10 @@
   },
   "2025-06-21": {
     "date": "2025-06-21",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 13,
+    "stock_count": 13,
+    "institution_count": 8,
     "files": {
       "json": "tdx_value/2025-06/2025-06-21.json",
       "txt": "tdx_value/2025-06/2025-06-21.txt"
@@ -848,10 +848,10 @@
   },
   "2025-06-20": {
     "date": "2025-06-20",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 1,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 34,
+    "stock_count": 32,
+    "institution_count": 28,
     "files": {
       "json": "tdx_value/2025-06/2025-06-20.json",
       "txt": "tdx_value/2025-06/2025-06-20.txt"
@@ -859,10 +859,10 @@
   },
   "2025-06-19": {
     "date": "2025-06-19",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 41,
+    "stock_count": 39,
+    "institution_count": 22,
     "files": {
       "json": "tdx_value/2025-06/2025-06-19.json",
       "txt": "tdx_value/2025-06/2025-06-19.txt"
@@ -881,10 +881,10 @@
   },
   "2025-06-17": {
     "date": "2025-06-17",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 28,
+    "stock_count": 28,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2025-06/2025-06-17.json",
       "txt": "tdx_value/2025-06/2025-06-17.txt"
@@ -892,10 +892,10 @@
   },
   "2025-06-16": {
     "date": "2025-06-16",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 5,
-    "stock_count": 5,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 39,
+    "stock_count": 37,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-06/2025-06-16.json",
       "txt": "tdx_value/2025-06/2025-06-16.txt"
@@ -903,10 +903,10 @@
   },
   "2025-06-15": {
     "date": "2025-06-15",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 35,
+    "stock_count": 32,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-06/2025-06-15.json",
       "txt": "tdx_value/2025-06/2025-06-15.txt"
@@ -914,10 +914,10 @@
   },
   "2025-06-14": {
     "date": "2025-06-14",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 9,
+    "stock_count": 9,
+    "institution_count": 7,
     "files": {
       "json": "tdx_value/2025-06/2025-06-14.json",
       "txt": "tdx_value/2025-06/2025-06-14.txt"
@@ -936,10 +936,10 @@
   },
   "2025-06-12": {
     "date": "2025-06-12",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 40,
+    "stock_count": 39,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-06/2025-06-12.json",
       "txt": "tdx_value/2025-06/2025-06-12.txt"
@@ -947,10 +947,10 @@
   },
   "2025-06-11": {
     "date": "2025-06-11",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 44,
+    "stock_count": 42,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-06/2025-06-11.json",
       "txt": "tdx_value/2025-06/2025-06-11.txt"
@@ -958,10 +958,10 @@
   },
   "2025-06-10": {
     "date": "2025-06-10",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 39,
+    "stock_count": 34,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-06/2025-06-10.json",
       "txt": "tdx_value/2025-06/2025-06-10.txt"
@@ -969,10 +969,10 @@
   },
   "2025-06-09": {
     "date": "2025-06-09",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 36,
+    "stock_count": 36,
+    "institution_count": 22,
     "files": {
       "json": "tdx_value/2025-06/2025-06-09.json",
       "txt": "tdx_value/2025-06/2025-06-09.txt"
@@ -980,10 +980,10 @@
   },
   "2025-06-08": {
     "date": "2025-06-08",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 28,
+    "stock_count": 26,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-06/2025-06-08.json",
       "txt": "tdx_value/2025-06/2025-06-08.txt"
@@ -991,10 +991,10 @@
   },
   "2025-06-07": {
     "date": "2025-06-07",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 17,
+    "stock_count": 17,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-06/2025-06-07.json",
       "txt": "tdx_value/2025-06/2025-06-07.txt"
@@ -1013,10 +1013,10 @@
   },
   "2025-06-05": {
     "date": "2025-06-05",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 50,
+    "stock_count": 47,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-06/2025-06-05.json",
       "txt": "tdx_value/2025-06/2025-06-05.txt"
@@ -1024,10 +1024,10 @@
   },
   "2025-06-04": {
     "date": "2025-06-04",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 29,
+    "stock_count": 29,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2025-06/2025-06-04.json",
       "txt": "tdx_value/2025-06/2025-06-04.txt"
@@ -1035,10 +1035,10 @@
   },
   "2025-06-03": {
     "date": "2025-06-03",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 53,
+    "stock_count": 52,
+    "institution_count": 30,
     "files": {
       "json": "tdx_value/2025-06/2025-06-03.json",
       "txt": "tdx_value/2025-06/2025-06-03.txt"
@@ -1079,10 +1079,10 @@
   },
   "2025-05-30": {
     "date": "2025-05-30",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 49,
+    "stock_count": 49,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-05/2025-05-30.json",
       "txt": "tdx_value/2025-05/2025-05-30.txt"
@@ -1090,10 +1090,10 @@
   },
   "2025-05-29": {
     "date": "2025-05-29",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 50,
+    "stock_count": 49,
+    "institution_count": 30,
     "files": {
       "json": "tdx_value/2025-05/2025-05-29.json",
       "txt": "tdx_value/2025-05/2025-05-29.txt"
@@ -1112,10 +1112,10 @@
   },
   "2025-05-27": {
     "date": "2025-05-27",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 53,
+    "stock_count": 53,
+    "institution_count": 26,
     "files": {
       "json": "tdx_value/2025-05/2025-05-27.json",
       "txt": "tdx_value/2025-05/2025-05-27.txt"
@@ -1123,10 +1123,10 @@
   },
   "2025-05-26": {
     "date": "2025-05-26",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 68,
+    "stock_count": 65,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-05/2025-05-26.json",
       "txt": "tdx_value/2025-05/2025-05-26.txt"
@@ -1134,10 +1134,10 @@
   },
   "2025-05-25": {
     "date": "2025-05-25",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 47,
+    "stock_count": 44,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2025-05/2025-05-25.json",
       "txt": "tdx_value/2025-05/2025-05-25.txt"
@@ -1156,10 +1156,10 @@
   },
   "2025-05-23": {
     "date": "2025-05-23",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 58,
+    "stock_count": 56,
+    "institution_count": 28,
     "files": {
       "json": "tdx_value/2025-05/2025-05-23.json",
       "txt": "tdx_value/2025-05/2025-05-23.txt"
@@ -1167,10 +1167,10 @@
   },
   "2025-05-22": {
     "date": "2025-05-22",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 78,
+    "stock_count": 73,
+    "institution_count": 31,
     "files": {
       "json": "tdx_value/2025-05/2025-05-22.json",
       "txt": "tdx_value/2025-05/2025-05-22.txt"
@@ -1178,10 +1178,10 @@
   },
   "2025-05-21": {
     "date": "2025-05-21",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 6,
-    "stock_count": 5,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 76,
+    "stock_count": 75,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-05/2025-05-21.json",
       "txt": "tdx_value/2025-05/2025-05-21.txt"
@@ -1189,10 +1189,10 @@
   },
   "2025-05-20": {
     "date": "2025-05-20",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 100,
+    "stock_count": 98,
+    "institution_count": 28,
     "files": {
       "json": "tdx_value/2025-05/2025-05-20.json",
       "txt": "tdx_value/2025-05/2025-05-20.txt"
@@ -1200,10 +1200,10 @@
   },
   "2025-05-19": {
     "date": "2025-05-19",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 6,
-    "stock_count": 5,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 116,
+    "stock_count": 110,
+    "institution_count": 34,
     "files": {
       "json": "tdx_value/2025-05/2025-05-19.json",
       "txt": "tdx_value/2025-05/2025-05-19.txt"
@@ -1211,10 +1211,10 @@
   },
   "2025-05-18": {
     "date": "2025-05-18",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 58,
+    "stock_count": 58,
+    "institution_count": 21,
     "files": {
       "json": "tdx_value/2025-05/2025-05-18.json",
       "txt": "tdx_value/2025-05/2025-05-18.txt"
@@ -1222,10 +1222,10 @@
   },
   "2025-05-17": {
     "date": "2025-05-17",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 22,
+    "stock_count": 21,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-05/2025-05-17.json",
       "txt": "tdx_value/2025-05/2025-05-17.txt"
@@ -1233,10 +1233,10 @@
   },
   "2025-05-16": {
     "date": "2025-05-16",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 3,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 74,
+    "stock_count": 71,
+    "institution_count": 27,
     "files": {
       "json": "tdx_value/2025-05/2025-05-16.json",
       "txt": "tdx_value/2025-05/2025-05-16.txt"
@@ -1244,10 +1244,10 @@
   },
   "2025-05-15": {
     "date": "2025-05-15",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 110,
+    "stock_count": 106,
+    "institution_count": 33,
     "files": {
       "json": "tdx_value/2025-05/2025-05-15.json",
       "txt": "tdx_value/2025-05/2025-05-15.txt"
@@ -1266,10 +1266,10 @@
   },
   "2025-05-13": {
     "date": "2025-05-13",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 155,
+    "stock_count": 151,
+    "institution_count": 41,
     "files": {
       "json": "tdx_value/2025-05/2025-05-13.json",
       "txt": "tdx_value/2025-05/2025-05-13.txt"
@@ -1277,10 +1277,10 @@
   },
   "2025-05-12": {
     "date": "2025-05-12",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 178,
+    "stock_count": 166,
+    "institution_count": 40,
     "files": {
       "json": "tdx_value/2025-05/2025-05-12.json",
       "txt": "tdx_value/2025-05/2025-05-12.txt"
@@ -1299,10 +1299,10 @@
   },
   "2025-05-10": {
     "date": "2025-05-10",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 5,
-    "stock_count": 5,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 36,
+    "stock_count": 36,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-05/2025-05-10.json",
       "txt": "tdx_value/2025-05/2025-05-10.txt"
@@ -1310,10 +1310,10 @@
   },
   "2025-05-09": {
     "date": "2025-05-09",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 195,
+    "stock_count": 181,
+    "institution_count": 44,
     "files": {
       "json": "tdx_value/2025-05/2025-05-09.json",
       "txt": "tdx_value/2025-05/2025-05-09.txt"
@@ -1321,10 +1321,10 @@
   },
   "2025-05-08": {
     "date": "2025-05-08",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 6,
-    "stock_count": 6,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 331,
+    "stock_count": 297,
+    "institution_count": 52,
     "files": {
       "json": "tdx_value/2025-05/2025-05-08.json",
       "txt": "tdx_value/2025-05/2025-05-08.txt"
@@ -1332,10 +1332,10 @@
   },
   "2025-05-07": {
     "date": "2025-05-07",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 5,
-    "stock_count": 5,
-    "institution_count": 5,
+    "update_time": "2026-01-07 19:27:02",
+    "report_count": 260,
+    "stock_count": 230,
+    "institution_count": 47,
     "files": {
       "json": "tdx_value/2025-05/2025-05-07.json",
       "txt": "tdx_value/2025-05/2025-05-07.txt"
@@ -3565,10 +3565,10 @@
   },
   "2025-09-08": {
     "date": "2025-09-08",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 154,
-    "stock_count": 143,
-    "institution_count": 39,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 82,
+    "stock_count": 80,
+    "institution_count": 28,
     "files": {
       "json": "tdx_value/2025-09/2025-09-08.json",
       "txt": "tdx_value/2025-09/2025-09-08.txt"
@@ -3576,10 +3576,10 @@
   },
   "2025-09-07": {
     "date": "2025-09-07",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 91,
-    "stock_count": 87,
-    "institution_count": 23,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 32,
+    "stock_count": 32,
+    "institution_count": 14,
     "files": {
       "json": "tdx_value/2025-09/2025-09-07.json",
       "txt": "tdx_value/2025-09/2025-09-07.txt"
@@ -3587,26 +3587,26 @@
   },
   "2025-09-06": {
     "date": "2025-09-06",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 52,
-    "stock_count": 52,
-    "institution_count": 23,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 18,
+    "stock_count": 18,
+    "institution_count": 11,
     "files": {
       "json": "tdx_value/2025-09/2025-09-06.json",
       "txt": "tdx_value/2025-09/2025-09-06.txt"
     }
   },
   "_summary": {
-    "total_reports": 18264,
-    "total_dates": 448,
-    "last_update": "2026-01-06 19:25:46"
+    "total_reports": 25671,
+    "total_dates": 449,
+    "last_update": "2026-01-07 19:27:02"
   },
   "2025-09-09": {
     "date": "2025-09-09",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 98,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 95,
     "stock_count": 93,
-    "institution_count": 32,
+    "institution_count": 26,
     "files": {
       "json": "tdx_value/2025-09/2025-09-09.json",
       "txt": "tdx_value/2025-09/2025-09-09.txt"
@@ -3614,10 +3614,10 @@
   },
   "2025-09-10": {
     "date": "2025-09-10",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 86,
-    "stock_count": 86,
-    "institution_count": 32,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 19,
+    "stock_count": 18,
+    "institution_count": 13,
     "files": {
       "json": "tdx_value/2025-09/2025-09-10.json",
       "txt": "tdx_value/2025-09/2025-09-10.txt"
@@ -3625,10 +3625,10 @@
   },
   "2025-09-11": {
     "date": "2025-09-11",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 57,
-    "stock_count": 54,
-    "institution_count": 22,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 60,
+    "stock_count": 59,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-09/2025-09-11.json",
       "txt": "tdx_value/2025-09/2025-09-11.txt"
@@ -3636,10 +3636,10 @@
   },
   "2025-09-12": {
     "date": "2025-09-12",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 94,
-    "stock_count": 88,
-    "institution_count": 35,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 17,
+    "stock_count": 17,
+    "institution_count": 8,
     "files": {
       "json": "tdx_value/2025-09/2025-09-12.json",
       "txt": "tdx_value/2025-09/2025-09-12.txt"
@@ -3647,10 +3647,10 @@
   },
   "2025-09-15": {
     "date": "2025-09-15",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 123,
-    "stock_count": 115,
-    "institution_count": 33,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 7,
+    "stock_count": 7,
+    "institution_count": 3,
     "files": {
       "json": "tdx_value/2025-09/2025-09-15.json",
       "txt": "tdx_value/2025-09/2025-09-15.txt"
@@ -3658,10 +3658,10 @@
   },
   "2025-09-14": {
     "date": "2025-09-14",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 23,
-    "stock_count": 23,
-    "institution_count": 14,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 44,
+    "stock_count": 42,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-09/2025-09-14.json",
       "txt": "tdx_value/2025-09/2025-09-14.txt"
@@ -3669,10 +3669,10 @@
   },
   "2025-09-13": {
     "date": "2025-09-13",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 10,
-    "stock_count": 10,
-    "institution_count": 9,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 39,
+    "stock_count": 39,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-09/2025-09-13.json",
       "txt": "tdx_value/2025-09/2025-09-13.txt"
@@ -3680,10 +3680,10 @@
   },
   "2025-09-17": {
     "date": "2025-09-17",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 56,
-    "stock_count": 54,
-    "institution_count": 23,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 16,
+    "stock_count": 16,
+    "institution_count": 9,
     "files": {
       "json": "tdx_value/2025-09/2025-09-17.json",
       "txt": "tdx_value/2025-09/2025-09-17.txt"
@@ -3691,10 +3691,10 @@
   },
   "2025-09-16": {
     "date": "2025-09-16",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 12,
-    "stock_count": 12,
-    "institution_count": 10,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 95,
+    "stock_count": 94,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-09/2025-09-16.json",
       "txt": "tdx_value/2025-09/2025-09-16.txt"
@@ -3702,10 +3702,10 @@
   },
   "2025-09-19": {
     "date": "2025-09-19",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 15,
-    "stock_count": 15,
-    "institution_count": 9,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 54,
+    "stock_count": 54,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-09/2025-09-19.json",
       "txt": "tdx_value/2025-09/2025-09-19.txt"
@@ -3713,10 +3713,10 @@
   },
   "2025-09-18": {
     "date": "2025-09-18",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 53,
-    "stock_count": 52,
-    "institution_count": 26,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 3,
+    "stock_count": 3,
+    "institution_count": 2,
     "files": {
       "json": "tdx_value/2025-09/2025-09-18.json",
       "txt": "tdx_value/2025-09/2025-09-18.txt"
@@ -3724,10 +3724,10 @@
   },
   "2025-09-22": {
     "date": "2025-09-22",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 51,
-    "stock_count": 50,
-    "institution_count": 25,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 19,
+    "stock_count": 19,
+    "institution_count": 16,
     "files": {
       "json": "tdx_value/2025-09/2025-09-22.json",
       "txt": "tdx_value/2025-09/2025-09-22.txt"
@@ -3735,10 +3735,10 @@
   },
   "2025-09-21": {
     "date": "2025-09-21",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 6,
-    "stock_count": 6,
-    "institution_count": 5,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 38,
+    "stock_count": 38,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-09/2025-09-21.json",
       "txt": "tdx_value/2025-09/2025-09-21.txt"
@@ -3757,10 +3757,10 @@
   },
   "2025-09-23": {
     "date": "2025-09-23",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 23,
-    "stock_count": 22,
-    "institution_count": 17,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 57,
+    "stock_count": 55,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-09/2025-09-23.json",
       "txt": "tdx_value/2025-09/2025-09-23.txt"
@@ -3768,10 +3768,10 @@
   },
   "2025-09-24": {
     "date": "2025-09-24",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 46,
-    "stock_count": 44,
-    "institution_count": 27,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 12,
+    "stock_count": 12,
+    "institution_count": 6,
     "files": {
       "json": "tdx_value/2025-09/2025-09-24.json",
       "txt": "tdx_value/2025-09/2025-09-24.txt"
@@ -3779,10 +3779,10 @@
   },
   "2025-09-25": {
     "date": "2025-09-25",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 12,
-    "stock_count": 12,
-    "institution_count": 12,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 46,
+    "stock_count": 45,
+    "institution_count": 22,
     "files": {
       "json": "tdx_value/2025-09/2025-09-25.json",
       "txt": "tdx_value/2025-09/2025-09-25.txt"
@@ -3790,10 +3790,10 @@
   },
   "2025-09-26": {
     "date": "2025-09-26",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 49,
-    "stock_count": 49,
-    "institution_count": 24,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 9,
+    "stock_count": 9,
+    "institution_count": 6,
     "files": {
       "json": "tdx_value/2025-09/2025-09-26.json",
       "txt": "tdx_value/2025-09/2025-09-26.txt"
@@ -3801,10 +3801,10 @@
   },
   "2025-09-29": {
     "date": "2025-09-29",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 19,
-    "stock_count": 18,
-    "institution_count": 12,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 49,
+    "stock_count": 44,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-09/2025-09-29.json",
       "txt": "tdx_value/2025-09/2025-09-29.txt"
@@ -3812,10 +3812,10 @@
   },
   "2025-09-28": {
     "date": "2025-09-28",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 31,
-    "stock_count": 31,
-    "institution_count": 15,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 6,
+    "stock_count": 6,
+    "institution_count": 5,
     "files": {
       "json": "tdx_value/2025-09/2025-09-28.json",
       "txt": "tdx_value/2025-09/2025-09-28.txt"
@@ -3823,10 +3823,10 @@
   },
   "2025-09-27": {
     "date": "2025-09-27",
-    "update_time": "2026-01-06 19:25:46",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 35,
+    "stock_count": 35,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-09/2025-09-27.json",
       "txt": "tdx_value/2025-09/2025-09-27.txt"
@@ -3834,10 +3834,10 @@
   },
   "2025-09-30": {
     "date": "2025-09-30",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 39,
-    "stock_count": 38,
-    "institution_count": 19,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 33,
+    "stock_count": 33,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-09/2025-09-30.json",
       "txt": "tdx_value/2025-09/2025-09-30.txt"
@@ -3845,10 +3845,10 @@
   },
   "2025-10-09": {
     "date": "2025-10-09",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 12,
-    "stock_count": 12,
-    "institution_count": 8,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 30,
+    "stock_count": 30,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-10/2025-10-09.json",
       "txt": "tdx_value/2025-10/2025-10-09.txt"
@@ -3856,10 +3856,10 @@
   },
   "2025-10-08": {
     "date": "2025-10-08",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 22,
-    "stock_count": 20,
-    "institution_count": 13,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 2,
+    "stock_count": 2,
+    "institution_count": 2,
     "files": {
       "json": "tdx_value/2025-10/2025-10-08.json",
       "txt": "tdx_value/2025-10/2025-10-08.txt"
@@ -3867,10 +3867,10 @@
   },
   "2025-10-07": {
     "date": "2025-10-07",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 11,
-    "institution_count": 7,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-07.json",
       "txt": "tdx_value/2025-10/2025-10-07.txt"
@@ -3878,10 +3878,10 @@
   },
   "2025-10-06": {
     "date": "2025-10-06",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-06.json",
       "txt": "tdx_value/2025-10/2025-10-06.txt"
@@ -3889,10 +3889,10 @@
   },
   "2025-10-05": {
     "date": "2025-10-05",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 5,
-    "stock_count": 5,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-05.json",
       "txt": "tdx_value/2025-10/2025-10-05.txt"
@@ -3900,10 +3900,10 @@
   },
   "2025-10-04": {
     "date": "2025-10-04",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-04.json",
       "txt": "tdx_value/2025-10/2025-10-04.txt"
@@ -3911,10 +3911,10 @@
   },
   "2025-10-02": {
     "date": "2025-10-02",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 5,
+    "stock_count": 5,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-02.json",
       "txt": "tdx_value/2025-10/2025-10-02.txt"
@@ -3922,10 +3922,10 @@
   },
   "2025-10-10": {
     "date": "2025-10-10",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 34,
-    "stock_count": 34,
-    "institution_count": 16,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 13,
+    "stock_count": 13,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-10/2025-10-10.json",
       "txt": "tdx_value/2025-10/2025-10-10.txt"
@@ -3944,10 +3944,10 @@
   },
   "2025-10-01": {
     "date": "2025-10-01",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 7,
+    "stock_count": 7,
+    "institution_count": 4,
     "files": {
       "json": "tdx_value/2025-10/2025-10-01.json",
       "txt": "tdx_value/2025-10/2025-10-01.txt"
@@ -3955,10 +3955,10 @@
   },
   "2025-10-13": {
     "date": "2025-10-13",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 10,
-    "institution_count": 10,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 32,
+    "stock_count": 29,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-10/2025-10-13.json",
       "txt": "tdx_value/2025-10/2025-10-13.txt"
@@ -3966,10 +3966,10 @@
   },
   "2025-10-12": {
     "date": "2025-10-12",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 23,
-    "stock_count": 23,
-    "institution_count": 16,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 3,
+    "stock_count": 3,
+    "institution_count": 2,
     "files": {
       "json": "tdx_value/2025-10/2025-10-12.json",
       "txt": "tdx_value/2025-10/2025-10-12.txt"
@@ -3977,10 +3977,10 @@
   },
   "2025-10-11": {
     "date": "2025-10-11",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 10,
-    "stock_count": 10,
-    "institution_count": 9,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-11.json",
       "txt": "tdx_value/2025-10/2025-10-11.txt"
@@ -3988,10 +3988,10 @@
   },
   "2025-10-14": {
     "date": "2025-10-14",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 44,
-    "stock_count": 35,
-    "institution_count": 26,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 14,
+    "stock_count": 11,
+    "institution_count": 9,
     "files": {
       "json": "tdx_value/2025-10/2025-10-14.json",
       "txt": "tdx_value/2025-10/2025-10-14.txt"
@@ -3999,10 +3999,10 @@
   },
   "2025-10-15": {
     "date": "2025-10-15",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 13,
-    "stock_count": 13,
-    "institution_count": 10,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 40,
+    "stock_count": 33,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-10/2025-10-15.json",
       "txt": "tdx_value/2025-10/2025-10-15.txt"
@@ -4010,10 +4010,10 @@
   },
   "2025-10-16": {
     "date": "2025-10-16",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 40,
-    "stock_count": 34,
-    "institution_count": 24,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 12,
+    "stock_count": 12,
+    "institution_count": 10,
     "files": {
       "json": "tdx_value/2025-10/2025-10-16.json",
       "txt": "tdx_value/2025-10/2025-10-16.txt"
@@ -4021,10 +4021,10 @@
   },
   "2025-10-17": {
     "date": "2025-10-17",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 10,
-    "institution_count": 9,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 40,
+    "stock_count": 34,
+    "institution_count": 24,
     "files": {
       "json": "tdx_value/2025-10/2025-10-17.json",
       "txt": "tdx_value/2025-10/2025-10-17.txt"
@@ -4032,10 +4032,10 @@
   },
   "2025-10-20": {
     "date": "2025-10-20",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 50,
-    "stock_count": 35,
-    "institution_count": 24,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 31,
+    "stock_count": 26,
+    "institution_count": 23,
     "files": {
       "json": "tdx_value/2025-10/2025-10-20.json",
       "txt": "tdx_value/2025-10/2025-10-20.txt"
@@ -4043,10 +4043,10 @@
   },
   "2025-10-19": {
     "date": "2025-10-19",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 4,
-    "stock_count": 4,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 56,
+    "stock_count": 36,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-10/2025-10-19.json",
       "txt": "tdx_value/2025-10/2025-10-19.txt"
@@ -4054,10 +4054,10 @@
   },
   "2025-10-18": {
     "date": "2025-10-18",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 15,
-    "stock_count": 13,
-    "institution_count": 12,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-10/2025-10-18.json",
       "txt": "tdx_value/2025-10/2025-10-18.txt"
@@ -4065,10 +4065,10 @@
   },
   "2025-10-21": {
     "date": "2025-10-21",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 25,
-    "stock_count": 21,
-    "institution_count": 19,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 104,
+    "stock_count": 64,
+    "institution_count": 37,
     "files": {
       "json": "tdx_value/2025-10/2025-10-21.json",
       "txt": "tdx_value/2025-10/2025-10-21.txt"
@@ -4076,10 +4076,10 @@
   },
   "2025-10-22": {
     "date": "2025-10-22",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 108,
-    "stock_count": 64,
-    "institution_count": 32,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 37,
+    "stock_count": 33,
+    "institution_count": 21,
     "files": {
       "json": "tdx_value/2025-10/2025-10-22.json",
       "txt": "tdx_value/2025-10/2025-10-22.txt"
@@ -4087,10 +4087,10 @@
   },
   "2025-10-23": {
     "date": "2025-10-23",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 30,
-    "stock_count": 28,
-    "institution_count": 15,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 165,
+    "stock_count": 112,
+    "institution_count": 43,
     "files": {
       "json": "tdx_value/2025-10/2025-10-23.json",
       "txt": "tdx_value/2025-10/2025-10-23.txt"
@@ -4098,10 +4098,10 @@
   },
   "2025-10-24": {
     "date": "2025-10-24",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 147,
-    "stock_count": 105,
-    "institution_count": 39,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 99,
+    "stock_count": 81,
+    "institution_count": 29,
     "files": {
       "json": "tdx_value/2025-10/2025-10-24.json",
       "txt": "tdx_value/2025-10/2025-10-24.txt"
@@ -4109,10 +4109,10 @@
   },
   "2025-10-27": {
     "date": "2025-10-27",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 159,
-    "stock_count": 142,
-    "institution_count": 32,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 369,
+    "stock_count": 255,
+    "institution_count": 56,
     "files": {
       "json": "tdx_value/2025-10/2025-10-27.json",
       "txt": "tdx_value/2025-10/2025-10-27.txt"
@@ -4120,10 +4120,10 @@
   },
   "2025-10-26": {
     "date": "2025-10-26",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 241,
-    "stock_count": 155,
-    "institution_count": 33,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 54,
+    "stock_count": 51,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-10/2025-10-26.json",
       "txt": "tdx_value/2025-10/2025-10-26.txt"
@@ -4131,10 +4131,10 @@
   },
   "2025-10-25": {
     "date": "2025-10-25",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 140,
-    "stock_count": 90,
-    "institution_count": 29,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 41,
+    "stock_count": 34,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2025-10/2025-10-25.json",
       "txt": "tdx_value/2025-10/2025-10-25.txt"
@@ -4142,10 +4142,10 @@
   },
   "2025-10-28": {
     "date": "2025-10-28",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 489,
-    "stock_count": 324,
-    "institution_count": 50,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 397,
+    "stock_count": 271,
+    "institution_count": 48,
     "files": {
       "json": "tdx_value/2025-10/2025-10-28.json",
       "txt": "tdx_value/2025-10/2025-10-28.txt"
@@ -4153,10 +4153,10 @@
   },
   "2025-10-29": {
     "date": "2025-10-29",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 364,
-    "stock_count": 273,
-    "institution_count": 51,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 609,
+    "stock_count": 415,
+    "institution_count": 54,
     "files": {
       "json": "tdx_value/2025-10/2025-10-29.json",
       "txt": "tdx_value/2025-10/2025-10-29.txt"
@@ -4164,10 +4164,10 @@
   },
   "2025-10-30": {
     "date": "2025-10-30",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 577,
-    "stock_count": 411,
-    "institution_count": 58,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 546,
+    "stock_count": 388,
+    "institution_count": 50,
     "files": {
       "json": "tdx_value/2025-10/2025-10-30.json",
       "txt": "tdx_value/2025-10/2025-10-30.txt"
@@ -4175,10 +4175,10 @@
   },
   "2025-10-31": {
     "date": "2025-10-31",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 706,
-    "stock_count": 452,
-    "institution_count": 51,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 484,
+    "stock_count": 355,
+    "institution_count": 54,
     "files": {
       "json": "tdx_value/2025-10/2025-10-31.json",
       "txt": "tdx_value/2025-10/2025-10-31.txt"
@@ -4186,10 +4186,10 @@
   },
   "2025-11-03": {
     "date": "2025-11-03",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 307,
-    "stock_count": 277,
-    "institution_count": 47,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 252,
+    "stock_count": 216,
+    "institution_count": 48,
     "files": {
       "json": "tdx_value/2025-11/2025-11-03.json",
       "txt": "tdx_value/2025-11/2025-11-03.txt"
@@ -4197,10 +4197,10 @@
   },
   "2025-11-02": {
     "date": "2025-11-02",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 208,
-    "stock_count": 193,
-    "institution_count": 30,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 337,
+    "stock_count": 273,
+    "institution_count": 33,
     "files": {
       "json": "tdx_value/2025-11/2025-11-02.json",
       "txt": "tdx_value/2025-11/2025-11-02.txt"
@@ -4208,10 +4208,10 @@
   },
   "2025-11-01": {
     "date": "2025-11-01",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 165,
-    "stock_count": 151,
-    "institution_count": 32,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 208,
+    "stock_count": 183,
+    "institution_count": 30,
     "files": {
       "json": "tdx_value/2025-11/2025-11-01.json",
       "txt": "tdx_value/2025-11/2025-11-01.txt"
@@ -4219,10 +4219,10 @@
   },
   "2025-11-04": {
     "date": "2025-11-04",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 206,
-    "stock_count": 189,
-    "institution_count": 41,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 239,
+    "stock_count": 215,
+    "institution_count": 44,
     "files": {
       "json": "tdx_value/2025-11/2025-11-04.json",
       "txt": "tdx_value/2025-11/2025-11-04.txt"
@@ -4230,10 +4230,10 @@
   },
   "2025-11-05": {
     "date": "2025-11-05",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 229,
-    "stock_count": 209,
-    "institution_count": 52,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 38,
+    "stock_count": 37,
+    "institution_count": 16,
     "files": {
       "json": "tdx_value/2025-11/2025-11-05.json",
       "txt": "tdx_value/2025-11/2025-11-05.txt"
@@ -4241,10 +4241,10 @@
   },
   "2025-11-07": {
     "date": "2025-11-07",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 35,
-    "stock_count": 35,
-    "institution_count": 16,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 165,
+    "stock_count": 151,
+    "institution_count": 41,
     "files": {
       "json": "tdx_value/2025-11/2025-11-07.json",
       "txt": "tdx_value/2025-11/2025-11-07.txt"
@@ -4252,10 +4252,10 @@
   },
   "2025-11-06": {
     "date": "2025-11-06",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 197,
-    "stock_count": 188,
-    "institution_count": 42,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 35,
+    "stock_count": 35,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-11/2025-11-06.json",
       "txt": "tdx_value/2025-11/2025-11-06.txt"
@@ -4263,10 +4263,10 @@
   },
   "2025-11-10": {
     "date": "2025-11-10",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 115,
-    "stock_count": 109,
-    "institution_count": 29,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 44,
+    "stock_count": 44,
+    "institution_count": 21,
     "files": {
       "json": "tdx_value/2025-11/2025-11-10.json",
       "txt": "tdx_value/2025-11/2025-11-10.txt"
@@ -4274,10 +4274,10 @@
   },
   "2025-11-09": {
     "date": "2025-11-09",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 111,
-    "stock_count": 109,
-    "institution_count": 27,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 56,
+    "stock_count": 54,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-11/2025-11-09.json",
       "txt": "tdx_value/2025-11/2025-11-09.txt"
@@ -4285,10 +4285,10 @@
   },
   "2025-11-08": {
     "date": "2025-11-08",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 23,
-    "stock_count": 23,
-    "institution_count": 10,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 37,
+    "stock_count": 36,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-11/2025-11-08.json",
       "txt": "tdx_value/2025-11/2025-11-08.txt"
@@ -4296,10 +4296,10 @@
   },
   "2025-11-11": {
     "date": "2025-11-11",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 23,
-    "stock_count": 22,
-    "institution_count": 14,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 156,
+    "stock_count": 144,
+    "institution_count": 36,
     "files": {
       "json": "tdx_value/2025-11/2025-11-11.json",
       "txt": "tdx_value/2025-11/2025-11-11.txt"
@@ -4307,10 +4307,10 @@
   },
   "2025-11-12": {
     "date": "2025-11-12",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 99,
-    "stock_count": 97,
-    "institution_count": 23,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 23,
+    "stock_count": 23,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-11/2025-11-12.json",
       "txt": "tdx_value/2025-11/2025-11-12.txt"
@@ -4318,10 +4318,10 @@
   },
   "2025-11-13": {
     "date": "2025-11-13",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 24,
-    "stock_count": 24,
-    "institution_count": 12,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 80,
+    "stock_count": 77,
+    "institution_count": 26,
     "files": {
       "json": "tdx_value/2025-11/2025-11-13.json",
       "txt": "tdx_value/2025-11/2025-11-13.txt"
@@ -4329,10 +4329,10 @@
   },
   "2025-11-14": {
     "date": "2025-11-14",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 75,
-    "stock_count": 74,
-    "institution_count": 29,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 13,
+    "stock_count": 13,
+    "institution_count": 9,
     "files": {
       "json": "tdx_value/2025-11/2025-11-14.json",
       "txt": "tdx_value/2025-11/2025-11-14.txt"
@@ -4340,10 +4340,10 @@
   },
   "2025-11-17": {
     "date": "2025-11-17",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 11,
-    "institution_count": 10,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 113,
+    "stock_count": 109,
+    "institution_count": 23,
     "files": {
       "json": "tdx_value/2025-11/2025-11-17.json",
       "txt": "tdx_value/2025-11/2025-11-17.txt"
@@ -4351,10 +4351,10 @@
   },
   "2025-11-16": {
     "date": "2025-11-16",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 57,
-    "stock_count": 55,
-    "institution_count": 19,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 24,
+    "stock_count": 24,
+    "institution_count": 7,
     "files": {
       "json": "tdx_value/2025-11/2025-11-16.json",
       "txt": "tdx_value/2025-11/2025-11-16.txt"
@@ -4362,10 +4362,10 @@
   },
   "2025-11-15": {
     "date": "2025-11-15",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 37,
-    "stock_count": 37,
-    "institution_count": 15,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-11/2025-11-15.json",
       "txt": "tdx_value/2025-11/2025-11-15.txt"
@@ -4373,10 +4373,10 @@
   },
   "2025-11-18": {
     "date": "2025-11-18",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 53,
-    "stock_count": 52,
-    "institution_count": 27,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 24,
+    "stock_count": 24,
+    "institution_count": 10,
     "files": {
       "json": "tdx_value/2025-11/2025-11-18.json",
       "txt": "tdx_value/2025-11/2025-11-18.txt"
@@ -4384,10 +4384,10 @@
   },
   "2025-11-19": {
     "date": "2025-11-19",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 13,
-    "stock_count": 11,
-    "institution_count": 11,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 63,
+    "stock_count": 63,
+    "institution_count": 23,
     "files": {
       "json": "tdx_value/2025-11/2025-11-19.json",
       "txt": "tdx_value/2025-11/2025-11-19.txt"
@@ -4395,10 +4395,10 @@
   },
   "2025-11-20": {
     "date": "2025-11-20",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 34,
-    "stock_count": 34,
-    "institution_count": 18,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 17,
+    "stock_count": 17,
+    "institution_count": 11,
     "files": {
       "json": "tdx_value/2025-11/2025-11-20.json",
       "txt": "tdx_value/2025-11/2025-11-20.txt"
@@ -4406,10 +4406,10 @@
   },
   "2025-11-21": {
     "date": "2025-11-21",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 11,
-    "institution_count": 7,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 53,
+    "stock_count": 53,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-11/2025-11-21.json",
       "txt": "tdx_value/2025-11/2025-11-21.txt"
@@ -4417,10 +4417,10 @@
   },
   "2025-11-24": {
     "date": "2025-11-24",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 29,
-    "stock_count": 29,
-    "institution_count": 16,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 6,
+    "stock_count": 6,
+    "institution_count": 6,
     "files": {
       "json": "tdx_value/2025-11/2025-11-24.json",
       "txt": "tdx_value/2025-11/2025-11-24.txt"
@@ -4428,10 +4428,10 @@
   },
   "2025-11-23": {
     "date": "2025-11-23",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 13,
-    "stock_count": 13,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 19,
+    "stock_count": 19,
+    "institution_count": 11,
     "files": {
       "json": "tdx_value/2025-11/2025-11-23.json",
       "txt": "tdx_value/2025-11/2025-11-23.txt"
@@ -4450,10 +4450,10 @@
   },
   "2025-11-25": {
     "date": "2025-11-25",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 37,
+    "stock_count": 37,
+    "institution_count": 14,
     "files": {
       "json": "tdx_value/2025-11/2025-11-25.json",
       "txt": "tdx_value/2025-11/2025-11-25.txt"
@@ -4461,10 +4461,10 @@
   },
   "2025-11-26": {
     "date": "2025-11-26",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 32,
-    "stock_count": 32,
-    "institution_count": 17,
+    "update_time": "2026-01-07 19:27:01",
+    "report_count": 7,
+    "stock_count": 7,
+    "institution_count": 6,
     "files": {
       "json": "tdx_value/2025-11/2025-11-26.json",
       "txt": "tdx_value/2025-11/2025-11-26.txt"
@@ -4472,10 +4472,10 @@
   },
   "2025-11-27": {
     "date": "2025-11-27",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 7,
-    "stock_count": 7,
-    "institution_count": 4,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 50,
+    "stock_count": 48,
+    "institution_count": 26,
     "files": {
       "json": "tdx_value/2025-11/2025-11-27.json",
       "txt": "tdx_value/2025-11/2025-11-27.txt"
@@ -4483,10 +4483,10 @@
   },
   "2025-11-28": {
     "date": "2025-11-28",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 35,
-    "stock_count": 34,
-    "institution_count": 22,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 7,
+    "stock_count": 6,
+    "institution_count": 5,
     "files": {
       "json": "tdx_value/2025-11/2025-11-28.json",
       "txt": "tdx_value/2025-11/2025-11-28.txt"
@@ -4494,10 +4494,10 @@
   },
   "2025-12-01": {
     "date": "2025-12-01",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 6,
-    "stock_count": 6,
-    "institution_count": 6,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 30,
+    "stock_count": 27,
+    "institution_count": 20,
     "files": {
       "json": "tdx_value/2025-12/2025-12-01.json",
       "txt": "tdx_value/2025-12/2025-12-01.txt"
@@ -4505,10 +4505,10 @@
   },
   "2025-11-30": {
     "date": "2025-11-30",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 28,
-    "stock_count": 27,
-    "institution_count": 12,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 5,
+    "stock_count": 5,
+    "institution_count": 4,
     "files": {
       "json": "tdx_value/2025-11/2025-11-30.json",
       "txt": "tdx_value/2025-11/2025-11-30.txt"
@@ -4527,10 +4527,10 @@
   },
   "2025-12-02": {
     "date": "2025-12-02",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 22,
-    "stock_count": 20,
-    "institution_count": 15,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 13,
+    "stock_count": 13,
+    "institution_count": 9,
     "files": {
       "json": "tdx_value/2025-12/2025-12-02.json",
       "txt": "tdx_value/2025-12/2025-12-02.txt"
@@ -4538,10 +4538,10 @@
   },
   "2025-12-03": {
     "date": "2025-12-03",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 9,
-    "stock_count": 9,
-    "institution_count": 7,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 25,
+    "stock_count": 21,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2025-12/2025-12-03.json",
       "txt": "tdx_value/2025-12/2025-12-03.txt"
@@ -4549,10 +4549,10 @@
   },
   "2025-12-04": {
     "date": "2025-12-04",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 24,
-    "stock_count": 19,
-    "institution_count": 14,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 6,
+    "stock_count": 6,
+    "institution_count": 5,
     "files": {
       "json": "tdx_value/2025-12/2025-12-04.json",
       "txt": "tdx_value/2025-12/2025-12-04.txt"
@@ -4560,10 +4560,10 @@
   },
   "2025-12-05": {
     "date": "2025-12-05",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 21,
+    "stock_count": 21,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-12/2025-12-05.json",
       "txt": "tdx_value/2025-12/2025-12-05.txt"
@@ -4571,10 +4571,10 @@
   },
   "2025-12-08": {
     "date": "2025-12-08",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 22,
-    "stock_count": 22,
-    "institution_count": 17,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 8,
+    "stock_count": 8,
+    "institution_count": 7,
     "files": {
       "json": "tdx_value/2025-12/2025-12-08.json",
       "txt": "tdx_value/2025-12/2025-12-08.txt"
@@ -4582,10 +4582,10 @@
   },
   "2025-12-07": {
     "date": "2025-12-07",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 13,
+    "stock_count": 12,
+    "institution_count": 9,
     "files": {
       "json": "tdx_value/2025-12/2025-12-07.json",
       "txt": "tdx_value/2025-12/2025-12-07.txt"
@@ -4604,10 +4604,10 @@
   },
   "2025-12-09": {
     "date": "2025-12-09",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 5,
-    "stock_count": 5,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 18,
+    "stock_count": 18,
+    "institution_count": 13,
     "files": {
       "json": "tdx_value/2025-12/2025-12-09.json",
       "txt": "tdx_value/2025-12/2025-12-09.txt"
@@ -4615,10 +4615,10 @@
   },
   "2025-12-10": {
     "date": "2025-12-10",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 23,
-    "stock_count": 23,
-    "institution_count": 20,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 2,
+    "stock_count": 2,
+    "institution_count": 2,
     "files": {
       "json": "tdx_value/2025-12/2025-12-10.json",
       "txt": "tdx_value/2025-12/2025-12-10.txt"
@@ -4626,10 +4626,10 @@
   },
   "2025-12-11": {
     "date": "2025-12-11",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 10,
-    "stock_count": 10,
-    "institution_count": 6,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 18,
+    "stock_count": 18,
+    "institution_count": 17,
     "files": {
       "json": "tdx_value/2025-12/2025-12-11.json",
       "txt": "tdx_value/2025-12/2025-12-11.txt"
@@ -4637,10 +4637,10 @@
   },
   "2025-12-12": {
     "date": "2025-12-12",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 38,
-    "stock_count": 38,
-    "institution_count": 24,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 6,
+    "stock_count": 6,
+    "institution_count": 5,
     "files": {
       "json": "tdx_value/2025-12/2025-12-12.json",
       "txt": "tdx_value/2025-12/2025-12-12.txt"
@@ -4648,10 +4648,10 @@
   },
   "2025-12-15": {
     "date": "2025-12-15",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 11,
-    "institution_count": 10,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 31,
+    "stock_count": 27,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-12/2025-12-15.json",
       "txt": "tdx_value/2025-12/2025-12-15.txt"
@@ -4659,10 +4659,10 @@
   },
   "2025-12-14": {
     "date": "2025-12-14",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 13,
+    "stock_count": 12,
+    "institution_count": 12,
     "files": {
       "json": "tdx_value/2025-12/2025-12-14.json",
       "txt": "tdx_value/2025-12/2025-12-14.txt"
@@ -4670,10 +4670,10 @@
   },
   "2025-12-13": {
     "date": "2025-12-13",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 15,
-    "stock_count": 15,
-    "institution_count": 11,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-12/2025-12-13.json",
       "txt": "tdx_value/2025-12/2025-12-13.txt"
@@ -4681,10 +4681,10 @@
   },
   "2025-12-16": {
     "date": "2025-12-16",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 27,
-    "stock_count": 25,
-    "institution_count": 21,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 8,
+    "stock_count": 8,
+    "institution_count": 8,
     "files": {
       "json": "tdx_value/2025-12/2025-12-16.json",
       "txt": "tdx_value/2025-12/2025-12-16.txt"
@@ -4692,10 +4692,10 @@
   },
   "2025-12-17": {
     "date": "2025-12-17",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 7,
-    "stock_count": 7,
-    "institution_count": 6,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 27,
+    "stock_count": 27,
+    "institution_count": 18,
     "files": {
       "json": "tdx_value/2025-12/2025-12-17.json",
       "txt": "tdx_value/2025-12/2025-12-17.txt"
@@ -4703,10 +4703,10 @@
   },
   "2025-12-18": {
     "date": "2025-12-18",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 25,
-    "stock_count": 23,
-    "institution_count": 19,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 4,
+    "stock_count": 4,
+    "institution_count": 4,
     "files": {
       "json": "tdx_value/2025-12/2025-12-18.json",
       "txt": "tdx_value/2025-12/2025-12-18.txt"
@@ -4714,10 +4714,10 @@
   },
   "2025-12-19": {
     "date": "2025-12-19",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 10,
-    "stock_count": 9,
-    "institution_count": 7,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 33,
+    "stock_count": 30,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2025-12/2025-12-19.json",
       "txt": "tdx_value/2025-12/2025-12-19.txt"
@@ -4725,10 +4725,10 @@
   },
   "2025-12-22": {
     "date": "2025-12-22",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 43,
-    "stock_count": 41,
-    "institution_count": 22,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 11,
+    "stock_count": 11,
+    "institution_count": 8,
     "files": {
       "json": "tdx_value/2025-12/2025-12-22.json",
       "txt": "tdx_value/2025-12/2025-12-22.txt"
@@ -4736,10 +4736,10 @@
   },
   "2025-12-21": {
     "date": "2025-12-21",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 2,
-    "stock_count": 2,
-    "institution_count": 2,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 20,
+    "stock_count": 15,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-12/2025-12-21.json",
       "txt": "tdx_value/2025-12/2025-12-21.txt"
@@ -4747,10 +4747,10 @@
   },
   "2025-12-20": {
     "date": "2025-12-20",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 12,
+    "stock_count": 9,
+    "institution_count": 10,
     "files": {
       "json": "tdx_value/2025-12/2025-12-20.json",
       "txt": "tdx_value/2025-12/2025-12-20.txt"
@@ -4758,10 +4758,10 @@
   },
   "2025-12-23": {
     "date": "2025-12-23",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 12,
-    "stock_count": 11,
-    "institution_count": 9,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 20,
+    "stock_count": 20,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-12/2025-12-23.json",
       "txt": "tdx_value/2025-12/2025-12-23.txt"
@@ -4769,10 +4769,10 @@
   },
   "2025-12-24": {
     "date": "2025-12-24",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 32,
-    "stock_count": 31,
-    "institution_count": 19,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 10,
+    "stock_count": 10,
+    "institution_count": 10,
     "files": {
       "json": "tdx_value/2025-12/2025-12-24.json",
       "txt": "tdx_value/2025-12/2025-12-24.txt"
@@ -4780,10 +4780,10 @@
   },
   "2025-12-25": {
     "date": "2025-12-25",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 11,
-    "stock_count": 11,
-    "institution_count": 8,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 22,
+    "stock_count": 22,
+    "institution_count": 15,
     "files": {
       "json": "tdx_value/2025-12/2025-12-25.json",
       "txt": "tdx_value/2025-12/2025-12-25.txt"
@@ -4791,10 +4791,10 @@
   },
   "2025-12-26": {
     "date": "2025-12-26",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 31,
-    "stock_count": 31,
-    "institution_count": 21,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 7,
+    "stock_count": 7,
+    "institution_count": 5,
     "files": {
       "json": "tdx_value/2025-12/2025-12-26.json",
       "txt": "tdx_value/2025-12/2025-12-26.txt"
@@ -4802,10 +4802,10 @@
   },
   "2025-12-29": {
     "date": "2025-12-29",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 16,
-    "stock_count": 16,
-    "institution_count": 8,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 46,
+    "stock_count": 45,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-12/2025-12-29.json",
       "txt": "tdx_value/2025-12/2025-12-29.txt"
@@ -4813,10 +4813,10 @@
   },
   "2025-12-28": {
     "date": "2025-12-28",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 16,
-    "stock_count": 16,
-    "institution_count": 14,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 4,
+    "stock_count": 4,
+    "institution_count": 3,
     "files": {
       "json": "tdx_value/2025-12/2025-12-28.json",
       "txt": "tdx_value/2025-12/2025-12-28.txt"
@@ -4824,10 +4824,10 @@
   },
   "2025-12-27": {
     "date": "2025-12-27",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 15,
-    "stock_count": 15,
-    "institution_count": 13,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 1,
+    "stock_count": 1,
+    "institution_count": 1,
     "files": {
       "json": "tdx_value/2025-12/2025-12-27.json",
       "txt": "tdx_value/2025-12/2025-12-27.txt"
@@ -4835,10 +4835,10 @@
   },
   "2025-12-30": {
     "date": "2025-12-30",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 47,
-    "stock_count": 44,
-    "institution_count": 22,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 15,
+    "stock_count": 15,
+    "institution_count": 10,
     "files": {
       "json": "tdx_value/2025-12/2025-12-30.json",
       "txt": "tdx_value/2025-12/2025-12-30.txt"
@@ -4846,10 +4846,10 @@
   },
   "2025-12-31": {
     "date": "2025-12-31",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 3,
-    "stock_count": 3,
-    "institution_count": 3,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 47,
+    "stock_count": 46,
+    "institution_count": 25,
     "files": {
       "json": "tdx_value/2025-12/2025-12-31.json",
       "txt": "tdx_value/2025-12/2025-12-31.txt"
@@ -4857,10 +4857,10 @@
   },
   "2026-01-05": {
     "date": "2026-01-05",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 30,
-    "stock_count": 28,
-    "institution_count": 18,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 10,
+    "stock_count": 10,
+    "institution_count": 6,
     "files": {
       "json": "tdx_value/2026-01/2026-01-05.json",
       "txt": "tdx_value/2026-01/2026-01-05.txt"
@@ -4868,10 +4868,10 @@
   },
   "2026-01-04": {
     "date": "2026-01-04",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 1,
-    "stock_count": 1,
-    "institution_count": 1,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 21,
+    "stock_count": 20,
+    "institution_count": 13,
     "files": {
       "json": "tdx_value/2026-01/2026-01-04.json",
       "txt": "tdx_value/2026-01/2026-01-04.txt"
@@ -4912,13 +4912,24 @@
   },
   "2026-01-06": {
     "date": "2026-01-06",
-    "update_time": "2026-01-06 19:25:45",
-    "report_count": 10,
-    "stock_count": 9,
-    "institution_count": 6,
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 36,
+    "stock_count": 32,
+    "institution_count": 19,
     "files": {
       "json": "tdx_value/2026-01/2026-01-06.json",
       "txt": "tdx_value/2026-01/2026-01-06.txt"
+    }
+  },
+  "2026-01-07": {
+    "date": "2026-01-07",
+    "update_time": "2026-01-07 19:27:00",
+    "report_count": 2,
+    "stock_count": 2,
+    "institution_count": 2,
+    "files": {
+      "json": "tdx_value/2026-01/2026-01-07.json",
+      "txt": "tdx_value/2026-01/2026-01-07.txt"
     }
   }
 }
