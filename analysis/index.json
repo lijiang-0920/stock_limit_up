@@ -998,5 +998,15 @@
       "json": "analysis/2026-01-13.json",
       "txt": "analysis/2026-01-13.txt"
     }
+  },
+  "2026-01-14": {
+    "date": "2026-01-14",
+    "update_time": "2026-01-14 15:46:46",
+    "category_count": 13,
+    "total_stocks": 149,
+    "files": {
+      "json": "analysis/2026-01-14.json",
+      "txt": "analysis/2026-01-14.txt"
+    }
   }
 }
