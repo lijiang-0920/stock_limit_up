@@ -1065,5 +1065,16 @@
       "json": "dragon_tiger/2026-01-22.json",
       "txt": "dragon_tiger/2026-01-22.txt"
     }
+  },
+  "2026-01-23": {
+    "date": "2026-01-23",
+    "update_time": "2026-01-23 18:23:04",
+    "total_count": 72,
+    "success_count": 72,
+    "success_rate": 100.0,
+    "files": {
+      "json": "dragon_tiger/2026-01-23.json",
+      "txt": "dragon_tiger/2026-01-23.txt"
+    }
   }
 }
